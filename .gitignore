@@ -89,9 +89,9 @@ ENV/
 .ropeproject
 
 # Add by tmpbook
-db.sqlite3
+# db.sqlite3
 .vscode
 node_modules
 static
-nohup.txt
+nohup.log
 fail2ban
