@@ -8,5 +8,5 @@ rm -rf static
 python manage.py makemigrations
 python manage.py collectstatic
 python manage.py migrate
- nohup python manage.py runserver 0.0.0.0:8000 &
+python manage.py runserver 0.0.0.0:8000 
 #nohup uwsgi --ini uwsgi.ini &
