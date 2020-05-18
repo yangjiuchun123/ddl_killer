@@ -16,8 +16,8 @@ errorTitle = '⚠️ ddl_killer 错误提醒'
 errorText = "😥 我们非常抱歉地告诉您，您有一个任务提醒在发送过程中出现了错误，请登陆 <a href='http://123.57.67.161:8000'>ddl_killer 网站查看</a>。\n\n感谢您的理解，祝学业顺利。\n\n"
 
 def main():
-    f = open('/home/q2l/django-with-vuejs/backend/ddl_killer/log/automail.log', 'a+')
-    db_path = '/home/q2l/django-with-vuejs/backend/db.sqlite3'
+    f = open('/root/BetaRepo/backend/ddl_killer/log/automail.log', 'a+')
+    db_path = '/root/BetaRepo/backend/db.sqlite3'
     connect = db.connect(db_path)
     cu = connect.cursor()
     print('Python '+sys.version)

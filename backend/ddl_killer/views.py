@@ -435,41 +435,42 @@ def add_task(request, uid): #用户个人添加task(需要选择或输入partici
 
 def show_user_tasks(request, uid): #用户查看自己的所有任务及ddl
     response = {}
-    
-    usertask = UserTask.objects.filter(user__uid=uid, is_deleted=False)       
-    response["data"] = []
-    if User.objects.get(uid=uid)!=None:
-        try:
-            response['code'] = 200
-            for t in usertask:
-                # print(t)
-                response["data"].append({
-                    "tid": t.task.tid,
-                    "title": t.task.title,
-                    "course_name": t.task.course_name,
-                    "content": t.task.content,
-                    "platform": t.task.platform,
-                    "category": t.task.category,
-                    "urls": t.task.urls,
-                    "ddl_time": t.task.ddl_time,
-                    "notification_time": t.notification_time,
-                    "notification_alert": t.notification_alert,
-                    "create_time": t.task.create_time,
-                    'isAdmin': t.isAdmin,
-                    "is_finished": t.is_finished
-                })   
-                #print(t.isAdmin)
-                #print(type(t.isAdmin))
-                #print(t.task.notification_alert)
-                #"print(type(t.task.notification_alert))
+    try: 
+        usertask = UserTask.objects.filter(user__uid=uid, is_deleted=False)       
+        response["data"] = []
+        if User.objects.filter(uid=uid).exists():
+            try:
+                response['code'] = 200
+                for t in usertask:
+                    # print(t)
+                    response["data"].append({
+                        "tid": t.task.tid,
+                        "title": t.task.title,
+                        "course_name": t.task.course_name,
+                        "content": t.task.content,
+                        "platform": t.task.platform,
+                        "category": t.task.category,
+                        "urls": t.task.urls,
+                        "ddl_time": t.task.ddl_time,
+                        "notification_time": t.notification_time,
+                        "notification_alert": t.notification_alert,
+                        "create_time": t.task.create_time,
+                        'isAdmin': t.isAdmin,
+                        "is_finished": t.is_finished
+                    })   
+                    #print(t.isAdmin)
+                    #print(type(t.isAdmin))
+                    #print(t.task.notification_alert)
+                    #"print(type(t.task.notification_alert))
 
-            response["msg"]="Success."
-        except:
-            traceback.print_exc()
-    else:
-        response['code'] = 404
-        response["msg"]="No tasks."
-    
+                response["msg"]="Success."
+            except:
+                traceback.print_exc()
+        else:
+            response['code'] = 404
+            response["msg"]="No tasks."
+    except:
+        traceback.print_exc()
     return JsonResponse(response, json_dumps_params={'ensure_ascii':False}, charset='utf_8_sig')
     
     
