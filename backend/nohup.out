@@ -1,0 +1,64 @@
+Exception in thread django-main-thread:
+Traceback (most recent call last):
+  File "/usr/lib64/python3.6/threading.py", line 916, in _bootstrap_inner
+    self.run()
+  File "/usr/lib64/python3.6/threading.py", line 864, in run
+    self._target(*self._args, **self._kwargs)
+  File "/root/BetaRepo/backend/venv/lib/python3.6/site-packages/django/utils/autoreload.py", line 53, in wrapper
+    fn(*args, **kwargs)
+  File "/root/BetaRepo/backend/venv/lib/python3.6/site-packages/django/core/management/commands/runserver.py", line 109, in inner_run
+    autoreload.raise_last_exception()
+  File "/root/BetaRepo/backend/venv/lib/python3.6/site-packages/django/utils/autoreload.py", line 76, in raise_last_exception
+    raise _exception[1]
+  File "/root/BetaRepo/backend/venv/lib/python3.6/site-packages/django/core/management/__init__.py", line 357, in execute
+    autoreload.check_errors(django.setup)()
+  File "/root/BetaRepo/backend/venv/lib/python3.6/site-packages/django/utils/autoreload.py", line 53, in wrapper
+    fn(*args, **kwargs)
+  File "/root/BetaRepo/backend/venv/lib/python3.6/site-packages/django/__init__.py", line 24, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "/root/BetaRepo/backend/venv/lib/python3.6/site-packages/django/apps/registry.py", line 114, in populate
+    app_config.import_models()
+  File "/root/BetaRepo/backend/venv/lib/python3.6/site-packages/django/apps/config.py", line 211, in import_models
+    self.models_module = import_module(models_module_name)
+  File "/root/BetaRepo/backend/venv/lib64/python3.6/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 994, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 971, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 955, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 665, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 678, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/root/BetaRepo/backend/venv/lib/python3.6/site-packages/django/contrib/auth/models.py", line 2, in <module>
+    from django.contrib.auth.base_user import AbstractBaseUser, BaseUserManager
+  File "/root/BetaRepo/backend/venv/lib/python3.6/site-packages/django/contrib/auth/base_user.py", line 47, in <module>
+    class AbstractBaseUser(models.Model):
+  File "/root/BetaRepo/backend/venv/lib/python3.6/site-packages/django/db/models/base.py", line 121, in __new__
+    new_class.add_to_class('_meta', Options(meta, app_label))
+  File "/root/BetaRepo/backend/venv/lib/python3.6/site-packages/django/db/models/base.py", line 325, in add_to_class
+    value.contribute_to_class(cls, name)
+  File "/root/BetaRepo/backend/venv/lib/python3.6/site-packages/django/db/models/options.py", line 208, in contribute_to_class
+    self.db_table = truncate_name(self.db_table, connection.ops.max_name_length())
+  File "/root/BetaRepo/backend/venv/lib/python3.6/site-packages/django/db/__init__.py", line 28, in __getattr__
+    return getattr(connections[DEFAULT_DB_ALIAS], item)
+  File "/root/BetaRepo/backend/venv/lib/python3.6/site-packages/django/db/utils.py", line 207, in __getitem__
+    backend = load_backend(db['ENGINE'])
+  File "/root/BetaRepo/backend/venv/lib/python3.6/site-packages/django/db/utils.py", line 111, in load_backend
+    return import_module('%s.base' % backend_name)
+  File "/root/BetaRepo/backend/venv/lib64/python3.6/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "/root/BetaRepo/backend/venv/lib/python3.6/site-packages/django/db/backends/sqlite3/base.py", line 68, in <module>
+    check_sqlite_version()
+  File "/root/BetaRepo/backend/venv/lib/python3.6/site-packages/django/db/backends/sqlite3/base.py", line 65, in check_sqlite_version
+    raise ImproperlyConfigured('SQLite 3.8.3 or later is required (found %s).' % Database.sqlite_version)
+django.core.exceptions.ImproperlyConfigured: SQLite 3.8.3 or later is required (found 3.7.17).
+
+[19/May/2020 00:56:10] "GET / HTTP/1.1" 200 4773
+[19/May/2020 00:56:10] "GET /static/css/app.001ae6f7.css HTTP/1.1" 200 9472
+[19/May/2020 00:56:10] "GET /static/js/app.b576544b.js HTTP/1.1" 200 53091
+[19/May/2020 00:56:13] "GET /static/css/chunk-elementUI.ded27da0.css HTTP/1.1" 200 233320
+[19/May/2020 00:56:21] "GET /static/js/chunk-elementUI.143fd3a0.js HTTP/1.1" 200 668709
+[19/May/2020 00:56:25] "GET /static/css/chunk-libs.d8105a94.css HTTP/1.1" 200 603963
+[19/May/2020 00:56:29] "GET /static/js/chunk-libs.1cbb34a5.js HTTP/1.1" 200 1031525
+[19/May/2020 00:56:30] "GET /static/css/chunk-2c4d15b4.3335bf31.css HTTP/1.1" 200 1874
+[19/May/2020 00:56:30] "GET /static/js/chunk-2c4d15b4.988d28d3.js HTTP/1.1" 200 3912
+[19/May/2020 00:56:30] "GET /static/img/bgd.cc940dc6.png HTTP/1.1" 200 152852
