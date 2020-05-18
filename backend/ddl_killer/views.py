@@ -606,11 +606,13 @@ def delete_task(request, uid, tid):
     response = {}
     usertask = UserTask.objects.filter(user__uid=uid, task__tid=tid)
     if usertask.exists():
-        if usertask.is_deleted:
+        ut = usertask[0]
+        if ut.is_deleted:
             response["code"] = 400
             response["msg"] = "The task is already deleted."
         else:
-            usertask.update(is_deleted=True)
+            ut.is_deleted=True
+            ut.save()
             response["code"] = 200
             response["msg"]="Success."
     else:
