@@ -1,276 +1,223 @@
 {
     "courses": [
         {
-            "course_name": "经济管理006班",
-            "course_teacher": "陈  喆",
+            "course_name": "2020春_计算机学院《计算机图形学》",
+            "course_teacher": "孟宪海",
             "resources": [
                 {
-                    "title": "经济管理006.jpeg",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/ebe2b6ec-a7db-45e5-a30f-33a8deb32a89/%E7%BB%8F%E6%B5%8E%E7%AE%A1%E7%90%86006.jpeg",
+                    "title": "微信交流群二维码.jpg",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/7b6dc978-e746-4c01-b282-3268a80b1a88/%E5%BE%AE%E4%BF%A1%E4%BA%A4%E6%B5%81%E7%BE%A4%E4%BA%8C%E7%BB%B4%E7%A0%81.jpg",
                     "code": ""
                 },
                 {
-                    "title": "浏览器2.jpeg",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/ebe2b6ec-a7db-45e5-a30f-33a8deb32a89/%E6%B5%8F%E8%A7%88%E5%99%A82.jpeg",
+                    "title": "@@Interactive Computer Graphics_A Top-Down Approach with Shader-Based OpenGL(Sixth Edition).pdf",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/7b6dc978-e746-4c01-b282-3268a80b1a88/%E8%AF%BE%E7%A8%8B%E8%BE%85%E5%8A%A9%E8%B5%84%E6%BA%90/%40%40Interactive%20Computer%20Graphics_A%20Top-Down%20Approach%20with%20Shader-Based%20OpenGL_Sixth%20Edition_.pdf",
                     "code": ""
                 },
                 {
-                    "title": "浏览器.png",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/ebe2b6ec-a7db-45e5-a30f-33a8deb32a89/%E6%B5%8F%E8%A7%88%E5%99%A8.png",
+                    "title": "@@交互式计算机图形学（第五版）_基于OpenGL的自顶向下方法.pdf",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/7b6dc978-e746-4c01-b282-3268a80b1a88/%E8%AF%BE%E7%A8%8B%E8%BE%85%E5%8A%A9%E8%B5%84%E6%BA%90/%40%40%E4%BA%A4%E4%BA%92%E5%BC%8F%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6%EF%BC%88%E7%AC%AC%E4%BA%94%E7%89%88%EF%BC%89_%E5%9F%BA%E4%BA%8EOpenGL%E7%9A%84%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E6%96%B9%E6%B3%95.pdf",
                     "code": ""
                 },
                 {
-                    "title": "chp0+经济管课程介绍.pdf",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/ebe2b6ec-a7db-45e5-a30f-33a8deb32a89/%E5%88%98%E5%A4%A9%E4%BA%AE%E8%80%81%E5%B8%88%E8%AF%BE%E4%BB%B6/chp0%2B%E7%BB%8F%E6%B5%8E%E7%AE%A1%E8%AF%BE%E7%A8%8B%E4%BB%8B%E7%BB%8D.pdf",
+                    "title": "交互式计算机图形学  基于WEBGL的自顶向下方法  第7版.pdf",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/7b6dc978-e746-4c01-b282-3268a80b1a88/%E8%AF%BE%E7%A8%8B%E8%BE%85%E5%8A%A9%E8%B5%84%E6%BA%90/%E4%BA%A4%E4%BA%92%E5%BC%8F%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6%20%20%E5%9F%BA%E4%BA%8EWEBGL%E7%9A%84%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E6%96%B9%E6%B3%95%20%20%E7%AC%AC7%E7%89%88.pdf",
                     "code": ""
                 },
                 {
-                    "title": "Chp01_05_经济与管理概述.pdf",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/ebe2b6ec-a7db-45e5-a30f-33a8deb32a89/%E5%88%98%E5%A4%A9%E4%BA%AE%E8%80%81%E5%B8%88%E8%AF%BE%E4%BB%B6/Chp01_05_%E7%BB%8F%E6%B5%8E%E4%B8%8E%E7%AE%A1%E7%90%86%E6%A6%82%E8%BF%B0.pdf",
+                    "title": "0-第一讲-课程介绍_计算机学院-计算机图形学.pdf",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/7b6dc978-e746-4c01-b282-3268a80b1a88/%E8%AF%BE%E7%A8%8B%E8%AE%B2%E4%B9%89/0-%E7%AC%AC%E4%B8%80%E8%AE%B2-%E8%AF%BE%E7%A8%8B%E4%BB%8B%E7%BB%8D_%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AD%A6%E9%99%A2-%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6.pdf",
                     "code": ""
                 },
                 {
-                    "title": "Chp02_微观市场机制分析.pdf",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/ebe2b6ec-a7db-45e5-a30f-33a8deb32a89/%E5%88%98%E5%A4%A9%E4%BA%AE%E8%80%81%E5%B8%88%E8%AF%BE%E4%BB%B6/Chp02_%E5%BE%AE%E8%A7%82%E5%B8%82%E5%9C%BA%E6%9C%BA%E5%88%B6%E5%88%86%E6%9E%90.pdf",
+                    "title": "1-第一讲-计算机图形学概论_计算机图形学.pdf",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/7b6dc978-e746-4c01-b282-3268a80b1a88/%E8%AF%BE%E7%A8%8B%E8%AE%B2%E4%B9%89/1-%E7%AC%AC%E4%B8%80%E8%AE%B2-%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6%E6%A6%82%E8%AE%BA_%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6.pdf",
                     "code": ""
                 },
                 {
-                    "title": "Chp03_要素投入与市场结构.pdf",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/ebe2b6ec-a7db-45e5-a30f-33a8deb32a89/%E5%88%98%E5%A4%A9%E4%BA%AE%E8%80%81%E5%B8%88%E8%AF%BE%E4%BB%B6/Chp03_%E8%A6%81%E7%B4%A0%E6%8A%95%E5%85%A5%E4%B8%8E%E5%B8%82%E5%9C%BA%E7%BB%93%E6%9E%84.pdf",
+                    "title": "2-第二讲-计算机图形系统_计算机图形学.pdf",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/7b6dc978-e746-4c01-b282-3268a80b1a88/%E8%AF%BE%E7%A8%8B%E8%AE%B2%E4%B9%89/2-%E7%AC%AC%E4%BA%8C%E8%AE%B2-%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E7%B3%BB%E7%BB%9F_%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6.pdf",
                     "code": ""
                 },
                 {
-                    "title": "Chp04_宏观经济分析.pdf",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/ebe2b6ec-a7db-45e5-a30f-33a8deb32a89/%E5%88%98%E5%A4%A9%E4%BA%AE%E8%80%81%E5%B8%88%E8%AF%BE%E4%BB%B6/Chp04_%E5%AE%8F%E8%A7%82%E7%BB%8F%E6%B5%8E%E5%88%86%E6%9E%90.pdf",
+                    "title": "3-第三讲-基本图形学程序-计算机图形学.pdf",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/7b6dc978-e746-4c01-b282-3268a80b1a88/%E8%AF%BE%E7%A8%8B%E8%AE%B2%E4%B9%89/3-%E7%AC%AC%E4%B8%89%E8%AE%B2-%E5%9F%BA%E6%9C%AC%E5%9B%BE%E5%BD%A2%E5%AD%A6%E7%A8%8B%E5%BA%8F-%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6.pdf",
                     "code": ""
                 },
                 {
-                    "title": "Chp06_管理的职能.pdf",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/ebe2b6ec-a7db-45e5-a30f-33a8deb32a89/%E5%88%98%E5%A4%A9%E4%BA%AE%E8%80%81%E5%B8%88%E8%AF%BE%E4%BB%B6/Chp06_%E7%AE%A1%E7%90%86%E7%9A%84%E8%81%8C%E8%83%BD.pdf",
+                    "title": "4-第四讲-几何对象与变换-计算机图形学.pdf",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/7b6dc978-e746-4c01-b282-3268a80b1a88/%E8%AF%BE%E7%A8%8B%E8%AE%B2%E4%B9%89/4-%E7%AC%AC%E5%9B%9B%E8%AE%B2-%E5%87%A0%E4%BD%95%E5%AF%B9%E8%B1%A1%E4%B8%8E%E5%8F%98%E6%8D%A2-%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6.pdf",
                     "code": ""
                 },
                 {
-                    "title": "Chp07_企业与管理.pdf",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/ebe2b6ec-a7db-45e5-a30f-33a8deb32a89/%E5%88%98%E5%A4%A9%E4%BA%AE%E8%80%81%E5%B8%88%E8%AF%BE%E4%BB%B6/Chp07_%E4%BC%81%E4%B8%9A%E4%B8%8E%E7%AE%A1%E7%90%86.pdf",
+                    "title": "5-第五讲-观察与投影-计算机图形学.pdf",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/7b6dc978-e746-4c01-b282-3268a80b1a88/%E8%AF%BE%E7%A8%8B%E8%AE%B2%E4%B9%89/5-%E7%AC%AC%E4%BA%94%E8%AE%B2-%E8%A7%82%E5%AF%9F%E4%B8%8E%E6%8A%95%E5%BD%B1-%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6.pdf",
                     "code": ""
                 },
                 {
-                    "title": "Chp08_生产系统结构与战略.pdf",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/ebe2b6ec-a7db-45e5-a30f-33a8deb32a89/%E5%88%98%E5%A4%A9%E4%BA%AE%E8%80%81%E5%B8%88%E8%AF%BE%E4%BB%B6/Chp08_%E7%94%9F%E4%BA%A7%E7%B3%BB%E7%BB%9F%E7%BB%93%E6%9E%84%E4%B8%8E%E6%88%98%E7%95%A5.pdf",
+                    "title": "6-第六讲-光照和明暗绘制-计算机图形学.pdf",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/7b6dc978-e746-4c01-b282-3268a80b1a88/%E8%AF%BE%E7%A8%8B%E8%AE%B2%E4%B9%89/6-%E7%AC%AC%E5%85%AD%E8%AE%B2-%E5%85%89%E7%85%A7%E5%92%8C%E6%98%8E%E6%9A%97%E7%BB%98%E5%88%B6-%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6.pdf",
                     "code": ""
                 },
                 {
-                    "title": "Chp08_产品设计.pdf",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/ebe2b6ec-a7db-45e5-a30f-33a8deb32a89/%E5%BC%A0%E6%A5%9A%E8%AF%BE%E4%BB%B6%EF%BC%889-16%E5%91%A8%EF%BC%89/Chp08_%E4%BA%A7%E5%93%81%E8%AE%BE%E8%AE%A1.pdf",
+                    "title": "7-第七讲-图元裁剪-计算机图形学.pdf",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/7b6dc978-e746-4c01-b282-3268a80b1a88/%E8%AF%BE%E7%A8%8B%E8%AE%B2%E4%B9%89/7-%E7%AC%AC%E4%B8%83%E8%AE%B2-%E5%9B%BE%E5%85%83%E8%A3%81%E5%89%AA-%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6.pdf",
                     "code": ""
                 },
                 {
-                    "title": "Chp09_生产运作流程设计.pdf",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/ebe2b6ec-a7db-45e5-a30f-33a8deb32a89/%E5%BC%A0%E6%A5%9A%E8%AF%BE%E4%BB%B6%EF%BC%889-16%E5%91%A8%EF%BC%89/Chp09_%E7%94%9F%E4%BA%A7%E8%BF%90%E4%BD%9C%E6%B5%81%E7%A8%8B%E8%AE%BE%E8%AE%A1.pdf",
+                    "title": "8-第八讲-光栅化-计算机图形学.pdf",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/7b6dc978-e746-4c01-b282-3268a80b1a88/%E8%AF%BE%E7%A8%8B%E8%AE%B2%E4%B9%89/8-%E7%AC%AC%E5%85%AB%E8%AE%B2-%E5%85%89%E6%A0%85%E5%8C%96-%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6.pdf",
                     "code": ""
                 },
                 {
-                    "title": "Chp10_库存与生产计划管理.pdf",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/ebe2b6ec-a7db-45e5-a30f-33a8deb32a89/%E5%BC%A0%E6%A5%9A%E8%AF%BE%E4%BB%B6%EF%BC%889-16%E5%91%A8%EF%BC%89/Chp10_%E5%BA%93%E5%AD%98%E4%B8%8E%E7%94%9F%E4%BA%A7%E8%AE%A1%E5%88%92%E7%AE%A1%E7%90%86.pdf",
+                    "title": "9-第九讲-隐藏面消除-计算机图形学.pdf",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/7b6dc978-e746-4c01-b282-3268a80b1a88/%E8%AF%BE%E7%A8%8B%E8%AE%B2%E4%B9%89/9-%E7%AC%AC%E4%B9%9D%E8%AE%B2-%E9%9A%90%E8%97%8F%E9%9D%A2%E6%B6%88%E9%99%A4-%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6.pdf",
                     "code": ""
                 },
                 {
-                    "title": "第01、05章 经济与管理概述.pdf",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/ebe2b6ec-a7db-45e5-a30f-33a8deb32a89/%E5%BC%A0%E4%BA%BA%E5%8D%83%E8%80%81%E5%B8%88%E8%AF%BE%E4%BB%B6/%E7%AC%AC01%E3%80%8105%E7%AB%A0%20%E7%BB%8F%E6%B5%8E%E4%B8%8E%E7%AE%A1%E7%90%86%E6%A6%82%E8%BF%B0.pdf",
+                    "title": "10-第十讲-纹理映射与片元处理-计算机图形学.pdf",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/7b6dc978-e746-4c01-b282-3268a80b1a88/%E8%AF%BE%E7%A8%8B%E8%AE%B2%E4%B9%89/10-%E7%AC%AC%E5%8D%81%E8%AE%B2-%E7%BA%B9%E7%90%86%E6%98%A0%E5%B0%84%E4%B8%8E%E7%89%87%E5%85%83%E5%A4%84%E7%90%86-%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6.pdf",
                     "code": ""
                 },
                 {
-                    "title": "第02章 微观市场机制分析.pdf",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/ebe2b6ec-a7db-45e5-a30f-33a8deb32a89/%E5%BC%A0%E4%BA%BA%E5%8D%83%E8%80%81%E5%B8%88%E8%AF%BE%E4%BB%B6/%E7%AC%AC02%E7%AB%A0%20%E5%BE%AE%E8%A7%82%E5%B8%82%E5%9C%BA%E6%9C%BA%E5%88%B6%E5%88%86%E6%9E%90-1.pdf",
+                    "title": "11-第十一讲-大作业说明.pdf",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/7b6dc978-e746-4c01-b282-3268a80b1a88/%E8%AF%BE%E7%A8%8B%E8%AE%B2%E4%B9%89/11-%E7%AC%AC%E5%8D%81%E4%B8%80%E8%AE%B2-%E5%A4%A7%E4%BD%9C%E4%B8%9A%E8%AF%B4%E6%98%8E.pdf",
                     "code": ""
                 },
                 {
-                    "title": "第03章 生产决策与市场结构.pdf",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/ebe2b6ec-a7db-45e5-a30f-33a8deb32a89/%E5%BC%A0%E4%BA%BA%E5%8D%83%E8%80%81%E5%B8%88%E8%AF%BE%E4%BB%B6/%E7%AC%AC03%E7%AB%A0%20%E7%94%9F%E4%BA%A7%E5%86%B3%E7%AD%96%E4%B8%8E%E5%B8%82%E5%9C%BA%E7%BB%93%E6%9E%84.pdf",
+                    "title": "11-第十一讲-可编程流水线和GPU-计算机图形学.pdf",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/7b6dc978-e746-4c01-b282-3268a80b1a88/%E8%AF%BE%E7%A8%8B%E8%AE%B2%E4%B9%89/11-%E7%AC%AC%E5%8D%81%E4%B8%80%E8%AE%B2-%E5%8F%AF%E7%BC%96%E7%A8%8B%E6%B5%81%E6%B0%B4%E7%BA%BF%E5%92%8CGPU-%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6.pdf",
                     "code": ""
                 },
                 {
-                    "title": "第04章 宏观经济分析.pdf",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/ebe2b6ec-a7db-45e5-a30f-33a8deb32a89/%E5%BC%A0%E4%BA%BA%E5%8D%83%E8%80%81%E5%B8%88%E8%AF%BE%E4%BB%B6/%E7%AC%AC04%E7%AB%A0%20%E5%AE%8F%E8%A7%82%E7%BB%8F%E6%B5%8E%E5%88%86%E6%9E%90.pdf",
-                    "code": ""
-                },
-                {
-                    "title": "第06章 管理的职能.pdf",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/ebe2b6ec-a7db-45e5-a30f-33a8deb32a89/%E5%BC%A0%E4%BA%BA%E5%8D%83%E8%80%81%E5%B8%88%E8%AF%BE%E4%BB%B6/%E7%AC%AC06%E7%AB%A0%20%E7%AE%A1%E7%90%86%E7%9A%84%E8%81%8C%E8%83%BD.pdf",
-                    "code": ""
-                },
-                {
-                    "title": "第07章 企业与管理.pdf",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/ebe2b6ec-a7db-45e5-a30f-33a8deb32a89/%E5%BC%A0%E4%BA%BA%E5%8D%83%E8%80%81%E5%B8%88%E8%AF%BE%E4%BB%B6/%E7%AC%AC07%E7%AB%A0%20%E4%BC%81%E4%B8%9A%E4%B8%8E%E7%AE%A1%E7%90%86.pdf",
-                    "code": ""
-                },
-                {
-                    "title": "第08章 生产系统结构与战略.pdf",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/ebe2b6ec-a7db-45e5-a30f-33a8deb32a89/%E5%BC%A0%E4%BA%BA%E5%8D%83%E8%80%81%E5%B8%88%E8%AF%BE%E4%BB%B6/%E7%AC%AC08%E7%AB%A0%20%E7%94%9F%E4%BA%A7%E7%B3%BB%E7%BB%9F%E7%BB%93%E6%9E%84%E4%B8%8E%E6%88%98%E7%95%A5.pdf",
-                    "code": ""
-                },
-                {
-                    "title": "第09章 产品设计.pdf",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/ebe2b6ec-a7db-45e5-a30f-33a8deb32a89/%E5%BC%A0%E4%BA%BA%E5%8D%83%E8%80%81%E5%B8%88%E8%AF%BE%E4%BB%B6/%E7%AC%AC09%E7%AB%A0%20%E4%BA%A7%E5%93%81%E8%AE%BE%E8%AE%A1.pdf",
-                    "code": ""
-                },
-                {
-                    "title": "第10章 生产运作流程设计.pdf",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/ebe2b6ec-a7db-45e5-a30f-33a8deb32a89/%E5%BC%A0%E4%BA%BA%E5%8D%83%E8%80%81%E5%B8%88%E8%AF%BE%E4%BB%B6/%E7%AC%AC10%E7%AB%A0%20%E7%94%9F%E4%BA%A7%E8%BF%90%E4%BD%9C%E6%B5%81%E7%A8%8B%E8%AE%BE%E8%AE%A1.pdf",
-                    "code": ""
-                },
-                {
-                    "title": "第11章 库存与生产计划管理.pdf",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/ebe2b6ec-a7db-45e5-a30f-33a8deb32a89/%E5%BC%A0%E4%BA%BA%E5%8D%83%E8%80%81%E5%B8%88%E8%AF%BE%E4%BB%B6/%E7%AC%AC11%E7%AB%A0%20%E5%BA%93%E5%AD%98%E4%B8%8E%E7%94%9F%E4%BA%A7%E8%AE%A1%E5%88%92%E7%AE%A1%E7%90%86.pdf",
-                    "code": ""
-                },
-                {
-                    "title": "第12章 供应链管理.pdf",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/ebe2b6ec-a7db-45e5-a30f-33a8deb32a89/%E5%BC%A0%E4%BA%BA%E5%8D%83%E8%80%81%E5%B8%88%E8%AF%BE%E4%BB%B6/%E7%AC%AC12%E7%AB%A0%20%E4%BE%9B%E5%BA%94%E9%93%BE%E7%AE%A1%E7%90%86.pdf",
-                    "code": ""
-                },
-                {
-                    "title": "第13章 质量管理.pdf",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/ebe2b6ec-a7db-45e5-a30f-33a8deb32a89/%E5%BC%A0%E4%BA%BA%E5%8D%83%E8%80%81%E5%B8%88%E8%AF%BE%E4%BB%B6/%E7%AC%AC13%E7%AB%A0%20%E8%B4%A8%E9%87%8F%E7%AE%A1%E7%90%86.pdf",
-                    "code": ""
-                },
-                {
-                    "title": "第14章 项目管理.pdf",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/ebe2b6ec-a7db-45e5-a30f-33a8deb32a89/%E5%BC%A0%E4%BA%BA%E5%8D%83%E8%80%81%E5%B8%88%E8%AF%BE%E4%BB%B6/%E7%AC%AC14%E7%AB%A0%20%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86.pdf",
-                    "code": ""
-                },
-                {
-                    "title": "第15章 投资项目经济评价.pdf",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/ebe2b6ec-a7db-45e5-a30f-33a8deb32a89/%E5%BC%A0%E4%BA%BA%E5%8D%83%E8%80%81%E5%B8%88%E8%AF%BE%E4%BB%B6/%E7%AC%AC15%E7%AB%A0%20%E6%8A%95%E8%B5%84%E9%A1%B9%E7%9B%AE%E7%BB%8F%E6%B5%8E%E8%AF%84%E4%BB%B7.pdf",
+                    "title": "12-第十二讲-几何建模-计算机图形学.pdf",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/7b6dc978-e746-4c01-b282-3268a80b1a88/%E8%AF%BE%E7%A8%8B%E8%AE%B2%E4%B9%89/12-%E7%AC%AC%E5%8D%81%E4%BA%8C%E8%AE%B2-%E5%87%A0%E4%BD%95%E5%BB%BA%E6%A8%A1-%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6.pdf",
                     "code": ""
                 }
             ],
-            "assignments": [
-                {
-                    "title": "第二次测验补交专栏",
-                    "create_time": "2020-03-04 8:00:00",
-                    "platform": "课程中心",
-                    "category": "homework",
-                    "ddl_time": "2020-03-11 17:00:00",
-                    "notification_time": "2020-03-10 17:00:00",
-                    "notification_alert": true,
-                    "urls": "https://course.e2.buaa.edu.cn/portal/tool/32bccf47-ae07-4b2a-bd6e-c59d498e7da8?assignmentReference=/assignment/a/ebe2b6ec-a7db-45e5-a30f-33a8deb32a89/6efe9904-79bf-4d5d-a717-90520b759a20&panel=Main&sakai_action=doView_submission",
-                    "content": "有同学反馈访问练习与测验不方便，无法提交完成的测验，可以在此提交完成的测验（需要编辑到文档中作为附件提交）。 能够正常访问练习与测验并提交的请忽略。",
-                    "is_finished": false
-                },
-                {
-                    "title": "第一次测验补交专栏",
-                    "create_time": "2020-02-26 12:00:00",
-                    "platform": "课程中心",
-                    "category": "homework",
-                    "ddl_time": "2020-03-08 17:00:00",
-                    "notification_time": "2020-03-07 17:00:00",
-                    "notification_alert": true,
-                    "urls": "https://course.e2.buaa.edu.cn/portal/tool/32bccf47-ae07-4b2a-bd6e-c59d498e7da8?assignmentReference=/assignment/a/ebe2b6ec-a7db-45e5-a30f-33a8deb32a89/49aaa577-43f0-4644-8f3d-e9a948fa2a20&panel=Main&sakai_action=doView_submission",
-                    "content": "有同学反馈访问练习与测验不方便，无法提交测验结果，可以在此提交测验结果。   能够正常访问练习与测验的请忽略。",
-                    "is_finished": false
-                },
-                {
-                    "title": "第一周作业",
-                    "create_time": "2020-02-21 12:00:00",
-                    "platform": "课程中心",
-                    "category": "homework",
-                    "ddl_time": "2020-03-05 17:00:00",
-                    "notification_time": "2020-03-04 17:00:00",
-                    "notification_alert": true,
-                    "urls": "https://course.e2.buaa.edu.cn/portal/tool/32bccf47-ae07-4b2a-bd6e-c59d498e7da8?submissionId=/assignment/s/ebe2b6ec-a7db-45e5-a30f-33a8deb32a89/7e86ae00-bf0e-4e08-9e86-437a32d15eab/c107d8af-3fb6-4a54-b35f-ce98d96e2357&panel=Main&sakai_action=doView_grade",
-                    "content": "1.请举一个你的生活中应用经济管理知识的例子。（200字以上） 2.请问第一次在线学习中是否遇到困难？是什么困难？",
-                    "is_finished": true
-                },
-                {
-                    "title": "课程试运行-作业",
-                    "create_time": "2020-02-22 12:00:00",
-                    "platform": "课程中心",
-                    "category": "homework",
-                    "ddl_time": "2020-02-23 10:00:00",
-                    "notification_time": "2020-02-22 10:00:00",
-                    "notification_alert": true,
-                    "urls": "https://course.e2.buaa.edu.cn/portal/tool/32bccf47-ae07-4b2a-bd6e-c59d498e7da8?assignmentReference=/assignment/a/ebe2b6ec-a7db-45e5-a30f-33a8deb32a89/7767d947-a8da-48b5-9384-4e065c6e507c&panel=Main&sakai_action=doView_submission",
-                    "content": "尝试课程中心-作业功能。",
-                    "is_finished": false
-                }
-            ]
+            "assignments": []
         },
         {
-            "course_name": "网络攻防技术",
-            "course_teacher": "teacher",
+            "course_name": "X86汇编程序设计",
+            "course_teacher": "熊桂喜",
             "resources": [
                 {
-                    "title": "第1章：网络安全概述-2020.ppt",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/fef37c5e-48fd-47a1-a275-b27eeb0e7eaf/%E7%AC%AC1%E7%AB%A0%EF%BC%9A%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%A6%82%E8%BF%B0-2020.ppt",
+                    "title": "DOSBox0.74.rar",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/6caf2572-2caf-4503-9438-99fa2f9a6d85/DOSBox0.74.rar",
                     "code": ""
                 },
                 {
-                    "title": "第2章：扫描与防御技术-2020.ppt",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/fef37c5e-48fd-47a1-a275-b27eeb0e7eaf/%E7%AC%AC2%E7%AB%A0%EF%BC%9A%E6%89%AB%E6%8F%8F%E4%B8%8E%E9%98%B2%E5%BE%A1%E6%8A%80%E6%9C%AF-2020.ppt",
+                    "title": "MasmForDOSbox2020.rar",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/6caf2572-2caf-4503-9438-99fa2f9a6d85/MasmForDOSbox2020.rar",
                     "code": ""
                 },
                 {
-                    "title": "第3章：网络监听及防御技术.ppt",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/fef37c5e-48fd-47a1-a275-b27eeb0e7eaf/%E7%AC%AC3%E7%AB%A0%EF%BC%9A%E7%BD%91%E7%BB%9C%E7%9B%91%E5%90%AC%E5%8F%8A%E9%98%B2%E5%BE%A1%E6%8A%80%E6%9C%AF.ppt",
+                    "title": "X86汇编程序设计——1.机器基础知识2020.ppt",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/6caf2572-2caf-4503-9438-99fa2f9a6d85/X86%E6%B1%87%E7%BC%96%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E2%80%94%E2%80%941.%E6%9C%BA%E5%99%A8%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%862020.ppt",
                     "code": ""
                 },
                 {
-                    "title": "第4章：口令破解与防御技术-2020.ppt",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/fef37c5e-48fd-47a1-a275-b27eeb0e7eaf/%E7%AC%AC4%E7%AB%A0%EF%BC%9A%E5%8F%A3%E4%BB%A4%E7%A0%B4%E8%A7%A3%E4%B8%8E%E9%98%B2%E5%BE%A1%E6%8A%80%E6%9C%AF-2020.ppt",
+                    "title": "X86汇编程序设计——1.机器基础知识2020(录播版)_1.pptx",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/6caf2572-2caf-4503-9438-99fa2f9a6d85/X86%E6%B1%87%E7%BC%96%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E2%80%94%E2%80%941.%E6%9C%BA%E5%99%A8%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%862020_%E5%BD%95%E6%92%AD%E7%89%88__1.pptx",
                     "code": ""
                 },
                 {
-                    "title": "第5章：欺骗攻击及防御技术-2020.ppt",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/fef37c5e-48fd-47a1-a275-b27eeb0e7eaf/%E7%AC%AC5%E7%AB%A0%EF%BC%9A%E6%AC%BA%E9%AA%97%E6%94%BB%E5%87%BB%E5%8F%8A%E9%98%B2%E5%BE%A1%E6%8A%80%E6%9C%AF-2020.ppt",
+                    "title": "X86汇编程序设计——1.机器基础知识2020(录播版)_2.pptx",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/6caf2572-2caf-4503-9438-99fa2f9a6d85/X86%E6%B1%87%E7%BC%96%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E2%80%94%E2%80%941.%E6%9C%BA%E5%99%A8%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%862020_%E5%BD%95%E6%92%AD%E7%89%88__2.pptx",
                     "code": ""
                 },
                 {
-                    "title": "第6章：拒绝服务攻击及防御技术-2020-1.rar",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/fef37c5e-48fd-47a1-a275-b27eeb0e7eaf/%E7%AC%AC6%E7%AB%A0%EF%BC%9A%E6%8B%92%E7%BB%9D%E6%9C%8D%E5%8A%A1%E6%94%BB%E5%87%BB%E5%8F%8A%E9%98%B2%E5%BE%A1%E6%8A%80%E6%9C%AF-2020-1.rar",
+                    "title": "X86汇编程序设计第4讲-讲义.rar",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/6caf2572-2caf-4503-9438-99fa2f9a6d85/X86%E6%B1%87%E7%BC%96%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E7%AC%AC4%E8%AE%B2-%E8%AE%B2%E4%B9%89.rar",
                     "code": ""
                 },
                 {
-                    "title": "第6章：拒绝服务攻击及防御技术-2020.ppt",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/fef37c5e-48fd-47a1-a275-b27eeb0e7eaf/%E7%AC%AC6%E7%AB%A0%EF%BC%9A%E6%8B%92%E7%BB%9D%E6%9C%8D%E5%8A%A1%E6%94%BB%E5%87%BB%E5%8F%8A%E9%98%B2%E5%BE%A1%E6%8A%80%E6%9C%AF-2020.ppt",
+                    "title": "X86汇编程序设计第二次实验作业.docx",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/6caf2572-2caf-4503-9438-99fa2f9a6d85/X86%E6%B1%87%E7%BC%96%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E7%AC%AC%E4%BA%8C%E6%AC%A1%E5%AE%9E%E9%AA%8C%E4%BD%9C%E4%B8%9A.docx",
                     "code": ""
                 },
                 {
-                    "title": "第7章：缓冲区溢出攻击及防御技术R.pptx",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/fef37c5e-48fd-47a1-a275-b27eeb0e7eaf/%E7%AC%AC7%E7%AB%A0%EF%BC%9A%E7%BC%93%E5%86%B2%E5%8C%BA%E6%BA%A2%E5%87%BA%E6%94%BB%E5%87%BB%E5%8F%8A%E9%98%B2%E5%BE%A1%E6%8A%80%E6%9C%AFR.pptx",
+                    "title": "X86汇编程序设计第一次实验-讲义及作业.rar",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/6caf2572-2caf-4503-9438-99fa2f9a6d85/X86%E6%B1%87%E7%BC%96%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%AE%9E%E9%AA%8C-%E8%AE%B2%E4%B9%89%E5%8F%8A%E4%BD%9C%E4%B8%9A.rar",
                     "code": ""
                 },
                 {
-                    "title": "第8章：Web攻击及防御技术B.pptx",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/fef37c5e-48fd-47a1-a275-b27eeb0e7eaf/%E7%AC%AC8%E7%AB%A0%EF%BC%9AWeb%E6%94%BB%E5%87%BB%E5%8F%8A%E9%98%B2%E5%BE%A1%E6%8A%80%E6%9C%AFB.pptx",
+                    "title": "X86汇编程序设计-熊桂喜-第1-3章.pdf",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/6caf2572-2caf-4503-9438-99fa2f9a6d85/X86%E6%B1%87%E7%BC%96%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1-%E7%86%8A%E6%A1%82%E5%96%9C-%E7%AC%AC1-3%E7%AB%A0.pdf",
                     "code": ""
                 },
                 {
-                    "title": "第9章：木马攻击与防御技术-2020B.rar",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/fef37c5e-48fd-47a1-a275-b27eeb0e7eaf/%E7%AC%AC9%E7%AB%A0%EF%BC%9A%E6%9C%A8%E9%A9%AC%E6%94%BB%E5%87%BB%E4%B8%8E%E9%98%B2%E5%BE%A1%E6%8A%80%E6%9C%AF-2020B.rar",
+                    "title": "X86汇编程序设计-熊桂喜-第4-6章.pdf",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/6caf2572-2caf-4503-9438-99fa2f9a6d85/X86%E6%B1%87%E7%BC%96%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1-%E7%86%8A%E6%A1%82%E5%96%9C-%E7%AC%AC4-6%E7%AB%A0.pdf",
                     "code": ""
                 },
                 {
-                    "title": "教学日历-2020.doc",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/fef37c5e-48fd-47a1-a275-b27eeb0e7eaf/%E6%95%99%E5%AD%A6%E6%97%A5%E5%8E%86-2020.doc",
+                    "title": "X86汇编程序设计-熊桂喜-第7-8章.pdf",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/6caf2572-2caf-4503-9438-99fa2f9a6d85/X86%E6%B1%87%E7%BC%96%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1-%E7%86%8A%E6%A1%82%E5%96%9C-%E7%AC%AC7-8%E7%AB%A0.pdf",
                     "code": ""
                 },
                 {
-                    "title": "实验教程.pdf",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/fef37c5e-48fd-47a1-a275-b27eeb0e7eaf/%E5%AE%9E%E9%AA%8C%E6%95%99%E7%A8%8B.pdf",
+                    "title": "X86汇编程序设计-熊桂喜-第9章.pdf",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/6caf2572-2caf-4503-9438-99fa2f9a6d85/X86%E6%B1%87%E7%BC%96%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1-%E7%86%8A%E6%A1%82%E5%96%9C-%E7%AC%AC9%E7%AB%A0.pdf",
                     "code": ""
                 },
                 {
-                    "title": "网络攻防课程介绍-2020.ppt",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/fef37c5e-48fd-47a1-a275-b27eeb0e7eaf/%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E8%AF%BE%E7%A8%8B%E4%BB%8B%E7%BB%8D-2020-1.ppt",
+                    "title": "X86汇编程序设计-熊桂喜-第10-12章.pdf",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/6caf2572-2caf-4503-9438-99fa2f9a6d85/X86%E6%B1%87%E7%BC%96%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1-%E7%86%8A%E6%A1%82%E5%96%9C-%E7%AC%AC10-12%E7%AB%A0.pdf",
                     "code": ""
                 },
                 {
-                    "title": "网络攻击与防御技术.pdf",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/fef37c5e-48fd-47a1-a275-b27eeb0e7eaf/%E7%BD%91%E7%BB%9C%E6%94%BB%E5%87%BB%E4%B8%8E%E9%98%B2%E5%BE%A1%E6%8A%80%E6%9C%AF.pdf",
+                    "title": "X86汇编程序设计-熊桂喜-附录.pdf",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/6caf2572-2caf-4503-9438-99fa2f9a6d85/X86%E6%B1%87%E7%BC%96%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1-%E7%86%8A%E6%A1%82%E5%96%9C-%E9%99%84%E5%BD%95.pdf",
+                    "code": ""
+                },
+                {
+                    "title": "X86汇编程序设计-熊桂喜-目录.pdf",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/6caf2572-2caf-4503-9438-99fa2f9a6d85/X86%E6%B1%87%E7%BC%96%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1-%E7%86%8A%E6%A1%82%E5%96%9C-%E7%9B%AE%E5%BD%95.pdf",
+                    "code": ""
+                },
+                {
+                    "title": "x86汇编语言程序设计——2.寻址方式和指令系统2020.ppt",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/6caf2572-2caf-4503-9438-99fa2f9a6d85/x86%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E2%80%94%E2%80%942.%E5%AF%BB%E5%9D%80%E6%96%B9%E5%BC%8F%E5%92%8C%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F2020.ppt",
+                    "code": ""
+                },
+                {
+                    "title": "x86汇编语言程序设计——2.寻址方式和指令系统2020(录播版)-1.pptx",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/6caf2572-2caf-4503-9438-99fa2f9a6d85/x86%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E2%80%94%E2%80%942.%E5%AF%BB%E5%9D%80%E6%96%B9%E5%BC%8F%E5%92%8C%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F2020_%E5%BD%95%E6%92%AD%E7%89%88_-1.pptx",
+                    "code": ""
+                },
+                {
+                    "title": "x86汇编语言程序设计——2.寻址方式和指令系统2020(录播版)-2.pptx",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/6caf2572-2caf-4503-9438-99fa2f9a6d85/x86%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E2%80%94%E2%80%942.%E5%AF%BB%E5%9D%80%E6%96%B9%E5%BC%8F%E5%92%8C%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F2020_%E5%BD%95%E6%92%AD%E7%89%88_-2.pptx",
+                    "code": ""
+                },
+                {
+                    "title": "x86汇编语言程序设计——2.寻址方式和指令系统2020(录播版)-3.pptx",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/6caf2572-2caf-4503-9438-99fa2f9a6d85/x86%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E2%80%94%E2%80%942.%E5%AF%BB%E5%9D%80%E6%96%B9%E5%BC%8F%E5%92%8C%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F2020_%E5%BD%95%E6%92%AD%E7%89%88_-3.pptx",
+                    "code": ""
+                },
+                {
+                    "title": "x86汇编语言程序设计——2.寻址方式和指令系统2020(录播版)-4.pptx",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/6caf2572-2caf-4503-9438-99fa2f9a6d85/x86%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E2%80%94%E2%80%942.%E5%AF%BB%E5%9D%80%E6%96%B9%E5%BC%8F%E5%92%8C%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F2020_%E5%BD%95%E6%92%AD%E7%89%88_-4.pptx",
+                    "code": ""
+                },
+                {
+                    "title": "x86汇编语言程序设计——4.程序设计-1（数制转换）.pptx",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/6caf2572-2caf-4503-9438-99fa2f9a6d85/x86%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E2%80%94%E2%80%944.%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1-1%EF%BC%88%E6%95%B0%E5%88%B6%E8%BD%AC%E6%8D%A2%EF%BC%89.pptx",
+                    "code": ""
+                },
+                {
+                    "title": "汇编DEBUG上机指导.pdf",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/6caf2572-2caf-4503-9438-99fa2f9a6d85/%E6%B1%87%E7%BC%96DEBUG%E4%B8%8A%E6%9C%BA%E6%8C%87%E5%AF%BC.pdf",
                     "code": ""
                 }
             ],
+            "assignments": []
+        },
+        {
+            "course_name": "体育（6）软式排球1",
+            "course_teacher": "陆科",
+            "resources": [],
             "assignments": []
         },
         {
@@ -286,827 +233,6 @@
             "assignments": []
         },
         {
-            "course_name": "2020软件工程",
-            "course_teacher": "欧阳元新",
-            "resources": [
-                {
-                    "title": "SE_8_Team_Testing Overview.pdf",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/928fb15b-5e74-40e9-b94d-b46d24828aba/SE_8_Team_Testing%20Overview.pdf",
-                    "code": ""
-                },
-                {
-                    "title": "SE_7_Team_UX.pdf",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/928fb15b-5e74-40e9-b94d-b46d24828aba/SE_7_Team_UX.pdf",
-                    "code": ""
-                },
-                {
-                    "title": "SE_6_Project_Management.pdf",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/928fb15b-5e74-40e9-b94d-b46d24828aba/SE_6_Project_Management.pdf",
-                    "code": ""
-                },
-                {
-                    "title": "团队作业选题.rar",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/928fb15b-5e74-40e9-b94d-b46d24828aba/%E5%9B%A2%E9%98%9F%E4%BD%9C%E4%B8%9A%E9%80%89%E9%A2%98.rar",
-                    "code": ""
-                },
-                {
-                    "title": "SE_5_Team_Process.pdf",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/928fb15b-5e74-40e9-b94d-b46d24828aba/SE_5_Team_Process.pdf",
-                    "code": ""
-                },
-                {
-                    "title": "个人作业说明0306.pdf",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/928fb15b-5e74-40e9-b94d-b46d24828aba/%E4%B8%AA%E4%BA%BA%E4%BD%9C%E4%B8%9A%E8%AF%B4%E6%98%8E0306.pdf",
-                    "code": ""
-                },
-                {
-                    "title": "SE_4_SysModel.pdf",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/928fb15b-5e74-40e9-b94d-b46d24828aba/SE_4_SysModel.pdf",
-                    "code": ""
-                },
-                {
-                    "title": "SE_3_ReqSpec.pdf",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/928fb15b-5e74-40e9-b94d-b46d24828aba/SE_3_ReqSpec.pdf",
-                    "code": ""
-                },
-                {
-                    "title": "SE_2_ReqEng.pdf",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/928fb15b-5e74-40e9-b94d-b46d24828aba/SE_2_ReqEng.pdf",
-                    "code": ""
-                },
-                {
-                    "title": "SE_1_intro.pdf",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/928fb15b-5e74-40e9-b94d-b46d24828aba/SE_1_intro.pdf",
-                    "code": ""
-                },
-                {
-                    "title": "软件工程教学大纲（改）.pdf",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/928fb15b-5e74-40e9-b94d-b46d24828aba/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E6%95%99%E5%AD%A6%E5%A4%A7%E7%BA%B2%EF%BC%88%E6%94%B9%EF%BC%89.pdf",
-                    "code": ""
-                },
-                {
-                    "title": "软件工程教学日历.pdf",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/928fb15b-5e74-40e9-b94d-b46d24828aba/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E6%95%99%E5%AD%A6%E6%97%A5%E5%8E%86.pdf",
-                    "code": ""
-                },
-                {
-                    "title": "2019软工优秀作业.zip",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/928fb15b-5e74-40e9-b94d-b46d24828aba/%E5%9B%A2%E9%98%9F%E4%BD%9C%E4%B8%9A%E5%8F%82%E8%80%83%E6%96%87%E4%BB%B6/2019%E8%BD%AF%E5%B7%A5%E4%BC%98%E7%A7%80%E4%BD%9C%E4%B8%9A.zip",
-                    "code": ""
-                },
-                {
-                    "title": "敏捷开发模板.docx",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/928fb15b-5e74-40e9-b94d-b46d24828aba/%E5%9B%A2%E9%98%9F%E4%BD%9C%E4%B8%9A%E5%8F%82%E8%80%83%E6%96%87%E4%BB%B6/%E6%95%8F%E6%8D%B7%E5%BC%80%E5%8F%91%E6%A8%A1%E6%9D%BF.docx",
-                    "code": ""
-                },
-                {
-                    "title": "设计报告.doc",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/928fb15b-5e74-40e9-b94d-b46d24828aba/%E5%9B%A2%E9%98%9F%E4%BD%9C%E4%B8%9A%E5%8F%82%E8%80%83%E6%96%87%E4%BB%B6/%E8%AE%BE%E8%AE%A1%E6%8A%A5%E5%91%8A.doc",
-                    "code": ""
-                },
-                {
-                    "title": "需求规格书模板1.doc",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/928fb15b-5e74-40e9-b94d-b46d24828aba/%E5%9B%A2%E9%98%9F%E4%BD%9C%E4%B8%9A%E5%8F%82%E8%80%83%E6%96%87%E4%BB%B6/%E9%9C%80%E6%B1%82%E8%A7%84%E6%A0%BC%E4%B9%A6%E6%A8%A1%E6%9D%BF1.doc",
-                    "code": ""
-                },
-                {
-                    "title": "需求规格书模板2.doc",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/928fb15b-5e74-40e9-b94d-b46d24828aba/%E5%9B%A2%E9%98%9F%E4%BD%9C%E4%B8%9A%E5%8F%82%E8%80%83%E6%96%87%E4%BB%B6/%E9%9C%80%E6%B1%82%E8%A7%84%E6%A0%BC%E4%B9%A6%E6%A8%A1%E6%9D%BF2.doc",
-                    "code": ""
-                },
-                {
-                    "title": "周报.doc",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/928fb15b-5e74-40e9-b94d-b46d24828aba/%E5%9B%A2%E9%98%9F%E4%BD%9C%E4%B8%9A%E5%8F%82%E8%80%83%E6%96%87%E4%BB%B6/%E5%91%A8%E6%8A%A5.doc",
-                    "code": ""
-                },
-                {
-                    "title": "用户使用说明书(参考样例).docx",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/928fb15b-5e74-40e9-b94d-b46d24828aba/%E5%9B%A2%E9%98%9F%E4%BD%9C%E4%B8%9A%E5%8F%82%E8%80%83%E6%96%87%E4%BB%B6/%E7%94%A8%E6%88%B7%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E%E4%B9%A6_%E5%8F%82%E8%80%83%E6%A0%B7%E4%BE%8B_.docx",
-                    "code": ""
-                },
-                {
-                    "title": "测试报告(参考样例).docx",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/928fb15b-5e74-40e9-b94d-b46d24828aba/%E5%9B%A2%E9%98%9F%E4%BD%9C%E4%B8%9A%E5%8F%82%E8%80%83%E6%96%87%E4%BB%B6/%E6%B5%8B%E8%AF%95%E6%8A%A5%E5%91%8A_%E5%8F%82%E8%80%83%E6%A0%B7%E4%BE%8B_.docx",
-                    "code": ""
-                }
-            ],
-            "assignments": [
-                {
-                    "title": "周报week12及概要设计报告",
-                    "create_time": "2020-05-14 12:00:00",
-                    "platform": "课程中心",
-                    "category": "homework",
-                    "ddl_time": "2020-05-15 8:00:00",
-                    "notification_time": "2020-05-14 08:00:00",
-                    "notification_alert": true,
-                    "urls": "https://course.e2.buaa.edu.cn/portal/tool/1d4bdf67-8fb2-45db-a211-ff9d96aba983?assignmentReference=/assignment/a/928fb15b-5e74-40e9-b94d-b46d24828aba/a97dc1c9-110b-4930-8679-b90252540dde&panel=Main&sakai_action=doView_submission",
-                    "content": "周报week12及概要设计报告，每个小组提交一次即可，同时请发送邮件至buaase2020@163.com 文档命名规则：小组编号_周报或概要_week12 邮件命名规则同文档",
-                    "is_finished": false
-                },
-                {
-                    "title": "Alpha版展示视频",
-                    "create_time": "2020-05-13 12:00:00",
-                    "platform": "课程中心",
-                    "category": "homework",
-                    "ddl_time": "2020-05-19 10:10:00",
-                    "notification_time": "2020-05-18 10:10:00",
-                    "notification_alert": true,
-                    "urls": "https://course.e2.buaa.edu.cn/portal/tool/1d4bdf67-8fb2-45db-a211-ff9d96aba983?assignmentReference=/assignment/a/928fb15b-5e74-40e9-b94d-b46d24828aba/407261be-d152-4eb2-ae6e-6ddff1710a49&panel=Main&sakai_action=doView_submission",
-                    "content": "Alpha版展示视频，每个小组提交一次即可，谢谢！",
-                    "is_finished": false
-                },
-                {
-                    "title": "周报week11",
-                    "create_time": "2020-05-07 12:00:00",
-                    "platform": "课程中心",
-                    "category": "homework",
-                    "ddl_time": "2020-05-08 10:50:00",
-                    "notification_time": "2020-05-07 10:50:00",
-                    "notification_alert": true,
-                    "urls": "https://course.e2.buaa.edu.cn/portal/tool/1d4bdf67-8fb2-45db-a211-ff9d96aba983?assignmentReference=/assignment/a/928fb15b-5e74-40e9-b94d-b46d24828aba/37cab00e-ba2c-46c6-9a1f-42127db99604&panel=Main&sakai_action=doView_submission",
-                    "content": "  本周周报，每个小组提交一次即可，同时请发送邮件至buaase2020@163.com 文档命名规则：小组编号_week11周报  ",
-                    "is_finished": false
-                },
-                {
-                    "title": "周报week10",
-                    "create_time": "2020-04-30 12:00:00",
-                    "platform": "课程中心",
-                    "category": "homework",
-                    "ddl_time": "2020-05-01 17:00:00",
-                    "notification_time": "2020-04-30 17:00:00",
-                    "notification_alert": true,
-                    "urls": "https://course.e2.buaa.edu.cn/portal/tool/1d4bdf67-8fb2-45db-a211-ff9d96aba983?assignmentReference=/assignment/a/928fb15b-5e74-40e9-b94d-b46d24828aba/defc20ce-5ac0-4b7e-9899-1a434c5a9176&panel=Main&sakai_action=doView_submission",
-                    "content": " 本周周报，每个小组提交一次即可，同时请发送邮件至buaase2020@163.com 文档命名规则：小组编号_week10周报 ",
-                    "is_finished": false
-                },
-                {
-                    "title": "周报week9",
-                    "create_time": "2020-04-23 12:00:00",
-                    "platform": "课程中心",
-                    "category": "homework",
-                    "ddl_time": "2020-04-24 8:00:00",
-                    "notification_time": "2020-04-23 08:00:00",
-                    "notification_alert": true,
-                    "urls": "https://course.e2.buaa.edu.cn/portal/tool/1d4bdf67-8fb2-45db-a211-ff9d96aba983?assignmentReference=/assignment/a/928fb15b-5e74-40e9-b94d-b46d24828aba/5cfe0614-9cfd-4478-9451-178d4e6b0b85&panel=Main&sakai_action=doView_submission",
-                    "content": "本周周报，每个小组提交一次即可，同时请发送邮件至buaase2020@163.com 文档命名规则：小组编号_week9周报",
-                    "is_finished": false
-                },
-                {
-                    "title": "周报week8及需求规格书",
-                    "create_time": "2020-04-16 12:00:00",
-                    "platform": "课程中心",
-                    "category": "homework",
-                    "ddl_time": "2020-04-19 23:55:00",
-                    "notification_time": "2020-04-18 23:55:00",
-                    "notification_alert": true,
-                    "urls": "https://course.e2.buaa.edu.cn/portal/tool/1d4bdf67-8fb2-45db-a211-ff9d96aba983?assignmentReference=/assignment/a/928fb15b-5e74-40e9-b94d-b46d24828aba/38dbf56c-0ce7-48c1-b30c-b92849a4e950&panel=Main&sakai_action=doView_submission",
-                    "content": "周报week8及需求规格书，每个小组提交一次即可，同时请发送邮件至buaase2020@163.com 文档命名规则：小组编号_周报或需求_week8 谢谢！  ",
-                    "is_finished": false
-                },
-                {
-                    "title": "个人作业代码及文档",
-                    "create_time": "2020-03-28 12:00:00",
-                    "platform": "课程中心",
-                    "category": "homework",
-                    "ddl_time": "2020-04-07 23:55:00",
-                    "notification_time": "2020-04-06 23:55:00",
-                    "notification_alert": true,
-                    "urls": "https://course.e2.buaa.edu.cn/portal/tool/1d4bdf67-8fb2-45db-a211-ff9d96aba983?submissionId=/assignment/s/928fb15b-5e74-40e9-b94d-b46d24828aba/cf06c8aa-5462-47d4-b9d8-925e0b6ad990/dddfd2ee-bc87-4816-b894-91f2efe352d9&panel=Main&sakai_action=doView_grade",
-                    "content": "请将完善后的个人作业系统代码及文档通过课程中心提交并发送至公邮buaase2020@163.com，邮件名称为：学号-姓名-选题-am或pm，截止时间为：4月6日（周一）晚23:55 个人作业文档至少应包含以下内容： 1. 使用活动图、用例图、顺序图、类图、状态图，对个人作业系统进行建模，除图形化描述外，还应配有相应的说明文字或者表格说明等 2. 系统部署说明 3. 展示后修改和优化说明",
-                    "is_finished": true
-                },
-                {
-                    "title": "个人作业演示视频",
-                    "create_time": "2020-03-22 12:00:00",
-                    "platform": "课程中心",
-                    "category": "homework",
-                    "ddl_time": "2020-04-07 23:55:00",
-                    "notification_time": "2020-04-06 23:55:00",
-                    "notification_alert": true,
-                    "urls": "https://course.e2.buaa.edu.cn/portal/tool/1d4bdf67-8fb2-45db-a211-ff9d96aba983?submissionId=/assignment/s/928fb15b-5e74-40e9-b94d-b46d24828aba/74d12a27-593d-43b1-9f38-df413841541b/5d31bd8a-6ed8-46a3-b896-b1ace4841ad4&panel=Main&sakai_action=doView_grade",
-                    "content": "请每位同学准备5分钟左右的演示视频，要求至少包括个人作业系统部署说明和功能点介绍，文件大小请控制在20M以内。 请通过课程中心提交，并同时发送邮件至buaase2020@163.com 上午班邮件名称为：学号-姓名-选题-am，提交时间为：3月25日（周三）晚23:55 晚上班邮件名称为：学号-姓名-选题-pm，提交时间为：3月26日（周四）中午11:55  ",
-                    "is_finished": true
-                },
-                {
-                    "title": "团队项目材料",
-                    "create_time": "2020-04-02 12:00:00",
-                    "platform": "课程中心",
-                    "category": "homework",
-                    "ddl_time": "2020-04-03 17:00:00",
-                    "notification_time": "2020-04-02 17:00:00",
-                    "notification_alert": true,
-                    "urls": "https://course.e2.buaa.edu.cn/portal/tool/1d4bdf67-8fb2-45db-a211-ff9d96aba983?assignmentReference=/assignment/a/928fb15b-5e74-40e9-b94d-b46d24828aba/ca647966-abeb-46ed-afa2-bf9bae133ddf&panel=Main&sakai_action=doView_submission",
-                    "content": "团队项目的说明文档，共6个公开题目。",
-                    "is_finished": false
-                }
-            ]
-        },
-        {
-            "course_name": "2020 计算机网络安全技术",
-            "course_teacher": "李巍",
-            "resources": [
-                {
-                    "title": "计算机网络安全技术微信群.jpg",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/0d40488a-ec2c-4650-aef5-87b5ebb431b4/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF%E5%BE%AE%E4%BF%A1%E7%BE%A4.jpg",
-                    "code": ""
-                },
-                {
-                    "title": "SSL实验.zip",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/0d40488a-ec2c-4650-aef5-87b5ebb431b4/%E5%A4%A7%E4%BD%9C%E4%B8%9A%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99/SSL%E5%AE%9E%E9%AA%8C.zip",
-                    "code": ""
-                },
-                {
-                    "title": "防火墙实验.zip",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/0d40488a-ec2c-4650-aef5-87b5ebb431b4/%E5%A4%A7%E4%BD%9C%E4%B8%9A%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99/%E9%98%B2%E7%81%AB%E5%A2%99%E5%AE%9E%E9%AA%8C.zip",
-                    "code": ""
-                },
-                {
-                    "title": "文件加密解密实验.zip",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/0d40488a-ec2c-4650-aef5-87b5ebb431b4/%E5%A4%A7%E4%BD%9C%E4%B8%9A%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99/%E6%96%87%E4%BB%B6%E5%8A%A0%E5%AF%86%E8%A7%A3%E5%AF%86%E5%AE%9E%E9%AA%8C.zip",
-                    "code": ""
-                },
-                {
-                    "title": "计算机网络安全技术开题报告.pptx",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/0d40488a-ec2c-4650-aef5-87b5ebb431b4/%E5%A4%A7%E4%BD%9C%E4%B8%9A%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99/%E5%BC%80%E9%A2%98%E6%8A%A5%E5%91%8A%E5%8F%82%E8%80%83/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF.pptx",
-                    "code": ""
-                },
-                {
-                    "title": "计算机网络安全技术开题报告参考.docx",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/0d40488a-ec2c-4650-aef5-87b5ebb431b4/%E5%A4%A7%E4%BD%9C%E4%B8%9A%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99/%E5%BC%80%E9%A2%98%E6%8A%A5%E5%91%8A%E5%8F%82%E8%80%83/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF%E5%BC%80%E9%A2%98%E6%8A%A5%E5%91%8A%E5%8F%82%E8%80%83-1.docx",
-                    "code": ""
-                },
-                {
-                    "title": "计算机网络安全技术2020-1-课程简介.mp4",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/0d40488a-ec2c-4650-aef5-87b5ebb431b4/%E8%AE%B2%E4%B9%89/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF2020-1-%E8%AF%BE%E7%A8%8B%E7%AE%80%E4%BB%8B.mp4",
-                    "code": ""
-                },
-                {
-                    "title": "计算机网络安全技术2020-1-课程简介.pdf",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/0d40488a-ec2c-4650-aef5-87b5ebb431b4/%E8%AE%B2%E4%B9%89/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF2020-1-%E8%AF%BE%E7%A8%8B%E7%AE%80%E4%BB%8B.pdf",
-                    "code": ""
-                },
-                {
-                    "title": "计算机网络安全技术2020-2-基本概念.pdf",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/0d40488a-ec2c-4650-aef5-87b5ebb431b4/%E8%AE%B2%E4%B9%89/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF2020-2-%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5.pdf",
-                    "code": ""
-                },
-                {
-                    "title": "计算机网络安全技术2020-3-密码技术应用.pdf",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/0d40488a-ec2c-4650-aef5-87b5ebb431b4/%E8%AE%B2%E4%B9%89/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF2020-3-%E5%AF%86%E7%A0%81%E6%8A%80%E6%9C%AF%E5%BA%94%E7%94%A8.pdf",
-                    "code": ""
-                },
-                {
-                    "title": "计算机网络安全技术2020-4-公钥体制.pdf",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/0d40488a-ec2c-4650-aef5-87b5ebb431b4/%E8%AE%B2%E4%B9%89/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF2020-4-%E5%85%AC%E9%92%A5%E4%BD%93%E5%88%B6.pdf",
-                    "code": ""
-                },
-                {
-                    "title": "计算机网络安全技术2020-5-1-消息认证技术.pdf",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/0d40488a-ec2c-4650-aef5-87b5ebb431b4/%E8%AE%B2%E4%B9%89/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF2020-5-1-%E6%B6%88%E6%81%AF%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF.pdf",
-                    "code": ""
-                },
-                {
-                    "title": "计算机网络安全技术2020-5-2-身份认证技术.pdf",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/0d40488a-ec2c-4650-aef5-87b5ebb431b4/%E8%AE%B2%E4%B9%89/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF2020-5-2-%E8%BA%AB%E4%BB%BD%E8%AE%A4%E8%AF%81%E6%8A%80%E6%9C%AF.pdf",
-                    "code": ""
-                },
-                {
-                    "title": "计算机网络安全技术2020-6-密钥管理.pdf",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/0d40488a-ec2c-4650-aef5-87b5ebb431b4/%E8%AE%B2%E4%B9%89/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF2020-6-%E5%AF%86%E9%92%A5%E7%AE%A1%E7%90%86.pdf",
-                    "code": ""
-                },
-                {
-                    "title": "计算机网络安全技术2020-7-访问控制与授权.pdf",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/0d40488a-ec2c-4650-aef5-87b5ebb431b4/%E8%AE%B2%E4%B9%89/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF2020-7-%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6%E4%B8%8E%E6%8E%88%E6%9D%83.pdf",
-                    "code": ""
-                },
-                {
-                    "title": "计算机网络安全技术2020-8-防火墙.pdf",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/0d40488a-ec2c-4650-aef5-87b5ebb431b4/%E8%AE%B2%E4%B9%89/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF2020-8-%E9%98%B2%E7%81%AB%E5%A2%99.pdf",
-                    "code": ""
-                },
-                {
-                    "title": "计算机网络安全技术2020-9-IDS.pdf",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/0d40488a-ec2c-4650-aef5-87b5ebb431b4/%E8%AE%B2%E4%B9%89/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF2020-9-IDS.pdf",
-                    "code": ""
-                },
-                {
-                    "title": "计算机网络安全技术2020-10-IPsec-TLS.pdf",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/0d40488a-ec2c-4650-aef5-87b5ebb431b4/%E8%AE%B2%E4%B9%89/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF2020-10-IPsec-TLS.pdf",
-                    "code": ""
-                },
-                {
-                    "title": "计算机网络安全技术2020-11-应用层安全协议.pdf",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/0d40488a-ec2c-4650-aef5-87b5ebb431b4/%E8%AE%B2%E4%B9%89/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF2020-11-%E5%BA%94%E7%94%A8%E5%B1%82%E5%AE%89%E5%85%A8%E5%8D%8F%E8%AE%AE.pdf",
-                    "code": ""
-                },
-                {
-                    "title": "计算机网络安全技术2020-12-协议脆弱性.pdf",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/0d40488a-ec2c-4650-aef5-87b5ebb431b4/%E8%AE%B2%E4%B9%89/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF2020-12-%E5%8D%8F%E8%AE%AE%E8%84%86%E5%BC%B1%E6%80%A7.pdf",
-                    "code": ""
-                },
-                {
-                    "title": "rfc4949.pdf",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/0d40488a-ec2c-4650-aef5-87b5ebb431b4/%E8%B5%84%E6%96%99/rfc4949.pdf",
-                    "code": ""
-                }
-            ],
-            "assignments": [
-                {
-                    "title": "大作业技术报告：每人提交",
-                    "create_time": "2020-05-18 12:00:00",
-                    "platform": "课程中心",
-                    "category": "homework",
-                    "ddl_time": "2020-06-07 20:00:00",
-                    "notification_time": "2020-06-06 20:00:00",
-                    "notification_alert": true,
-                    "urls": "https://course.e2.buaa.edu.cn/portal/tool/a5695950-ebed-4b82-96d8-78e8bee58ab8?assignmentReference=/assignment/a/0d40488a-ec2c-4650-aef5-87b5ebb431b4/2b336d15-59dc-4769-99b7-5d0a82690267&panel=Main&sakai_action=doView_submission",
-                    "content": "1、每位同学根据大作业承担的工作独立完成并提交大作业技术报告。 2、格式参考期刊论文要求，篇幅不限。 3、文件格式：docx或pdf",
-                    "is_finished": false
-                },
-                {
-                    "title": "大作业ppt和源码：小组提交",
-                    "create_time": "2020-05-18 12:00:00",
-                    "platform": "课程中心",
-                    "category": "homework",
-                    "ddl_time": "2020-05-31 20:00:00",
-                    "notification_time": "2020-05-30 20:00:00",
-                    "notification_alert": true,
-                    "urls": "https://course.e2.buaa.edu.cn/portal/tool/a5695950-ebed-4b82-96d8-78e8bee58ab8?assignmentReference=/assignment/a/0d40488a-ec2c-4650-aef5-87b5ebb431b4/01fd8231-3ae6-45ba-bbd3-e4e74a138da8&panel=Main&sakai_action=doView_submission",
-                    "content": "每个小组提交一份程序和ppt（打包成rar或zip格式） （1）提交一份程序源码、可执行文件和数据，程序加注释和运行环境（软件版本和配置；硬件环境参数等）说明。 （2）每组完成一份ppt，介绍大作业的主要内容和每个人承担的工作。",
-                    "is_finished": false
-                },
-                {
-                    "title": "课后作业7-11",
-                    "create_time": "2020-05-18 12:00:00",
-                    "platform": "课程中心",
-                    "category": "homework",
-                    "ddl_time": "2020-05-24 20:00:00",
-                    "notification_time": "2020-05-23 20:00:00",
-                    "notification_alert": true,
-                    "urls": "https://course.e2.buaa.edu.cn/portal/tool/a5695950-ebed-4b82-96d8-78e8bee58ab8?assignmentReference=/assignment/a/0d40488a-ec2c-4650-aef5-87b5ebb431b4/97bfc455-6f12-461b-85a3-77e0a21d5fd9&panel=Main&sakai_action=doView_submission",
-                    "content": "请在截止期之前提交课后作业7~课后作业11。具体参见每次课讲义后面的题目。 可提交以下文件格式：word文档/md/pdf",
-                    "is_finished": false
-                },
-                {
-                    "title": "大作业开题报告",
-                    "create_time": "2020-03-30 12:00:00",
-                    "platform": "课程中心",
-                    "category": "homework",
-                    "ddl_time": "2020-04-10 20:00:00",
-                    "notification_time": "2020-04-09 20:00:00",
-                    "notification_alert": true,
-                    "urls": "https://course.e2.buaa.edu.cn/portal/tool/a5695950-ebed-4b82-96d8-78e8bee58ab8?assignmentReference=/assignment/a/0d40488a-ec2c-4650-aef5-87b5ebb431b4/f0d13008-0920-44af-bf03-66990164fbb5&panel=Main&sakai_action=doView_submission",
-                    "content": "每个小组组长提交一份大作业开题报告，要求如下： 1、分组要求： 自由组合进行分组，每组1~4人 2、参考给定范围选择，题目自拟（工作量根据小组人数确定） 3、小组提交开题报告： 每组提交大作业开题报告（提交word文件和ppt文件，） 课上讨论（讲5分钟） 主要内容包括： 一、选题背景和意义 二、相关技术分析 三、主要研究内容 四、技术路线实现方法 五、参考资料 六、小组成员分工",
-                    "is_finished": false
-                },
-                {
-                    "title": "课后作业1-6",
-                    "create_time": "2020-03-30 12:00:00",
-                    "platform": "课程中心",
-                    "category": "homework",
-                    "ddl_time": "2020-04-05 20:00:00",
-                    "notification_time": "2020-04-04 20:00:00",
-                    "notification_alert": true,
-                    "urls": "https://course.e2.buaa.edu.cn/portal/tool/a5695950-ebed-4b82-96d8-78e8bee58ab8?submissionId=/assignment/s/0d40488a-ec2c-4650-aef5-87b5ebb431b4/d600add7-1b92-47ac-a428-7057935e3fe7/f9fde039-733e-4b06-a8c5-2decd7974c47&panel=Main&sakai_action=doView_grade",
-                    "content": "请提交课后作业1~课后作业6。具体参见每次课讲义后面的题目。 可提交以下文件格式：word文档/md/pdf",
-                    "is_finished": true
-                },
-                {
-                    "title": "作业1：测试 - 复制",
-                    "create_time": "2020-02-23 12:00:00",
-                    "platform": "课程中心",
-                    "category": "homework",
-                    "ddl_time": "2020-03-01 17:00:00",
-                    "notification_time": "2020-02-28 17:00:00",
-                    "notification_alert": true,
-                    "urls": "https://course.e2.buaa.edu.cn/portal/tool/a5695950-ebed-4b82-96d8-78e8bee58ab8?assignmentReference=/assignment/a/0d40488a-ec2c-4650-aef5-87b5ebb431b4/bd447e1d-c472-46cc-b765-53d885dfa8a4&panel=Main&sakai_action=doView_submission",
-                    "content": "测试作业提交功能： 请同学们提交一个word文档，回答以下问题： 1、你在家的上网能否使用“腾讯会议”？ 2、你对网络安全技术哪方面感兴趣？ 3、你是否能在linux环境下进行编程？ 4、你熟悉哪种编程语言？ 5、你对本课程有什么建议？",
-                    "is_finished": false
-                },
-                {
-                    "title": "作业1：测试",
-                    "create_time": "2020-02-23 12:00:00",
-                    "platform": "课程中心",
-                    "category": "homework",
-                    "ddl_time": "2020-03-01 17:00:00",
-                    "notification_time": "2020-02-28 17:00:00",
-                    "notification_alert": true,
-                    "urls": "https://course.e2.buaa.edu.cn/portal/tool/a5695950-ebed-4b82-96d8-78e8bee58ab8?submissionId=/assignment/s/0d40488a-ec2c-4650-aef5-87b5ebb431b4/11db970e-963d-47bc-9813-a2373082d76e/f31281d3-8bb6-4cbd-bcc1-0a35fe4a4ec8&panel=Main&sakai_action=doView_grade",
-                    "content": "测试作业提交功能： 请同学们提交一个word文档，回答以下问题： 1、你在家的上网能否使用“腾讯会议”？ 2、你对网络安全技术哪方面感兴趣？ 3、你是否能在linux环境下进行编程？ 4、你熟悉哪种编程语言？ 5、你对本课程有什么建议？",
-                    "is_finished": true
-                }
-            ]
-        },
-        {
-            "course_name": "201902-计算机科学方法论-王静远",
-            "course_teacher": "王静远",
-            "resources": [
-                {
-                    "title": "计算机科学方法论-教学安排.pdf",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/e41913ab-cbb5-4a1c-9b68-9e5ead52e35f/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6%E6%96%B9%E6%B3%95%E8%AE%BA-%E6%95%99%E5%AD%A6%E5%AE%89%E6%8E%92.pdf",
-                    "code": ""
-                },
-                {
-                    "title": "研究方法论第1课-课程介绍.ppt",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/e41913ab-cbb5-4a1c-9b68-9e5ead52e35f/%E7%A0%94%E7%A9%B6%E6%96%B9%E6%B3%95%E8%AE%BA%E7%AC%AC1%E8%AF%BE-%E8%AF%BE%E7%A8%8B%E4%BB%8B%E7%BB%8D.ppt",
-                    "code": ""
-                },
-                {
-                    "title": "研究方法论第1课-文献检索.pptx",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/e41913ab-cbb5-4a1c-9b68-9e5ead52e35f/%E7%A0%94%E7%A9%B6%E6%96%B9%E6%B3%95%E8%AE%BA%E7%AC%AC1%E8%AF%BE-%E6%96%87%E7%8C%AE%E6%A3%80%E7%B4%A2.pptx",
-                    "code": ""
-                },
-                {
-                    "title": "选定论文.zip",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/e41913ab-cbb5-4a1c-9b68-9e5ead52e35f/%E9%80%89%E5%AE%9A%E8%AE%BA%E6%96%87.zip",
-                    "code": ""
-                },
-                {
-                    "title": "第2次作业-模板.docx",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/e41913ab-cbb5-4a1c-9b68-9e5ead52e35f/%E7%AC%AC2%E6%AC%A1%E4%BD%9C%E4%B8%9A-%E6%A8%A1%E6%9D%BF.docx",
-                    "code": ""
-                },
-                {
-                    "title": "第2次作业-内容、要求.docx",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/e41913ab-cbb5-4a1c-9b68-9e5ead52e35f/%E7%AC%AC2%E6%AC%A1%E4%BD%9C%E4%B8%9A-%E5%86%85%E5%AE%B9%E3%80%81%E8%A6%81%E6%B1%82.docx",
-                    "code": ""
-                },
-                {
-                    "title": "研究方法论.jpg",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/e41913ab-cbb5-4a1c-9b68-9e5ead52e35f/%E7%A0%94%E7%A9%B6%E6%96%B9%E6%B3%95%E8%AE%BA.jpg",
-                    "code": ""
-                },
-                {
-                    "title": "研究方法论第2课-学术规范与学术不端.ppt",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/e41913ab-cbb5-4a1c-9b68-9e5ead52e35f/%E7%A0%94%E7%A9%B6%E6%96%B9%E6%B3%95%E8%AE%BA%E7%AC%AC2%E8%AF%BE-%E5%AD%A6%E6%9C%AF%E8%A7%84%E8%8C%83%E4%B8%8E%E5%AD%A6%E6%9C%AF%E4%B8%8D%E7%AB%AF.ppt",
-                    "code": ""
-                },
-                {
-                    "title": "汇报PPT模板及样例.zip",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/e41913ab-cbb5-4a1c-9b68-9e5ead52e35f/%E6%B1%87%E6%8A%A5PPT%E6%A8%A1%E6%9D%BF%E5%8F%8A%E6%A0%B7%E4%BE%8B.zip",
-                    "code": ""
-                },
-                {
-                    "title": "第2次作业-模板-增加参考文献样例v2.docx",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/e41913ab-cbb5-4a1c-9b68-9e5ead52e35f/%E7%AC%AC2%E6%AC%A1%E4%BD%9C%E4%B8%9A-%E6%A8%A1%E6%9D%BF-%E5%A2%9E%E5%8A%A0%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE%E6%A0%B7%E4%BE%8Bv2.docx",
-                    "code": ""
-                }
-            ],
-            "assignments": [
-                {
-                    "title": "模块5PPT",
-                    "create_time": "2020-05-14 12:00:00",
-                    "platform": "课程中心",
-                    "category": "homework",
-                    "ddl_time": "2020-05-18 23:55:00",
-                    "notification_time": "2020-05-17 23:55:00",
-                    "notification_alert": true,
-                    "urls": "https://course.e2.buaa.edu.cn/portal/tool/825d3d9d-b0f1-42f8-a94b-fd3a746846b7?assignmentReference=/assignment/a/e41913ab-cbb5-4a1c-9b68-9e5ead52e35f/3db5a8fc-aa85-4167-8c4e-87d8372359b1&panel=Main&sakai_action=doView_submission",
-                    "content": "模块5的PPT汇报内容： （1）论文工作：包含背景、问题、解决方法、实验与结论、论文工作存在的不足等； （2）对着word，逐段介绍自己的写作与思路，以及段落间的逻辑关系； （3）学习本课程的收获、对课程的意见/建议。 （4）时长大约在15分钟左右。",
-                    "is_finished": true
-                },
-                {
-                    "title": "模块5写作",
-                    "create_time": "2020-05-14 12:00:00",
-                    "platform": "课程中心",
-                    "category": "homework",
-                    "ddl_time": "2020-05-17 23:55:00",
-                    "notification_time": "2020-05-16 23:55:00",
-                    "notification_alert": true,
-                    "urls": "https://course.e2.buaa.edu.cn/portal/tool/825d3d9d-b0f1-42f8-a94b-fd3a746846b7?assignmentReference=/assignment/a/e41913ab-cbb5-4a1c-9b68-9e5ead52e35f/3cc1e354-94b4-4b3c-a655-64d36acae0fc&panel=Main&sakai_action=doView_submission",
-                    "content": "@所有人 更新一下模块五写作要求 1、对论文工作进行总结（严格1000字-1200字），包含以下几部分： （1）题目； （2）研究背景； （3）论文解决的问题； （4）论文提出的解决方法； （5）实验验证或者理论分析、实验/分析结论； （6）论文工作存在的不足； （7）参考文献（不计字数、按照毕业设计要求的格式）。 2、要求条理清晰、层次分明、表述清楚、逻辑性强，段落\\语句间的衔接/起承转合自然、图文结合。 3、用自己的语言撰写，杜绝抄袭。 4、提交时间：5月16日23:55点前为第一版提交时间；6月12日24点前为最终版提交时间；截止时间前，可以多次提交。   注意事项： 1、 模块五在最终成绩中占比较高，请大家认真撰写。 2、 模块五采用同学之间匿名评审的方式进行评审，分3个阶段： （1）     第一阶段：每个同学（称为作者）的写作被随机分配给5个同学评审（称为评审人），每个同学独立给出评审意见，并返回给作者； （2）     第二阶段：针对每个评审人的评审意见，作者逐条回复，说明评审人的意见是否合理，并给评审意见打分； （3）     第三阶段：评审人对作者的回复和打分进行确认，指出作者对评审意见的打分是否合理。",
-                    "is_finished": true
-                },
-                {
-                    "title": "第七次作业",
-                    "create_time": "2020-04-27 11:45:00",
-                    "platform": "课程中心",
-                    "category": "homework",
-                    "ddl_time": "2020-05-03 23:55:00",
-                    "notification_time": "2020-05-02 23:55:00",
-                    "notification_alert": true,
-                    "urls": "https://course.e2.buaa.edu.cn/portal/tool/825d3d9d-b0f1-42f8-a94b-fd3a746846b7?submissionId=/assignment/s/e41913ab-cbb5-4a1c-9b68-9e5ead52e35f/a4d9d4d2-088a-49da-b4b2-bfabb24ba92b/e0a826a9-504c-4026-9ed6-94c68ab870a4&panel=Main&sakai_action=doView_grade",
-                    "content": "模块四写作要求 1、对论文工作进行总结（500字以内），包含以下几部分： （1）研究背景（1-2句话）； （2）论文解决的问题（1-2句话）； （3）论文的主要贡献，含论文提出的解决方法（2-3句话）、实验验证或者理论分析（1-2句话）、实验/分析结论（2-3句话）； （4）论文工作存在的不足（结合所选择的参考文献写，5-6句话）。 2、要求条理清晰、层次分明、表述清楚、逻辑性强，段落\\语句间的衔接/起承转合自然。 3、用自己的语言撰写，杜绝抄袭。 4、提交时间：5月3日23:55点前（第一版）",
-                    "is_finished": true
-                },
-                {
-                    "title": "第六次作业",
-                    "create_time": "2020-04-16 12:00:00",
-                    "platform": "课程中心",
-                    "category": "homework",
-                    "ddl_time": "2020-04-24 23:55:00",
-                    "notification_time": "2020-04-23 23:55:00",
-                    "notification_alert": true,
-                    "urls": "https://course.e2.buaa.edu.cn/portal/tool/825d3d9d-b0f1-42f8-a94b-fd3a746846b7?submissionId=/assignment/s/e41913ab-cbb5-4a1c-9b68-9e5ead52e35f/b62c818f-478d-4a49-a947-a5472b6fd8c1/ba677463-3266-469b-b30a-7ce006a1f6e3&panel=Main&sakai_action=doView_grade",
-                    "content": "【作业】 1、基于所选论文和模块一、二的工作（该文所解决的问题、相关工作、思路及方法），用自己的语言描述该文为了验证所提出的办法，作者采用评估方法、 实验平台， 获得的主要数据，评估结论等。要求：（1）对评估方法的描述清楚（包括实验平台、实验环境设置、数据等，必要时图文结合）；（2）有条理的介绍实验结果及结论；（3）语言简洁、流畅；（4）语句间/段落间的逻辑关系清晰，起承转合自然。 2、围绕上述写作内容，撰写PPT，讲述该文的评估方法、结果及结论，并在课堂报告5-6分钟，听取同学和老师意见，培养总结能力和口头表达能力。 3、作业提交时间： （1）第一稿提交时间：4月24日23：55分前交写作、PPT； （2）最终版提交时间：5月7日23：55分前提交写作和PPT 4、作业提交地点：学校课程中心",
-                    "is_finished": true
-                },
-                {
-                    "title": "第五次作业",
-                    "create_time": "2020-04-09 12:00:00",
-                    "platform": "课程中心",
-                    "category": "homework",
-                    "ddl_time": "2020-04-12 23:55:00",
-                    "notification_time": "2020-04-11 23:55:00",
-                    "notification_alert": true,
-                    "urls": "https://course.e2.buaa.edu.cn/portal/tool/825d3d9d-b0f1-42f8-a94b-fd3a746846b7?submissionId=/assignment/s/e41913ab-cbb5-4a1c-9b68-9e5ead52e35f/a58d6901-2bb6-426a-bd5d-cbba1dca1e07/1878cddb-f0c6-4347-9a44-494326385c19&panel=Main&sakai_action=doView_grade",
-                    "content": "1、基于所选论文和模块一的工作（明确了该文所解决的问题和相关工作），用自己的语言描述该文为了解决所述问题而提出的解决方法，要求：（1）对解决方法的描述清楚（包括用词准确、清楚定义所用变量，必要时图文结合）；（2）语言简洁、流畅；（3）语句间/段落间的逻辑关系清晰，起承转合自然。 2、围绕上述写作内容，撰写PPT，讲述该文提出的解决方法，并在课堂报告5-10分钟，听取同学和老师意见，培养总结能力和口头表达能力。 3、作业提交时间： （1）第一稿提交时间：4月15日23：55分前交写作、PPT； （2）最终版提交时间：4月23日日23：55分前提交写作和PPT 4、作业提交地点：学校课程中心",
-                    "is_finished": true
-                },
-                {
-                    "title": "第二次作业",
-                    "create_time": "2020-03-05 12:00:00",
-                    "platform": "课程中心",
-                    "category": "homework",
-                    "ddl_time": "2020-03-29 23:55:00",
-                    "notification_time": "2020-03-28 23:55:00",
-                    "notification_alert": true,
-                    "urls": "https://course.e2.buaa.edu.cn/portal/tool/825d3d9d-b0f1-42f8-a94b-fd3a746846b7?submissionId=/assignment/s/e41913ab-cbb5-4a1c-9b68-9e5ead52e35f/4e3d0cb9-3432-40bc-a46c-227a91ffb0b9/80140968-2b6d-4591-ae63-4d123701cc6a&panel=Main&sakai_action=doView_grade",
-                    "content": "一、内容 根据课堂上讲解的文献查找方法，查找所选论文引用的参考文献、与该论文主题相关的参考文献，并下载。 二、要求 查找的参考文献，须符合以下要求： （1）须包含所选取论文中的至少15条参考文献；所选论文参考文献不足15篇时，可用下述（2）或（3）中的参考文献代替； （2）须包含引用所选取论文的至少15条参考文献； （3）须包含所选论文作者团队的相关工作和与所选取论文主题相关的参考文献（至少20条，其中：近5年（指2015年-2020年）发表的论文至少10篇，CCF A/B类期刊/会议论文至少2篇）。 （4）针对上述（2）和（3）中的每条参考文献，写出选取该文献的理由，例如某个（或某几个）关键词相同； （5）下载所选取的参考文献； （6）按照给出的模板，整理下载的参考文献； （7）将整理的参考文献和下载的参考文献打包，上传到课程中心。",
-                    "is_finished": true
-                },
-                {
-                    "title": "第三次作业",
-                    "create_time": "2020-03-12 11:30:00",
-                    "platform": "课程中心",
-                    "category": "homework",
-                    "ddl_time": "2020-03-16 23:55:00",
-                    "notification_time": "2020-03-15 23:55:00",
-                    "notification_alert": true,
-                    "urls": "https://course.e2.buaa.edu.cn/portal/tool/825d3d9d-b0f1-42f8-a94b-fd3a746846b7?submissionId=/assignment/s/e41913ab-cbb5-4a1c-9b68-9e5ead52e35f/80d55324-a67c-4edf-b4a0-2aeace720ce5/f64c1529-44e1-402b-a94e-330e661b9536&panel=Main&sakai_action=doView_grade",
-                    "content": "第三次作业： （1）阅读选取的论文（论文解决的问题、相关工作） （2）用自己的语言描述该论文解决的问题、相关工作（结合下载论文） （3）提交1份上述写作（中文，500字以上）至课程中心 （4）撰写课堂汇报PPT（PPT模板我会发到群里）。",
-                    "is_finished": true
-                }
-            ]
-        },
-        {
-            "course_name": "计算机网络",
-            "course_teacher": "张辉",
-            "resources": [
-                {
-                    "title": "0.计算机网络课程简介.pdf",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/31a9c6b1-540d-49c3-99e6-0ad0f37fc847/0.%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E8%AF%BE%E7%A8%8B%E7%AE%80%E4%BB%8B.pdf",
-                    "code": ""
-                },
-                {
-                    "title": "1.计算机网络第1章1-2节.pdf",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/31a9c6b1-540d-49c3-99e6-0ad0f37fc847/1.%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%AC1%E7%AB%A01-2%E8%8A%82.pdf",
-                    "code": ""
-                },
-                {
-                    "title": "2020计算机网络-传输层1.pdf",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/31a9c6b1-540d-49c3-99e6-0ad0f37fc847/2020%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E4%BC%A0%E8%BE%93%E5%B1%821.pdf",
-                    "code": ""
-                },
-                {
-                    "title": "2020计算机网络-传输层2.pdf",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/31a9c6b1-540d-49c3-99e6-0ad0f37fc847/2020%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E4%BC%A0%E8%BE%93%E5%B1%822.pdf",
-                    "code": ""
-                },
-                {
-                    "title": "2020计算机网络-传输层3.pdf",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/31a9c6b1-540d-49c3-99e6-0ad0f37fc847/2020%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E4%BC%A0%E8%BE%93%E5%B1%823.pdf",
-                    "code": ""
-                },
-                {
-                    "title": "2020计算机网络-传输层4.pdf",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/31a9c6b1-540d-49c3-99e6-0ad0f37fc847/2020%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E4%BC%A0%E8%BE%93%E5%B1%824.pdf",
-                    "code": ""
-                },
-                {
-                    "title": "2020计算机网络-传输层5.pdf",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/31a9c6b1-540d-49c3-99e6-0ad0f37fc847/2020%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E4%BC%A0%E8%BE%93%E5%B1%825.pdf",
-                    "code": ""
-                },
-                {
-                    "title": "2020计算机网络-数据链路层1.pdf",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/31a9c6b1-540d-49c3-99e6-0ad0f37fc847/2020%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%821.pdf",
-                    "code": ""
-                },
-                {
-                    "title": "2020计算机网络-数据链路层2.pdf",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/31a9c6b1-540d-49c3-99e6-0ad0f37fc847/2020%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%822.pdf",
-                    "code": ""
-                },
-                {
-                    "title": "2020计算机网络-数据链路层3.pdf",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/31a9c6b1-540d-49c3-99e6-0ad0f37fc847/2020%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%823.pdf",
-                    "code": ""
-                },
-                {
-                    "title": "2020计算机网络-数据链路层4.pdf",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/31a9c6b1-540d-49c3-99e6-0ad0f37fc847/2020%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%824.pdf",
-                    "code": ""
-                },
-                {
-                    "title": "2020计算机网络-数据链路层5.pdf",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/31a9c6b1-540d-49c3-99e6-0ad0f37fc847/2020%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%825.pdf",
-                    "code": ""
-                },
-                {
-                    "title": "2020计算机网络-数据链路层6.pdf",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/31a9c6b1-540d-49c3-99e6-0ad0f37fc847/2020%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%826.pdf",
-                    "code": ""
-                },
-                {
-                    "title": "2020计算机网络-数据链路层7.pdf",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/31a9c6b1-540d-49c3-99e6-0ad0f37fc847/2020%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%827.pdf",
-                    "code": ""
-                },
-                {
-                    "title": "2020计算机网络-网络层1.pdf",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/31a9c6b1-540d-49c3-99e6-0ad0f37fc847/2020%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E7%BD%91%E7%BB%9C%E5%B1%821.pdf",
-                    "code": ""
-                },
-                {
-                    "title": "2020计算机网络-网络层2.pdf",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/31a9c6b1-540d-49c3-99e6-0ad0f37fc847/2020%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E7%BD%91%E7%BB%9C%E5%B1%822.pdf",
-                    "code": ""
-                },
-                {
-                    "title": "2020计算机网络-网络层3.pdf",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/31a9c6b1-540d-49c3-99e6-0ad0f37fc847/2020%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E7%BD%91%E7%BB%9C%E5%B1%823-1.pdf",
-                    "code": ""
-                },
-                {
-                    "title": "2020计算机网络-网络层4.pdf",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/31a9c6b1-540d-49c3-99e6-0ad0f37fc847/2020%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E7%BD%91%E7%BB%9C%E5%B1%824.pdf",
-                    "code": ""
-                },
-                {
-                    "title": "2020计算机网络-网络层5.pdf",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/31a9c6b1-540d-49c3-99e6-0ad0f37fc847/2020%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E7%BD%91%E7%BB%9C%E5%B1%825.pdf",
-                    "code": ""
-                },
-                {
-                    "title": "2020计算机网络-网络层6.pdf",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/31a9c6b1-540d-49c3-99e6-0ad0f37fc847/2020%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E7%BD%91%E7%BB%9C%E5%B1%826.pdf",
-                    "code": ""
-                },
-                {
-                    "title": "2020计算机网络-网络层7.pdf",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/31a9c6b1-540d-49c3-99e6-0ad0f37fc847/2020%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E7%BD%91%E7%BB%9C%E5%B1%827.pdf",
-                    "code": ""
-                },
-                {
-                    "title": "2020计算机网络-网络层8.pdf",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/31a9c6b1-540d-49c3-99e6-0ad0f37fc847/2020%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E7%BD%91%E7%BB%9C%E5%B1%828.pdf",
-                    "code": ""
-                },
-                {
-                    "title": "2020计算机网络-物理层1.mp4",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/31a9c6b1-540d-49c3-99e6-0ad0f37fc847/2020%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E7%89%A9%E7%90%86%E5%B1%821.mp4",
-                    "code": ""
-                },
-                {
-                    "title": "2020计算机网络-物理层1.pdf",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/31a9c6b1-540d-49c3-99e6-0ad0f37fc847/2020%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E7%89%A9%E7%90%86%E5%B1%821.pdf",
-                    "code": ""
-                },
-                {
-                    "title": "2020计算机网络-物理层2.mp4",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/31a9c6b1-540d-49c3-99e6-0ad0f37fc847/2020%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E7%89%A9%E7%90%86%E5%B1%822.mp4",
-                    "code": ""
-                },
-                {
-                    "title": "2020计算机网络-物理层2.pdf",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/31a9c6b1-540d-49c3-99e6-0ad0f37fc847/2020%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E7%89%A9%E7%90%86%E5%B1%822.pdf",
-                    "code": ""
-                },
-                {
-                    "title": "2020计算机网络-物理层3.pdf",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/31a9c6b1-540d-49c3-99e6-0ad0f37fc847/2020%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E7%89%A9%E7%90%86%E5%B1%823.pdf",
-                    "code": ""
-                },
-                {
-                    "title": "2020计算机网络-物理层4.pdf",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/31a9c6b1-540d-49c3-99e6-0ad0f37fc847/2020%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E7%89%A9%E7%90%86%E5%B1%824.pdf",
-                    "code": ""
-                },
-                {
-                    "title": "2020计算机网络-物理层5.pdf",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/31a9c6b1-540d-49c3-99e6-0ad0f37fc847/2020%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E7%89%A9%E7%90%86%E5%B1%825.pdf",
-                    "code": ""
-                },
-                {
-                    "title": "2020计算机网络-应用层1.pdf",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/31a9c6b1-540d-49c3-99e6-0ad0f37fc847/2020%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E5%BA%94%E7%94%A8%E5%B1%821.pdf",
-                    "code": ""
-                },
-                {
-                    "title": "2020计算机网络-应用层2-3.pdf",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/31a9c6b1-540d-49c3-99e6-0ad0f37fc847/2020%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E5%BA%94%E7%94%A8%E5%B1%822-3.pdf",
-                    "code": ""
-                },
-                {
-                    "title": "2020计算机网络-总结.pdf",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/31a9c6b1-540d-49c3-99e6-0ad0f37fc847/2020%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E6%80%BB%E7%BB%93.pdf",
-                    "code": ""
-                },
-                {
-                    "title": "Chapter-1.pdf",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/31a9c6b1-540d-49c3-99e6-0ad0f37fc847/Chapter-1.pdf",
-                    "code": ""
-                },
-                {
-                    "title": "PacketTracer4使用教程.pdf",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/31a9c6b1-540d-49c3-99e6-0ad0f37fc847/PacketTracer4%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B.pdf",
-                    "code": ""
-                },
-                {
-                    "title": "PacketTracer5_setup.rar",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/31a9c6b1-540d-49c3-99e6-0ad0f37fc847/PacketTracer5_setup.rar",
-                    "code": ""
-                },
-                {
-                    "title": "微信图片_20200221114121.png",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/31a9c6b1-540d-49c3-99e6-0ad0f37fc847/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20200221114121.png",
-                    "code": ""
-                }
-            ],
-            "assignments": [
-                {
-                    "title": "第六次作业（最后一次）",
-                    "create_time": "2020-04-13 12:00:00",
-                    "platform": "课程中心",
-                    "category": "homework",
-                    "ddl_time": "2020-05-09 17:00:00",
-                    "notification_time": "2020-05-08 17:00:00",
-                    "notification_alert": true,
-                    "urls": "https://course.e2.buaa.edu.cn/portal/tool/bd6f5b78-86ab-4d14-b478-de12ed33c907?submissionId=/assignment/s/31a9c6b1-540d-49c3-99e6-0ad0f37fc847/1ee12cb9-38a2-4ba2-9a30-c562bb56ee20/47f2a9e5-2e72-4a66-8f68-990d352eab17&panel=Main&sakai_action=doView_grade",
-                    "content": "•P244~245 –13,14，19，22 ,23，24 ，31，34，38，39, 49, 69",
-                    "is_finished": true
-                },
-                {
-                    "title": "计算机网络第5次作业",
-                    "create_time": "2020-03-30 12:00:00",
-                    "platform": "课程中心",
-                    "category": "homework",
-                    "ddl_time": "2020-04-27 17:00:00",
-                    "notification_time": "2020-04-26 17:00:00",
-                    "notification_alert": true,
-                    "urls": "https://course.e2.buaa.edu.cn/portal/tool/bd6f5b78-86ab-4d14-b478-de12ed33c907?submissionId=/assignment/s/31a9c6b1-540d-49c3-99e6-0ad0f37fc847/3f17764e-79ca-48a6-bc9f-941e3db57b7d/9da5414f-0d02-4733-8034-89bc170e0a56&panel=Main&sakai_action=doView_grade",
-                    "content": "任选1道（其中仿真软件参见资源中提供的PacketTracer5软件及说明书）： 1）这是一道网络仿真题。采用美国思科公司的网络仿真工具，要求5个路由器（含）以上组成通信子网并具有冗余链路，支持OSPF或RIP动态路由协议，资源子网为两个以太网（含）以上，内含若干台PC。完成不同网段PC之间的通讯，截图说明联通成功。 2）互联网下载截帧工具，截图说明截帧成功。说明http与https协议的工作原理及异同之处。 要求：完成实验报告（包括截图说明实验的成功），写出你做得工作及基本原理、自己的收获。不少于1500汉字。发现有雷同，作业不给分。",
-                    "is_finished": true
-                },
-                {
-                    "title": "网络课作业第四次",
-                    "create_time": "2020-03-30 12:00:00",
-                    "platform": "课程中心",
-                    "category": "homework",
-                    "ddl_time": "2020-04-13 17:00:00",
-                    "notification_time": "2020-04-12 17:00:00",
-                    "notification_alert": true,
-                    "urls": "https://course.e2.buaa.edu.cn/portal/tool/bd6f5b78-86ab-4d14-b478-de12ed33c907?submissionId=/assignment/s/31a9c6b1-540d-49c3-99e6-0ad0f37fc847/8288b5fc-27bb-4c1f-bf03-dcbf5058f936/42a40d0d-fee3-499b-b829-0e7e7ee33e3c&panel=Main&sakai_action=doView_grade",
-                    "content": "•P195-202 •3,4,17,21,22,26,28,30（第一次） •39,42,45,55,66 （第二次） •其中26题，加一组（第一次） –212.56.134.0/24 –212.56.135.0/24 –212.56.136.0/24 –212.56.137.0/24",
-                    "is_finished": true
-                },
-                {
-                    "title": "网络作业第三次",
-                    "create_time": "2020-03-15 12:00:00",
-                    "platform": "课程中心",
-                    "category": "homework",
-                    "ddl_time": "2020-03-29 17:00:00",
-                    "notification_time": "2020-03-28 17:00:00",
-                    "notification_alert": true,
-                    "urls": "https://course.e2.buaa.edu.cn/portal/tool/bd6f5b78-86ab-4d14-b478-de12ed33c907?submissionId=/assignment/s/31a9c6b1-540d-49c3-99e6-0ad0f37fc847/8f5dc2f4-1aeb-4aef-b0ef-b5321c14bb40/6668ecc5-475a-4e28-85d2-006f4685504a&panel=Main&sakai_action=doView_grade",
-                    "content": "P109-112    6，8，10,16，20，25,27，30，31, 34   P423 　　9-07，9-10 ，9-14， 9-16",
-                    "is_finished": true
-                },
-                {
-                    "title": "第二次作业-物理层",
-                    "create_time": "2020-03-10 12:00:00",
-                    "platform": "课程中心",
-                    "category": "homework",
-                    "ddl_time": "2020-03-24 17:00:00",
-                    "notification_time": "2020-03-23 17:00:00",
-                    "notification_alert": true,
-                    "urls": "https://course.e2.buaa.edu.cn/portal/tool/bd6f5b78-86ab-4d14-b478-de12ed33c907?submissionId=/assignment/s/31a9c6b1-540d-49c3-99e6-0ad0f37fc847/2cfd8392-6d89-48d8-8851-1aa74f08e78a/85fcccd3-5745-4e1c-871b-bfd613312885&panel=Main&sakai_action=doView_grade",
-                    "content": "谢希仁  计算机网络  第七版  P67-68    4, 5, 6, 7, 8, 9, 13, 15, 16",
-                    "is_finished": true
-                },
-                {
-                    "title": "网络作业第一次（概述部分）",
-                    "create_time": "2020-02-27 12:00:00",
-                    "platform": "课程中心",
-                    "category": "homework",
-                    "ddl_time": "2020-03-12 17:00:00",
-                    "notification_time": "2020-03-11 17:00:00",
-                    "notification_alert": true,
-                    "urls": "https://course.e2.buaa.edu.cn/portal/tool/bd6f5b78-86ab-4d14-b478-de12ed33c907?submissionId=/assignment/s/31a9c6b1-540d-49c3-99e6-0ad0f37fc847/92bf03f5-3245-4149-98e3-f727aadf9352/c34e5cf8-0b24-42cc-928f-e661d9a29131&panel=Main&sakai_action=doView_grade",
-                    "content": "第一次作业，以后每两周提交一次。每次打分为5分。作业分占总成绩的10%。 作业：谢希仁 《计算机网络-第7版》 •P38: 1-03 •P39: 1-10,1-11,1-17,1-19,1-20 •P39: 1-22，24",
-                    "is_finished": true
-                }
-            ]
-        },
-        {
-            "course_name": "2020春 本部网球周一67体育（6）",
-            "course_teacher": "吴铁铮",
-            "resources": [],
-            "assignments": []
-        },
-        {
             "course_name": "实践与展示(2)",
             "course_teacher": "纪一鹏",
             "resources": [
@@ -1119,203 +245,886 @@
             "assignments": []
         },
         {
-            "course_name": "2020春 计算机网络实验",
-            "course_teacher": "张力军",
+            "course_name": "经济管理007班",
+            "course_teacher": "陈  喆",
             "resources": [
                 {
-                    "title": "实验0.1-4 远程在线网络实验平台使用说明.ppt",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/56934528-11ef-47fe-a5eb-300ecd3e6132/%E5%AE%9E%E9%AA%8C0.1-4%20%E8%BF%9C%E7%A8%8B%E5%9C%A8%E7%BA%BF%E7%BD%91%E7%BB%9C%E5%AE%9E%E9%AA%8C%E5%B9%B3%E5%8F%B0%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E.ppt",
+                    "title": "经济管理007.jpeg",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/b3868b81-8447-4847-99ba-26cca74e4885/%E7%BB%8F%E6%B5%8E%E7%AE%A1%E7%90%86007.jpeg",
                     "code": ""
                 },
                 {
-                    "title": "实验0 课程介绍.ppt",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/56934528-11ef-47fe-a5eb-300ecd3e6132/%E5%AE%9E%E9%AA%8C0%20%E8%AF%BE%E7%A8%8B%E4%BB%8B%E7%BB%8D.ppt",
+                    "title": "chp0+经济管课程介绍.pdf",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/b3868b81-8447-4847-99ba-26cca74e4885/%E5%88%98%E5%A4%A9%E4%BA%AE%E8%80%81%E5%B8%88%E8%AF%BE%E4%BB%B6/chp0%2B%E7%BB%8F%E6%B5%8E%E7%AE%A1%E8%AF%BE%E7%A8%8B%E4%BB%8B%E7%BB%8D.pdf",
                     "code": ""
                 },
                 {
-                    "title": "实验1.1_内容简介.ppt",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/56934528-11ef-47fe-a5eb-300ecd3e6132/%E5%AE%9E%E9%AA%8C1.1_%E5%86%85%E5%AE%B9%E7%AE%80%E4%BB%8B.ppt",
+                    "title": "Chp01_05_经济与管理概述.pdf",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/b3868b81-8447-4847-99ba-26cca74e4885/%E5%88%98%E5%A4%A9%E4%BA%AE%E8%80%81%E5%B8%88%E8%AF%BE%E4%BB%B6/Chp01_05_%E7%BB%8F%E6%B5%8E%E4%B8%8E%E7%AE%A1%E7%90%86%E6%A6%82%E8%BF%B0.pdf",
                     "code": ""
                 },
                 {
-                    "title": "实验1.2 实验环境及设备简介.ppt",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/56934528-11ef-47fe-a5eb-300ecd3e6132/%E5%AE%9E%E9%AA%8C1.2%20%E5%AE%9E%E9%AA%8C%E7%8E%AF%E5%A2%83%E5%8F%8A%E8%AE%BE%E5%A4%87%E7%AE%80%E4%BB%8B.ppt",
+                    "title": "Chp02_微观市场机制分析.pdf",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/b3868b81-8447-4847-99ba-26cca74e4885/%E5%88%98%E5%A4%A9%E4%BA%AE%E8%80%81%E5%B8%88%E8%AF%BE%E4%BB%B6/Chp02_%E5%BE%AE%E8%A7%82%E5%B8%82%E5%9C%BA%E6%9C%BA%E5%88%B6%E5%88%86%E6%9E%90.pdf",
                     "code": ""
                 },
                 {
-                    "title": "实验1.3 网线制作.ppt",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/56934528-11ef-47fe-a5eb-300ecd3e6132/%E5%AE%9E%E9%AA%8C1.3%20%E7%BD%91%E7%BA%BF%E5%88%B6%E4%BD%9C.ppt",
+                    "title": "Chp03_要素投入与市场结构.pdf",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/b3868b81-8447-4847-99ba-26cca74e4885/%E5%88%98%E5%A4%A9%E4%BA%AE%E8%80%81%E5%B8%88%E8%AF%BE%E4%BB%B6/Chp03_%E8%A6%81%E7%B4%A0%E6%8A%95%E5%85%A5%E4%B8%8E%E5%B8%82%E5%9C%BA%E7%BB%93%E6%9E%84.pdf",
                     "code": ""
                 },
                 {
-                    "title": "实验1.4_路由器和交换机的基本配置.ppt",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/56934528-11ef-47fe-a5eb-300ecd3e6132/%E5%AE%9E%E9%AA%8C1.4_%E8%B7%AF%E7%94%B1%E5%99%A8%E5%92%8C%E4%BA%A4%E6%8D%A2%E6%9C%BA%E7%9A%84%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE.ppt",
+                    "title": "Chp04_宏观经济分析.pdf",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/b3868b81-8447-4847-99ba-26cca74e4885/%E5%88%98%E5%A4%A9%E4%BA%AE%E8%80%81%E5%B8%88%E8%AF%BE%E4%BB%B6/Chp04_%E5%AE%8F%E8%A7%82%E7%BB%8F%E6%B5%8E%E5%88%86%E6%9E%90.pdf",
                     "code": ""
                 },
                 {
-                    "title": "实验1.5 报文分析软件简介.ppt",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/56934528-11ef-47fe-a5eb-300ecd3e6132/%E5%AE%9E%E9%AA%8C1.5%20%E6%8A%A5%E6%96%87%E5%88%86%E6%9E%90%E8%BD%AF%E4%BB%B6%E7%AE%80%E4%BB%8B.ppt",
+                    "title": "Chp06_管理的职能.pdf",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/b3868b81-8447-4847-99ba-26cca74e4885/%E5%88%98%E5%A4%A9%E4%BA%AE%E8%80%81%E5%B8%88%E8%AF%BE%E4%BB%B6/Chp06_%E7%AE%A1%E7%90%86%E7%9A%84%E8%81%8C%E8%83%BD.pdf",
                     "code": ""
                 },
                 {
-                    "title": "实验1.6_简单组网实验.ppt",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/56934528-11ef-47fe-a5eb-300ecd3e6132/%E5%AE%9E%E9%AA%8C1.6_%E7%AE%80%E5%8D%95%E7%BB%84%E7%BD%91%E5%AE%9E%E9%AA%8C.ppt",
+                    "title": "Chp07_企业与管理.pdf",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/b3868b81-8447-4847-99ba-26cca74e4885/%E5%88%98%E5%A4%A9%E4%BA%AE%E8%80%81%E5%B8%88%E8%AF%BE%E4%BB%B6/Chp07_%E4%BC%81%E4%B8%9A%E4%B8%8E%E7%AE%A1%E7%90%86.pdf",
                     "code": ""
                 },
                 {
-                    "title": "实验1.7_地址转换实验20150401.ppt",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/56934528-11ef-47fe-a5eb-300ecd3e6132/%E5%AE%9E%E9%AA%8C1.7_%E5%9C%B0%E5%9D%80%E8%BD%AC%E6%8D%A2%E5%AE%9E%E9%AA%8C20150401.ppt",
+                    "title": "Chp08_生产系统结构与战略.pdf",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/b3868b81-8447-4847-99ba-26cca74e4885/%E5%88%98%E5%A4%A9%E4%BA%AE%E8%80%81%E5%B8%88%E8%AF%BE%E4%BB%B6/Chp08_%E7%94%9F%E4%BA%A7%E7%B3%BB%E7%BB%9F%E7%BB%93%E6%9E%84%E4%B8%8E%E6%88%98%E7%95%A5.pdf",
                     "code": ""
                 },
                 {
-                    "title": "实验2.1 数据链路层实验内容简介.ppt",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/56934528-11ef-47fe-a5eb-300ecd3e6132/%E5%AE%9E%E9%AA%8C2.1%20%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82%E5%AE%9E%E9%AA%8C%E5%86%85%E5%AE%B9%E7%AE%80%E4%BB%8B.ppt",
+                    "title": "Chp08_产品设计.pdf",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/b3868b81-8447-4847-99ba-26cca74e4885/%E5%BC%A0%E6%A5%9A%E8%AF%BE%E4%BB%B6%EF%BC%889-16%E5%91%A8%EF%BC%89/Chp08_%E4%BA%A7%E5%93%81%E8%AE%BE%E8%AE%A1.pdf",
                     "code": ""
                 },
                 {
-                    "title": "实验2.2 以太网帧格式分析.ppt",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/56934528-11ef-47fe-a5eb-300ecd3e6132/%E5%AE%9E%E9%AA%8C2.2%20%E4%BB%A5%E5%A4%AA%E7%BD%91%E5%B8%A7%E6%A0%BC%E5%BC%8F%E5%88%86%E6%9E%90.ppt",
+                    "title": "Chp09_生产运作流程设计.pdf",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/b3868b81-8447-4847-99ba-26cca74e4885/%E5%BC%A0%E6%A5%9A%E8%AF%BE%E4%BB%B6%EF%BC%889-16%E5%91%A8%EF%BC%89/Chp09_%E7%94%9F%E4%BA%A7%E8%BF%90%E4%BD%9C%E6%B5%81%E7%A8%8B%E8%AE%BE%E8%AE%A1.pdf",
                     "code": ""
                 },
                 {
-                    "title": "实验2.3_交换机MAC地址表与端口聚合.ppt",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/56934528-11ef-47fe-a5eb-300ecd3e6132/%E5%AE%9E%E9%AA%8C2.3_%E4%BA%A4%E6%8D%A2%E6%9C%BAMAC%E5%9C%B0%E5%9D%80%E8%A1%A8%E4%B8%8E%E7%AB%AF%E5%8F%A3%E8%81%9A%E5%90%88.ppt",
+                    "title": "Chp10_库存与生产计划管理.pdf",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/b3868b81-8447-4847-99ba-26cca74e4885/%E5%BC%A0%E6%A5%9A%E8%AF%BE%E4%BB%B6%EF%BC%889-16%E5%91%A8%EF%BC%89/Chp10_%E5%BA%93%E5%AD%98%E4%B8%8E%E7%94%9F%E4%BA%A7%E8%AE%A1%E5%88%92%E7%AE%A1%E7%90%86.pdf",
                     "code": ""
                 },
                 {
-                    "title": "实验2.4 VLAN配置与分析.ppt",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/56934528-11ef-47fe-a5eb-300ecd3e6132/%E5%AE%9E%E9%AA%8C2.4%20VLAN%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%88%86%E6%9E%90.ppt",
+                    "title": "第01、05章 经济与管理概述.pdf",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/b3868b81-8447-4847-99ba-26cca74e4885/%E5%BC%A0%E4%BA%BA%E5%8D%83%E8%80%81%E5%B8%88%E8%AF%BE%E4%BB%B6/%E7%AC%AC01%E3%80%8105%E7%AB%A0%20%E7%BB%8F%E6%B5%8E%E4%B8%8E%E7%AE%A1%E7%90%86%E6%A6%82%E8%BF%B0.pdf",
                     "code": ""
                 },
                 {
-                    "title": "实验2.5 ppp协议分析.ppt",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/56934528-11ef-47fe-a5eb-300ecd3e6132/%E5%AE%9E%E9%AA%8C2.5%20ppp%E5%8D%8F%E8%AE%AE%E5%88%86%E6%9E%90.ppt",
+                    "title": "第02章 微观市场机制分析.pdf",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/b3868b81-8447-4847-99ba-26cca74e4885/%E5%BC%A0%E4%BA%BA%E5%8D%83%E8%80%81%E5%B8%88%E8%AF%BE%E4%BB%B6/%E7%AC%AC02%E7%AB%A0%20%E5%BE%AE%E8%A7%82%E5%B8%82%E5%9C%BA%E6%9C%BA%E5%88%B6%E5%88%86%E6%9E%90.pdf",
                     "code": ""
                 },
                 {
-                    "title": "实验3.1 实验总体介绍_2015.pptx",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/56934528-11ef-47fe-a5eb-300ecd3e6132/%E5%AE%9E%E9%AA%8C3.1%20%E5%AE%9E%E9%AA%8C%E6%80%BB%E4%BD%93%E4%BB%8B%E7%BB%8D_2015.pptx",
+                    "title": "第03章 生产决策与市场结构.pdf",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/b3868b81-8447-4847-99ba-26cca74e4885/%E5%BC%A0%E4%BA%BA%E5%8D%83%E8%80%81%E5%B8%88%E8%AF%BE%E4%BB%B6/%E7%AC%AC03%E7%AB%A0%20%E7%94%9F%E4%BA%A7%E5%86%B3%E7%AD%96%E4%B8%8E%E5%B8%82%E5%9C%BA%E7%BB%93%E6%9E%84.pdf",
                     "code": ""
                 },
                 {
-                    "title": "实验3.2_IP报文分析实验_2015.pptx",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/56934528-11ef-47fe-a5eb-300ecd3e6132/%E5%AE%9E%E9%AA%8C3.2_IP%E6%8A%A5%E6%96%87%E5%88%86%E6%9E%90%E5%AE%9E%E9%AA%8C_2015.pptx",
+                    "title": "第04章 宏观经济分析.pdf",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/b3868b81-8447-4847-99ba-26cca74e4885/%E5%BC%A0%E4%BA%BA%E5%8D%83%E8%80%81%E5%B8%88%E8%AF%BE%E4%BB%B6/%E7%AC%AC04%E7%AB%A0%20%E5%AE%8F%E8%A7%82%E7%BB%8F%E6%B5%8E%E5%88%86%E6%9E%90.pdf",
                     "code": ""
                 },
                 {
-                    "title": "实验3.3_ARP协议分析实验_2015.pptx",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/56934528-11ef-47fe-a5eb-300ecd3e6132/%E5%AE%9E%E9%AA%8C3.3_ARP%E5%8D%8F%E8%AE%AE%E5%88%86%E6%9E%90%E5%AE%9E%E9%AA%8C_2015.pptx",
+                    "title": "第06章 管理的职能.pdf",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/b3868b81-8447-4847-99ba-26cca74e4885/%E5%BC%A0%E4%BA%BA%E5%8D%83%E8%80%81%E5%B8%88%E8%AF%BE%E4%BB%B6/%E7%AC%AC06%E7%AB%A0%20%E7%AE%A1%E7%90%86%E7%9A%84%E8%81%8C%E8%83%BD.pdf",
                     "code": ""
                 },
                 {
-                    "title": "实验3.4_ICMP协议分析实验_2015.pptx",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/56934528-11ef-47fe-a5eb-300ecd3e6132/%E5%AE%9E%E9%AA%8C3.4_ICMP%E5%8D%8F%E8%AE%AE%E5%88%86%E6%9E%90%E5%AE%9E%E9%AA%8C_2015.pptx",
+                    "title": "第07章 企业与管理.pdf",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/b3868b81-8447-4847-99ba-26cca74e4885/%E5%BC%A0%E4%BA%BA%E5%8D%83%E8%80%81%E5%B8%88%E8%AF%BE%E4%BB%B6/%E7%AC%AC07%E7%AB%A0%20%E4%BC%81%E4%B8%9A%E4%B8%8E%E7%AE%A1%E7%90%86.pdf",
                     "code": ""
                 },
                 {
-                    "title": "实验3.5_IP数据报的分片与重组实验_2015.pptx",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/56934528-11ef-47fe-a5eb-300ecd3e6132/%E5%AE%9E%E9%AA%8C3.5_IP%E6%95%B0%E6%8D%AE%E6%8A%A5%E7%9A%84%E5%88%86%E7%89%87%E4%B8%8E%E9%87%8D%E7%BB%84%E5%AE%9E%E9%AA%8C_2015.pptx",
+                    "title": "第08章 生产系统结构与战略.pdf",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/b3868b81-8447-4847-99ba-26cca74e4885/%E5%BC%A0%E4%BA%BA%E5%8D%83%E8%80%81%E5%B8%88%E8%AF%BE%E4%BB%B6/%E7%AC%AC08%E7%AB%A0%20%E7%94%9F%E4%BA%A7%E7%B3%BB%E7%BB%9F%E7%BB%93%E6%9E%84%E4%B8%8E%E6%88%98%E7%95%A5.pdf",
                     "code": ""
                 },
                 {
-                    "title": "实验3.6_路由表分析实验_2015.pptx",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/56934528-11ef-47fe-a5eb-300ecd3e6132/%E5%AE%9E%E9%AA%8C3.6_%E8%B7%AF%E7%94%B1%E8%A1%A8%E5%88%86%E6%9E%90%E5%AE%9E%E9%AA%8C_2015.pptx",
+                    "title": "第09章 产品设计.pdf",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/b3868b81-8447-4847-99ba-26cca74e4885/%E5%BC%A0%E4%BA%BA%E5%8D%83%E8%80%81%E5%B8%88%E8%AF%BE%E4%BB%B6/%E7%AC%AC09%E7%AB%A0%20%E4%BA%A7%E5%93%81%E8%AE%BE%E8%AE%A1.pdf",
                     "code": ""
                 },
                 {
-                    "title": "实验3.7_VLAN间路由实验_链路层与网络层综合实验__2015.pptx",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/56934528-11ef-47fe-a5eb-300ecd3e6132/%E5%AE%9E%E9%AA%8C3.7_VLAN%E9%97%B4%E8%B7%AF%E7%94%B1%E5%AE%9E%E9%AA%8C_%E9%93%BE%E8%B7%AF%E5%B1%82%E4%B8%8E%E7%BD%91%E7%BB%9C%E5%B1%82%E7%BB%BC%E5%90%88%E5%AE%9E%E9%AA%8C__2015.pptx",
+                    "title": "第10章 生产运作流程设计.pdf",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/b3868b81-8447-4847-99ba-26cca74e4885/%E5%BC%A0%E4%BA%BA%E5%8D%83%E8%80%81%E5%B8%88%E8%AF%BE%E4%BB%B6/%E7%AC%AC10%E7%AB%A0%20%E7%94%9F%E4%BA%A7%E8%BF%90%E4%BD%9C%E6%B5%81%E7%A8%8B%E8%AE%BE%E8%AE%A1.pdf",
                     "code": ""
                 },
                 {
-                    "title": "实验3.8_子网划分设计实验_2015.pptx",
-                    "url": "https://course.e2.buaa.edu.cn/access/content/group/56934528-11ef-47fe-a5eb-300ecd3e6132/%E5%AE%9E%E9%AA%8C3.8_%E5%AD%90%E7%BD%91%E5%88%92%E5%88%86%E8%AE%BE%E8%AE%A1%E5%AE%9E%E9%AA%8C_2015.pptx",
+                    "title": "第11章 库存与生产计划管理.pdf",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/b3868b81-8447-4847-99ba-26cca74e4885/%E5%BC%A0%E4%BA%BA%E5%8D%83%E8%80%81%E5%B8%88%E8%AF%BE%E4%BB%B6/%E7%AC%AC11%E7%AB%A0%20%E5%BA%93%E5%AD%98%E4%B8%8E%E7%94%9F%E4%BA%A7%E8%AE%A1%E5%88%92%E7%AE%A1%E7%90%86.pdf",
+                    "code": ""
+                },
+                {
+                    "title": "第12章 供应链管理.pdf",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/b3868b81-8447-4847-99ba-26cca74e4885/%E5%BC%A0%E4%BA%BA%E5%8D%83%E8%80%81%E5%B8%88%E8%AF%BE%E4%BB%B6/%E7%AC%AC12%E7%AB%A0%20%E4%BE%9B%E5%BA%94%E9%93%BE%E7%AE%A1%E7%90%86.pdf",
+                    "code": ""
+                },
+                {
+                    "title": "第13章 质量管理.pdf",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/b3868b81-8447-4847-99ba-26cca74e4885/%E5%BC%A0%E4%BA%BA%E5%8D%83%E8%80%81%E5%B8%88%E8%AF%BE%E4%BB%B6/%E7%AC%AC13%E7%AB%A0%20%E8%B4%A8%E9%87%8F%E7%AE%A1%E7%90%86.pdf",
+                    "code": ""
+                },
+                {
+                    "title": "第14章 项目管理.pdf",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/b3868b81-8447-4847-99ba-26cca74e4885/%E5%BC%A0%E4%BA%BA%E5%8D%83%E8%80%81%E5%B8%88%E8%AF%BE%E4%BB%B6/%E7%AC%AC14%E7%AB%A0%20%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86.pdf",
+                    "code": ""
+                },
+                {
+                    "title": "第15章 投资项目经济评价.pdf",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/b3868b81-8447-4847-99ba-26cca74e4885/%E5%BC%A0%E4%BA%BA%E5%8D%83%E8%80%81%E5%B8%88%E8%AF%BE%E4%BB%B6/%E7%AC%AC15%E7%AB%A0%20%E6%8A%95%E8%B5%84%E9%A1%B9%E7%9B%AE%E7%BB%8F%E6%B5%8E%E8%AF%84%E4%BB%B7.pdf",
                     "code": ""
                 }
             ],
             "assignments": [
                 {
-                    "title": "实验7 应用层实验报告",
+                    "title": "第一周作业",
+                    "create_time": "2020-02-21 12:00:00",
+                    "platform": "课程中心",
+                    "category": "homework",
+                    "ddl_time": "2020-03-05 17:00:00",
+                    "notification_time": "2020-03-04 17:00:00",
+                    "notification_alert": true,
+                    "urls": "https://course.e2.buaa.edu.cn/portal/tool/7878d04f-a6bb-4ef2-8283-14d642465c6b?submissionId=/assignment/s/b3868b81-8447-4847-99ba-26cca74e4885/faba37d3-58ef-45b9-a1d8-f80353d365af/7dbfaa78-e6e6-4468-8e55-39399237c4f7&panel=Main&sakai_action=doView_grade",
+                    "content": "1.请举一个你的生活中应用经济管理知识的例子。（200字以上） 2.请问第一次在线学习中是否遇到困难？是什么困难？",
+                    "is_finished": true
+                },
+                {
+                    "title": "课程试运行-作业",
+                    "create_time": "2020-02-22 12:00:00",
+                    "platform": "课程中心",
+                    "category": "homework",
+                    "ddl_time": "2020-02-23 10:00:00",
+                    "notification_time": "2020-02-22 10:00:00",
+                    "notification_alert": true,
+                    "urls": "https://course.e2.buaa.edu.cn/portal/tool/7878d04f-a6bb-4ef2-8283-14d642465c6b?assignmentReference=/assignment/a/b3868b81-8447-4847-99ba-26cca74e4885/85859d81-180d-4cc9-8dc6-c1fa72570da3&panel=Main&sakai_action=doView_submission",
+                    "content": "尝试课程中心-作业功能。",
+                    "is_finished": false
+                }
+            ]
+        },
+        {
+            "course_name": "计算机科学方法论-2020-张珊",
+            "course_teacher": "张珊",
+            "resources": [
+                {
+                    "title": "第2次作业-模板.docx",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/98bdf655-4b0b-4878-a059-7e9056eeba5e/%E7%AC%AC2%E6%AC%A1%E4%BD%9C%E4%B8%9A-%E6%A8%A1%E6%9D%BF.docx",
+                    "code": ""
+                },
+                {
+                    "title": "第2次作业-内容、要求.docx",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/98bdf655-4b0b-4878-a059-7e9056eeba5e/%E7%AC%AC2%E6%AC%A1%E4%BD%9C%E4%B8%9A-%E5%86%85%E5%AE%B9%E3%80%81%E8%A6%81%E6%B1%82.docx",
+                    "code": ""
+                },
+                {
+                    "title": "第二次作业.ppt",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/98bdf655-4b0b-4878-a059-7e9056eeba5e/%E7%AC%AC%E4%BA%8C%E6%AC%A1%E4%BD%9C%E4%B8%9A.ppt",
+                    "code": ""
+                },
+                {
+                    "title": "汇报PPT模板及样例.zip",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/98bdf655-4b0b-4878-a059-7e9056eeba5e/%E6%B1%87%E6%8A%A5PPT%E6%A8%A1%E6%9D%BF%E5%8F%8A%E6%A0%B7%E4%BE%8B.zip",
+                    "code": ""
+                },
+                {
+                    "title": "计算机科学方法-2020-ZhangS群聊二维码.png",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/98bdf655-4b0b-4878-a059-7e9056eeba5e/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6%E6%96%B9%E6%B3%95-2020-ZhangS%E7%BE%A4%E8%81%8A%E4%BA%8C%E7%BB%B4%E7%A0%81.png",
+                    "code": ""
+                },
+                {
+                    "title": "选定论文.zip",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/98bdf655-4b0b-4878-a059-7e9056eeba5e/%E9%80%89%E5%AE%9A%E8%AE%BA%E6%96%87.zip",
+                    "code": ""
+                },
+                {
+                    "title": "研究方法论第1课-课程介绍.ppt",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/98bdf655-4b0b-4878-a059-7e9056eeba5e/%E7%A0%94%E7%A9%B6%E6%96%B9%E6%B3%95%E8%AE%BA%E7%AC%AC1%E8%AF%BE-%E8%AF%BE%E7%A8%8B%E4%BB%8B%E7%BB%8D.ppt",
+                    "code": ""
+                },
+                {
+                    "title": "研究方法论第1课-文献检索.pptx",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/98bdf655-4b0b-4878-a059-7e9056eeba5e/%E7%A0%94%E7%A9%B6%E6%96%B9%E6%B3%95%E8%AE%BA%E7%AC%AC1%E8%AF%BE-%E6%96%87%E7%8C%AE%E6%A3%80%E7%B4%A2.pptx",
+                    "code": ""
+                },
+                {
+                    "title": "研究方法论第2课-学术规范与学术不端.ppt",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/98bdf655-4b0b-4878-a059-7e9056eeba5e/%E7%A0%94%E7%A9%B6%E6%96%B9%E6%B3%95%E8%AE%BA%E7%AC%AC2%E8%AF%BE-%E5%AD%A6%E6%9C%AF%E8%A7%84%E8%8C%83%E4%B8%8E%E5%AD%A6%E6%9C%AF%E4%B8%8D%E7%AB%AF.ppt",
+                    "code": ""
+                },
+                {
+                    "title": "研究方法论第3-4课-科技论文写作.pptx",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/98bdf655-4b0b-4878-a059-7e9056eeba5e/%E7%A0%94%E7%A9%B6%E6%96%B9%E6%B3%95%E8%AE%BA%E7%AC%AC3-4%E8%AF%BE-%E7%A7%91%E6%8A%80%E8%AE%BA%E6%96%87%E5%86%99%E4%BD%9C.pptx",
+                    "code": ""
+                }
+            ],
+            "assignments": [
+                {
+                    "title": "第八次作业",
+                    "create_time": "2020-05-12 12:00:00",
+                    "platform": "课程中心",
+                    "category": "homework",
+                    "ddl_time": "2020-06-12 23:55:00",
+                    "notification_time": "2020-06-11 23:55:00",
+                    "notification_alert": true,
+                    "urls": "https://course.e2.buaa.edu.cn/portal/tool/cb7f821b-7914-46e9-9a27-33edcb62c2f5?assignmentReference=/assignment/a/98bdf655-4b0b-4878-a059-7e9056eeba5e/7a70c482-af63-4b5d-ba59-5140a1727a60&panel=Main&sakai_action=doView_submission",
+                    "content": "1、对论文工作进行总结（严格1000字-1200字），包含以下几部分： （1）题目； （2）研究背景； （3）论文解决的问题； （4）论文提出的解决方法； （5）实验验证或者理论分析、实验/分析结论； （6）论文工作存在的不足； （7）参考文献（不计字数、按照毕业设计要求的格式） 2、要求条理清晰、层次分明、表述清楚、逻辑性强，段落\\语句间的衔接/起承转合自然、图文结合。 3、用自己的语言撰写，杜绝抄袭。 4、提交时间：6月12日24点前（最终版）；截止时间前，可以多次提交。   注意事项： 1、 模块五在最终成绩中占比较高，请大家认真撰写。 2、 模块五采用同学之间匿名评审的方式进行评审，分3个阶段： （1）     第一阶段：每个同学（称为作者）的写作被随机分配给5个同学评审（称为评审人），每个同学独立给出评审意见，并返回给作者； （2）     第二阶段：针对每个评审人的评审意见，作者逐条回复，说明评审人的意见是否合理，并给评审意见打分； （3）     第三阶段：评审人对作者的回复和打分进行确认，指出作者对评审意见的打分是否合理。",
+                    "is_finished": false
+                },
+                {
+                    "title": "第七次作业",
+                    "create_time": "2020-04-27 12:00:00",
+                    "platform": "课程中心",
+                    "category": "homework",
+                    "ddl_time": "2020-05-03 23:55:00",
+                    "notification_time": "2020-05-02 23:55:00",
+                    "notification_alert": true,
+                    "urls": "https://course.e2.buaa.edu.cn/portal/tool/cb7f821b-7914-46e9-9a27-33edcb62c2f5?submissionId=/assignment/s/98bdf655-4b0b-4878-a059-7e9056eeba5e/34c188b9-b2c6-494e-b0cb-c3db726955bc/62b57f6a-6fb5-4819-bcaa-a169b25f6c6a&panel=Main&sakai_action=doView_grade",
+                    "content": "模块四写作要求 1、对论文工作进行总结（500字以内），包含以下几部分： （1）研究背景（1-2句话）； （2）论文解决的问题（1-2句话）； （3）论文的主要贡献，含论文提出的解决方法（2-3句话）、实验验证或者理论分析（1-2句话）、实验/分析结论（2-3句话）； （4）论文工作存在的不足（结合所选择的参考文献写，5-6句话）。 2、要求条理清晰、层次分明、表述清楚、逻辑性强，段落\\语句间的衔接/起承转合自然。 3、用自己的语言撰写，杜绝抄袭。 4、提交时间：5月3日23：55点前（第一版）；5.21日23：55点前（最终版）。",
+                    "is_finished": true
+                },
+                {
+                    "title": "第六次作业",
+                    "create_time": "2020-04-15 12:00:00",
+                    "platform": "课程中心",
+                    "category": "homework",
+                    "ddl_time": "2020-04-19 23:55:00",
+                    "notification_time": "2020-04-18 23:55:00",
+                    "notification_alert": true,
+                    "urls": "https://course.e2.buaa.edu.cn/portal/tool/cb7f821b-7914-46e9-9a27-33edcb62c2f5?submissionId=/assignment/s/98bdf655-4b0b-4878-a059-7e9056eeba5e/5ac42917-f267-4911-a0bc-7d5ab7682a81/515b1fdb-07ee-4046-ab33-b457c54eb3e9&panel=Main&sakai_action=doView_grade",
+                    "content": "1、基于所选论文和模块一、二的工作（该文所解决的问题、相关工作、思路及方法），用自己的语言描述该文为了验证所提出的办法，作者采用评估方法、 实验平台， 获得的主要数据，评估结论等。要求：（1）对评估方法的描述清楚（包括实验平台、实验环境设置、数据等，必要时图文结合）；（2）有条理的介绍实验结果及结论；（3）语言简洁、流畅；（4）语句间/段落间的逻辑关系清晰，起承转合自然。 2、围绕上述写作内容，撰写PPT，讲述该文的评估方法、结果及结论，并在课堂报告5-6分钟，听取同学和老师意见，培养总结能力和口头表达能力。 3、作业提交时间： （1）第一稿提交时间：4月19日23：55分前交写作、4.24日23:55分前交PPT； （2）最终版提交时间：5月7日23：55分前提交写作和PPT 4、作业提交地点：学校课程中心",
+                    "is_finished": true
+                },
+                {
+                    "title": "第五次作业",
+                    "create_time": "2020-03-30 12:00:00",
+                    "platform": "课程中心",
+                    "category": "homework",
+                    "ddl_time": "2020-04-05 23:55:00",
+                    "notification_time": "2020-04-04 23:55:00",
+                    "notification_alert": true,
+                    "urls": "https://course.e2.buaa.edu.cn/portal/tool/cb7f821b-7914-46e9-9a27-33edcb62c2f5?submissionId=/assignment/s/98bdf655-4b0b-4878-a059-7e9056eeba5e/df4a36f2-77ed-43c4-bc45-d8993a9fd3e7/0d8883a2-b429-4abd-abf4-5bffa64bd55f&panel=Main&sakai_action=doView_grade",
+                    "content": "1、基于所选论文和模块一的工作（明确了该文所解决的问题和相关工作），用自己的语言描述该文为了解决所述问题而提出的解决方法，要求：（1）对解决方法的描述清楚（包括用词准确、清楚定义所用变量，必要时图文结合）；（2）语言简洁、流畅；（3）语句间/段落间的逻辑关系清晰，起承转合自然。 2、围绕上述写作内容，撰写PPT，讲述该文提出的解决方法，并在课堂报告5-10分钟，听取同学和老师意见，培养总结能力和口头表达能力。 3、作业提交时间： （1）第一稿提交时间：4月5日23：55分前交写作、4.10日前交PPT； （2）最终版提交时间：4月23日日23：55分前提交写作和PPT 4、作业提交地点：学校课程中心",
+                    "is_finished": true
+                },
+                {
+                    "title": "第三次作业",
+                    "create_time": "2020-03-08 12:00:00",
+                    "platform": "课程中心",
+                    "category": "homework",
+                    "ddl_time": "2020-03-16 0:00:00",
+                    "notification_time": "2020-03-15 00:00:00",
+                    "notification_alert": true,
+                    "urls": "https://course.e2.buaa.edu.cn/portal/tool/cb7f821b-7914-46e9-9a27-33edcb62c2f5?submissionId=/assignment/s/98bdf655-4b0b-4878-a059-7e9056eeba5e/9495350f-7267-440c-a1f8-14faa6e1ea87/c0f366c8-0c5b-4103-96e6-29a477e2434a&panel=Main&sakai_action=doView_grade",
+                    "content": "本次作业要求： （1）阅读选取的论文，理解论文解决的问题、相关工作。 （2）用自己的语言描述该论文解决的问题、相关工作（结合第二次作业中下载的论文）。 （3）提交1份上述写作（中文，500字以上，在文档中所选定论文作为参考文献给出）至课程中心。 （4）撰写课堂汇报PPT（PPT模板及样例见附件，不用提交，后续课堂报告用）。",
+                    "is_finished": true
+                },
+                {
+                    "title": "第二次作业",
+                    "create_time": "2020-03-02 0:00:00",
+                    "platform": "课程中心",
+                    "category": "homework",
+                    "ddl_time": "2020-03-12 0:00:00",
+                    "notification_time": "2020-03-11 00:00:00",
+                    "notification_alert": true,
+                    "urls": "https://course.e2.buaa.edu.cn/portal/tool/cb7f821b-7914-46e9-9a27-33edcb62c2f5?submissionId=/assignment/s/98bdf655-4b0b-4878-a059-7e9056eeba5e/ce8550ad-e3d4-4a7c-afef-4c482c75ef5c/8548cddb-ec12-46bc-9df6-6b56a82fcb20&panel=Main&sakai_action=doView_grade",
+                    "content": "* 内容：根据第1次课讲解的文献查找方法，查找所选论文引用的参考文献、与该论文主题相关的参考文献，并下载。 * 要求（参考文献总计不少于50篇）： （1）须包含所选取论文中的至少15条参考文献；所选论文参考文献不足15篇时，可用下述（2）或（3）中的参考文献代替； （2）须包含引用所选取论文的至少15条参考文献； （3）须包含所选论文作者团队的相关工作和与所选取论文主题相关的参考文献（至少20条，其中：近5年（指2015年-2020年）发表的论文至少10篇，CCF A/B类期刊/会议论文至少2篇）。 （4）针对上述（2）和（3）中的每条参考文献，写出选取该文献的理由，例如某个（或某几个）关键词相同； （5）下载所选取的参考文献； （6）按照给出的模板，整理下载的参考文献； （7）将整理的参考文献和下载的参考文献打包，上传到课程中心。  ",
+                    "is_finished": true
+                },
+                {
+                    "title": "第一次作业",
+                    "create_time": "2020-02-24 12:00:00",
+                    "platform": "课程中心",
+                    "category": "homework",
+                    "ddl_time": "2020-03-02 12:00:00",
+                    "notification_time": "2020-03-01 12:00:00",
+                    "notification_alert": true,
+                    "urls": "https://course.e2.buaa.edu.cn/portal/tool/cb7f821b-7914-46e9-9a27-33edcb62c2f5?assignmentReference=/assignment/a/98bdf655-4b0b-4878-a059-7e9056eeba5e/5f5f9e10-58c6-43b1-9ac8-eb4098de4ed9&panel=Main&sakai_action=doView_submission",
+                    "content": "这是本课程的第一次作业，目的是选择一篇论文，作为大家今后写作的基础。 请大家先到本课程的“资源”模块，下载“选定论文”，然后大体阅读一下这些论文，看看自己对哪（几）篇论文感兴趣。 课程微信群中已发布接龙小程序，供大家选择论文，论文选择的方式是“先到先得”。",
+                    "is_finished": false
+                }
+            ]
+        },
+        {
+            "course_name": "计算机网络",
+            "course_teacher": "刘轶",
+            "resources": [
+                {
+                    "title": "0.计算机网络课程简介.pdf",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/8b6da66b-0dfd-48a6-957c-74bece95c64c/0.%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E8%AF%BE%E7%A8%8B%E7%AE%80%E4%BB%8B.pdf",
+                    "code": ""
+                },
+                {
+                    "title": "BUAA计算机网络课程群群聊二维码.png",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/8b6da66b-0dfd-48a6-957c-74bece95c64c/BUAA%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E8%AF%BE%E7%A8%8B%E7%BE%A4%E7%BE%A4%E8%81%8A%E4%BA%8C%E7%BB%B4%E7%A0%81.png",
+                    "code": ""
+                },
+                {
+                    "title": "Chapter-1.pdf",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/8b6da66b-0dfd-48a6-957c-74bece95c64c/Chapter-1.pdf",
+                    "code": ""
+                },
+                {
+                    "title": "Chapter-2.pdf",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/8b6da66b-0dfd-48a6-957c-74bece95c64c/Chapter-2.pdf",
+                    "code": ""
+                },
+                {
+                    "title": "Chapter-3.pdf",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/8b6da66b-0dfd-48a6-957c-74bece95c64c/Chapter-3.pdf",
+                    "code": ""
+                },
+                {
+                    "title": "Chapter-4.pdf",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/8b6da66b-0dfd-48a6-957c-74bece95c64c/Chapter-4.pdf",
+                    "code": ""
+                },
+                {
+                    "title": "Chapter-5.pdf",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/8b6da66b-0dfd-48a6-957c-74bece95c64c/Chapter-5.pdf",
+                    "code": ""
+                },
+                {
+                    "title": "Chapter-6.pdf",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/8b6da66b-0dfd-48a6-957c-74bece95c64c/Chapter-6.pdf",
+                    "code": ""
+                },
+                {
+                    "title": "Chapter-7.pdf",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/8b6da66b-0dfd-48a6-957c-74bece95c64c/Chapter-7.pdf",
+                    "code": ""
+                },
+                {
+                    "title": "Chapter-8.pdf",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/8b6da66b-0dfd-48a6-957c-74bece95c64c/Chapter-8.pdf",
+                    "code": ""
+                }
+            ],
+            "assignments": [
+                {
+                    "title": "第5章作业C",
+                    "create_time": "2020-04-14 12:00:00",
+                    "platform": "课程中心",
+                    "category": "homework",
+                    "ddl_time": "2020-04-21 17:00:00",
+                    "notification_time": "2020-04-20 17:00:00",
+                    "notification_alert": true,
+                    "urls": "https://course.e2.buaa.edu.cn/portal/tool/a2074c34-5eaa-4fb5-b5a6-69a69abf7684?submissionId=/assignment/s/8b6da66b-0dfd-48a6-957c-74bece95c64c/cefd1543-d484-4899-92ee-f8e2d1f70783/a8e5aad9-fc7e-4297-9489-40b978961447&panel=Main&sakai_action=doView_grade",
+                    "content": "第5章习题5-41、5-59、5-60",
+                    "is_finished": true
+                },
+                {
+                    "title": "第5章作业B",
+                    "create_time": "2020-04-09 12:00:00",
+                    "platform": "课程中心",
+                    "category": "homework",
+                    "ddl_time": "2020-04-16 17:00:00",
+                    "notification_time": "2020-04-15 17:00:00",
+                    "notification_alert": true,
+                    "urls": "https://course.e2.buaa.edu.cn/portal/tool/a2074c34-5eaa-4fb5-b5a6-69a69abf7684?submissionId=/assignment/s/8b6da66b-0dfd-48a6-957c-74bece95c64c/e9e0d8ca-7529-4371-ba79-8e656ff949fd/607a4adb-2432-4937-ad0f-a3404e43eadb&panel=Main&sakai_action=doView_grade",
+                    "content": "第5章习题：5-38、5-39  ",
+                    "is_finished": true
+                },
+                {
+                    "title": "第5章作业A",
+                    "create_time": "2020-04-07 12:00:00",
+                    "platform": "课程中心",
+                    "category": "homework",
+                    "ddl_time": "2020-04-14 17:00:00",
+                    "notification_time": "2020-04-13 17:00:00",
+                    "notification_alert": true,
+                    "urls": "https://course.e2.buaa.edu.cn/portal/tool/a2074c34-5eaa-4fb5-b5a6-69a69abf7684?submissionId=/assignment/s/8b6da66b-0dfd-48a6-957c-74bece95c64c/7555c7f1-cda9-461d-9600-dd360b7209ad/45e22891-02b4-4b76-883d-f9e90c5df794&panel=Main&sakai_action=doView_grade",
+                    "content": "第5章习题：5-23、5-28、5-49",
+                    "is_finished": true
+                },
+                {
+                    "title": "第4章作业B",
+                    "create_time": "2020-03-26 12:00:00",
+                    "platform": "课程中心",
+                    "category": "homework",
+                    "ddl_time": "2020-04-02 17:00:00",
+                    "notification_time": "2020-04-01 17:00:00",
+                    "notification_alert": true,
+                    "urls": "https://course.e2.buaa.edu.cn/portal/tool/a2074c34-5eaa-4fb5-b5a6-69a69abf7684?submissionId=/assignment/s/8b6da66b-0dfd-48a6-957c-74bece95c64c/1d351e74-26e2-43a7-a2fa-103414906fba/45ad64e4-01ed-4a36-979e-e781dc9d1e27&panel=Main&sakai_action=doView_grade",
+                    "content": "作业：第4章习题26、27、28、30、31、37、55",
+                    "is_finished": true
+                },
+                {
+                    "title": "第4章作业A",
+                    "create_time": "2020-03-24 12:00:00",
+                    "platform": "课程中心",
+                    "category": "homework",
+                    "ddl_time": "2020-03-31 17:00:00",
+                    "notification_time": "2020-03-30 17:00:00",
+                    "notification_alert": true,
+                    "urls": "https://course.e2.buaa.edu.cn/portal/tool/a2074c34-5eaa-4fb5-b5a6-69a69abf7684?submissionId=/assignment/s/8b6da66b-0dfd-48a6-957c-74bece95c64c/63219a4a-434a-49b8-b905-c0a92f8ec733/c976ba88-77fb-4760-922d-7fff2ab14090&panel=Main&sakai_action=doView_grade",
+                    "content": "作业：第4章习题9、17、20",
+                    "is_finished": true
+                },
+                {
+                    "title": "第3章作业A",
+                    "create_time": "2020-03-12 12:00:00",
+                    "platform": "课程中心",
+                    "category": "homework",
+                    "ddl_time": "2020-03-24 17:00:00",
+                    "notification_time": "2020-03-23 17:00:00",
+                    "notification_alert": true,
+                    "urls": "https://course.e2.buaa.edu.cn/portal/tool/a2074c34-5eaa-4fb5-b5a6-69a69abf7684?submissionId=/assignment/s/8b6da66b-0dfd-48a6-957c-74bece95c64c/9aee60fa-21b6-4a7c-9f35-ebd2a5897d06/99e51884-9fcf-425d-ae02-3a74521d5029&panel=Main&sakai_action=doView_grade",
+                    "content": "第三章习题7、9、10、13、18、20、24",
+                    "is_finished": true
+                },
+                {
+                    "title": "第3章作业B",
+                    "create_time": "2020-03-17 12:00:00",
+                    "platform": "课程中心",
+                    "category": "homework",
+                    "ddl_time": "2020-03-24 17:00:00",
+                    "notification_time": "2020-03-23 17:00:00",
+                    "notification_alert": true,
+                    "urls": "https://course.e2.buaa.edu.cn/portal/tool/a2074c34-5eaa-4fb5-b5a6-69a69abf7684?submissionId=/assignment/s/8b6da66b-0dfd-48a6-957c-74bece95c64c/328188f5-d241-4423-aa12-4f3512339c4f/326c3db4-1b45-4168-beae-40b5fed821f5&panel=Main&sakai_action=doView_grade",
+                    "content": "第3章习题27、32、33",
+                    "is_finished": true
+                },
+                {
+                    "title": "第3次课作业",
+                    "create_time": "2020-03-03 12:00:00",
+                    "platform": "课程中心",
+                    "category": "homework",
+                    "ddl_time": "2020-03-10 17:00:00",
+                    "notification_time": "2020-03-09 17:00:00",
+                    "notification_alert": true,
+                    "urls": "https://course.e2.buaa.edu.cn/portal/tool/a2074c34-5eaa-4fb5-b5a6-69a69abf7684?submissionId=/assignment/s/8b6da66b-0dfd-48a6-957c-74bece95c64c/26425fb8-f5b3-4575-9fce-486570300069/723a2733-bbb2-4f11-b97d-837400ecd9c6&panel=Main&sakai_action=doView_grade",
+                    "content": "(1) 教材第2章习题：2-13、2-14； (2) 本次课录播视频中布置的实践题。  ",
+                    "is_finished": true
+                },
+                {
+                    "title": "第2次课作业",
+                    "create_time": "2020-02-27 12:00:00",
+                    "platform": "课程中心",
+                    "category": "homework",
+                    "ddl_time": "2020-03-05 17:00:00",
+                    "notification_time": "2020-03-04 17:00:00",
+                    "notification_alert": true,
+                    "urls": "https://course.e2.buaa.edu.cn/portal/tool/a2074c34-5eaa-4fb5-b5a6-69a69abf7684?submissionId=/assignment/s/8b6da66b-0dfd-48a6-957c-74bece95c64c/b6cf55a0-f8c3-44b2-bf87-1cc84c504690/09c7105b-3b26-4f28-a0ee-b421f3bd5ad0&panel=Main&sakai_action=doView_grade",
+                    "content": "第2次课(2月27日)课后作业： 第2章作业题2-04、2-05、2-08、2-09。 作业必须手写(标明自己的学号和姓名)，在以下两种提交方式中任选一种： (1) 拍照后在课程中心网站上传。 (2) 返校后提交纸质版。  ",
+                    "is_finished": true
+                }
+            ]
+        },
+        {
+            "course_name": "计算机网络实验",
+            "course_teacher": "teacher",
+            "resources": [
+                {
+                    "title": "2020年春季本科生《计算机网络实验》课程介绍及安排-1.docx",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/ee28aa14-68c9-481b-bd00-a54bda63bf22/2020%E5%B9%B4%E6%98%A5%E5%AD%A3%E6%9C%AC%E7%A7%91%E7%94%9F%E3%80%8A%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AE%9E%E9%AA%8C%E3%80%8B%E8%AF%BE%E7%A8%8B%E4%BB%8B%E7%BB%8D%E5%8F%8A%E5%AE%89%E6%8E%92-1.docx",
+                    "code": ""
+                },
+                {
+                    "title": "《计算机网络实验》课程大纲（中）2020.doc",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/ee28aa14-68c9-481b-bd00-a54bda63bf22/%E3%80%8A%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AE%9E%E9%AA%8C%E3%80%8B%E8%AF%BE%E7%A8%8B%E5%A4%A7%E7%BA%B2%EF%BC%88%E4%B8%AD%EF%BC%892020.doc",
+                    "code": ""
+                },
+                {
+                    "title": "实验0.1-4 远程在线网络实验平台使用说明.ppt",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/ee28aa14-68c9-481b-bd00-a54bda63bf22/%E5%AE%9E%E9%AA%8C0.1-4%20%E8%BF%9C%E7%A8%8B%E5%9C%A8%E7%BA%BF%E7%BD%91%E7%BB%9C%E5%AE%9E%E9%AA%8C%E5%B9%B3%E5%8F%B0%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E.ppt",
+                    "code": ""
+                },
+                {
+                    "title": "实验0 课程介绍.ppt",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/ee28aa14-68c9-481b-bd00-a54bda63bf22/%E5%AE%9E%E9%AA%8C0%20%E8%AF%BE%E7%A8%8B%E4%BB%8B%E7%BB%8D.ppt",
+                    "code": ""
+                },
+                {
+                    "title": "实验1.1_内容简介.ppt",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/ee28aa14-68c9-481b-bd00-a54bda63bf22/%E5%AE%9E%E9%AA%8C1.1_%E5%86%85%E5%AE%B9%E7%AE%80%E4%BB%8B-1.ppt",
+                    "code": ""
+                },
+                {
+                    "title": "实验1.2 实验环境及设备简介.ppt",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/ee28aa14-68c9-481b-bd00-a54bda63bf22/%E5%AE%9E%E9%AA%8C1.2%20%E5%AE%9E%E9%AA%8C%E7%8E%AF%E5%A2%83%E5%8F%8A%E8%AE%BE%E5%A4%87%E7%AE%80%E4%BB%8B.ppt",
+                    "code": ""
+                },
+                {
+                    "title": "实验1.3 网线制作.ppt",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/ee28aa14-68c9-481b-bd00-a54bda63bf22/%E5%AE%9E%E9%AA%8C1.3%20%E7%BD%91%E7%BA%BF%E5%88%B6%E4%BD%9C.ppt",
+                    "code": ""
+                },
+                {
+                    "title": "实验1.4_路由器和交换机的基本配置.ppt",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/ee28aa14-68c9-481b-bd00-a54bda63bf22/%E5%AE%9E%E9%AA%8C1.4_%E8%B7%AF%E7%94%B1%E5%99%A8%E5%92%8C%E4%BA%A4%E6%8D%A2%E6%9C%BA%E7%9A%84%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE.ppt",
+                    "code": ""
+                },
+                {
+                    "title": "实验1.5 报文分析软件简介.ppt",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/ee28aa14-68c9-481b-bd00-a54bda63bf22/%E5%AE%9E%E9%AA%8C1.5%20%E6%8A%A5%E6%96%87%E5%88%86%E6%9E%90%E8%BD%AF%E4%BB%B6%E7%AE%80%E4%BB%8B.ppt",
+                    "code": ""
+                },
+                {
+                    "title": "实验1.6_简单组网实验.ppt",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/ee28aa14-68c9-481b-bd00-a54bda63bf22/%E5%AE%9E%E9%AA%8C1.6_%E7%AE%80%E5%8D%95%E7%BB%84%E7%BD%91%E5%AE%9E%E9%AA%8C.ppt",
+                    "code": ""
+                },
+                {
+                    "title": "实验1.7_地址转换实验20150401.ppt",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/ee28aa14-68c9-481b-bd00-a54bda63bf22/%E5%AE%9E%E9%AA%8C1.7_%E5%9C%B0%E5%9D%80%E8%BD%AC%E6%8D%A2%E5%AE%9E%E9%AA%8C20150401.ppt",
+                    "code": ""
+                },
+                {
+                    "title": "实验2.1 数据链路层实验内容简介.ppt",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/ee28aa14-68c9-481b-bd00-a54bda63bf22/%E5%AE%9E%E9%AA%8C2.1%20%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82%E5%AE%9E%E9%AA%8C%E5%86%85%E5%AE%B9%E7%AE%80%E4%BB%8B.ppt",
+                    "code": ""
+                },
+                {
+                    "title": "实验2.2 以太网帧格式分析.ppt",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/ee28aa14-68c9-481b-bd00-a54bda63bf22/%E5%AE%9E%E9%AA%8C2.2%20%E4%BB%A5%E5%A4%AA%E7%BD%91%E5%B8%A7%E6%A0%BC%E5%BC%8F%E5%88%86%E6%9E%90.ppt",
+                    "code": ""
+                },
+                {
+                    "title": "实验2.3_交换机MAC地址表与端口聚合.ppt",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/ee28aa14-68c9-481b-bd00-a54bda63bf22/%E5%AE%9E%E9%AA%8C2.3_%E4%BA%A4%E6%8D%A2%E6%9C%BAMAC%E5%9C%B0%E5%9D%80%E8%A1%A8%E4%B8%8E%E7%AB%AF%E5%8F%A3%E8%81%9A%E5%90%88.ppt",
+                    "code": ""
+                },
+                {
+                    "title": "实验2.4 VLAN配置与分析.ppt",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/ee28aa14-68c9-481b-bd00-a54bda63bf22/%E5%AE%9E%E9%AA%8C2.4%20VLAN%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%88%86%E6%9E%90.ppt",
+                    "code": ""
+                },
+                {
+                    "title": "实验2.5 ppp协议分析.ppt",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/ee28aa14-68c9-481b-bd00-a54bda63bf22/%E5%AE%9E%E9%AA%8C2.5%20ppp%E5%8D%8F%E8%AE%AE%E5%88%86%E6%9E%90-1.ppt",
+                    "code": ""
+                },
+                {
+                    "title": "实验3.1 实验总体介绍_2015.pptx",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/ee28aa14-68c9-481b-bd00-a54bda63bf22/%E5%AE%9E%E9%AA%8C3.1%20%E5%AE%9E%E9%AA%8C%E6%80%BB%E4%BD%93%E4%BB%8B%E7%BB%8D_2015.pptx",
+                    "code": ""
+                },
+                {
+                    "title": "实验3.2_IP报文分析实验_2015.pptx",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/ee28aa14-68c9-481b-bd00-a54bda63bf22/%E5%AE%9E%E9%AA%8C3.2_IP%E6%8A%A5%E6%96%87%E5%88%86%E6%9E%90%E5%AE%9E%E9%AA%8C_2015.pptx",
+                    "code": ""
+                },
+                {
+                    "title": "实验3.3_ARP协议分析实验_2015.pptx",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/ee28aa14-68c9-481b-bd00-a54bda63bf22/%E5%AE%9E%E9%AA%8C3.3_ARP%E5%8D%8F%E8%AE%AE%E5%88%86%E6%9E%90%E5%AE%9E%E9%AA%8C_2015.pptx",
+                    "code": ""
+                },
+                {
+                    "title": "实验3.4_ICMP协议分析实验_2015.pptx",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/ee28aa14-68c9-481b-bd00-a54bda63bf22/%E5%AE%9E%E9%AA%8C3.4_ICMP%E5%8D%8F%E8%AE%AE%E5%88%86%E6%9E%90%E5%AE%9E%E9%AA%8C_2015.pptx",
+                    "code": ""
+                },
+                {
+                    "title": "实验3.5_IP数据报的分片与重组实验_2015.pptx",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/ee28aa14-68c9-481b-bd00-a54bda63bf22/%E5%AE%9E%E9%AA%8C3.5_IP%E6%95%B0%E6%8D%AE%E6%8A%A5%E7%9A%84%E5%88%86%E7%89%87%E4%B8%8E%E9%87%8D%E7%BB%84%E5%AE%9E%E9%AA%8C_2015.pptx",
+                    "code": ""
+                },
+                {
+                    "title": "实验3.6_路由表分析实验_2015.pptx",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/ee28aa14-68c9-481b-bd00-a54bda63bf22/%E5%AE%9E%E9%AA%8C3.6_%E8%B7%AF%E7%94%B1%E8%A1%A8%E5%88%86%E6%9E%90%E5%AE%9E%E9%AA%8C_2015.pptx",
+                    "code": ""
+                },
+                {
+                    "title": "实验3.7_VLAN间路由实验_链路层与网络层综合实验__2015.pptx",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/ee28aa14-68c9-481b-bd00-a54bda63bf22/%E5%AE%9E%E9%AA%8C3.7_VLAN%E9%97%B4%E8%B7%AF%E7%94%B1%E5%AE%9E%E9%AA%8C_%E9%93%BE%E8%B7%AF%E5%B1%82%E4%B8%8E%E7%BD%91%E7%BB%9C%E5%B1%82%E7%BB%BC%E5%90%88%E5%AE%9E%E9%AA%8C__2015.pptx",
+                    "code": ""
+                },
+                {
+                    "title": "实验3.8_子网划分设计实验_2015.pptx",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/ee28aa14-68c9-481b-bd00-a54bda63bf22/%E5%AE%9E%E9%AA%8C3.8_%E5%AD%90%E7%BD%91%E5%88%92%E5%88%86%E8%AE%BE%E8%AE%A1%E5%AE%9E%E9%AA%8C_2015-3.pptx",
+                    "code": ""
+                },
+                {
+                    "title": "微信图片_20200220204853.jpg",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/ee28aa14-68c9-481b-bd00-a54bda63bf22/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20200220204853.jpg",
+                    "code": ""
+                }
+            ],
+            "assignments": [
+                {
+                    "title": "补交作业",
+                    "create_time": "2020-05-06 12:00:00",
+                    "platform": "课程中心 & 中国大学慕课",
+                    "category": "homework",
+                    "ddl_time": "2020-06-10 17:00:00",
+                    "notification_time": "2020-06-09 17:00:00",
+                    "notification_alert": true,
+                    "urls": "https://course.e2.buaa.edu.cn/portal/tool/48c134ee-1fa6-442c-a4e0-8f0d923f0d62?assignmentReference=/assignment/a/ee28aa14-68c9-481b-bd00-a54bda63bf22/506c454d-73dd-4c91-ac64-ec79c56de35b&panel=Main&sakai_action=doView_submission",
+                    "content": "为了给迟交或忘交作业的同学一个补救的机会，在此提交前面实验中未提交的实验报告。 注意：迟交的实验报告会在平时成绩中酌情扣分！",
+                    "is_finished": false
+                },
+                {
+                    "title": "实验报告7  应用层实验",
                     "create_time": "2020-05-08 12:00:00",
                     "platform": "课程中心 & 中国大学慕课",
                     "category": "homework",
                     "ddl_time": "2020-05-20 17:00:00",
                     "notification_time": "2020-05-19 17:00:00",
                     "notification_alert": true,
-                    "urls": "https://course.e2.buaa.edu.cn/portal/tool/f6f8e19d-4cae-4e1f-a176-d7d472fa02af?assignmentReference=/assignment/a/56934528-11ef-47fe-a5eb-300ecd3e6132/f4a1a4ef-ed69-4455-953a-0fb4c313fcf1&panel=Main&sakai_action=doView_submission",
-                    "content": "实验7 应用层实验报告",
-                    "is_finished": false
+                    "urls": "https://course.e2.buaa.edu.cn/portal/tool/48c134ee-1fa6-442c-a4e0-8f0d923f0d62?assignmentReference=/assignment/a/ee28aa14-68c9-481b-bd00-a54bda63bf22/f080d2c9-86f5-40d8-aee7-30a389126c71&panel=Main&sakai_action=doView_submission",
+                    "content": " 第八周 实验七 应用层实验 1. 实验时间：5月11日-5月17日 2. 实验内容（所有实验套件学生）： 1）DNS协议分析实验 2）HTTP协议分析实验 3）电子邮件协议实验 4）FTP协议分析实验 5）DHCP协议分析实验 请认真阅读“常见问题解答文档”的第76-80号问题。",
+                    "is_finished": true
                 },
                 {
-                    "title": "实验6 传输层实验报告",
+                    "title": "实验报告6  传输层实验",
                     "create_time": "2020-05-01 12:00:00",
                     "platform": "课程中心 & 中国大学慕课",
                     "category": "homework",
-                    "ddl_time": "2020-05-13 23:55:00",
-                    "notification_time": "2020-05-12 23:55:00",
+                    "ddl_time": "2020-05-13 17:00:00",
+                    "notification_time": "2020-05-12 17:00:00",
                     "notification_alert": true,
-                    "urls": "https://course.e2.buaa.edu.cn/portal/tool/f6f8e19d-4cae-4e1f-a176-d7d472fa02af?submissionId=/assignment/s/56934528-11ef-47fe-a5eb-300ecd3e6132/784d6d82-a81c-47db-a147-52dc3cb0db19/e80dc346-5b7f-4104-ac74-0d23eba93f69&panel=Main&sakai_action=doView_grade",
-                    "content": "实验6 传输层实验报告",
+                    "urls": "https://course.e2.buaa.edu.cn/portal/tool/48c134ee-1fa6-442c-a4e0-8f0d923f0d62?submissionId=/assignment/s/ee28aa14-68c9-481b-bd00-a54bda63bf22/dad27a79-29d5-4898-a15e-0b82714e1926/d5263c11-6152-41c9-94a3-3a21e876c7ae&panel=Main&sakai_action=doView_grade",
+                    "content": "课程第七周 实验六 传输层实验 1. 实验时间：5月4日-5月10日 2. 实验内容： 1）TCP基础实验 2）TCP滑动窗口机制和窗口探查机制分析 3）TCP慢启动、拥塞避免算法及拥塞处理实验 4）UDP实验（取消linux预约，再预约winxp系统） 请认真阅读“常见问题解答文档”的第61-75号问题。 注意：TCP的超时与重传、快重传快恢复、糊涂窗口与Nagle算法实验不要求。",
                     "is_finished": true
                 },
                 {
-                    "title": "实验四 RIP/OSPF路由协议实验报告",
-                    "create_time": "2020-04-10 12:00:00",
-                    "platform": "课程中心 & 中国大学慕课",
-                    "category": "homework",
-                    "ddl_time": "2020-05-06 22:00:00",
-                    "notification_time": "2020-05-05 22:00:00",
-                    "notification_alert": true,
-                    "urls": "https://course.e2.buaa.edu.cn/portal/tool/f6f8e19d-4cae-4e1f-a176-d7d472fa02af?submissionId=/assignment/s/56934528-11ef-47fe-a5eb-300ecd3e6132/d9c71959-f634-40d8-a07c-b39780bf17e1/27f2e0fe-0e72-4ccb-be3a-8bec992a5ede&panel=Main&sakai_action=doView_grade",
-                    "content": "实验四 RIP/OSPF路由协议实验报告",
-                    "is_finished": true
-                },
-                {
-                    "title": "实验五 OSPF/BGP实验报告",
-                    "create_time": "2020-04-17 12:00:00",
+                    "title": "实验报告5 OSPF或BGP实验",
+                    "create_time": "2020-04-19 12:00:00",
                     "platform": "课程中心 & 中国大学慕课",
                     "category": "homework",
                     "ddl_time": "2020-05-06 17:00:00",
                     "notification_time": "2020-05-05 17:00:00",
                     "notification_alert": true,
-                    "urls": "https://course.e2.buaa.edu.cn/portal/tool/f6f8e19d-4cae-4e1f-a176-d7d472fa02af?submissionId=/assignment/s/56934528-11ef-47fe-a5eb-300ecd3e6132/897b4003-c491-4dec-82a1-67e32ea43274/5ec15e65-d563-42f9-8625-6a4d6cd45c8b&panel=Main&sakai_action=doView_grade",
-                    "content": "实验五 OSPF/BGP路由协议实验报告",
+                    "urls": "https://course.e2.buaa.edu.cn/portal/tool/48c134ee-1fa6-442c-a4e0-8f0d923f0d62?submissionId=/assignment/s/ee28aa14-68c9-481b-bd00-a54bda63bf22/51633532-656c-48b2-9d58-6000afdce536/38eba26b-3e44-41a5-8141-fe1227a0130a&panel=Main&sakai_action=doView_grade",
+                    "content": "第五周 实验五 OSPF/BGP路由协议实验 教学安排如下： 1. 实验时间：4月20日-4月26日 2. 实验内容：套件1 OSPF路由协议实验，套件2和提高层次实验：BGP路由协议实验 （1）OSPF路由协议实验 1）OSPF协议概述及基本配置 2）OSPF协议报文交互过程分析 3）OSPF协议链路状态描述 4）区域划分及LSA种类 5）OSPF协议的路由计算 6）设计型实验 请阅读“常见问题解答文档”的第50-55号问题。 （2）BGP协议实验 1）BGP协议基本分析 2）BGP的状态机分析 3）BGP的路由聚合 4）BGP的基本路由属性分析 5）BGP的同步机制 6）BGP的路由策略及应用 7）BGP设计型实验 请阅读“常见问题解答文档”的第56-58号问题。 3. 实验前，观看相关内容的实验讲解视频，认真阅读相关实验内容原理和实验操作步骤说明。并在中国大学MOOC网站上完成实验的测试题部分。 4. 上课时间，在线实验平台上，完成相关实验内容。并填写相应的实验报告（电子版）。 5. 北航的同学请同时提交实验报告到课程中心和中国大学MOOC平台。命名方式：上课时间段-学号-姓名。 关于实验内容和实验套件的说明，请参见下面文档： 【腾讯文档】2020年春季本科生《计算机网络实验》课程介绍及安排 https://docs.qq.com/doc/DVUtDdHVWbXlsQWtK",
                     "is_finished": true
                 },
                 {
-                    "title": "实验3 网络层实验报告",
-                    "create_time": "2020-04-02 12:00:00",
+                    "title": "实验报告4 RIP或OSPF实验",
+                    "create_time": "2020-04-12 12:00:00",
                     "platform": "课程中心 & 中国大学慕课",
                     "category": "homework",
-                    "ddl_time": "2020-04-15 12:00:00",
-                    "notification_time": "2020-04-14 12:00:00",
+                    "ddl_time": "2020-05-06 17:00:00",
+                    "notification_time": "2020-05-05 17:00:00",
                     "notification_alert": true,
-                    "urls": "https://course.e2.buaa.edu.cn/portal/tool/f6f8e19d-4cae-4e1f-a176-d7d472fa02af?submissionId=/assignment/s/56934528-11ef-47fe-a5eb-300ecd3e6132/6517018a-175e-45f3-96b6-0e98da5942bd/df90ab7d-6c99-4090-942c-3eb337c4a6cc&panel=Main&sakai_action=doView_grade",
-                    "content": "实验3 网络层实验报告",
+                    "urls": "https://course.e2.buaa.edu.cn/portal/tool/48c134ee-1fa6-442c-a4e0-8f0d923f0d62?submissionId=/assignment/s/ee28aa14-68c9-481b-bd00-a54bda63bf22/315b33b9-c246-42ae-8d0c-5c039763f23b/9eb4d6e1-3e7b-4d5f-a12a-ffd0e8e1f768&panel=Main&sakai_action=doView_grade",
+                    "content": "第四周 实验四 RIP/OSPF路由协议实验 教学安排如下： 1. 实验时间：4月13日-4月19日 2. 实验内容：套件1 RIP路由协议实验，套件2和提高层次实验：OSPF路由协议实验 （1）RIP路由协议实验 1）静态路由及默认路由配置 2）RIP配置及RIPv1报文分析实验 3）距离矢量算法实验 4）触发更新和水平分割实验 5）RIPv2报文结构分析实验 6）设计型实验 请认真阅读“常见问题解答文档”的第44-46号问题。 （2）OSPF路由协议实验 1）静态路由及默认路由配置（教材6.2节） 2）OSPF协议概述及基本配置 3）OSPF协议报文交互过程分析 4）OSPF协议链路状态描述 5）区域划分及LSA种类 6）OSPF协议的路由计算 7）设计型实验 请认真阅读“常见问题解答文档”的第44-52号问题。 3. 实验前，观看相关内容的实验讲解视频，认真阅读相关实验内容原理和实验操作步骤说明。并在中国大学MOOC网站上完成实验的测试题部分。 4. 上课时间，在线实验平台上，完成相关实验内容。并填写相应的实验报告（电子版）。 5. 北航的同学请同时提交实验报告到课程中心和中国大学MOOC平台。命名方式：上课时间段-学号-姓名。 关于实验内容和实验套件的说明，请参见下面文档： 【腾讯文档】2020年春季本科生《计算机网络实验》课程介绍及安排 https://docs.qq.com/doc/DVUtDdHVWbXlsQWtK",
                     "is_finished": true
                 },
                 {
-                    "title": "实验2 数据链路层实验报告",
-                    "create_time": "2020-03-27 3:00:00",
+                    "title": "实验报告3--实验3 网络层实验",
+                    "create_time": "2020-04-05 12:00:00",
                     "platform": "课程中心 & 中国大学慕课",
                     "category": "homework",
-                    "ddl_time": "2020-04-08 12:00:00",
-                    "notification_time": "2020-04-07 12:00:00",
+                    "ddl_time": "2020-04-15 0:00:00",
+                    "notification_time": "2020-04-14 00:00:00",
                     "notification_alert": true,
-                    "urls": "https://course.e2.buaa.edu.cn/portal/tool/f6f8e19d-4cae-4e1f-a176-d7d472fa02af?assignmentReference=/assignment/a/56934528-11ef-47fe-a5eb-300ecd3e6132/fd66567a-cc31-4d59-8dba-477285cd3511&panel=Main&sakai_action=doView_submission",
-                    "content": "实验2 数据链路层实验报告",
+                    "urls": "https://course.e2.buaa.edu.cn/portal/tool/48c134ee-1fa6-442c-a4e0-8f0d923f0d62?submissionId=/assignment/s/ee28aa14-68c9-481b-bd00-a54bda63bf22/51e11ceb-f95e-4d6e-b21f-9cfe91156593/62e630b0-9b29-4d8f-87cc-b429f20b3744&panel=Main&sakai_action=doView_grade",
+                    "content": "第三周 实验三 网络层实验 教学安排如下： 1. 时间4月6日-4月12日 2. 于在线实验平台，完成实验三网络层实验以下内容，同步填写实验报告； 1）ARP实验 2）ICMP实验 3）IP实验 4）IP报文分片实验（选做） 5）VLAN间路由综合实验 6）子网划分设计型实验 7）请认真阅读“常见问题解答文档”的第39-43号问题。 3. 实验前，观看相关内容的实验讲解视频，认真阅读相关实验内容原理和实验操作步骤说明。并在中国大学MOOC网站上完成实验的测试题部分。 4. 上课时间，在线实验平台上，完成以上实验内容。并填写相应的实验报告（电子版）。 5. 北航的同学请同时提交实验报告到课程中心和中国大学MOOC平台。命名方式：上课时间段-学号-姓名。  ",
+                    "is_finished": true
+                },
+                {
+                    "title": "实验报告2--实验2 数据链路层实验",
+                    "create_time": "2020-03-27 12:00:00",
+                    "platform": "课程中心 & 中国大学慕课",
+                    "category": "homework",
+                    "ddl_time": "2020-04-08 0:00:00",
+                    "notification_time": "2020-04-07 00:00:00",
+                    "notification_alert": true,
+                    "urls": "https://course.e2.buaa.edu.cn/portal/tool/48c134ee-1fa6-442c-a4e0-8f0d923f0d62?submissionId=/assignment/s/ee28aa14-68c9-481b-bd00-a54bda63bf22/f301fdac-3c71-43e4-b3ac-963ecb5b16be/512ed5ca-5a0e-4d41-b93a-02b3db5618ad&panel=Main&sakai_action=doView_grade",
+                    "content": "实验报告2 数据链路层实验的实验报告见附件。请大家注意提交截止时间！",
+                    "is_finished": true
+                },
+                {
+                    "title": "实验报告1--实验1  网络实验入门",
+                    "create_time": "2020-03-21 2:00:00",
+                    "platform": "课程中心 & 中国大学慕课",
+                    "category": "homework",
+                    "ddl_time": "2020-04-01 0:00:00",
+                    "notification_time": "2020-03-31 00:00:00",
+                    "notification_alert": true,
+                    "urls": "https://course.e2.buaa.edu.cn/portal/tool/48c134ee-1fa6-442c-a4e0-8f0d923f0d62?submissionId=/assignment/s/ee28aa14-68c9-481b-bd00-a54bda63bf22/f46a9e75-6006-4488-b166-849167f0817a/d1e2271a-63df-46ee-a631-0188fa19d9cd&panel=Main&sakai_action=doView_grade",
+                    "content": "网络实验第一周（实验一：网络实验入门）教学安排如下： 1. 实验时间3月23日-3月29日 2. 实验内容：         1）路由器和交换机的基本配置     2）报文分析软件使用     3）简单组网实验 4）基于地址转换的组网实验 5）熟悉使用在线实验平台是本次实验的主要任务，请认真阅读“常见问题解答文档”的第1-26号问题。 3. 实验前，观看相关内容的实验讲解视频，认真阅读相关实验内容原理和实验操作步骤说明。并在中国大学MOOC网站上完成实验的测试题部分。 4. 上课时间，在线实验平台上，完成以上实验内容。并填写相应的实验报告（电子版）。 5. 北航的同学请同时提交实验报告到课程中心和中国大学MOOC平台。命名方式：上课时间段-学号-姓名。 注：实验报告文档见附件！  ",
+                    "is_finished": true
+                }
+            ]
+        },
+        {
+            "course_name": "软件工程基础2020",
+            "course_teacher": "罗杰",
+            "resources": [
+                {
+                    "title": "mmexport1582169511205.jpg",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/9975259a-8f7a-44a0-aa75-560fa9269a3f/mmexport1582169511205.jpg",
+                    "code": ""
+                },
+                {
+                    "title": "mmqrcode1582075623161.png",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/9975259a-8f7a-44a0-aa75-560fa9269a3f/mmqrcode1582075623161.png",
+                    "code": ""
+                },
+                {
+                    "title": "mmqrcode1582087175144.png",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/9975259a-8f7a-44a0-aa75-560fa9269a3f/mmqrcode1582087175144.png",
+                    "code": ""
+                },
+                {
+                    "title": "SE_1_1_intro.pdf",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/9975259a-8f7a-44a0-aa75-560fa9269a3f/SE_1_1_intro.pdf",
+                    "code": ""
+                },
+                {
+                    "title": "SE_1_2_SoftwareEngineering.pdf",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/9975259a-8f7a-44a0-aa75-560fa9269a3f/SE_1_2_SoftwareEngineering.pdf",
+                    "code": ""
+                },
+                {
+                    "title": "SE_2_1_PSP_better_engineer.pdf",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/9975259a-8f7a-44a0-aa75-560fa9269a3f/SE_2_1_PSP_better_engineer.pdf",
+                    "code": ""
+                },
+                {
+                    "title": "SE_2_2_Pair_CodeQuality_CodeReview.pdf",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/9975259a-8f7a-44a0-aa75-560fa9269a3f/SE_2_2_Pair_CodeQuality_CodeReview.pdf",
+                    "code": ""
+                },
+                {
+                    "title": "SE_3_1_Pair_Programming.pdf",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/9975259a-8f7a-44a0-aa75-560fa9269a3f/SE_3_1_Pair_Programming.pdf",
+                    "code": ""
+                },
+                {
+                    "title": "SE_3_2_Pair_Collaboration.pdf",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/9975259a-8f7a-44a0-aa75-560fa9269a3f/SE_3_2_Pair_Collaboration.pdf",
+                    "code": ""
+                },
+                {
+                    "title": "SE_4_Team_Agile.pdf",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/9975259a-8f7a-44a0-aa75-560fa9269a3f/SE_4_Team_Agile.pdf",
+                    "code": ""
+                },
+                {
+                    "title": "SE_4_Team_Process.pdf",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/9975259a-8f7a-44a0-aa75-560fa9269a3f/SE_4_Team_Process.pdf",
+                    "code": ""
+                },
+                {
+                    "title": "SE_5_1_需求分析.pdf",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/9975259a-8f7a-44a0-aa75-560fa9269a3f/SE_5_1_%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90.pdf",
+                    "code": ""
+                },
+                {
+                    "title": "SE_5_2_估计.pdf",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/9975259a-8f7a-44a0-aa75-560fa9269a3f/SE_5_2_%E4%BC%B0%E8%AE%A1.pdf",
+                    "code": ""
+                },
+                {
+                    "title": "SE_6_Spec.pdf",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/9975259a-8f7a-44a0-aa75-560fa9269a3f/SE_6_Spec.pdf",
+                    "code": ""
+                },
+                {
+                    "title": "SE_7_项目经理.pdf",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/9975259a-8f7a-44a0-aa75-560fa9269a3f/SE_7_%E9%A1%B9%E7%9B%AE%E7%BB%8F%E7%90%86.pdf",
+                    "code": ""
+                },
+                {
+                    "title": "SE_8_Team_Testing Overview.pdf",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/9975259a-8f7a-44a0-aa75-560fa9269a3f/SE_8_Team_Testing%20Overview.pdf",
+                    "code": ""
+                },
+                {
+                    "title": "SE_9_Alpha发布准备.pdf",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/9975259a-8f7a-44a0-aa75-560fa9269a3f/SE_9_Alpha%E5%8F%91%E5%B8%83%E5%87%86%E5%A4%87.pdf",
+                    "code": ""
+                },
+                {
+                    "title": "SE_10_Team_UX.pdf",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/9975259a-8f7a-44a0-aa75-560fa9269a3f/SE_10_Team_UX.pdf",
+                    "code": ""
+                }
+            ],
+            "assignments": []
+        },
+        {
+            "course_name": "高级算法设计与分析",
+            "course_teacher": "潘祎诚",
+            "resources": [
+                {
+                    "title": "1. Introduction_TM_Complexity.pdf",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/0430d7b0-b7b6-4cb9-b854-70c5883e5f43/Introduction%20_TM_Complexity-1.pdf",
+                    "code": ""
+                },
+                {
+                    "title": "2. Linear Programming.pdf",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/0430d7b0-b7b6-4cb9-b854-70c5883e5f43/Linear%20Programming.pdf",
+                    "code": ""
+                },
+                {
+                    "title": "3. Randomized_Algorithms.pdf",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/0430d7b0-b7b6-4cb9-b854-70c5883e5f43/3.%20Randomized_Algorithms.pdf",
+                    "code": ""
+                },
+                {
+                    "title": "4. Number-Theoretic Algorithms.pdf",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/0430d7b0-b7b6-4cb9-b854-70c5883e5f43/4.%20Number-Theoretic%20Algorithms.pdf",
+                    "code": ""
+                },
+                {
+                    "title": "5. Approximation Algorithms.pdf",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/0430d7b0-b7b6-4cb9-b854-70c5883e5f43/5.%20Approximation%20Algorithms.pdf",
+                    "code": ""
+                },
+                {
+                    "title": "6. Hardness of Approximation.pdf",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/0430d7b0-b7b6-4cb9-b854-70c5883e5f43/6.%20Hardness%20of%20Approximation.pdf",
+                    "code": ""
+                },
+                {
+                    "title": "Assignments 1-2 solns.pdf",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/0430d7b0-b7b6-4cb9-b854-70c5883e5f43/Assignments%201-2.pdf",
+                    "code": ""
+                },
+                {
+                    "title": "Assignments 3-4 solns.pdf",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/0430d7b0-b7b6-4cb9-b854-70c5883e5f43/Assignments%203-4.pdf",
+                    "code": ""
+                },
+                {
+                    "title": "高级算法设计与分析_教学大纲.docx",
+                    "url": "https://course.e2.buaa.edu.cn/access/content/group/0430d7b0-b7b6-4cb9-b854-70c5883e5f43/%E9%AB%98%E7%BA%A7%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%88%86%E6%9E%90_%E6%95%99%E5%AD%A6%E5%A4%A7%E7%BA%B2.docx",
+                    "code": ""
+                }
+            ],
+            "assignments": [
+                {
+                    "title": "第三次作业",
+                    "create_time": "2020-05-14 10:00:00",
+                    "platform": "课程中心",
+                    "category": "homework",
+                    "ddl_time": "2020-05-21 12:05:00",
+                    "notification_time": "2020-05-20 12:05:00",
+                    "notification_alert": true,
+                    "urls": "https://course.e2.buaa.edu.cn/portal/tool/1190f7e1-2242-48c9-a858-aaa52df157b7?assignmentReference=/assignment/a/0430d7b0-b7b6-4cb9-b854-70c5883e5f43/62c83a13-6a8b-4f97-9719-51ab7e6908ec&panel=Main&sakai_action=doView_submission",
+                    "content": "第三次作业，包括课件5、6部分的习题。",
                     "is_finished": false
                 },
                 {
-                    "title": "实验1 网络实验入门-实验报告",
-                    "create_time": "2020-03-21 12:00:00",
-                    "platform": "课程中心 & 中国大学慕课",
+                    "title": "第二次作业",
+                    "create_time": "2020-04-09 12:00:00",
+                    "platform": "课程中心",
                     "category": "homework",
-                    "ddl_time": "2020-04-02 12:00:00",
-                    "notification_time": "2020-04-01 12:00:00",
+                    "ddl_time": "2020-04-23 12:05:00",
+                    "notification_time": "2020-04-22 12:05:00",
                     "notification_alert": true,
-                    "urls": "https://course.e2.buaa.edu.cn/portal/tool/f6f8e19d-4cae-4e1f-a176-d7d472fa02af?submissionId=/assignment/s/56934528-11ef-47fe-a5eb-300ecd3e6132/823d8ac2-edaa-4a73-b34a-328afa2cd911/0117fa6a-9d51-4565-88ba-3f59cd1c91a7&panel=Main&sakai_action=doView_grade",
-                    "content": "实验1 网络实验入门-实验报告",
+                    "urls": "https://course.e2.buaa.edu.cn/portal/tool/1190f7e1-2242-48c9-a858-aaa52df157b7?submissionId=/assignment/s/0430d7b0-b7b6-4cb9-b854-70c5883e5f43/9aaf153c-bcb4-41b8-875b-ee6d1e420d3f/b480d829-4a23-4d7b-b1f9-5881687014e7&panel=Main&sakai_action=doView_grade",
+                    "content": "第二次作业，包括第三章“随机化算法”和第四章“数论算法”的所有习题。",
+                    "is_finished": true
+                },
+                {
+                    "title": "第一次作业",
+                    "create_time": "2020-03-12 12:00:00",
+                    "platform": "课程中心",
+                    "category": "homework",
+                    "ddl_time": "2020-03-26 12:00:00",
+                    "notification_time": "2020-03-25 12:00:00",
+                    "notification_alert": true,
+                    "urls": "https://course.e2.buaa.edu.cn/portal/tool/1190f7e1-2242-48c9-a858-aaa52df157b7?submissionId=/assignment/s/0430d7b0-b7b6-4cb9-b854-70c5883e5f43/1e75002e-f8a2-4d63-9126-26d3ef87a1e1/57fc8304-07a7-414f-99b1-fbb12209c8aa&panel=Main&sakai_action=doView_grade",
+                    "content": "第一次作业包含课件1和2的所有习题。 （作业可提交电子版word或pdf文档，也可手写拍照存成pdf格式，但需字迹清晰可辨。所有同学需在文档或照片内标注姓名学号。）",
                     "is_finished": true
                 }
             ]
