@@ -40,9 +40,9 @@ const actions = {
         // const { data } = response
         // console.log(response)
         commit('SET_NAME', response.name)
-        commit('SET_TOKEN', uid)
+        commit('SET_TOKEN', response.token)
         commit('SET_ID', uid)
-        setToken(uid)
+        setToken(response.token)
         setUid(uid)
         setName(response.name)
         resolve(response)
