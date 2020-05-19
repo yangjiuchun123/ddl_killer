@@ -189,6 +189,7 @@ def login_user(request):
                 response['name'] = ''
                 response['code'] = 400
                 response['msg'] = 'The account is not active yet. Check your email to activate it.'
+    response['token'] = make_password(uid)
     return JsonResponse(response, json_dumps_params={'ensure_ascii':False}, charset='utf_8_sig')
 
 def logout_user(request):
