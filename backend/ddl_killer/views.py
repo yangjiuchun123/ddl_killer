@@ -322,40 +322,54 @@ def show_user_courses(request, uid): #用户查看自己所选课程
     
     return JsonResponse(response, json_dumps_params={'ensure_ascii':False}, charset='utf_8_sig')
 
-def admin_add_task(request, cid): #课程管理员为选择了所有课的人添加task，participant由数据表关联得到，不需前端传入
+def admin_add_task(request, uid, cid): # 课程管理员为选择了所有课的人添加task
     response={}
     data = json.loads(request.body.decode())
-    usercourse = UserCourse.objects.get(user__uid=data["uid"],course__cid=cid)
+    usercourse = UserCourse.objects.get(user__uid=uid, course__cid=cid)
+    this_course = Course.objects.get(course_id=cid)
     if usercourse.isAdmin:
-        response['code'] = 200
-        course_obj = Course.objects.get(cid=cid)
-        task_obj = Task.objects.create(
-            title=data["title"],
-            # course=course_obj,
-            course_name = course_obj.name,
-            content=data["content"],
-            platform = ass['platform'],
-            category=data["category"],
-            urls=data["urls"],
-            ddl_time=data["ddl_time"],
-            # notification_time=data["notification_time"],
-            # notification_alert=data["notification_alert"],
-            create_time=data["create_time"]
-        )
-        response["msg"]="Success."
-        participants=UserCourse.objects.filter(course__cid=cid) 
-        for p in participants:
-            user_obj=User.objects.get(uid=p.user.uid)
-            UserTask.objects.create(user=user_obj,task=task_obj, notification_time=data["notification_time"], notification_alert=data["notification_alert"])
-            
-        ut=UserTask.objects.get(user__uid=data["uid"],task__tid=task_obj.tid) #发布者有修改此task的权利
-        ut.isAdmin=True
-        ut.save()
-        
-        CourseTask.objects.create(course=course_obj,task=task_obj)
+        if data['tid'] != -1:  # 若此项task已存在则视为修改此task的属性信息
+            print('task already exists, only modify.\n')
+            try:
+                this_task = Task.objects.get(tid=data["tid"])
+                this_task.title = data["title"]
+                this_task.content = data["content"]
+                this_task.platform = data["platform"]
+                this_task.category = data["category"]
+                this_task.urls = data["urls"]
+                this_task.ddl_time = data["ddl_time"]
+                this_task.save()
+                response['code'] = 200
+                response["msg"] = "Update success."
+            except:
+                traceback.print_exc()
+
+        else:  # 不存在就创建新的task(传入的tid为-1),对应的course_name由后端自行获取
+            task_obj = Task.objects.create(
+                title=data["title"],
+                content=data["content"],
+                category=data["category"],
+                course_name=this_course.name,
+                urls=data["urls"],
+                platform=data["platform"],
+                ddl_time=data["ddl_time"],
+                create_time=data["create_time"]
+            )
+            response['data'] = {}
+            response['data']['tid'] = task_obj.tid
+
+            CourseTask.objects.create(course=this_course, task=task_obj)    # 创建CourseTask对应关系
+
+            all_usercourse = UserCourse.objects.filter(course__cid=cid)
+            for uc in all_usercourse:   # 为所有选课的学生关联该task
+                UserTask.objects.create(user=uc.user, task=task_obj, notification_alert=data['notification_alert'],
+                                        notification_time=data['notification_time'], isAdmin=True)
+
+            response['code'] = 200
+            response["msg"] = "Create success."
     else:
-        response['code'] = 404
-        response["msg"]="The user is not admin."
+        response['code'] = 501
+        response["msg"]="Permission denied. The user is not admin."
     return JsonResponse(response, json_dumps_params={'ensure_ascii':False}, charset='utf_8_sig')
 
 
