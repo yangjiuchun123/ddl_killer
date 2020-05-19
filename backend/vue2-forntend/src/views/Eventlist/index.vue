@@ -199,7 +199,7 @@
       <template v-slot:item.actions="{ item }">
         <v-icon small class="mr-2"  @click="editItem(item)"> mdi-pencil </v-icon>
         <a v-bind:href="item.urls" target='_BLANK'><v-icon small class="mr-2" > mdi-share-variant </v-icon></a>
-        <v-icon small @click="deleteItem(item)" v-if="false"> mdi-delete </v-icon>
+        <v-icon small @click="deleteItem(item)"> mdi-delete </v-icon>
       </template>
 
       <template v-slot:no-data>
@@ -213,7 +213,7 @@
 </template>
 
 <script>
-import { getAllTasks, createOneTask, modifyOneTask } from "@/api/user_task"
+import { getAllTasks, createOneTask, modifyOneTask,deleteOneTask } from "@/api/user_task"
 import { alterTaskState } from '@/api/tasks';
 import updateBtn from '@/views/UpdateButton'
 
@@ -382,16 +382,23 @@ export default {
           this.editedIndex = -1
         })
       },
-      /*
+    
       deleteItem(item) {
         const index = this.tasks.indexOf(item)
-        confirm('Are you sure you want to delete this item?') && this.tasks.splice(index, 1)
-        //与后端交互 删除task
-        deleteOneTask(item.detail).then(res => {
-          console.log(res.data)
-        })
+        var tid1=item.tid
+        console.log(tid1)
+        if(confirm('Are you sure you want to delete this item?')){
+          this.tasks.splice(index, 1)
+          //与后端交互 删除task          
+          deleteOneTask(this.$store.getters.uid,tid1).then(res => {
+            console.log(res.data)
+          })
+          this.close()
+        }
+        //confirm('Are you sure you want to delete this item?') && this.tasks.splice(index, 1)
+        
       },
-      */
+
       createTask(formName){
         this.$refs[formName].validate((valid) => {
                   if (valid) {
@@ -414,18 +421,21 @@ export default {
                       var postObj2 =  eval('(' + JSON.stringify(detail) + ')')
                       createOneTask(this.$store.getters.uid, postObj2).then(res =>{
                         console.log(res.data)
+                        //为新建的task赋值后端分配的tid
+                        detail['tid']=res.data.tid                       
+                        console.log(detail.tid)
+                        //回调函数的异步机制  要按顺序执行需将以下代码放入回调函数中
+                        detail['course_name']=null
+                        detail['is_finished']= false
+                        detail['isAdmin'] = true
+                        var newTask= Object.assign({},detail)                        
+                        this.tasks.push(newTask);
+                        //重置表单
+                        this.$refs[formName].resetFields();
+                        this.createOpen = false;
                       })
-
-                      //??这边应该是后端更新完之后(分配完tid) 再调 this.initialize()或者创建返回新的tid? 暂时这么写让前端渲染新建的事项
-                      detail['course_name']=null
-                      detail['is_finished']= false
-                      detail['isAdmin'] = true
-                      var newTask= Object.assign({},detail)
-                      this.tasks.push(newTask);
-                      //
-                      //重置表单
-                      this.$refs[formName].resetFields();
-                      this.createOpen = false;
+                     
+                      
                   } else {
                     console.log('error submit!!');
                     return false;
@@ -469,30 +479,6 @@ export default {
         //    : `${a.getFullYear()}-${a.getMonth() + 1}-${a.getDate()}`
         },
 
-      /*
-      formatDetail(tid,title,category,urls,platform,cid,cname,ddl_id,ddl_time,alert,alert_time,create_time,done){
-        var detail = { // personal
-            "tid":tid,
-            "title":title,
-            "category": category,
-            "useful_urls": null,
-            "platform": platform,
-            "cid": null,
-            "course_name": cname,
-            "ddl": {
-                "ddl_id":ddl_id,
-                "ddl_time":ddl_time,
-                "notification_alert":alert,
-                "notification_time":alert_time,
-                "notification_repeat": null,
-                "notification_content": ''
-            },
-            "created_at":create_time, //获取时间
-            "is_finished": done
-          }
-          return detail
-      }
-      */
       changeTaskState(tid) {
         console.log(tid)
         alterTaskState(this.$store.getters.uid, tid).then(res=>{

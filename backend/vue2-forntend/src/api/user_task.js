@@ -8,17 +8,15 @@ export function getAllTasks(uid) {
   })
 }
 
-/*
-export function deleteOneTask(data) {
+export function deleteOneTask(uid, tid) {
   console.log('delete task:')
-  console.log(data)
+  console.log(tid)
   return request({
-    url: '/vue-admin-template/tasks/deleteOne',
+    url: `/api/user/${uid}/tasks/${tid}/delete`,
     method: 'post',
-    data
   })
 }
-*/
+
 export function createOneTask(uid, data) {
   console.log('create a new task:')
   console.log(data)

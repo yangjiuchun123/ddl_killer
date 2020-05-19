@@ -140,7 +140,7 @@
 
                   <v-toolbar-title class="pl-2" v-html="selectedEvent.name"></v-toolbar-title>
                   <v-spacer></v-spacer>
-                  <v-btn icon v-if="false">
+                  <v-btn icon>
                     <v-icon
                       small
                       @click="deleteItem(selectedEvent)"
@@ -231,7 +231,7 @@
 </template>
 
 <script>
-import { getAllTasks, createOneTask, modifyOneTask } from "@/api/user_task"
+import { getAllTasks, createOneTask, modifyOneTask,deleteOneTask } from "@/api/user_task"
 
 export default {
   name:'Calendar',
@@ -458,18 +458,24 @@ export default {
           // console.log(this.events)
       })
     },
-    /*
+
     deleteItem(event) {
-      const index = this.events.indexOf(event)
-      confirm('Are you sure you want to delete this item?') && this.events.splice(index, 1)
+      const index = this.events.indexOf(event)      
       console.log(event)
-      this.selectedOpen = false
-      //与后端交互 删除task
-      deleteOneTask(event.detail).then(res => {
-        console.log(res.data)
-      })
+      var tid1 =event.detail.tid    
+      //confirm('Are you sure you want to delete this item?') && this.events.splice(index, 1)
+      if(confirm('Are you sure you want to delete this item?')){
+        this.events.splice(index, 1)
+        //与后端交互 删除task
+        deleteOneTask(this.$store.getters.uid,tid1).then(res => {
+          console.log(res.data)
+        })
+        this.selectedOpen = false
+      }else{
+        console.log("cancel")
+      } 
     },
-    */
+    
     createTask(formName){
       this.$refs[formName].validate((valid) => {
                 if (valid) {
@@ -491,23 +497,24 @@ export default {
                     var postObj1 =  eval('(' + JSON.stringify(detail) + ')')
                     createOneTask(this.$store.getters.uid, postObj1).then(res =>{
                       console.log(res.data)
-                    })
-
-                    //@这边应该是后端更新完之后(分配完tid) 再调 this.initialize()或者创建返回新的tid? 暂时这么写让前端渲染新建的事项
-                    detail['course_name']=null
-                    detail['is_finished']=false
-                    detail['isAdmin'] =true
-                    var newEvent={
-                    name:temp.title,
-                    start:ddl_date_time,
-                    color:this.setColor(temp.category,temp.is_finished),
-                    detail:detail
-                    }
-                    this.events.push(newEvent);
-                    //
-                    //重置表单
-                    this.$refs[formName].resetFields();
-                    this.createOpen = false;
+                      //为新建的task赋值后端分配的tid
+                      detail['tid']=res.data.tid
+                      detail['course_name']=null
+                      detail['is_finished']=false
+                      detail['isAdmin'] =true
+                      var newEvent={
+                      name:temp.title,
+                      start:ddl_date_time,
+                      color:this.setColor(temp.category,temp.is_finished),
+                      detail:detail
+                      }
+                      this.events.push(newEvent);
+                      //
+                      //重置表单
+                      this.$refs[formName].resetFields();
+                      this.createOpen = false;
+                    })                 
+                    
                 } else {
                   console.log('error submit!!');
                   return false;
