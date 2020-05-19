@@ -362,6 +362,7 @@ def admin_add_task(request, cid): #课程管理员为选择了所有课的人添
 def add_task(request, uid): #用户个人添加task(需要选择或输入participant)，传入的json有participant一项列表存储接收者的学号,uid记录发布者(有修改权)
     response={}                   #没有course_id项也不需要修改course_id项
     data = json.loads(request.body.decode())
+    print(data['tid'])
     if data['tid']!=-1: #若此项task已存在则视为修改此task的属性信息
         print('task already exists, only modify.\n')
         try:
