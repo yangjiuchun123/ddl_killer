@@ -11,7 +11,8 @@ import traceback
 import datetime
 import time
 
-YAG = yagmail.SMTP( user="ddl_killer@yeah.net", password="WHIBVFMXGYAKTCLR", host='smtp.yeah.net')
+#YAG = yagmail.SMTP( user="ddl_killer@yeah.net", password="XLIUFNFWCLLAEKVG", host='smtp.yeah.net')
+YAG = yagmail.SMTP( user="ddlkiller@yeah.net", password="PTSQPRKEYDLPPBVV", host='smtp.yeah.net')
 errorTitle = '⚠️ ddl_killer 错误提醒'
 errorText = "😥 我们非常抱歉地告诉您，您有一个任务提醒在发送过程中出现了错误，请登陆 <a href='http://123.57.67.161:8000'>ddl_killer 网站查看</a>。\n\n感谢您的理解，祝学业顺利。\n\n"
 

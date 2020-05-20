@@ -327,7 +327,10 @@ export default {
     },
     */
     created () {
+      console.log('start initialize')
       this.initialize()
+      
+      console.log('end initialize')
     },
     methods: {
       initialize() {
