@@ -101,7 +101,7 @@ def getCsrfToken(rr):
 def enterFolder(collectionId, ass_iframe_url, s, cookie, token):
     # enter is bidirectional, both go deepin and return 
     ## mock navigate data
-    print('Enter Folder: {0}'.format(collectionId))
+    # print('Enter Folder: {0}'.format(collectionId))
     data = {
         'source': 0,
         'collectionId': collectionId,
@@ -237,8 +237,9 @@ def updateFromCourse(uid, account, password):
                 if link.get('class')!=None and link.get('class')[0] == 'nav-menu':
                     course_list[link.text.strip()] = link.a.get('href')
 
-        if isDebug:  
-            print(course_list)
+        # if isDebug:  
+        #     print(course_list)
+
         try:
             del course_list['我的工作空间']
         except:
@@ -266,29 +267,41 @@ def updateFromCourse(uid, account, password):
             for i in menus:
                 if i.text.strip()=='站点信息':
                     info_url = i.get('href')
+                    if info_url == None:
+                        info_url = url
                     get_info = True
+                    info_soup = bs(s.get(info_url, cookies=cookie, headers=header).text, 'html.parser') # information_soup
+                    info_detail_url = info_soup.find('div', {'class':'portletMainWrap'}).iframe.get('src')
                 if i.text.strip()=='资源':
                     resource_url = i.get('href')
+                    if resource_url == None:
+                        resource_url = url
                     get_res = True
+                    res_soup = bs(s.get(resource_url, cookies=cookie, headers=header).text, 'html.parser') # rescourses_soup
+                    doc_url = res_soup.find('div', {'class':'portletMainWrap'}).iframe.get('src')
                 if i.text.strip()=='作业':
                     assignment_url = i.get('href')
+                    if assignment_url == None:
+                        assignment_url = url
                     get_ass = True
+                    ass_soup = bs(s.get(assignment_url, cookies=cookie, headers=header).text, 'html.parser') # assignment_soup
+                    homework_url = ass_soup.find('div', {'class':'portletMainWrap'}).iframe.get('src')
                 if i.text.strip()=='通知':
                     notification_url = i.get('href')
+                    if notification_url == None:
+                        notification_url = url
                     get_not = True
+                    not_soup = bs(s.get(notification_url, cookies=cookie, headers=header).text, 'html.parser') # notification_soup
+                    not_url = not_soup.find('iframe').get('src')
 
-            if False:  
-                print("res_url: " + resource_url) 
-                print("ass_url: " + assignment_url)
-                print('info_url: '+ info_url)
-                print('not_url: ' + notification_url)
+                    
 
                 
             ############################## get info ###############################################
 
             if get_info:
-                info_soup = bs(s.get(info_url, cookies=cookie, headers=header).text, 'html.parser') # information_soup
-                info_detail_url = info_soup.find('div', {'class':'portletMainWrap'}).iframe.get('src')
+                # info_soup = bs(s.get(info_url, cookies=cookie, headers=header).text, 'html.parser') # information_soup
+                # info_detail_url = info_soup.find('div', {'class':'portletMainWrap'}).iframe.get('src')
                 if isDebug:  
                     print("info_iframe_page: " + info_detail_url)
                 info_content = s.get(info_detail_url, cookies=cookie, headers=header)
@@ -310,8 +323,8 @@ def updateFromCourse(uid, account, password):
             ############################## get resources ##########################################
             
             if get_res:
-                res_soup = bs(s.get(resource_url, cookies=cookie, headers=header).text, 'html.parser') # rescourses_soup
-                doc_url = res_soup.find('div', {'class':'portletMainWrap'}).iframe.get('src')
+                # res_soup = bs(s.get(resource_url, cookies=cookie, headers=header).text, 'html.parser') # rescourses_soup
+                # doc_url = res_soup.find('div', {'class':'portletMainWrap'}).iframe.get('src')
 
                 if isDebug:  
                     print('res_iframe_page: ' + doc_url)
@@ -342,8 +355,8 @@ def updateFromCourse(uid, account, password):
             ############################### get assignments #######################################
             
             if get_ass:
-                ass_soup = bs(s.get(assignment_url, cookies=cookie, headers=header).text, 'html.parser') # assignment_soup
-                homework_url = ass_soup.find('div', {'class':'portletMainWrap'}).iframe.get('src')
+                # ass_soup = bs(s.get(assignment_url, cookies=cookie, headers=header).text, 'html.parser') # assignment_soup
+                # homework_url = ass_soup.find('div', {'class':'portletMainWrap'}).iframe.get('src')
 
                 if isDebug:  
                     print("assignment_iframe_page: " + homework_url)
@@ -460,8 +473,8 @@ def updateFromCourse(uid, account, password):
 
             ############################### get assignments #######################################
             if get_not:
-                not_soup = bs(s.get(notification_url, cookies=cookie, headers=header).text, 'html.parser') # notification_soup
-                not_url = not_soup.find('iframe').get('src')
+                # not_soup = bs(s.get(notification_url, cookies=cookie, headers=header).text, 'html.parser') # notification_soup
+                # not_url = not_soup.find('iframe').get('src')
 
                 course_not_list = []
 
@@ -522,6 +535,7 @@ def updateFromCourse(uid, account, password):
 
             ############################### aggregate all stuffs #######################################
             total_list['courses'].append(single_list)
+
 
 
         # if isDebug:  
