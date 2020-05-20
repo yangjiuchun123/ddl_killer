@@ -197,8 +197,8 @@
       </template>
 
       <template v-slot:item.actions="{ item }">
-        <v-icon small class="mr-2"  @click="editItem(item)"> mdi-pencil </v-icon>
         <a v-bind:href="item.urls" target='_BLANK'><v-icon small class="mr-2" > mdi-share-variant </v-icon></a>
+        <v-icon small class="mr-2"  @click="editItem(item)"> mdi-pencil </v-icon>        
         <v-icon small @click="deleteItem(item)"> mdi-delete </v-icon>
       </template>
 
@@ -233,7 +233,7 @@ export default {
           value: 'title',
           sortable: false,
         },
-        { text: '发布时间', value: 'create_time' },
+        { text: '关联课程', value: 'course_name' },
         { text: '截止日期', value: 'ddl_time' },
         { text: '事项类型', value: 'category' },
         // { text: '完成状态', value: 'is_finished' },
