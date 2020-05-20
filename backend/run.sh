@@ -1,6 +1,6 @@
-./halt.sh
-#pkill -9 python
-systemctl start nginx.service
+#./halt.sh
+pkill -9 python
+#systemctl start nginx.service
 rm -rf vue2-forntend/dist
 cd vue2-forntend && cnpm run build:prod && cd ..
 rm -rf static
@@ -8,5 +8,5 @@ rm -rf static
 python manage.py makemigrations
 python manage.py collectstatic
 python manage.py migrate
-# nohup python manage.py runserver 0.0.0.0:8000 &
-uwsgi --ini uwsgi.ini 
+nohup python manage.py runserver 0.0.0.0:8000 &
+#uwsgi --ini uwsgi.ini 
