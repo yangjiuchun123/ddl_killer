@@ -1,5 +1,5 @@
 import yagmail
-YAG = yagmail.SMTP( user="ddl_killer@yeah.net", password="WHIBVFMXGYAKTCLR", host='smtp.yeah.net')
+YAG = yagmail.SMTP( user="ddl_killer@yeah.net", password="XLIUFNFWCLLAEKVG", host='smtp.yeah.net')
 
 def register_mail(email, uid, name, token):
     subject = u'ddl_killer 注册用户验证信息'
@@ -21,4 +21,4 @@ def edit_mail(email, uid, name, token):
     u'⚠️若不是您本人的操作，请忽略该封邮件',
     u'👩‍🎓👨‍🎓👨‍🎓👨‍🎓👨‍🎓👨‍🎓 ddl_killer 团队.'])
     YAG.send(email, subject, message, None)
-
+    
