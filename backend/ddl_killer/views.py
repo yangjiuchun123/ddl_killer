@@ -27,6 +27,8 @@ from .models import UserTask
 from .models import Resource
 from .models import CourseResource
 from .models import CourseTask
+from .models import Note
+from .models import CourseNote
 
 from itsdangerous import URLSafeTimedSerializer as utsr
 import base64
@@ -202,7 +204,7 @@ def show_user(request, uid): #展示用户信息
     return JsonResponse(response, json_dumps_params={'ensure_ascii':False}, charset='utf_8_sig')
     
     
-def update_courses(request, uid): #从课程中心获取用户所选课程并同步作业及资源
+def update_courses(request, uid): #从课程中心获取用户所选课程并同步作业及资源及通知
     response = {}
     data = json.loads(request.body.decode())
     user_obj=User.objects.get(uid=uid)
@@ -219,8 +221,12 @@ def update_courses(request, uid): #从课程中心获取用户所选课程并同
         response['code'] = 406
         response['msg'] = "Internel Error, plz try again later."
         return JsonResponse(response, json_dumps_params={'ensure_ascii':False}, charset='utf_8_sig')
+
+    ##################################### Log in success #########################################
     for d in data["courses"]:
         # print(json.dumps(d, ensure_ascii=False))
+
+        ################################# check if new course ####################################
         course = Course.objects.filter(name=d["course_name"],teacher=d["course_teacher"])
         if course.exists():
             course=course[0]
@@ -233,7 +239,7 @@ def update_courses(request, uid): #从课程中心获取用户所选课程并同
         if not usercourse.exists():
             UserCourse.objects.create(user = user_obj, course = course)
     
-        # print('create usercourse')
+        ########################### check if new CourseResource ##################################
         try:
             for res in d['resources']:
                 resource = Resource.objects.filter(url=res['url'])
@@ -247,6 +253,7 @@ def update_courses(request, uid): #从课程中心获取用户所选课程并同
         except:
             traceback.print_exc()
 
+        ########################### check if new CourseTask ##################################
         for ass in d['assignments']:
             # print(json.dumps(ass, ensure_ascii=False))
             ass_task = Task.objects.filter(urls=ass['urls'])
@@ -290,6 +297,27 @@ def update_courses(request, uid): #从课程中心获取用户所选课程并同
             ct = CourseTask.objects.filter(course__cid=course.cid,task__tid=ass_task.tid)
             if not ct.exists():
                 CourseTask.objects.create(course=course, task=ass_task)
+        
+        
+        ########################### check if new CourseNote ##################################
+        try:
+            for note in d['notifications']:
+                exist_notes = Note.objects.filter(url=note['url'])
+                if exist_notes.exists():
+                    this_note = exist_notes[0]
+                    this_note.title = note['title']
+                    this_note.time = note['time']
+                    this_note.content = note['content']
+                    this_note.attachments = '\n'.join(note['attachments'])
+                    this_note.save()
+                else:
+                    this_note = Note.objects.create(title=note['title'], time=note['time'], url=note['url'], content=note['content'], attachments=note['attachments'])
+
+                print(this_note.title)    
+                if not CourseNote.objects.filter(course__cid=course.cid, note__nid=this_note.nid).exists:
+                    CourseNote.objects.create(course=course, note=this_note)
+        except:
+            traceback.print_exc()
                 
     response['code'] = 200
     response['msg'] = 'Successfully Update your course info.'

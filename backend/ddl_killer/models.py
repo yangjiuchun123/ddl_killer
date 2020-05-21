@@ -73,6 +73,13 @@ class Resource(models.Model):
     # def __str__(self):
     #     return self.course.name + ' ' + self.title
 
+class Note(models.Model):
+    nid = models.AutoField(primary_key=True)
+    url = models.CharField(max_length=200)
+    title = models.CharField(max_length=100)
+    time = models.CharField(max_length=50,null=True, blank=True)
+    content = models.TextField(null=True, blank=True)
+    attachments = models.TextField(null=True, blank=True)
 
 class UserTask(models.Model):
     user = models.ForeignKey('User', on_delete=models.CASCADE)
@@ -94,3 +101,7 @@ class CourseResource(models.Model):
 class CourseTask(models.Model):
     course = models.ForeignKey('Course', on_delete=models.CASCADE)
     task = models.ForeignKey('Task', on_delete=models.CASCADE)
+
+class CourseNote(models.Model):
+    course = models.ForeignKey('Course', on_delete=models.CASCADE)
+    note = models.ForeignKey('Note', on_delete=models.CASCADE)

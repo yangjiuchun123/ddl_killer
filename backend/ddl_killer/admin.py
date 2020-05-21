@@ -52,6 +52,22 @@ class UsertaskAdmin(admin.ModelAdmin):
     #         return ' '
     # get_course_teacher.short_description = u'COURSE TEACHER'
 
+class NoteAdmin(admin.ModelAdmin):
+    list_display = ['title', 'time', 'content', ]
+    search_fields = ['title', 'content']
+
+    def get_note_course(self, obj):
+        cn = CourseNote.objects.filter(note=obj)
+        if cn.exists():
+            cn = cn[0]
+            return cn.course.name
+        else:
+            return ' '
+
+class CourseNoteAdmin(admin.ModelAdmin):
+    # list_display = ['task__title', 'course__name', 'task__content']
+    # search_fields = ['task__title', 'course__name', 'task__content']
+    pass
 
 class UserCourseAdmin(admin.ModelAdmin):
     list_display = ['user', 'get_course_name', 'get_course_teacher']
@@ -119,10 +135,10 @@ class CourseTaskAdmin(admin.ModelAdmin):
 admin.site.register(User, UserAdmin)
 admin.site.register(Task, TaskAdmin)
 admin.site.register(Resource, ResourceAdmin)
+admin.site.register(Note, NoteAdmin)
 admin.site.register(UserTask, UsertaskAdmin)
 admin.site.register(Course, CourseAdmin)
 admin.site.register(UserCourse, UserCourseAdmin)
 admin.site.register(CourseResource, CourseResourceAdmin)
 admin.site.register(CourseTask, CourseTaskAdmin)
-
-
+admin.site.register(CourseNote, CourseNoteAdmin)
