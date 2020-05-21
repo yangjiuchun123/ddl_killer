@@ -504,6 +504,8 @@ def show_user_tasks(request, uid): #用户查看自己的所有任务及ddl
             response["msg"]="No tasks."
     except:
         traceback.print_exc()
+        response['code'] = 500
+        response['msg'] = "Internel Error"
     return JsonResponse(response, json_dumps_params={'ensure_ascii':False}, charset='utf_8_sig')
     
     
@@ -579,7 +581,7 @@ def alter_task_state(request, uid, tid):
     return JsonResponse(response, json_dumps_params={'ensure_ascii':False}, charset='utf_8_sig')
 
 
-def add_resources(request,uid, cid):
+def add_resources(request, uid, cid):
     response={}
     print(uid)
     print(request)
@@ -590,7 +592,7 @@ def add_resources(request,uid, cid):
             response['code'] = 404
             response['msg'] = "You have no access to this course."
         else: 
-            resource_obj=Resource.objects.create(title=data["title"],url=data["url"],code=data["code"], user=user)
+            resource_obj=Resource.objects.create(title=data["title"],url=data["url"],code=data["code"], user=User.objects.get(uid=uid))
             course_obj=Course.objects.get(cid=cid)
             CourseResource.objects.create(course=course_obj,resource=resource_obj)
             
@@ -598,30 +600,42 @@ def add_resources(request,uid, cid):
             response["msg"]="Success."
     except:
         traceback.print_exc()
+        response['code'] = 500
+        response['msg'] = "Internel Error"
     return JsonResponse(response, json_dumps_params={'ensure_ascii':False}, charset='utf_8_sig')
 
  
 def show_course_resources(request, uid, cid):
     response={}
-    if not UserCourse.objects.filter(user__uid=uid, course__cid=cid).exists:
-        response['code'] = 404
-        response['msg'] = "You have no access to this course."
-    else:
-        response['code'] = 200
-        response['msg'] = 'Success.'
-        response['data'] =[]
-        courseresources = CourseResource.objects.filter(course__cid=cid)
-        # print(cid)
-        # print(resources)
-        for cr in courseresources:
-            response['data'].append({
-                "rid":cr.resource.rid,
-                "title":cr.resource.title,
-                "url":cr.resource.url,
-                "code":cr.resource.code,
-                #"course_id":r.course.cid,
-                #"course_name":r.course.name
-            })
+    try:
+        if not UserCourse.objects.filter(user__uid=uid, course__cid=cid).exists:
+            response['code'] = 404
+            response['msg'] = "You have no access to this course."
+        else:
+            response['code'] = 200
+            response['msg'] = 'Success.'
+            response['data'] =[]
+            courseresources = CourseResource.objects.filter(course__cid=cid)
+            # print(cid)
+            # print(resources)
+            for cr in courseresources:
+                if cr.resource.user:
+                    sharer = cr.resource.user.uid
+                else:
+                    sharer = ''
+                response['data'].append({
+                    "rid":cr.resource.rid,
+                    "title":cr.resource.title,
+                    "url":cr.resource.url,
+                    "code":cr.resource.code,
+                    'sharer':sharer
+                    #"course_id":r.course.cid,
+                    #"course_name":r.course.name
+                })
+    except:
+        traceback.print_exc()
+        response['code'] = 500
+        response['msg'] = "Internel Error"
     return JsonResponse(response, json_dumps_params={'ensure_ascii':False}, charset='utf_8_sig')
 
 def show_course_notifications(request, uid, cid):
