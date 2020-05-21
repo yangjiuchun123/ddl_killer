@@ -313,8 +313,8 @@ def update_courses(request, uid): #从课程中心获取用户所选课程并同
                 else:
                     this_note = Note.objects.create(title=note['title'], time=note['time'], url=note['url'], content=note['content'], attachments=note['attachments'])
 
-                print(this_note.title)    
-                if not CourseNote.objects.filter(course__cid=course.cid, note__nid=this_note.nid).exists:
+                # print(this_note.title)    
+                if not CourseNote.objects.filter(course__cid=course.cid, note__nid=this_note.nid).exists():
                     CourseNote.objects.create(course=course, note=this_note)
         except:
             traceback.print_exc()
@@ -535,7 +535,7 @@ def show_course_tasks(request, uid, cid): #用户uid,相应课程cid
             })
         # else:
             
-    print(response['data']) 
+    # print(response['data']) 
     return JsonResponse(response, json_dumps_params={'ensure_ascii':False}, charset='utf_8_sig')
     
 def appoint_course_admin(request, cid, uid): #授予普通用户某门课程的管理权
@@ -624,13 +624,38 @@ def show_course_resources(request, uid, cid):
             })
     return JsonResponse(response, json_dumps_params={'ensure_ascii':False}, charset='utf_8_sig')
 
+def show_course_notifications(request, uid, cid):
+    response={}
+    usercourse = UserCourse.objects.filter(course__cid=cid, user__uid=uid)
+    if not usercourse.exists():
+        response['code'] = 404
+        response['msg'] = 'You have no access to this course.'
+    else:
+        coursenotes = CourseNote.objects.filter(course__cid=cid)
+        response['data'] = []
+        for cn in coursenotes:
+            response['data'].append({
+                'title': cn.note.title,
+                'url': cn.note.url,
+                'time': cn.note.time,
+                'content': cn.note.content,
+                'attachments': cn.note.attachments
+            })
+        response['code'] = 200
+        response['msg'] = 'Success'
+        
+    # print(json.dumps(response, ensure_ascii=False))
+    return JsonResponse(response, json_dumps_params={'ensure_ascii':False}, charset='utf_8_sig')
+
+
 def q2ldbchange(request):
     try:
-        for ct in CourseTask.objects.all():
-            c = ct.course
-            t = ct.task
-            t.course_name = c.name
-            t.save()
+        # for ct in CourseTask.objects.all():
+        #     c = ct.course
+        #     t = ct.task
+        #     t.course_name = c.name
+        #     t.save()
+        pass
     except:
         traceback.print_exc()
     pass

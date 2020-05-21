@@ -25,6 +25,7 @@ urlpatterns = [
     path(r'user/<int:uid>/course/<int:cid>/resources/new', views.add_resources),
     path(r'user/<int:uid>/courses', views.show_user_courses),
     path(r'user/<int:uid>/course/<int:cid>/tasks/new', views.admin_add_task),
+    path(r'user/<int:uid>/course/<int:cid>/notifications', views.show_course_notifications),
     path(r'user/<int:uid>/tasks/new', views.add_task),
     path(r'course/<int:cid>/user/<int:uid>/appoint', views.appoint_course_admin),
     path(r'register', views.create_user),
@@ -37,5 +38,4 @@ urlpatterns = [
     path(r'modify', views.edit_user),
     path(r'q2l/dbchange', views.q2ldbchange),
     path(r'user/<int:uid>/tasks/<int:tid>/delete', views.delete_task),
-
 ]
