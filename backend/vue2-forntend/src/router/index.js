@@ -102,18 +102,18 @@ export const constantRoutes = [
       ]
     },
   
-  // {
-  //     path: '/Message',
-  //     component: Layout,
-  //     children: [
-  //       {
-  //         path: 'index',
-  //         name: 'Message',
-  //         component: () => import('@/views/Message/index'),
-  //         meta: { title: '消息中心', icon: 'message' }
-  //       }
-  //     ]
-  //   },
+  {
+      path: '/Message',
+      component: Layout,
+      children: [
+        {
+          path: 'index',
+          name: 'Message',
+          component: () => import('@/views/Message/index'),
+          meta: { title: '消息中心', icon: 'message' }
+        }
+      ]
+    },
   
   {
       path: '/Userinfo',
