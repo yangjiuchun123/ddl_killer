@@ -152,6 +152,7 @@
 
 <script>
 import updateBtn from '@/views/UpdateButton'
+import { Message } from 'element-ui'
 
   export default {
     name: '我的主页',
@@ -161,7 +162,18 @@ import updateBtn from '@/views/UpdateButton'
     data: () => ({
       show: false,
     }),
-
+    created() {
+      const h = this.$createElement;
+      this.$notify({
+        title: '提醒',
+        message: h('p', null, [
+          h('span', null, '🎉现在可以通过ddlkiller.top直接访问网站，而不需要添加:8000端口了'),
+          //h('br'),
+          //h('span', null, '😭邮件服务暂时无法使用，因为我们的邮箱账号被北航邮箱封禁了')
+        ]),
+        duration: 5 * 1000 // 默认3000ms
+      })
+    },
     computed: {
       timeInfo: function() {
         var hour = new Date().getHours()

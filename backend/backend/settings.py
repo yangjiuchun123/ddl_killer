@@ -156,4 +156,6 @@ STATICFILES_DIRS = [
 ]
 
 # email related
-YAG = yagmail.SMTP( user="ddl_killer@yeah.net", password="WHIBVFMXGYAKTCLR", host='smtp.yeah.net')
+# YAG = yagmail.SMTP( user="ddl_killer@yeah.net", password="XLIUFNFWCLLAEKVG", host='smtp.yeah.net')
+YAG = yagmail.SMTP( user="ddlkiller@yeah.net", password="PTSQPRKEYDLPPBVV", host='smtp.yeah.net')
+        
