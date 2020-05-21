@@ -1,3 +1,3 @@
-# pkill -9 python
-pkill -9 uwsgi
+# pkill python
+pkill uwsgi
 systemctl stop nginx.service
