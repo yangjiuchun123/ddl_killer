@@ -18,6 +18,7 @@
           <v-tabs  v-model="tab_now">
             <v-tab>DDL列表</v-tab>
             <v-tab>共享资源</v-tab>
+            <v-tab>课程通知</v-tab>
             <v-spacer></v-spacer>
             <v-text-field
               v-model="searchs[tab_now]"
@@ -28,7 +29,7 @@
               class="mr-12"
               height="28px"
             ></v-text-field>
-
+            
             <!--DDL列表 开始-->
             <v-tab-item>
               <!--Eventlist></Eventlist-->
@@ -69,7 +70,7 @@
                 </template>
 
                 <template v-slot:expanded-item="{ headers, item }">
-                  <td :colspan="headers.length">{{ item.content }}</td>
+                  <td :colspan="headers.length"><br/>{{ item.content }}<br/><br/></td>
                 </template>
 
               </v-data-table>
@@ -83,7 +84,7 @@
                 :items="srcs"
                 class="elevation-1"
                 :search="searchs[1]"
-                height="450px"
+                height="400px"
                 no-data-text="本课程暂无资源"
               >
                 <template v-slot:item.title="{ item }">
@@ -143,6 +144,23 @@
               </v-form>
 
             </v-tab-item>
+
+            <v-tab-item>
+              <v-data-table
+                :headers="Nheaders"
+                :items="notices"
+                class="elevation-1"
+                :search="searchs[2]"
+                height="500px"
+                no-data-text="本课程暂无通知"
+              >
+                <template v-slot:item.title="{ item }">
+                  <a v-bind:href="item.url" target='_BLANK'> {{item.title}}</a>
+                </template>
+              </v-data-table>
+            </v-tab-item>
+
+
           </v-tabs>
       </v-card>
       <!--/v-toolbar-->
@@ -151,16 +169,10 @@
 </template>
 
 <script>
-  import { getUserCourses } from '@/api/course';
-  import { getCourseTaskByCid } from '@/api/course';
-  import { getResourceByCid } from '@/api/course';
-  import { addResource } from '@/api/course';
+  import { getUserCourses, getCourseTaskByCid,  getResourceByCid, getNoticesByCid, addResource} from '@/api/course';
   import { alterTaskState } from '@/api/tasks';
 
-
   import Eventlist from '../Eventlist/index.vue'
-  //DDL列表 开始
-  //DDL列表 结束
 
   export default {
     components: {
@@ -170,7 +182,7 @@
     data: () => ({
       search: '',      
       Rsearch: '',
-      searchs: ['',''],
+      searchs: ['','',''],
       tab_now: null,
       ////////////////////////////////////DDL列表 开始
       headers: [
@@ -190,11 +202,12 @@
 
       ],
 
-      
       tags: [],
       ddls: [],
       expends: [],
       ////////////////////////////////////DDL列表 结束
+      
+      ////////////////////////////////////共享资源 开始
       Rheaders: [
         {
           text: '资源名称',
@@ -206,6 +219,10 @@
           text: '提取码',
           value: 'code',
         },
+        {
+          text: '分享人',
+          value: 'sharer'
+        },
       ],
 
 
@@ -214,6 +231,7 @@
         title: '',
         url: '',
         code: '',
+        sharer: '',
       },
       cid_now: '',
 
@@ -224,16 +242,34 @@
           return pattern.test(value) || '不合法的链接格式'
         }
       },
+      ////////////////////////////////////共享资源 结束
+
+      ////////////////////////////////////课程通知 开始
+      Nheaders: [
+        {
+          text: '标题',
+          align: 'start',
+          sortable: true,
+          value: 'title',
+        },
+        {
+          text: '发布时间',
+          value: 'time',
+        },
+        {
+          text: '内容详情',
+          value: 'content'
+        },
+      ],
+
+      notices: [],
+      ////////////////////////////////////课程通知 结束
+
     }),
-
-    //DDL列表 开始
-    //DDL列表 结束
-
 
     created () {
       this.initialize()
     },
-
 
     methods: {
       initialize () {
@@ -269,6 +305,17 @@
           }
         })
 
+        this.notices = []
+        getNoticesByCid(this.$store.getters.uid, cid).then(res => {
+          // console.log(res)
+          var r_notices = res.data;
+          for (let i = 0; i < r_notices.length; i++) {
+            this.notices.push(r_notices[i]);
+          }
+        })
+
+
+
         for (let i=0;i<this.ddls.length;i++) {
           this.courses[i] = this.ddls[i].title
           console.log(this.courses)
@@ -296,6 +343,7 @@
 
       onFileSubmit() {        
         var valid = this.$refs.fileSubmit.validate()
+        this.fileSubmit.sharer = this.uid
         if(valid) {
           addResource(this.fileSubmit, this.$store.getters.uid, this.cid_now).then(res=>{
             console.log(res.data)

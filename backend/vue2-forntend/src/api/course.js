@@ -26,6 +26,16 @@ export function getResourceByCid(uid, cid) {
   })
 }
 
+export function getNoticesByCid(uid, cid) {
+  return request({
+    url: `/api/user/${uid}/course/${cid}/notifications`,
+    method: 'get',
+    uid,
+    cid
+  })
+}
+
+
 export function addResource(data, uid, cid) {
   console.log(data)
   return request({
