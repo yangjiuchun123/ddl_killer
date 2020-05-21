@@ -263,7 +263,7 @@ def updateFromCourse(uid, account, password):
             get_info = False
             get_res = False
             get_ass = False
-            get_not = False
+            get_note = False
             for i in menus:
                 if i.text.strip()=='站点信息':
                     info_url = i.get('href')
@@ -290,9 +290,9 @@ def updateFromCourse(uid, account, password):
                     notification_url = i.get('href')
                     if notification_url == None:
                         notification_url = url
-                    get_not = True
+                    get_note = True
                     not_soup = bs(s.get(notification_url, cookies=cookie, headers=header).text, 'html.parser') # notification_soup
-                    not_url = not_soup.find('iframe').get('src')
+                    note_url = not_soup.find('iframe').get('src')
 
                     
 
@@ -472,17 +472,17 @@ def updateFromCourse(uid, account, password):
 
 
             ############################### get assignments #######################################
-            if get_not:
+            if get_note:
                 # not_soup = bs(s.get(notification_url, cookies=cookie, headers=header).text, 'html.parser') # notification_soup
-                # not_url = not_soup.find('iframe').get('src')
+                # note_url = not_soup.find('iframe').get('src')
 
-                course_not_list = []
+                course_note_list = []
 
                 if isDebug:
-                    print('notification_iframe_page: ' + not_url)
-                not_content = s.get(not_url, cookies=cookie)
-                not_ss = bs(not_content.text, 'html.parser')
-                token = getCsrfToken(not_ss)
+                    print('notification_iframe_page: ' + note_url)
+                note_content = s.get(note_url, cookies=cookie)
+                note_ss = bs(note_content.text, 'html.parser')
+                token = getCsrfToken(note_ss)
                 selectData = {
                     'eventSubmit_doChange_pagesize': 'changepagesize',
                     'selectPageSize': '200',
@@ -492,44 +492,45 @@ def updateFromCourse(uid, account, password):
                     'eventSubmit_doLinkcancel': '%E8%BF%94%E5%9B%9E%E5%88%B0%E7%9B%AE%E5%BD%95%E6%B8%85%E5%8D%95', # 返回目录清单
                     'sakai_csrf_token': token
                 }
-                s.post(not_url, cookies=cookie, data=selectData)
-                not_content = s.get(not_url, cookies=cookie)
-                not_ss = bs(not_content.text, 'html.parser')
-                not_list = [i.a.get('href') for i in not_ss.findAll('td', {'headers':'subject'})]
-                for not_each_url in not_list:
-                    not_details = {}
-                    not_son_content = s.get(not_each_url, cookies=cookie)
+                s.post(note_url, cookies=cookie, data=selectData)
+                note_content = s.get(note_url, cookies=cookie)
+                note_ss = bs(note_content.text, 'html.parser')
+                note_list = [i.a.get('href') for i in note_ss.findAll('td', {'headers':'subject'})]
+                for note_each_url in note_list:
+                    note_details = {}
+                    not_son_content = s.get(note_each_url, cookies=cookie)
                     not_son_ss = bs(not_son_content.text, 'html.parser')
                     for j in not_son_ss.findAll('tr'):
                         if (j.th.text.strip()=='标题'):
-                            not_details['title'] = j.td.text.strip()
+                            note_details['title'] = j.td.text.strip()
                         if (j.th.text.strip()=='修改时间'):
-                            not_details['time'] = j.td.text.strip()
+                            note_details['time'] = j.td.text.strip()
                         if (j.th.text.strip()=='对象'):
                             break
 
+                    note_details['url'] = note_each_url
                     for j in not_son_ss.findAll('h4'):
                         if j.text.strip()=='内容':
-                            not_content = ''
+                            note_content = ''
                             for k in j.next_siblings:
                                 if k.name == 'p':
-                                    not_content += k.text
+                                    note_content += k.text
                                 elif k.name == 'form':
                                     break
                             break
 
-                    not_details['content'] = re.sub('\s', '', not_content)
-                    # print(not_details['content'])
-                    not_details['attachments'] = []
+                    note_details['content'] = re.sub('\s', '', note_content)
+                    # print(note_details['content'])
+                    note_details['attachments'] = []
                     if not_son_ss.find('ul', {'class':'attachList'}) != None: # ul无序列表
                         for each_attach in not_son_ss.find('ul', {'class':'attachList'}).findAll('li'):
-                            not_details['attachments'].append(each_attach.a.get('href'))
-                    course_not_list.append(not_details)
-                    s.post(not_url, cookies=cookie, data=returnData)
-                    s.get(not_url, cookies=cookie)
-                    # print(not_details)
+                            note_details['attachments'].append(each_attach.a.get('href'))
+                    course_note_list.append(note_details)
+                    s.post(note_url, cookies=cookie, data=returnData)
+                    s.get(note_url, cookies=cookie)
+                    # print(note_details)
 
-                single_list['notifications'] = course_not_list
+                single_list['notifications'] = course_note_list
             else:
                 single_list['notifications'] = []
 
