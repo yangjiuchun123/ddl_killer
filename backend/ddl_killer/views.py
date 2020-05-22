@@ -15,7 +15,7 @@ import json
 import yagmail
 import traceback
 from .utils.jsDecryopt import decode as jsDecode
-from .utils.sendmail import register_mail, edit_mail
+from .utils.sendmail import register_mail, edit_mail, participate_mail, resource_mail
 
 from .utils.webScrap import updateFromCourse
 
@@ -450,6 +450,11 @@ def add_task(request, uid): #用户个人添加task(需要选择或输入partici
             for id in data["participant"]:
                 try:
                     user_obj=User.objects.get(uid=id)
+
+                    # 如果开启团队事项提醒，发送提醒邮件
+                    if user_obj.participate_alert:
+                        participate_mail(user_obj.email, id, user_obj.name)
+                    
                 except:
                     response['code'] = 503
                     response['msg'] = 'Some participants not exist.' 
@@ -595,7 +600,15 @@ def add_resources(request, uid, cid):
             resource_obj=Resource.objects.create(title=data["title"],url=data["url"],code=data["code"], user=User.objects.get(uid=uid))
             course_obj=Course.objects.get(cid=cid)
             CourseResource.objects.create(course=course_obj,resource=resource_obj)
+            course_name = course_obj.name
             
+            # 如果开启了共享资源更新提醒，发送提醒邮件
+            usercourses = UserCourse.objects.filter(course__cid=cid)
+            for uc in usercourses:
+                if uc.user.resource_alert:
+                    resource_mail(uc.user.email, uc.user.uid, uc.user.name, course_name)
+
+
             response['code']=200
             response["msg"]="Success."
     except:
