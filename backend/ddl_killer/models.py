@@ -11,6 +11,9 @@ class User(models.Model):
     password = models.CharField(max_length=100)
     email = models.EmailField(null=True, blank=True)
     is_active = models.BooleanField(default=False)   
+    # ddl_alert = models.BooleanField(default=True)
+    participate_alert = models.BooleanField(default=False)
+    resource_alert = models.BooleanField(default=False)
     
     
     def save(self, *args, **kwargs):
