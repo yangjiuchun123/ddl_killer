@@ -45,10 +45,11 @@
             </el-form-item>
 
             <el-button :loading="loading" type="primary" style="width:100%;margin-bottom:30px;" @click.native.prevent="submit">登录</el-button>
-
-            <div class="tips" align="right">
-              <span style="margin-right:20px;"><el-link type="white" @click="regis">还没有账号？点击注册</el-link></span>
-            </div>
+            <div class="tips" align=left>
+              <span style="margin-left:20px;"><el-link type="white" @click="retrievePWD">忘记密码</el-link></span>   
+              <spacer></spacer>           
+              <span style="margin-left:130px;margin-right:20px;"><el-link type="white" @click="regis">还没有账号？点击注册</el-link></span>
+            </div>            
           </el-form>
         <!--/el-card-->
       </el-col>
@@ -100,8 +101,7 @@ export default {
       immediate: true
     }
   },
-  methods: {
-    
+  methods: {    
     showPwd() {
       if (this.passwordType === 'password') {
         this.passwordType = ''
@@ -135,6 +135,10 @@ export default {
     },
     regis() {
       this.$router.push({ path: '/register' })
+    },
+    //@add Password
+    retrievePWD(){
+      this.$router.push({ path: '/retrievePassword' })
     },
     encrypt(password) {
       let encrypt = new JSEncrypt()
