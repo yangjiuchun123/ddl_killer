@@ -29,6 +29,126 @@
               class="mr-12"
               height="28px"
             ></v-text-field>
+
+
+            <!-- -----------------快速创建 -->
+
+            <v-dialog v-model="TaskDialog" persistent max-width="600px">
+              <template v-slot:activator="{ on }">
+                <v-btn color="primary" dark class="mr-6" v-on="on" @click="initDialog"><v-icon>mdi-plus</v-icon></v-btn>
+                <!-- <v-btn color="primary" dark class="mr-2" v-on="on" icon large><v-icon>mdi-plus-circle</v-icon></v-btn> -->
+              </template>
+              <v-card ref="form">
+                <v-card-title></v-card-title>
+                <v-card-text>
+                  <v-container>
+                    <v-row>
+                      <v-col cols="12">
+                        <v-text-field ref="title" label="事项名称" v-model="task_title" :rules="[rules.required]" required outlined clearable></v-text-field>
+                      </v-col>
+
+                      <v-col cols="12">
+                        <v-textarea label="详细描述" v-model="task_content" auto-growed no-resize outlined clearable></v-textarea>
+                      </v-col>
+
+                      <v-col cols="12" sm="6">
+                        <v-select :items="task_types" v-model="task_type" label="事项类型" required outlined></v-select>
+                      </v-col>
+
+                      <v-col cols="12" sm="3">
+                        <v-select
+                          label="截止日期"
+                          :items="task_ddls"
+                          v-model="task_ddl"
+                          v-show="!isPicker"
+                          required outlined
+                        >
+                          <template v-slot:append-item>
+                            <v-divider class="mb-2"></v-divider>
+                            <v-list-item
+                              ripple
+                              @click="isPicker=true"
+                            >选择其他日期</v-list-item>
+                          </template>
+                        </v-select>
+
+                        <v-menu
+                          v-model="menu2"
+                          :close-on-content-click="false"
+                          :nudge-right="40"
+                          transition="scale-transition" offset-y min-width="290px"
+                        >
+                          <template v-slot:activator="{ on }">
+                            <v-text-field
+                              ref="date"
+                              label="点击选择日期"
+                              v-model="task_date"
+                              v-show="isPicker"
+                              v-on="on"
+                              :rules="[rules.required]"
+                              readonly outlined
+                            ></v-text-field>
+                          </template>
+                          <v-date-picker v-model="task_date" @input="menu2 = false"></v-date-picker>
+                        </v-menu>
+                      </v-col>
+
+                      <v-col cols="12" sm="3">
+                        <v-menu
+                          ref="menu"
+                          v-model="menu4"
+                          :close-on-content-click="false"
+                          :nudge-right="40"
+                          :return-value.sync="task_time"
+                          transition="scale-transition"
+                          offset-y
+                          max-width="290px"
+                          min-width="290px"
+                        >
+                          <template v-slot:activator="{ on }">
+                            <v-text-field
+                              v-model="task_time"
+                              label="截止时间"
+                              outlined
+                              readonly
+                              v-on="on"
+                            ></v-text-field>
+                          </template>
+                          <v-time-picker
+                            v-if="menu4"
+                            v-model="task_time"
+                            full-width
+                            ampm-in-title
+                            @click:minute="$refs.menu.save(task_time)"
+                          ></v-time-picker>
+                        </v-menu>
+                      </v-col>
+
+                      <v-col cols="12" v-show="task_type=='团队任务'">
+                        <v-select
+                          :items="['0-17', '18-29', '30-54', '54+']"
+                          label="相关成员"
+                          required
+                          outlined
+                          clearable
+                        ></v-select>
+                      </v-col>
+                    </v-row>
+                    <v-card-actions>
+                      <v-row>
+                          <v-btn block depressed  small tile color="primary" @click="saveDialog"> Save </v-btn>
+                          <v-btn block depressed  small tile @click="initDialog();TaskDialog=false;"> Close </v-btn>
+                      </v-row>
+                      </v-card-actions>
+                  </v-container>
+                </v-card-text>
+              </v-card>
+            </v-dialog>
+
+
+
+
+
             
             <!--DDL列表 开始-->
             <v-tab-item>
@@ -265,6 +385,32 @@
       notices: [],
       ////////////////////////////////////课程通知 结束
 
+
+      //------------------快速创建
+      isPicker: false,
+      task_title: '',
+      task_content: '',
+      task_types: [],
+      task_type: '',
+      task_ddls: [],
+      task_ddl: '',
+      task_date: '',
+      task_time: '',
+      TaskDialog: false,
+      menu2: false,
+      menu3: false,
+      menu4: false,
+
+      isTitleChange: false,
+
+      rules: {
+        required: value => !!value || '本项内容必须填写哦~',
+        counter: value => value.length <= 20 || 'Max 20 characters',
+      },
+      name: null,
+      date: null,
+      formHasErrors: false,
+
     }),
 
     created () {
@@ -354,7 +500,89 @@
         else {
           this.$message('error submit!')
         }
+      },
+
+      //------------------快速创建
+      initDialog() {
+        var week = new Array("周日", "周一", "周二", "周三", "周四", "周五", "周六")
+        var today = new Date()
+        var ddl1 = '今天 '+week[today.getDay()]+' '+today.toISOString().substr(0, 10)
+        today.setDate(today.getDate() + 1)
+        var ddl2 = '明天 '+week[today.getDay()]+' '+today.toISOString().substr(0, 10)
+        today.setDate(today.getDate() + 6)
+        var ddl3 = '下周 '+week[today.getDay()]+' '+today.toISOString().substr(0, 10)
+
+        this.isPicker = false
+        this.task_title = '',
+        this.task_content = '',
+        this.task_types =  ['个人日程', '团队任务']
+        this.task_type = '个人日程'
+        this.task_ddls = [ddl1, ddl2, ddl3]
+        this.task_ddl = ddl1
+        this.task_date = ''
+        this.task_time = '24:00'
+
+        this.isTitleChange = false
+        this.formHasErrors = false
+
+        Object.keys(this.form).forEach(f => {
+          this.$refs[f].reset()
+        })
+
+      },
+
+      saveDialog() {
+        console.log(this.isPicker)
+        console.log(this.task_title)
+        console.log(this.task_content)
+        console.log(this.task_type)
+        console.log(this.task_ddl)
+        console.log(this.task_date)
+        console.log(this.task_time)
+
+        var t_time = this.isPicker?this.task_date:this.task_ddl.substr(6,12)
+
+        var new_task = {
+          title: this.task_title,
+          content: this.task_content,
+          category: (this.task_type=="个人日程")?'person':'meeting',
+          ddl_time: t_time+' '+this.task_time+':00',
+        }
+
+        console.log(new_task)
+
+        this.formHasErrors = false
+        Object.keys(this.form).forEach(f => {
+          if (!this.form[f])
+            if (f!='date' || this.isPicker) this.formHasErrors = true
+          this.$refs[f].validate(true)
+        })
+
+        console.log(this.formHasErrors)
+
+        if (!this.formHasErrors)
+          this.TaskDialog = false
+      },
+    },
+
+    computed: {
+      form () {
+        return {
+          title: this.task_title,
+          date: this.task_date,
+        }
+      },
+    },
+
+    watch: {
+      "task_content": {
+        handler(newVal){
+          console.log("change")
+          if (!this.form['title']){
+            this.task_title = newVal.substr(0, 20)
+          }
+        },
       }
-    }
+    },
   }
 </script>
