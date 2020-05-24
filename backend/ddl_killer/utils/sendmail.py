@@ -6,7 +6,7 @@ def register_mail(email, uid, name, token):
     message = "\n".join([
     u'❤️亲爱的 {0} {1}, 欢迎使用DDL_Killer'.format(uid, name),
     u'👐请访问该链接，完成用户验证:',
-    u'🔗<a href="http://ddlkiller.top/api/activate/?token={0}">ddl_killer 注册链接</a>'.format(token),
+    u'🔗<a href="http://ddlkiller.top/api/activate/?token={0}">DDL_Killer 注册链接</a>'.format(token),
     u'⚠️若不是您本人的操作，请忽略该封邮件',
     u'👩‍🎓👨‍🎓👨‍🎓👨‍🎓👨‍🎓👨‍🎓DDL_Killer 团队'])
     YAG.send(email, subject, message, None)
