@@ -10,10 +10,11 @@ import os
 import traceback
 import datetime
 import time
+ 
 
-YAG = yagmail.SMTP( user="ddl_killer@yeah.net", password="XLIUFNFWCLLAEKVG", host='smtp.yeah.net')
-errorTitle = '⚠️ ddl_killer 错误提醒'
-errorText = "😥 我们非常抱歉地告诉您，您有一个任务提醒在发送过程中出现了错误，请登陆 <a href='http://123.57.67.161:8000'>ddl_killer 网站查看</a>。\n\n感谢您的理解，祝学业顺利。\n\n"
+YAG = yagmail.SMTP( user="ddlkiller@yeah.net", password="PTSQPRKEYDLPPBVV", host='smtp.yeah.net')
+errorTitle = '⚠️ 【DDL_Killer】 错误提醒'
+errorText = "😥 我们非常抱歉地告诉您，您有一个任务提醒在发送过程中出现了错误，请登陆 <a href='http://ddlkiller.top'>ddl_killer 网站查看</a>。\n\n感谢您的理解，祝学业顺利。\n\n"
 
 def main():
     f = open('/root/BetaRepo/backend/ddl_killer/log/automail.log', 'a+')
@@ -28,8 +29,9 @@ def main():
     nexttime = current + datetime.timedelta(minutes=1)
     current = current.strftime("%Y-%m-%d %H:%M:%S") 
     nexttime = nexttime.strftime("%Y-%m-%d %H:%M:%S") 
-    task = u'select user_id,task_id from ddl_killer_usertask where notification_time > \'{0}\' and notification_time < \'{1}\' and notification_alert == 1 order by notification_time ASC;'.format(str(current), str(nexttime))
-
+    task = u'select user_id,task_id from ddl_killer_usertask join ddl_killer_user on ddl_killer_user.uid=ddl_killer_usertask.user_id where notification_time > \'{0}\' and notification_time < \'{1}\' and notification_alert == 1 and ddl_alert == 1 order by notification_time ASC;'.format(str(current), str(nexttime))
+    # task = u'select user_id,task_id from ddl_killer_usertask where notification_time > \'{0}\' and notification_time < \'{1}\' and notification_alert == 1 order by notification_time ASC;'.format(str(current), str(nexttime))
+    
     result = cu.execute(task).fetchall()
     print(result)
     ########################### 第一次尝试发送邮件 ############################
@@ -50,7 +52,7 @@ def main():
         tid = ut[1]
         fullText = {}
         fullText['emails'] = []
-        fullText['title'] = '【DDL_Killer】 ddl 提醒: '
+        fullText['title'] = '【DDL_Killer】 DDL 提醒: '
         if task[0][6] == None:
             fullText['title'] += task[0][0]
         else:
@@ -63,7 +65,7 @@ def main():
             content += '🏠 相关平台: {0}\n\n'.format(task[0][5])
         if task[0][4]!='':
             content += '<a href="{0}">🔗相关链接</a>\n\n'.format(task[0][4])
-        fullText['content'] = content + '⌚ ddl_killer 助您成为时间管理大师 ⌚\n\n'
+        fullText['content'] = content + '⌚ DDL_Killer  团队 ⌚\n\n'
         try:
             YAG.send(email, fullText['title'], fullText['content'])
             f.write('{0}:\n\t\tstatus: Success.\n\t\ttid: {1}\n\t\treceiver: {2}\n\n'.format(datetime.datetime.now(), tid, email))

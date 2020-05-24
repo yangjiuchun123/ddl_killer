@@ -15,7 +15,7 @@ import json
 import yagmail
 import traceback
 from .utils.jsDecryopt import decode as jsDecode
-from .utils.sendmail import register_mail, edit_mail
+from .utils.sendmail import register_mail, edit_mail, participate_mail, resource_mail
 
 from .utils.webScrap import updateFromCourse
 
@@ -27,6 +27,8 @@ from .models import UserTask
 from .models import Resource
 from .models import CourseResource
 from .models import CourseTask
+from .models import Note
+from .models import CourseNote
 
 from itsdangerous import URLSafeTimedSerializer as utsr
 import base64
@@ -202,7 +204,7 @@ def show_user(request, uid): #展示用户信息
     return JsonResponse(response, json_dumps_params={'ensure_ascii':False}, charset='utf_8_sig')
     
     
-def update_courses(request, uid): #从课程中心获取用户所选课程并同步作业及资源
+def update_courses(request, uid): #从课程中心获取用户所选课程并同步作业及资源及通知
     response = {}
     data = json.loads(request.body.decode())
     user_obj=User.objects.get(uid=uid)
@@ -219,8 +221,12 @@ def update_courses(request, uid): #从课程中心获取用户所选课程并同
         response['code'] = 406
         response['msg'] = "Internel Error, plz try again later."
         return JsonResponse(response, json_dumps_params={'ensure_ascii':False}, charset='utf_8_sig')
+
+    ##################################### Log in success #########################################
     for d in data["courses"]:
         # print(json.dumps(d, ensure_ascii=False))
+
+        ################################# check if new course ####################################
         course = Course.objects.filter(name=d["course_name"],teacher=d["course_teacher"])
         if course.exists():
             course=course[0]
@@ -233,7 +239,7 @@ def update_courses(request, uid): #从课程中心获取用户所选课程并同
         if not usercourse.exists():
             UserCourse.objects.create(user = user_obj, course = course)
     
-        # print('create usercourse')
+        ########################### check if new CourseResource ##################################
         try:
             for res in d['resources']:
                 resource = Resource.objects.filter(url=res['url'])
@@ -247,6 +253,7 @@ def update_courses(request, uid): #从课程中心获取用户所选课程并同
         except:
             traceback.print_exc()
 
+        ########################### check if new CourseTask ##################################
         for ass in d['assignments']:
             # print(json.dumps(ass, ensure_ascii=False))
             ass_task = Task.objects.filter(urls=ass['urls'])
@@ -290,6 +297,27 @@ def update_courses(request, uid): #从课程中心获取用户所选课程并同
             ct = CourseTask.objects.filter(course__cid=course.cid,task__tid=ass_task.tid)
             if not ct.exists():
                 CourseTask.objects.create(course=course, task=ass_task)
+        
+        
+        ########################### check if new CourseNote ##################################
+        try:
+            for note in d['notifications']:
+                exist_notes = Note.objects.filter(url=note['url'])
+                if exist_notes.exists():
+                    this_note = exist_notes[0]
+                    this_note.title = note['title']
+                    this_note.time = note['time']
+                    this_note.content = note['content']
+                    this_note.attachments = '\n'.join(note['attachments'])
+                    this_note.save()
+                else:
+                    this_note = Note.objects.create(title=note['title'], time=note['time'], url=note['url'], content=note['content'], attachments=note['attachments'])
+
+                # print(this_note.title)    
+                if not CourseNote.objects.filter(course__cid=course.cid, note__nid=this_note.nid).exists():
+                    CourseNote.objects.create(course=course, note=this_note)
+        except:
+            traceback.print_exc()
                 
     response['code'] = 200
     response['msg'] = 'Successfully Update your course info.'
@@ -422,6 +450,11 @@ def add_task(request, uid): #用户个人添加task(需要选择或输入partici
             for id in data["participant"]:
                 try:
                     user_obj=User.objects.get(uid=id)
+
+                    # 如果开启团队事项提醒，发送提醒邮件
+                    if user_obj.participate_alert:
+                        participate_mail(user_obj.email, id, user_obj.name)
+                    
                 except:
                     response['code'] = 503
                     response['msg'] = 'Some participants not exist.' 
@@ -476,6 +509,8 @@ def show_user_tasks(request, uid): #用户查看自己的所有任务及ddl
             response["msg"]="No tasks."
     except:
         traceback.print_exc()
+        response['code'] = 500
+        response['msg'] = "Internel Error"
     return JsonResponse(response, json_dumps_params={'ensure_ascii':False}, charset='utf_8_sig')
     
     
@@ -507,7 +542,7 @@ def show_course_tasks(request, uid, cid): #用户uid,相应课程cid
             })
         # else:
             
-    print(response['data']) 
+    # print(response['data']) 
     return JsonResponse(response, json_dumps_params={'ensure_ascii':False}, charset='utf_8_sig')
     
 def appoint_course_admin(request, cid, uid): #授予普通用户某门课程的管理权
@@ -551,7 +586,7 @@ def alter_task_state(request, uid, tid):
     return JsonResponse(response, json_dumps_params={'ensure_ascii':False}, charset='utf_8_sig')
 
 
-def add_resources(request,uid, cid):
+def add_resources(request, uid, cid):
     response={}
     print(uid)
     print(request)
@@ -562,47 +597,92 @@ def add_resources(request,uid, cid):
             response['code'] = 404
             response['msg'] = "You have no access to this course."
         else: 
-            resource_obj=Resource.objects.create(title=data["title"],url=data["url"],code=data["code"], user=user)
+            resource_obj=Resource.objects.create(title=data["title"],url=data["url"],code=data["code"], user=User.objects.get(uid=uid))
             course_obj=Course.objects.get(cid=cid)
             CourseResource.objects.create(course=course_obj,resource=resource_obj)
+            course_name = course_obj.name
             
+            # 如果开启了共享资源更新提醒，发送提醒邮件
+            usercourses = UserCourse.objects.filter(course__cid=cid)
+            for uc in usercourses:
+                if uc.user.resource_alert:
+                    resource_mail(uc.user.email, uc.user.uid, uc.user.name, course_name)
+
+
             response['code']=200
             response["msg"]="Success."
     except:
         traceback.print_exc()
+        response['code'] = 500
+        response['msg'] = "Internel Error"
     return JsonResponse(response, json_dumps_params={'ensure_ascii':False}, charset='utf_8_sig')
 
  
 def show_course_resources(request, uid, cid):
     response={}
-    if not UserCourse.objects.filter(user__uid=uid, course__cid=cid).exists:
-        response['code'] = 404
-        response['msg'] = "You have no access to this course."
-    else:
-        response['code'] = 200
-        response['msg'] = 'Success.'
-        response['data'] =[]
-        courseresources = CourseResource.objects.filter(course__cid=cid)
-        # print(cid)
-        # print(resources)
-        for cr in courseresources:
-            response['data'].append({
-                "rid":cr.resource.rid,
-                "title":cr.resource.title,
-                "url":cr.resource.url,
-                "code":cr.resource.code,
-                #"course_id":r.course.cid,
-                #"course_name":r.course.name
-            })
+    try:
+        if not UserCourse.objects.filter(user__uid=uid, course__cid=cid).exists:
+            response['code'] = 404
+            response['msg'] = "You have no access to this course."
+        else:
+            response['code'] = 200
+            response['msg'] = 'Success.'
+            response['data'] =[]
+            courseresources = CourseResource.objects.filter(course__cid=cid)
+            # print(cid)
+            # print(resources)
+            for cr in courseresources:
+                if cr.resource.user:
+                    sharer = cr.resource.user.uid
+                else:
+                    sharer = ''
+                response['data'].append({
+                    "rid":cr.resource.rid,
+                    "title":cr.resource.title,
+                    "url":cr.resource.url,
+                    "code":cr.resource.code,
+                    'sharer':sharer
+                    #"course_id":r.course.cid,
+                    #"course_name":r.course.name
+                })
+    except:
+        traceback.print_exc()
+        response['code'] = 500
+        response['msg'] = "Internel Error"
     return JsonResponse(response, json_dumps_params={'ensure_ascii':False}, charset='utf_8_sig')
+
+def show_course_notifications(request, uid, cid):
+    response={}
+    usercourse = UserCourse.objects.filter(course__cid=cid, user__uid=uid)
+    if not usercourse.exists():
+        response['code'] = 404
+        response['msg'] = 'You have no access to this course.'
+    else:
+        coursenotes = CourseNote.objects.filter(course__cid=cid)
+        response['data'] = []
+        for cn in coursenotes:
+            response['data'].append({
+                'title': cn.note.title,
+                'url': cn.note.url,
+                'time': cn.note.time,
+                'content': cn.note.content,
+                'attachments': cn.note.attachments
+            })
+        response['code'] = 200
+        response['msg'] = 'Success'
+        
+    # print(json.dumps(response, ensure_ascii=False))
+    return JsonResponse(response, json_dumps_params={'ensure_ascii':False}, charset='utf_8_sig')
+
 
 def q2ldbchange(request):
     try:
-        for ct in CourseTask.objects.all():
-            c = ct.course
-            t = ct.task
-            t.course_name = c.name
-            t.save()
+        # for ct in CourseTask.objects.all():
+        #     c = ct.course
+        #     t = ct.task
+        #     t.course_name = c.name
+        #     t.save()
+        pass
     except:
         traceback.print_exc()
     pass
@@ -623,4 +703,39 @@ def delete_task(request, uid, tid):
     else:
         response["code"] = 401
         response["msg"]="The task of the user is not found."
+    return JsonResponse(response, json_dumps_params={'ensure_ascii':False}, charset='utf_8_sig')
+
+
+def personal_setting(request, uid): # 个人设置，如果是GET则直接返回个人设置；如果是POST则修改后返回个人设置
+    response = {}
+    user = User.objects.get(uid=uid)
+    if user.exists():
+        if request.method == "GET":
+            response["code"] = 200
+            response["data"] = []
+            response['data'].append({
+                    'ddl_alert': user.ddl_alert,
+                    'participate_alert': user.participate_alert,
+                    'resource_alert': user.resource_alert
+                })
+        elif request.method == "POST":
+            data = json.loads(request.body.decode())
+            user.ddl_alert = data["ddl_alert"]
+            user.participate_alert = data["participate_alert"]
+            user.resource_alert = data["participate_alert"]
+            user.save()
+            
+            response["code"] = 200
+            response["data"] = []
+            response['data'].append({
+                    'ddl_alert': user.ddl_alert,
+                    'participate_alert': user.participate_alert,
+                    'resource_alert': user.resource_alert
+                })
+        else:
+            response["code"] = 400
+            response["msg"]="Wrong request type!"
+    else:
+        response["code"] = 401
+        response["msg"]="The user does not exist!"
     return JsonResponse(response, json_dumps_params={'ensure_ascii':False}, charset='utf_8_sig')
