@@ -38,4 +38,6 @@ urlpatterns = [
     path(r'modify', views.edit_user),
     path(r'q2l/dbchange', views.q2ldbchange),
     path(r'user/<int:uid>/tasks/<int:tid>/delete', views.delete_task),
+    path(r'user/<int:uid>/settings', views.personal_setting),
+    
 ]
