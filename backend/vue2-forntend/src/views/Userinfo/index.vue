@@ -12,58 +12,45 @@
 
         
         <v-tab-item>
-            <v-list shaped>
-              <v-subheader>Email通知</v-subheader>
-              <v-list-item-group
-                v-model="settings"
-                multiple
-              >
-                <template v-for="(item, i) in emailSets">
-                  <v-divider
-                    v-if="!item"
-                    :key="`divider-${i}`"
-                  ></v-divider>
-  
-                  <v-list-item
-                    v-else
-                    :key="`item-${i}`"
-                    :value="item"
-                    active-class="blue--text text--accent-4"
-                  >
-                    <!--template v-slot:default="{ active, toggle }"-->
-                    <template v-slot:default="{active}">
-  
-                      <v-list-item-action>
-                        <!--v-checkbox
-                          :input-value="active"
-                          :true-value="item"
-                          color="blue accent-4"
-                          @click="toggle"
-                          disabled
-                        ></v-checkbox-->
-                        
-                        <v-checkbox
-                          :input-value="active"
-                          :true-value="item"
-                          color="blue accent-4"
-                          disabled
-                          @click="printItem(item)"
-                        ></v-checkbox>
-  
-                      </v-list-item-action>
-                      <v-list-item-content>
-                        <v-list-item-title v-text="item"></v-list-item-title>
-                      </v-list-item-content>
-                    <!--/template-->
-                  </v-list-item>
-                  
-                </template>
-                <v-list-item>
-                <v-list-item-title>更多功能正在探索中💭 敬请期待👍</v-list-item-title>
+          <v-list shaped>
+            <v-subheader>Email通知</v-subheader>
+            <v-list-item-group
+              v-model="settings"
+              multiple
+            >
+              <template v-for="(item, i) in emailSets">
+                <v-divider
+                  v-if="!item"
+                  :key="`divider-${i}`"
+                ></v-divider>
+
+                <v-list-item
+                  v-else
+                  :key="`item-${i}`"
+                  :value="item"
+                  active-class="blue--text text--accent-4"
+                >
+                  <template v-slot:default="{ active, toggle }">
+                    <v-list-item-action>
+                      <v-checkbox
+                        :input-value="active"
+                        :true-value="item"
+                        color="blue accent-4"
+                        @click="toggle"
+                      ></v-checkbox>
+                    </v-list-item-action>
+                    <v-list-item-content>
+                      <v-list-item-title v-text="item"></v-list-item-title>
+                    </v-list-item-content>
+                  </template>
                 </v-list-item>
-              </v-list-item-group>
-            </v-list>
-          </v-tab-item>
+              </template>
+            </v-list-item-group>
+            <v-list-item>
+              <v-list-item-title>更多功能正在探索中💭 敬请期待👍{{settings}}</v-list-item-title>
+            </v-list-item>
+          </v-list>
+        </v-tab-item>
 
         <v-tab-item>
           <v-form ref="userForm" class="pa-4 pt-6">
