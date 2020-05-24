@@ -29,9 +29,10 @@
                   :key="`item-${i}`"
                   :value="item"
                   active-class="blue--text text--accent-4"
+                  @click="isInit = true"
                 >
-                  <template v-slot:default="{ active, toggle }">
-                    <v-list-item-action>
+                  <template v-slot:default="{ active, toggle}">
+                    <v-list-item-action disabled>
                       <v-checkbox
                         :input-value="active"
                         :true-value="item"
@@ -47,7 +48,7 @@
               </template>
             </v-list-item-group>
             <v-list-item>
-              <v-list-item-title>更多功能正在探索中💭 敬请期待👍{{settings}}</v-list-item-title>
+              <v-list-item-title>更多功能正在探索中💭 敬请期待👍</v-list-item-title>
             </v-list-item>
           </v-list>
         </v-tab-item>
@@ -127,8 +128,7 @@
 </template>
 
 <script>
-  import {getUserInfo} from '@/api/user';
-  import {modifyUserInfo} from '@/api/user';
+  import {getUserInfo, modifyUserInfo, getUserSetting, modifyUserSetting} from '@/api/user';
 
   export default {
     data: () => ({
@@ -159,12 +159,43 @@
         //'',
         '共享资源更新提醒',
       ],
-      settings: ['DDL提醒'],
+      settings: [],
 
+      isInit: false,
     }),
 
     created () {
       this.initialize()
+    },
+
+    watch: {
+      "settings": {
+        handler(newVal){
+          // console.log("change")
+          // console.log(newVal)
+          var t_setting = {
+            ddl_alert: false,
+            participate_alert: false,
+            resource_alert: false
+          }
+          for (let i=0;i<newVal.length;i=i+1) {
+            if (newVal[i]=="DDL提醒") t_setting.ddl_alert = true
+            if (newVal[i]=="团体日程提醒") t_setting.participate_alert = true
+            if (newVal[i]=="共享资源更新提醒") t_setting.resource_alert = true
+          }
+          console.log(t_setting)
+          if(this.isInit) {
+            modifyUserSetting(this.$store.getters.uid, t_setting).then(res => {
+              // this.$message('修改成功!')
+              // console.log("succeed")
+              // console.log(res)
+              }).catch(error => {
+              console.log(error)
+            })
+          }
+
+        },
+      }
     },
 
     methods:{
@@ -173,7 +204,20 @@
           this.userForm.uid = res.uid
           this.userForm.name = res.name
           this.userForm.email = res.email
-          console.log(res)
+          // console.log(res)
+        })
+        this.settings = []
+        getUserSetting(this.$store.getters.uid).then(res => {
+          
+          // console.log(res.data[0].ddl_alert)
+          // console.log(res.data[0].participate_alert)
+          // console.log(res.data[0].resource_alert)
+          if (res.data[0].ddl_alert) this.settings.push("DDL提醒")
+          if (res.data[0].participate_alert) this.settings.push("团体日程提醒")
+          if (res.data[0].resource_alert) this.settings.push("共享资源更新提醒")
+          // console.log('---------------------------')
+          // console.log(res)
+          // console.log(this.settings)
         })
       },
 
@@ -212,5 +256,8 @@
           console.log(item)
       }
     },
+
+    
+
   }
 </script>

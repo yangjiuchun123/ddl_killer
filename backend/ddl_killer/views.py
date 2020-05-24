@@ -709,33 +709,34 @@ def delete_task(request, uid, tid):
 def personal_setting(request, uid): # 个人设置，如果是GET则直接返回个人设置；如果是POST则修改后返回个人设置
     response = {}
     user = User.objects.get(uid=uid)
-    if user.exists():
-        if request.method == "GET":
-            response["code"] = 200
-            response["data"] = []
-            response['data'].append({
-                    'ddl_alert': user.ddl_alert,
-                    'participate_alert': user.participate_alert,
-                    'resource_alert': user.resource_alert
-                })
-        elif request.method == "POST":
-            data = json.loads(request.body.decode())
-            user.ddl_alert = data["ddl_alert"]
-            user.participate_alert = data["participate_alert"]
-            user.resource_alert = data["participate_alert"]
-            user.save()
-            
-            response["code"] = 200
-            response["data"] = []
-            response['data'].append({
-                    'ddl_alert': user.ddl_alert,
-                    'participate_alert': user.participate_alert,
-                    'resource_alert': user.resource_alert
-                })
-        else:
-            response["code"] = 400
-            response["msg"]="Wrong request type!"
+    # if user.exists():
+    print(request.method)
+    if request.method == "GET":
+        response["code"] = 200
+        response["data"] = []
+        response['data'].append({
+                'ddl_alert': user.ddl_alert,
+                'participate_alert': user.participate_alert,
+                'resource_alert': user.resource_alert
+            })
+    elif request.method == "POST":
+        data = json.loads(request.body.decode())
+        user.ddl_alert = data["ddl_alert"]
+        user.participate_alert = data["participate_alert"]
+        user.resource_alert = data["resource_alert"]
+        user.save()
+        
+        response["code"] = 200
+        response["data"] = []
+        response['data'].append({
+                'ddl_alert': user.ddl_alert,
+                'participate_alert': user.participate_alert,
+                'resource_alert': user.resource_alert
+            })
     else:
-        response["code"] = 401
-        response["msg"]="The user does not exist!"
+        response["code"] = 400
+        response["msg"]="Wrong request type!"
+    # else:
+        # response["code"] = 401
+        # response["msg"]="The user does not exist!"
     return JsonResponse(response, json_dumps_params={'ensure_ascii':False}, charset='utf_8_sig')
