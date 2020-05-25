@@ -7,7 +7,7 @@
       </div>
       <div  class="login-form" >
         <v-app>
-          <v-stepper v-model="e1">
+          <v-stepper v-model="e1"> 
             <v-stepper-header>
               <v-stepper-step :complete="e1 > 1" step="1">身份验证</v-stepper-step>
               <v-divider></v-divider>
@@ -20,24 +20,50 @@
               <v-stepper-content step="1">
                 <v-card
                   class="mb-12"
-                  color="grey lighten-1"
+                  
                   height="230px"
                 >
+                <v-card-text>
+                <el-form ref="form1" :model="form1" :rules="rules1"  auto-complete="on" label-position="left">
+                  <el-form-item prop="uid">
+                    <span class="svg-container">
+                      <svg-icon icon-class="user" />
+                    </span>
+                    <el-input
+                      ref="uid"
+                      v-model="form1.uid"
+                      placeholder="学号"
+                      name="uid"
+                      type="text"
+                      tabindex="1"
+                      auto-complete="on"                    
+                    />
+                  </el-form-item>                  
+               
+                  <el-form-item prop="code">
+                    <span class="svg-container">
+                      <i class="el-icon-message"></i>
+                    </span>
+                    <el-input placeholder="北航邮箱验证码" v-model="form1.code" type="text" style="width:280px"></el-input>
+                    <span>                    
+                    <el-button plain :disabled="flag" @click="getAuthCode">{{ msg }}</el-button>
+                    </span>
+                  </el-form-item>
+                </el-form>
+                </v-card-text>
                 <v-card-acation >
                   <div  class="text-center">
-                    <v-btn color="primary" @click="e1 = 2" >Continue</v-btn>
-                    <v-btn text>Cancel</v-btn>  
+                    <v-btn color="primary" @click="nextStep1('form1')" >下一步</v-btn>
+                    <v-btn text @click="resetForm('form1')">重置</v-btn> 
                   </div>
                 </v-card-action>
-                </v-card>
-
-                
+                </v-card>                
               </v-stepper-content>
 
               <v-stepper-content step="2">
                 <v-card
                   class="mb-12"
-                  color="grey lighten-1"
+                
                   height="230px"
                 >
                 <v-card-text>
@@ -51,7 +77,7 @@
                       ref="password"
                       v-model="form2.password"
                       :type="passwordType"
-                      placeholder="密码"
+                      placeholder="重置密码"
                       name="password"
                       tabindex="2"
                       auto-complete="on"
@@ -71,8 +97,8 @@
                 </v-card-text>  
                 <v-card-action >
                   <div  class="text-center">
-                  <v-btn color="primary" @click="e1 = 3" >Continue</v-btn>
-                  <v-btn text>Cancel</v-btn>
+                  <v-btn color="primary" @click="nextStep2('form2')" >下一步</v-btn>
+                  <v-btn text @click="resetForm('form2')">重置</v-btn>
                   </div>               
                 </v-card-action>         
                 </v-card>                
@@ -80,20 +106,20 @@
 
               <v-stepper-content step="3">
                 <v-card
-                  class="mb-12"
-                  color="grey lighten-1"
+                  class="mb-12"                  
                   height="230px"
                 >
                 <v-card-text>
-                  -^0^- 新登录密码重置成功，请重新登录!
+                  <p></p>
+                  <p class="text-center">-^0^- 新登录密码重置成功，请重新登录!</p>
+                  <p></P>
                 </v-card-text>
                 <v-card-action >     
                   <div  class="text-center">        
-                    <v-btn color="primary" @click="login" class="mx-auto" >重新登录</v-btn>
+                    <v-btn color="primary" @click="login"  >重新登录</v-btn>
                   </div>
                 </v-card-action>
-                </v-card>
-                
+                </v-card>              
                 
               </v-stepper-content>
             </v-stepper-items>
@@ -110,7 +136,19 @@
 <script>
 
   export default {
-    data() {
+    data() {      
+      const validateUid = (rule, value, callback) => {
+        var reg = /^\d{8}$/
+        if (value == '') {
+          callback(new Error('请输入学号'))
+        } 
+        else if (!reg.test(value)){
+          callback(new Error('请输入8位数学号'))
+        }
+        else {
+          callback()
+        }
+      };
       var validatePass = (rule, value, callback) => {
         if (value === '') {
           callback(new Error('请输入密码'));
@@ -130,8 +168,23 @@
           callback();
         }
       };
-     return {
+      
+     return {       
         e1: 1,
+        flag:false,
+        msg:'获取邮箱验证码',        
+        form1:{
+          uid:'',          
+          code:'',//验证码
+        },
+        rules1:{
+           uid: [
+            {require: true, validator: validateUid, trigger: 'blur'}
+          ],          
+          code:[
+            {required:true,message: '请输入验证码', trigger:'blur'}
+          ]
+        },
         form2:{
           password: '',
           checkPass: '',
@@ -147,7 +200,7 @@
         passwordType: 'password',
       }
     },
-    watch: {
+    watch: {     
       
     },
     methods: {
@@ -164,7 +217,99 @@
       login() {
         this.$router.push({ path: '/login' })
       },
+      resetForm(formName) {
+        this.$refs[formName].resetFields();
+      },
+       encrypt(password) {
+        let encrypt = new JSEncrypt()
+        encrypt.setPublicKey(this.pub_key)
+        // var encPassword = encrypt.encrypt(this.password)
+        // console.log(this.username)
+        // console.log(encPassword)
+        return encrypt.encrypt(password)
+      },
+      getAuthCode(){
+        this.$refs.form1.validateField('uid', (errMsg) => {
+               if (errMsg) {
+                   console.log('学号号校验未通过')
+               }else {
+                //@后端先判断该学号是否存在，再给北航邮箱发送验证码
+                //sendAuthoCode(submitForm).then(res => {
+                  const _this =this;
+                  this.flag = true; 
+                  var time = 150;//定义时间变量 150s
+                  var timer = null;//定义定时器
+                  timer = setInterval(function(){
+                    if(time==0){
+                      _this.msg="重新获取验证码";
+                      console.log(_this.msg);         
+                      _this.flag=false;            
+                      clearInterval(timer);//清除定时器
+                    }else{
+                      _this.msg=time+"秒后重新获取";
+                      console.log(_this.msg);
+                      time--;
+                    }                    
+                  },1000)  
 
+                  //})      
+
+               }
+           })
+      },
+
+      nextStep1(formName){
+        console.log(formName);
+        this.$refs[formName].validate((valid) => {
+          if (valid) {
+            var submitForm = {
+              uid: this.form1.uid,
+              code:this.form2.code,
+            }
+            console.log(submitForm)
+            //@与后端交互
+            /*
+            sendAuthCode(submitForm).then(res => {
+              //判断验证码是否正确
+              //如果正确
+              */
+              this.e1=2;
+              /*
+            }).catch(error => {
+              console.log(error)
+            })*/
+          } else {
+            
+            return false;
+          }                
+          })
+      },
+
+      nextStep2(formName){
+        console.log(formName);
+        this.$refs[formName].validate((valid) => {
+          if (valid) {
+            var submitForm = {
+              password: this.encrypt(this.form2.password),            
+            }
+            console.log(submitForm)
+            //@与后端交互
+            /*
+            resetPWD(this.form1.uid,submitForm).then(res => {            
+              
+              */
+              this.e1=3;
+              /*
+            }).catch(error => {
+              console.log(error)
+            })*/
+          } else {
+            
+            return false;
+          }                
+          })     
+
+      },
      
     }
   }
@@ -177,6 +322,7 @@
 $bg:#283443;
 $light_gray:#fff;
 $cursor: #fff;
+
 
 @supports (-webkit-mask: none) and (not (cater-color: $cursor)) {
   .login-container .el-input input {
@@ -196,7 +342,7 @@ $cursor: #fff;
   .el-input {
     display: inline-block;
     height: 47px;
-    width: 85%;
+    width: 60%;
 
     input {
       background: transparent;

@@ -56,3 +56,23 @@ export function logout() {
     method: 'post'
   })
 }
+
+//@ data：{uid：'17370000'}
+export function sendAuthCode(data){
+  return request({
+    url: '/api/sendAuthCode',//url还没商量好呢
+    method: 'post',
+    data
+    //后端返回 告诉前端该账号是否存在
+  })
+}
+
+//@ data:{password:'hahahaha'}
+export function resetPWD(uid,data){
+  return request({
+    baseURL: '',
+    url: `/api/resetPWD`,//没确定
+    method: 'post',
+    data,
+  })   
+}
