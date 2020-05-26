@@ -45,10 +45,12 @@
             </el-form-item>
 
             <el-button :loading="loading" type="primary" style="width:100%;margin-bottom:30px;" @click.native.prevent="submit">登录</el-button>
-
-            <div class="tips" align="right">
-              <span style="margin-right:20px;"><el-link type="white" @click="regis">还没有账号？点击注册</el-link></span>
+            <div class="tips"  style="float:left;">              
+              <el-link type="white" @click="retrievePWD">忘记密码</el-link>
             </div>
+            <div class="tips"  style="float:right;">         
+              <el-link type="white" @click="regis">还没有账号？点击注册</el-link>              
+            </div>            
           </el-form>
         <!--/el-card-->
       </el-col>
@@ -58,7 +60,7 @@
 
 <script>
 import { validUid } from '@/utils/validate'
-import { JSEncrypt } from 'jsencrypt'
+import { encrypt } from '@/utils/encrypt'
 
 export default {
   name: 'Login',
@@ -100,8 +102,7 @@ export default {
       immediate: true
     }
   },
-  methods: {
-    
+  methods: {    
     showPwd() {
       if (this.passwordType === 'password') {
         this.passwordType = ''
@@ -117,8 +118,8 @@ export default {
       this.$refs.loginForm.validate(valid => { // 箭头函数可以直接访问到最外面的this
         if (valid) {
           this.loading = true
-          var encPassword = this.encrypt(this.loginForm.password)
-          console.log(encPassword)
+          var encPassword = encrypt(this.loginForm.password)
+          // console.log(encPassword)
           this.$store.dispatch('user/login', {uid: this.loginForm.uid, password: encPassword}).then(res => { // dispatch: 把这个请求分发到user/login处理
             console.log(res)
             this.$router.push({ path: this.redirect || '/' })
@@ -135,6 +136,10 @@ export default {
     },
     regis() {
       this.$router.push({ path: '/register' })
+    },
+    //@add Password
+    retrievePWD(){
+      this.$router.push({ path: '/retrievePassword' })
     },
     encrypt(password) {
       let encrypt = new JSEncrypt()
