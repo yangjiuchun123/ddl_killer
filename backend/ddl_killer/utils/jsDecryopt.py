@@ -53,7 +53,7 @@ def decode(input_data):
         # 分组解密默认长度128
         default_length = 128
         # 创建私钥对象
-        pri_key = RSA.importKey(private_key.decode('utf-8'))
+        pri_key = RSA.importKey(private_key)
         cipher = PKCS1_v1_5.new(pri_key)
         # 现将base64编码格式的数据解码，然后解密，并用decode转成str
         input_data_b64 = base64.b64decode(input_data.encode('utf-8'))
