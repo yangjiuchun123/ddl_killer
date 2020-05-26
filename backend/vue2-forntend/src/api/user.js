@@ -56,3 +56,12 @@ export function logout() {
     method: 'post'
   })
 }
+
+export function getPubKey() {
+  return request({
+    baseURL: '',
+    url: '/api/security/pub-key',
+    // url: '/vue-admin-template/user/logout',
+    method: 'get'
+  })
+}
