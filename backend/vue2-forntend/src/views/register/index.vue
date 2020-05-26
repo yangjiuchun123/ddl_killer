@@ -97,7 +97,7 @@
 
 <script>
 import { register } from '@/api/user'
-import { JSEncrypt } from 'jsencrypt'
+import { encrypt } from '@/utils/encrypt'
 
   export default {
     data() {
@@ -166,7 +166,6 @@ import { JSEncrypt } from 'jsencrypt'
           ]
         },
         passwordType: 'password',
-        pub_key: '-----BEGIN PUBLIC KEY-----\nMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCt1/hVqW9pxTAp6vbJu5+5myvA\nF8wvsEqM7FdIAKe5hhD1paQhPcG/RkPFzQG1u0jeQcwNJIddhmk/jqAK0v2GbHhV\nUEw/rQ8AATFxLTitXWhjFPC2quAlGRzRby4LALxlWBziGNzKU6BERsI1nawJb1If\ni/+q/qgZMCAGKY1EAwIDAQAB\n-----END PUBLIC KEY-----'
       };
     },
     watch: {
@@ -196,7 +195,7 @@ import { JSEncrypt } from 'jsencrypt'
               uid: this.ruleForm.uid,
               name: this.ruleForm.name,
               email: this.ruleForm.email,
-              password: this.encrypt(this.ruleForm.password),
+              password: encrypt(this.ruleForm.password),
             }
             console.log(submitForm.password)
             register(submitForm).then(res => {
@@ -219,14 +218,6 @@ import { JSEncrypt } from 'jsencrypt'
       login() {
         this.$router.push({ path: '/login' })
       },
-      encrypt(password) {
-        let encrypt = new JSEncrypt()
-        encrypt.setPublicKey(this.pub_key)
-        // var encPassword = encrypt.encrypt(this.password)
-        // console.log(this.username)
-        // console.log(encPassword)
-        return encrypt.encrypt(password)
-      }
     }
   }
 </script>

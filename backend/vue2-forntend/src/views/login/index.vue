@@ -118,15 +118,16 @@ export default {
       this.$refs.loginForm.validate(valid => { // 箭头函数可以直接访问到最外面的this
         if (valid) {
           this.loading = true
-          var encPassword = encrypt(this.loginForm.password)
-          // console.log(encPassword)
-          this.$store.dispatch('user/login', {uid: this.loginForm.uid, password: encPassword}).then(res => { // dispatch: 把这个请求分发到user/login处理
-            console.log(res)
-            this.$router.push({ path: this.redirect || '/' })
-            this.loading = false
-          }).catch(error => {
-            console.log(error)
-            this.loading = false
+          encrypt(this.loginForm.password).then(encPassword => {
+            console.log("encPassword: ", encPassword)
+            this.$store.dispatch('user/login', {uid: this.loginForm.uid, password: encPassword}).then(res => { // dispatch: 把这个请求分发到user/login处理
+              console.log(res)
+              this.$router.push({ path: this.redirect || '/' })
+              this.loading = false
+            }).catch(error => {
+              console.log(error)
+              this.loading = false
+            })
           })
         } else {
           console.log('error submit!!')
@@ -140,14 +141,6 @@ export default {
     //@add Password
     retrievePWD(){
       this.$router.push({ path: '/retrievePassword' })
-    },
-    encrypt(password) {
-      let encrypt = new JSEncrypt()
-      encrypt.setPublicKey(this.pub_key)
-      // var encPassword = encrypt.encrypt(this.password)
-      // console.log(this.username)
-      // console.log(encPassword)
-      return encrypt.encrypt(password)
     }
   }
 }

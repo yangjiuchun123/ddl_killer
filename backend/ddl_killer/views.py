@@ -59,7 +59,7 @@ def get_security_public_key(request):
     :return:
     """
     key = create_js_pub_key()
-    response = {'pub_key': key.pub_key, 'key_id': key.id}
+    response = {'code':200, 'pub_key': key.pub_key, 'key_id': key.id}
     return JsonResponse(response, json_dumps_params={'ensure_ascii': False}, charset='utf_8_sig')
 
 
