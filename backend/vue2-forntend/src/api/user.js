@@ -38,6 +38,26 @@ export function getUserInfo(uid) {
   })
 }
 
+// 获取个人中心的设置
+export function getUserSetting(uid) {
+  return request({
+    url: `/api/user/${uid}/settings`,
+    method: 'get',
+    uid
+  })
+}
+//更改个人中心的设置
+export function modifyUserSetting(uid, data) {
+  return request({
+    baseURL: '',
+    url: `/api/user/${uid}/settings`,
+    method: 'post',
+    data,
+    uid
+  })
+}
+
+
 export function modifyUserInfo(uid, data) {
   return request({
     baseURL: '',
@@ -56,3 +76,5 @@ export function logout() {
     method: 'post'
   })
 }
+
+
