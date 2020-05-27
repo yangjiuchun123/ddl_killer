@@ -189,25 +189,21 @@ import { encrypt } from '@/utils/encrypt'
         })
       },
       submitForm(formName) {
-        this.$refs[formName].validate((valid) => {
+        this.$refs[formName].validate( async valid => { 
           if (valid) {
             var submitForm = {
               uid: this.ruleForm.uid,
               name: this.ruleForm.name,
               email: this.ruleForm.email,
-              // password: encrypt(this.ruleForm.password),
+              password:  await encrypt(this.ruleForm.password)
             }
-            encrypt(this.ruleForm.password).then(encPassword => {
-              submitForm['password'] = encPassword
-              console.log(submitForm.password)
-              register(submitForm).then(res => {
-                // this.$router.push({ path: '/login' })
-                alert('点击跳转至北航邮箱进行验证');
-                // this.window.open({ path: 'https://mail.buaa.edu.cn/coremail/index.jsp?nodetect=true' })
-                window.open('https://mail.buaa.edu.cn/coremail/index.jsp?nodetect=true', "_self");
-              }).catch(error => {
-                console.log(error)
-              })
+            register(submitForm).then(res => {
+              // this.$router.push({ path: '/login' })
+              alert('点击跳转至北航邮箱进行验证');
+              // this.window.open({ path: 'https://mail.buaa.edu.cn/coremail/index.jsp?nodetect=true' })
+              window.open('https://mail.buaa.edu.cn/coremail/index.jsp?nodetect=true', "_self");
+            }).catch(error => {
+              console.log(error)
             })
             
           } else {
