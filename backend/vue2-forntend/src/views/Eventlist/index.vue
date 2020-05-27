@@ -85,6 +85,14 @@
                       </el-form-item>
                     </el-col>
                   </el-form-item>
+                  <el-form-item label="重复提醒" v-if="newForm.notification_alert==true" >
+                    <el-select v-model="newForm.repeat" placeholder="请选择是否重复">
+                      <el-option label="否" value=""></el-option>
+                      <el-option label="每日" value="daily"></el-option>
+                      <el-option label="每周" value="weekly"></el-option>
+                      <el-option label="每月" value="monthly"></el-option>
+                    </el-select>
+                  </el-form-item>
                   <el-form-item  label="其他参与成员" prop="participant">
                     <el-select
                         v-model="newForm.participant"
@@ -171,6 +179,14 @@
                       </el-date-picker>
                     </el-form-item>
                   </el-tooltip>
+                  <el-form-item label="重复提醒" v-show="detailForm.notification_alert==true" >
+                    <el-select v-model="detailForm.repeat" placeholder="请选择是否重复">
+                      <el-option label="否" value=""></el-option>
+                      <el-option label="每日" value="daily"></el-option>
+                      <el-option label="每周" value="weekly"></el-option>
+                      <el-option label="每月" value="monthly"></el-option>
+                    </el-select>
+                   </el-form-item>
                 </el-form>
               </v-card-text>
               <v-card-actions>
@@ -256,7 +272,8 @@ export default {
           notification_alert:false,
           notification_time: '',
           isAdmin:false,
-          is_finished: false
+          is_finished: false,
+          repeat:''
       },
       defaultForm:{  //详情页
           tid:-1,
@@ -271,7 +288,8 @@ export default {
           notification_alert:false,
           notification_time: '',
           isAdmin:false,
-          is_finished: false
+          is_finished: false,
+          repeat:''
       },
       newForm:{//创建日程界面
           tid: -1,
@@ -285,7 +303,8 @@ export default {
           alertDay:'',
           alertTime:'',
           notification_alert:false,
-          participant: []
+          participant: [],
+          repeat:''
       },
     
       createRule:{
