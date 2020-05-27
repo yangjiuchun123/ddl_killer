@@ -38,6 +38,26 @@ export function getUserInfo(uid) {
   })
 }
 
+// 获取个人中心的设置
+export function getUserSetting(uid) {
+  return request({
+    url: `/api/user/${uid}/settings`,
+    method: 'get',
+    uid
+  })
+}
+//更改个人中心的设置
+export function modifyUserSetting(uid, data) {
+  return request({
+    baseURL: '',
+    url: `/api/user/${uid}/settings`,
+    method: 'post',
+    data,
+    uid
+  })
+}
+
+
 export function modifyUserInfo(uid, data) {
   return request({
     baseURL: '',
@@ -55,4 +75,24 @@ export function logout() {
     // url: '/vue-admin-template/user/logout',
     method: 'post'
   })
+}
+
+//@ data：{uid：'17370000'}
+export function sendAuthCode(data){
+  return request({
+    url: '/api/sendAuthCode',//url还没商量好呢
+    method: 'post',
+    data
+    //后端返回 告诉前端该账号是否存在
+  })
+}
+
+//@ data:{password:'hahahaha'}
+export function resetPWD(uid,data){
+  return request({
+    baseURL: '',
+    url: `/api/resetPWD`,//没确定
+    method: 'post',
+    data,
+  })   
 }

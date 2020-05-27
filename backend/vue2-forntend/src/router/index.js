@@ -41,6 +41,12 @@ export const constantRoutes = [
     component: () => import('@/views/register/index'),
     hidden: true
   },
+  //@password
+  {
+    path: '/retrievePassword',
+    component: () => import('@/views/retrievePassword/index'),
+    hidden: true
+  },
   {
     path: '/successRedirect',
     component: () => import('@/views/SuccessRedirect/index')
