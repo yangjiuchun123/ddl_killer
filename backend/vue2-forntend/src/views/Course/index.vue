@@ -182,9 +182,9 @@
 
                                     <v-col cols="12" v-show="task_type=='团队任务'">
                                       <v-combobox
-                                        v-model="task_platform"
-                                        :items="platform_items"
-                                        :search-input.sync="platform_search"
+                                        v-model="task_participant"
+                                        :items="participant_items"
+                                        :search-input.sync="participant_search"
                                         hide-selected
                                         hint="请输入需要通知到的相关成员的学号"
                                         label="相关成员"
@@ -197,7 +197,7 @@
                                           <v-list-item>
                                             <v-list-item-content>
                                               <v-list-item-title>
-                                                No results matching "<strong>{{ platform_search }}</strong>". Press <kbd>enter</kbd> to create a new one
+                                                No results matching "<strong>{{ participant_search }}</strong>". Press <kbd>enter</kbd> to create a new one
                                               </v-list-item-title>
                                             </v-list-item-content>
                                           </v-list-item>
@@ -424,7 +424,7 @@
       task_ddl: '',
       task_date: '',
       task_time: '',
-      task_platform: [],
+      task_participant: [],
       TaskDialog: false,
       menu2: false,
       menu3: false,
@@ -550,7 +550,7 @@
         this.task_ddl = ddl1
         this.task_date = ''
         this.task_time = '24:00'
-        this.task_platform = []
+        this.task_participant = []
 
         this.isTitleChange = false
         this.formHasErrors = false
@@ -576,7 +576,7 @@
         this.task_ddl = ddl1
         this.task_date = ''
         this.task_time = '24:00'
-        this.task_platform = []
+        this.task_participant = []
 
         this.isTitleChange = false
         this.formHasErrors = false
@@ -598,7 +598,8 @@
           title: this.task_title,
           category: (this.task_type=="个人日程")?'person':'meeting',
           content: this.task_content,
-          platform:this.task_platform,
+          participant:this.task_participant,
+          platform: '',
           urls:'',
           create_time: new Date().toISOString().substr(0, 10) + 
             ' ' + new Date().getHours() + ':' + + new Date().getMinutes() + ':'+ new Date().getSeconds(),
@@ -628,7 +629,7 @@
             //为新建的task赋值后端分配的tid
             new_task['tid']=res.data.tid                       
             console.log(new_task.tid)
-            initDialog()
+            this.initDialog()
           })
         }
       },
@@ -640,7 +641,8 @@
           title: this.task_content.substr(0,20),
           category: 'person',
           content: this.task_content,
-          platform:this.task_platform,
+          participant:this.task_participant,
+          platform: '',
           urls:'',
           create_time: new Date().toISOString().substr(0, 10) + 
             ' ' + new Date().getHours() + ':' + + new Date().getMinutes() + ':'+ new Date().getSeconds(),
@@ -657,7 +659,7 @@
           new_task['tid']=res.data.tid                       
           console.log(new_task.tid)
           this.task_content = ''
-          initDialog()
+          this.initDialog()
         })
       },
 
