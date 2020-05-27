@@ -30,126 +30,6 @@
               height="28px"
             ></v-text-field>
 
-
-            <!-- -----------------快速创建 -->
-
-            <v-dialog v-model="TaskDialog" persistent max-width="600px">
-              <template v-slot:activator="{ on }">
-                <v-btn color="primary" dark class="mr-6" v-on="on" @click="initDialog"><v-icon>mdi-plus</v-icon></v-btn>
-                <!-- <v-btn color="primary" dark class="mr-2" v-on="on" icon large><v-icon>mdi-plus-circle</v-icon></v-btn> -->
-              </template>
-              <v-card ref="form">
-                <v-card-title></v-card-title>
-                <v-card-text>
-                  <v-container>
-                    <v-row>
-                      <v-col cols="12">
-                        <v-text-field ref="title" label="事项名称" v-model="task_title" :rules="[rules.required]" required outlined clearable></v-text-field>
-                      </v-col>
-
-                      <v-col cols="12">
-                        <v-textarea label="详细描述" v-model="task_content" auto-growed no-resize outlined clearable></v-textarea>
-                      </v-col>
-
-                      <v-col cols="12" sm="6">
-                        <v-select :items="task_types" v-model="task_type" label="事项类型" required outlined></v-select>
-                      </v-col>
-
-                      <v-col cols="12" sm="3">
-                        <v-select
-                          label="截止日期"
-                          :items="task_ddls"
-                          v-model="task_ddl"
-                          v-show="!isPicker"
-                          required outlined
-                        >
-                          <template v-slot:append-item>
-                            <v-divider class="mb-2"></v-divider>
-                            <v-list-item
-                              ripple
-                              @click="isPicker=true"
-                            >选择其他日期</v-list-item>
-                          </template>
-                        </v-select>
-
-                        <v-menu
-                          v-model="menu2"
-                          :close-on-content-click="false"
-                          :nudge-right="40"
-                          transition="scale-transition" offset-y min-width="290px"
-                        >
-                          <template v-slot:activator="{ on }">
-                            <v-text-field
-                              ref="date"
-                              label="点击选择日期"
-                              v-model="task_date"
-                              v-show="isPicker"
-                              v-on="on"
-                              :rules="[rules.required]"
-                              readonly outlined
-                            ></v-text-field>
-                          </template>
-                          <v-date-picker v-model="task_date" @input="menu2 = false"></v-date-picker>
-                        </v-menu>
-                      </v-col>
-
-                      <v-col cols="12" sm="3">
-                        <v-menu
-                          ref="menu"
-                          v-model="menu4"
-                          :close-on-content-click="false"
-                          :nudge-right="40"
-                          :return-value.sync="task_time"
-                          transition="scale-transition"
-                          offset-y
-                          max-width="290px"
-                          min-width="290px"
-                        >
-                          <template v-slot:activator="{ on }">
-                            <v-text-field
-                              v-model="task_time"
-                              label="截止时间"
-                              outlined
-                              readonly
-                              v-on="on"
-                            ></v-text-field>
-                          </template>
-                          <v-time-picker
-                            v-if="menu4"
-                            v-model="task_time"
-                            full-width
-                            ampm-in-title
-                            @click:minute="$refs.menu.save(task_time)"
-                          ></v-time-picker>
-                        </v-menu>
-                      </v-col>
-
-                      <v-col cols="12" v-show="task_type=='团队任务'">
-                        <v-select
-                          :items="['0-17', '18-29', '30-54', '54+']"
-                          label="相关成员"
-                          required
-                          outlined
-                          clearable
-                        ></v-select>
-                      </v-col>
-                    </v-row>
-                    <v-card-actions>
-                      <v-row>
-                          <v-btn block depressed  small tile color="primary" @click="saveDialog"> Save </v-btn>
-                          <v-btn block depressed  small tile @click="initDialog();TaskDialog=false;"> Close </v-btn>
-                      </v-row>
-                      </v-card-actions>
-                  </v-container>
-                </v-card-text>
-              </v-card>
-            </v-dialog>
-
-
-
-
-
-            
             <!--DDL列表 开始-->
             <v-tab-item>
               <!--Eventlist></Eventlist-->
@@ -194,6 +74,153 @@
                 </template>
 
               </v-data-table>
+
+              <v-divider></v-divider>
+
+              <!-- -----------------快速创建 -->
+              <v-row>
+                  <v-col cols="12" sm="1"></v-col>
+                  <v-col cols="12" sm="10">
+                    <v-text-field
+                      background-color="blue lighten-5"
+                      v-model="task_content"
+                      @keyup.enter="onEnterSubmit"
+                      hint="✅输入日程内容, 回车快速创建！！也可以点击右侧➕号进行详细设置！"
+                      solo
+                    >
+                        <template v-slot:append>
+                          <v-dialog v-model="TaskDialog" persistent max-width="600px">
+                            <template v-slot:activator="{ on }">
+                              <v-btn color="primary" dark v-on="on" icon large @click="naive_initDialog"><v-icon>mdi-plus</v-icon></v-btn>
+                              <!-- <v-btn color="primary" dark class="mr-2" v-on="on" icon large><v-icon>mdi-plus-circle</v-icon></v-btn> -->
+                            </template>
+                            <v-card ref="form">
+                              <v-card-title></v-card-title>
+                              <v-card-text>
+                                <v-container>
+                                  <v-row>
+                                    <v-col cols="12">
+                                      <v-text-field ref="title" label="事项名称" v-model="task_title" :rules="[rules.required]" required outlined clearable></v-text-field>
+                                    </v-col>
+
+                                    <v-col cols="12">
+                                      <v-textarea label="详细描述" v-model="task_content" auto-growed no-resize outlined clearable></v-textarea>
+                                    </v-col>
+
+                                    <v-col cols="12" sm="6">
+                                      <v-select :items="task_types" v-model="task_type" label="事项类型" required outlined></v-select>
+                                    </v-col>
+
+                                    <v-col cols="12" sm="3">
+                                      <v-select
+                                        label="截止日期"
+                                        :items="task_ddls"
+                                        v-model="task_ddl"
+                                        v-show="!isPicker"
+                                        required outlined
+                                      >
+                                        <template v-slot:append-item>
+                                          <v-divider class="mb-2"></v-divider>
+                                          <v-list-item
+                                            ripple
+                                            @click="isPicker=true"
+                                          >选择其他日期</v-list-item>
+                                        </template>
+                                      </v-select>
+
+                                      <v-menu
+                                        v-model="menu2"
+                                        :close-on-content-click="false"
+                                        :nudge-right="40"
+                                        transition="scale-transition" offset-y min-width="290px"
+                                      >
+                                        <template v-slot:activator="{ on }">
+                                          <v-text-field
+                                            ref="date"
+                                            label="点击选择日期"
+                                            v-model="task_date"
+                                            v-show="isPicker"
+                                            v-on="on"
+                                            :rules="[rules.required]"
+                                            readonly outlined
+                                          ></v-text-field>
+                                        </template>
+                                        <v-date-picker v-model="task_date" @input="menu2 = false"></v-date-picker>
+                                      </v-menu>
+                                    </v-col>
+
+                                    <v-col cols="12" sm="3">
+                                      <v-menu
+                                        ref="menu"
+                                        v-model="menu4"
+                                        :close-on-content-click="false"
+                                        :nudge-right="40"
+                                        :return-value.sync="task_time"
+                                        transition="scale-transition"
+                                        offset-y
+                                        max-width="290px"
+                                        min-width="290px"
+                                      >
+                                        <template v-slot:activator="{ on }">
+                                          <v-text-field
+                                            v-model="task_time"
+                                            label="截止时间"
+                                            outlined
+                                            readonly
+                                            v-on="on"
+                                          ></v-text-field>
+                                        </template>
+                                        <v-time-picker
+                                          v-if="menu4"
+                                          v-model="task_time"
+                                          full-width
+                                          ampm-in-title
+                                          @click:minute="$refs.menu.save(task_time)"
+                                        ></v-time-picker>
+                                      </v-menu>
+                                    </v-col>
+
+                                    <v-col cols="12" v-show="task_type=='团队任务'">
+                                      <v-combobox
+                                        v-model="task_platform"
+                                        :items="platform_items"
+                                        :search-input.sync="platform_search"
+                                        hide-selected
+                                        hint="请输入需要通知到的相关成员的学号"
+                                        label="相关成员"
+                                        multiple
+                                        persistent-hint
+                                        small-chips
+                                        outlined
+                                      >
+                                        <template v-slot:no-data>
+                                          <v-list-item>
+                                            <v-list-item-content>
+                                              <v-list-item-title>
+                                                No results matching "<strong>{{ platform_search }}</strong>". Press <kbd>enter</kbd> to create a new one
+                                              </v-list-item-title>
+                                            </v-list-item-content>
+                                          </v-list-item>
+                                        </template>
+                                      </v-combobox>
+                                    </v-col>
+                                  </v-row>
+                                  <v-card-actions>
+                                    <v-row>
+                                        <v-btn block depressed  small tile color="primary" @click="saveDialog"> Save </v-btn>
+                                        <v-btn block depressed  small tile @click="initDialog();TaskDialog=false;"> Close </v-btn>
+                                    </v-row>
+                                    </v-card-actions>
+                                </v-container>
+                              </v-card-text>
+                            </v-card>
+                          </v-dialog>
+
+                        </template>
+                      </v-text-field>
+                  </v-col>
+                  <v-col cols="12" sm="1"></v-col>
+                </v-row>
 
             </v-tab-item>
             <!--DDL列表 结束-->
@@ -279,10 +306,10 @@
                 </template>
               </v-data-table>
             </v-tab-item>
-
-
           </v-tabs>
+          
       </v-card>
+
       <!--/v-toolbar-->
     </v-app>
   </div>
@@ -290,6 +317,7 @@
 
 <script>
   import { getUserCourses, getCourseTaskByCid,  getResourceByCid, getNoticesByCid, addResource} from '@/api/course';
+  import { getAllTasks, createOneTask, modifyOneTask,deleteOneTask } from "@/api/user_task"
   import { alterTaskState } from '@/api/tasks';
 
   import Eventlist from '../Eventlist/index.vue'
@@ -396,6 +424,7 @@
       task_ddl: '',
       task_date: '',
       task_time: '',
+      task_platform: [],
       TaskDialog: false,
       menu2: false,
       menu3: false,
@@ -521,6 +550,7 @@
         this.task_ddl = ddl1
         this.task_date = ''
         this.task_time = '24:00'
+        this.task_platform = []
 
         this.isTitleChange = false
         this.formHasErrors = false
@@ -529,6 +559,27 @@
           this.$refs[f].reset()
         })
 
+      },
+
+      naive_initDialog() {
+        var week = new Array("周日", "周一", "周二", "周三", "周四", "周五", "周六")
+        var today = new Date()
+        var ddl1 = '今天 '+week[today.getDay()]+' '+today.toISOString().substr(0, 10)
+        today.setDate(today.getDate() + 1)
+        var ddl2 = '明天 '+week[today.getDay()]+' '+today.toISOString().substr(0, 10)
+        today.setDate(today.getDate() + 6)
+        var ddl3 = '下周 '+week[today.getDay()]+' '+today.toISOString().substr(0, 10)
+        this.isPicker = false
+        this.task_types =  ['个人日程', '团队任务']
+        this.task_type = '个人日程'
+        this.task_ddls = [ddl1, ddl2, ddl3]
+        this.task_ddl = ddl1
+        this.task_date = ''
+        this.task_time = '24:00'
+        this.task_platform = []
+
+        this.isTitleChange = false
+        this.formHasErrors = false
       },
 
       saveDialog() {
@@ -543,10 +594,19 @@
         var t_time = this.isPicker?this.task_date:this.task_ddl.substr(6,12)
 
         var new_task = {
+          tid:-1,
           title: this.task_title,
-          content: this.task_content,
           category: (this.task_type=="个人日程")?'person':'meeting',
+          content: this.task_content,
+          platform:this.task_platform,
+          urls:'',
+          create_time: new Date().toISOString().substr(0, 10) + 
+            ' ' + new Date().getHours() + ':' + + new Date().getMinutes() + ':'+ new Date().getSeconds(),
           ddl_time: t_time+' '+this.task_time+':00',
+          notification_alert:false,
+          notification_time: '',
+          isAdmin:true,
+          is_finished: false
         }
 
         console.log(new_task)
@@ -560,9 +620,47 @@
 
         console.log(this.formHasErrors)
 
-        if (!this.formHasErrors)
+        if (!this.formHasErrors){
           this.TaskDialog = false
+
+          createOneTask(this.$store.getters.uid, new_task).then(res =>{
+            console.log(res.data)
+            //为新建的task赋值后端分配的tid
+            new_task['tid']=res.data.tid                       
+            console.log(new_task.tid)
+            initDialog()
+          })
+        }
       },
+
+      onEnterSubmit() {
+        console.log(this.task_content)
+        var new_task = {
+          tid:-1,
+          title: this.task_content.substr(0,20),
+          category: 'person',
+          content: this.task_content,
+          platform:this.task_platform,
+          urls:'',
+          create_time: new Date().toISOString().substr(0, 10) + 
+            ' ' + new Date().getHours() + ':' + + new Date().getMinutes() + ':'+ new Date().getSeconds(),
+          ddl_time: new Date().toISOString().substr(0, 10) + ' 24:00:00',
+          notification_alert:false,
+          notification_time: '',
+          isAdmin:true,
+          is_finished: false
+        }
+        console.log(new_task)
+        createOneTask(this.$store.getters.uid, new_task).then(res =>{
+          console.log(res.data)
+          //为新建的task赋值后端分配的tid
+          new_task['tid']=res.data.tid                       
+          console.log(new_task.tid)
+          this.task_content = ''
+          initDialog()
+        })
+      },
+
     },
 
     computed: {
