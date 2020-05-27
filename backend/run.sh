@@ -1,10 +1,7 @@
-./halt.sh
-# pkill -9 python
-systemctl start nginx.service
+for i in `ps -ef|grep uwsgi |awk '{print $2}' `; do kill -9 $i ; done;
 rm -rf vue2-forntend/dist
 cd vue2-forntend && cnpm run build:prod && cd ..
 rm -rf static
-#source venv/bin/activate
 python manage.py makemigrations
 python manage.py collectstatic
 python manage.py migrate
