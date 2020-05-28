@@ -30,6 +30,8 @@ from .models import CourseResource
 from .models import CourseTask
 from .models import Note
 from .models import CourseNote
+from .models import Message
+from .models import UserMessage
 
 from itsdangerous import URLSafeTimedSerializer as utsr
 import base64
@@ -840,4 +842,87 @@ def personal_setting(request, uid): # 个人设置，如果是GET则直接返回
     # else:
         # response["code"] = 401
         # response["msg"]="The user does not exist!"
+    return JsonResponse(response, json_dumps_params={'ensure_ascii':False}, charset='utf_8_sig')
+
+
+def show_user_message(request, uid):
+    response = {}
+    if not request.META.get("HTTP_AUTHORIZATION") or not check_password(uid,request.META.get("HTTP_AUTHORIZATION")):
+        response['code'] = 401
+        response['msg'] = "Authorization failed!"
+        return JsonResponse(response, json_dumps_params={'ensure_ascii':False}, charset='utf_8_sig')
+    user = User.objects.get(uid=uid)
+    
+    response['data'] = []
+    try:
+        type = request.GET.get('type')
+        if type=="read":
+            for um in UserMessage.objects.filter(user__uid=user.uid):
+                m = um.message
+                if um.is_read==True:
+                    response['data'].append({
+                        'mid': m.mid,
+                        'title': m.title,
+                        'content': m.content,
+                        'is_read': um.is_read,
+                        'category': m.category,
+                        'publisher': m.publisher,
+                        'publish_time': m.publish_time 
+                    })
+        elif type=="unread":
+            for um in UserMessage.objects.filter(user__uid=user.uid):
+                m = um.message
+                if um.is_read==False:
+                    response['data'].append({
+                        'mid': m.mid,
+                        'title': m.title,
+                        'content': m.content,
+                        'is_read': um.is_read,
+                        'category': m.category,
+                        'publisher': m.publisher,
+                        'publish_time': m.publish_time 
+                    })
+        else:
+            for um in UserMessage.objects.filter(user__uid=user.uid):
+                m = um.message
+                if m.category==type:
+                    response['data'].append({
+                        'mid': m.mid,
+                        'title': m.title,
+                        'content': m.content,
+                        'is_read': um.is_read,
+                        'category': m.category,
+                        'publisher': m.publisher,
+                        'publish_time': m.publish_time 
+                    })
+        response['code'] = 200
+        response['msg'] = "Success."
+    except:
+        traceback.print_exc()
+        response['code'] = 500
+        response['msg'] = "Internal Error."
+    return JsonResponse(response, json_dumps_params={'ensure_ascii':False}, charset='utf_8_sig')
+
+
+def get_message_read(request, uid, mid):
+    response = {}
+    if not request.META.get("HTTP_AUTHORIZATION") or not check_password(uid,request.META.get("HTTP_AUTHORIZATION")):
+        response['code'] = 401
+        response['msg'] = "Authorization failed!"
+        return JsonResponse(response, json_dumps_params={'ensure_ascii':False}, charset='utf_8_sig')
+    user = User.objects.get(uid=uid)
+    message = Message.objects.get(mid=mid)
+    if not messgae:
+        response['code'] = 404
+        response['msg'] = "Message Not Found!"
+    else:
+        um = UserMessage.objects.filter(user__uid=user.uid, message__mid=message.mid)
+        if not um.exists():
+            response['code'] = 404
+            response['msg'] = "You have no rights to access this messgae!"
+        else:
+            um.is_read=True
+            um.save()
+            response['code'] = 200
+            response['msg'] = "Success."
     return JsonResponse(response, json_dumps_params={'ensure_ascii':False}, charset='utf_8_sig')
