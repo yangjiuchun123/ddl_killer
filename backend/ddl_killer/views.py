@@ -513,6 +513,14 @@ def show_user_tasks(request, uid): #用户查看自己的所有任务及ddl
                 response['code'] = 200
                 for t in usertask:
                     # print(t)
+                    if t.task.urls and "panel=Main" in t.task.urls:
+                        # print(t.task.urls)
+                        if t.is_finished:
+                            homework_url = t.task.urls+"sakai_action=doView_grade"
+                        else:
+                            homework_url = t.task.urls+"sakai_action=doView_submission"
+                    else:
+                        homework_url = t.task.urls
                     response["data"].append({
                         "tid": t.task.tid,
                         "title": t.task.title,
@@ -520,7 +528,7 @@ def show_user_tasks(request, uid): #用户查看自己的所有任务及ddl
                         "content": t.task.content,
                         "platform": t.task.platform,
                         "category": t.task.category,
-                        "urls": t.task.urls,
+                        "urls": homework_url,
                         "ddl_time": t.task.ddl_time,
                         "notification_time": t.notification_time,
                         "notification_alert": t.notification_alert,
@@ -560,6 +568,14 @@ def show_course_tasks(request, uid, cid): #用户uid,相应课程cid
     usertask = UserTask.objects.filter(user__uid=uid, is_deleted=False) #从该用户的所有task中筛选出和cid建立联系的task
     for ut in usertask:
         ct=CourseTask.objects.filter(course__cid=cid,task__tid=ut.task.tid)
+        if ut.task.urls and "panel=Main" in ut.task.urls:
+            #print(ut.task.urls)
+            if ut.is_finished:
+                homework_url = ut.task.urls+"sakai_action=doView_grade"
+            else:
+                homework_url = ut.task.urls+"sakai_action=doView_submission"
+        else:
+            homework_url = ut.task.urls
         if ct.exists():
             response["data"].append({
                 "tid": ut.task.tid,
@@ -568,7 +584,7 @@ def show_course_tasks(request, uid, cid): #用户uid,相应课程cid
                 "content": ut.task.content,
                 "platform": ut.task.platform,
                 "category": ut.task.category,
-                "urls": ut.task.urls,
+                "urls": homework_url,
                 "ddl_time": ut.task.ddl_time,
                 "notification_time": ut.notification_time,
                 "notification_alert": ut.notification_alert,
@@ -733,12 +749,15 @@ def show_course_notifications(request, uid, cid):
 
 def q2ldbchange(request):
     try:
-        # for ct in CourseTask.objects.all():
-        #     c = ct.course
-        #     t = ct.task
-        #     t.course_name = c.name
-        #     t.save()
-        print(request.META.get("header key")) 
+        #"""
+        for t in Task.objects.all():
+            url=t.urls
+            if url and 'sakai_action=doView' in url:
+                preUrl = url.split('sakai_action=doView')[0]
+                t.urls = preUrl
+                t.save()
+                print(t.urls)
+        #"""
         pass
     except:
         traceback.print_exc()
