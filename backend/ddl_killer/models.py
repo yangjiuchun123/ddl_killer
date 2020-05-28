@@ -84,6 +84,19 @@ class Note(models.Model):
     content = models.TextField(null=True, blank=True)
     attachments = models.TextField(null=True, blank=True)
 
+class Message(models.Model):
+    mid = models.AutoField(primary_key=True)
+    title = models.CharField(max_length=100)
+    content = models.TextField(null=True, blank=True)
+    category = models.CharField(max_length=100)
+    publisher = models.ForeignKey('User')
+    publish_time = models.CharField(max_length=50,null=True, blank=True)
+
+class UserMessage(models.Model):
+    user = models.ForeignKey('User', on_delete=models.CASCADE)
+    message = models.ForeginKey('Message', on_delete=models.CASCADE)
+    is_read = models.BooleanField(default=False)
+
 class UserTask(models.Model):
     user = models.ForeignKey('User', on_delete=models.CASCADE)
     task = models.ForeignKey('Task', on_delete=models.CASCADE)

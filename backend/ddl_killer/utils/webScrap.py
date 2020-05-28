@@ -472,7 +472,7 @@ def updateFromCourse(uid, account, password):
 
 
 
-            ############################### get assignments #######################################
+            ############################### get notes #######################################
             if get_note:
                 # not_soup = bs(s.get(notification_url, cookies=cookie, headers=header).text, 'html.parser') # notification_soup
                 # note_url = not_soup.find('iframe').get('src')
