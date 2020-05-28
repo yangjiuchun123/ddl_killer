@@ -532,14 +532,15 @@ def show_user_tasks(request, uid): #用户查看自己的所有任务及ddl
                 response['code'] = 200
                 for t in usertask:
                     # print(t)
-                    if t.task.urls and "panel=Main" in t.task.urls:
-                        # print(t.task.urls)
-                        if t.is_finished:
+                    if t.task.urls:
+                        if "submissionId=" in t.task.urls:
                             homework_url = t.task.urls+"sakai_action=doView_grade"
-                        else:
+                        elif "assignmentReference=" in t.task.urls:
                             homework_url = t.task.urls+"sakai_action=doView_submission"
+                        else:
+                            homework_url = t.task.urls
                     else:
-                        homework_url = t.task.urls
+                        homework_url = ""
                     response["data"].append({
                         "tid": t.task.tid,
                         "title": t.task.title,
@@ -587,14 +588,15 @@ def show_course_tasks(request, uid, cid): #用户uid,相应课程cid
     usertask = UserTask.objects.filter(user__uid=uid, is_deleted=False) #从该用户的所有task中筛选出和cid建立联系的task
     for ut in usertask:
         ct=CourseTask.objects.filter(course__cid=cid,task__tid=ut.task.tid)
-        if ut.task.urls and "panel=Main" in ut.task.urls:
-            #print(ut.task.urls)
-            if ut.is_finished:
-                homework_url = ut.task.urls+"sakai_action=doView_grade"
-            else:
-                homework_url = ut.task.urls+"sakai_action=doView_submission"
+        if t.task.urls:
+             if "submissionId=" in t.task.urls:
+                 homework_url = t.task.urls+"sakai_action=doView_grade"
+             elif "assignmentReference=" in t.task.urls:
+                 homework_url = t.task.urls+"sakai_action=doView_submission"
+             else:
+                 homework_url = t.task.urls
         else:
-            homework_url = ut.task.urls
+             homework_url = ""
         if ct.exists():
             response["data"].append({
                 "tid": ut.task.tid,
