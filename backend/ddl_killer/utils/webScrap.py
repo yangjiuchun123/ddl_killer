@@ -452,7 +452,8 @@ def updateFromCourse(uid, account, password):
                                 ass['create_time'] = ass['create_time'].split('-')[0]+'-'+'%02d'%(int(ass['create_time'].split('-')[1]))+'-'+'%02d'%(int(ass['create_time'].split('-')[2].split(' ')[0]))+' '+ass['create_time'].split('-')[2].split(' ')[1]
                             ass['urls'] = i.find('a').get('href')
                             homework_detail = bs(s.get(ass['urls'], cookies=cookie, headers=header).text, 'html.parser')
-
+                            if ass['urls'] and "sakai_action=doView" in ass['urls']:
+                                ass['urls'] = ass['urls'].split('sakai_action=doView')[0]
                             try:
                                 ass['content'] = homework_detail.find('div', {'class': 'textPanel'}).text
                             except:
