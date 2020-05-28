@@ -15,6 +15,7 @@ import json
 import yagmail
 import traceback
 from .utils.jsDecryopt import decode as jsDecode
+from .utils.jsDecryopt import creat_key as create_js_pub_key
 from .utils.sendmail import register_mail, edit_mail, participate_mail, resource_mail
 
 from .utils.webScrap import updateFromCourse
@@ -47,6 +48,20 @@ class Token():
     def confirm_validate_token(self, token, expiration=3600):
         serializer = utsr(self.security_key)
         return serializer.loads(token, salt=self.salt, max_age=expiration)
+
+
+def get_security_public_key(request):
+    """
+    /security/pub-key
+
+    generate temporary security key pair and get public key
+    :param request:
+    :return:
+    """
+    key = create_js_pub_key()
+    response = {'code': 200, 'pub_key': key.pub_key, 'key_id': key.id}
+    return JsonResponse(response, json_dumps_params={'ensure_ascii': False}, charset='utf_8_sig')
+
 
 def create_user(request): #用户注册
     response={}

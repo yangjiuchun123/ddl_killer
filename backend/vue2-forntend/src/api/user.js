@@ -77,6 +77,14 @@ export function logout() {
   })
 }
 
+export function getPubKey() {
+  return request({
+    baseURL: '',
+    url: '/api/security/pub-key',
+    // url: '/vue-admin-template/user/logout',
+    method: 'get'
+  })
+}
 //@ data：{uid：'17370000'}
 export function sendAuthCode(data){
   return request({
