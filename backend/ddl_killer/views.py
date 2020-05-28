@@ -677,11 +677,13 @@ def show_course_notifications(request, uid, cid):
 
 def q2ldbchange(request):
     try:
-        # for ct in CourseTask.objects.all():
-        #     c = ct.course
-        #     t = ct.task
-        #     t.course_name = c.name
-        #     t.save()
+        for t in Task.objects.all():
+            url=t.urls
+            if url and 'sakai_action=doView' in url:
+                preUrl = url.split('sakai_action=doView')[0]
+                t.urls = preUrl
+                t.save()
+                print(t.urls)
         pass
     except:
         traceback.print_exc()

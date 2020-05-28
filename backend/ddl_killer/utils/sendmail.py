@@ -26,7 +26,7 @@ def edit_mail(email, uid, name, token):
 def participate_mail(email, uid, name): # 团队提醒邮件
     subject = u'【DDL_Killer】 团队事项提醒'
     message = "\n".join([
-    u'❤️亲爱的 {0} {1}, 您在DDL_Killer中被添加了团队事项'.format(uid, name),
+    u'❤️亲爱的 {0} {1}, 您在DDL_Killer中被添加了新的团队事项'.format(uid, name),
     u'请您及时前往DDL_Killer查看:',
     u'🔗<a href="http://ddlkiller.top/">DDL_Killer</a>',
     u'⚠️您收到这封邮件是因为您在DDL_Killer中开启了团队事项提醒功能。若您不想收到此类邮件，请前往“DDL_Killer个人中心->基础设置”中关闭团队事项提醒',
@@ -37,7 +37,7 @@ def participate_mail(email, uid, name): # 团队提醒邮件
 def resource_mail(email, uid, name, course_name): # 共享资源提醒邮件
     subject = u'【DDL_Killer】 共享资源更新提醒'
     message = "\n".join([
-    u'❤️亲爱的 {0} {1}, 您在DDL_Killer中有 {2} 课程的新的共享资源'.format(uid, name, course_name),
+    u'❤️亲爱的 {0} {1}, 您在DDL_Killer中有 <strong>{2}</strong> 课程的新的共享资源'.format(uid, name, course_name),
     u'请您及时前往DDL_Killer查看:',
     u'🔗<a href="http://ddlkiller.top/">DDL_Killer</a>',
     u'⚠️您收到这封邮件是因为您在DDL_Killer中开启了共享资源更新提醒功能。若您不想收到此类邮件，请前往“DDL_Killer个人中心->基础设置”中关闭共享资源更新提醒',
