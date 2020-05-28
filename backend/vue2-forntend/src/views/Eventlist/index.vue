@@ -1,229 +1,382 @@
 <template>
   <div id ="Eventlist">
   <v-app>
-    <v-data-table
-      :headers="headers"
-      :items="tasks"
-      :sort-by="['is_finished', 'ddl_time']"
-      :sort-desc="[false, false]"
-      multi-sort
-      class="elevation-1 mx-5"
-      :search="search"
-    >
-      <template v-slot:top>
-        <v-toolbar flat color="white">
-          <v-toolbar-title>DDL列表</v-toolbar-title>
-          <v-divider
-            class="mx-4"
-            inset
-            vertical
-          ></v-divider>
-          <v-spacer></v-spacer>
-          <v-text-field
-            v-model="search"
-            append-icon="mdi-magnify"
-            label="Search"
-            single-line
-            hide-details
-            class="mr-12"
-          ></v-text-field>
-          <v-dialog v-model="createOpen" max-width="500px">
-            <template v-slot:activator="{ on }">
-              <v-btn color="primary" dark class="mb-2" v-on="on">创建新日程</v-btn>
-            </template>
-            <v-card>
-              <v-toolbar color="primary" dark>
-                <v-toolbar-title>创建新日程</v-toolbar-title>
-              </v-toolbar>
-              <v-card-text>
-                <p></p>
-                <el-form ref="newForm" :model="newForm" :rules="createRule" label-width="110px">
-                  <el-form-item label="事项名称" prop="title">
-                    <el-input v-model="newForm.title"></el-input>
-                  </el-form-item>
-                  <el-form-item label="事项类型" >
-                    <el-select v-model="newForm.category" placeholder="请选择类型">
-                      <el-option label="个人" value="personal"></el-option>
-                      <el-option label="会议" value="meeting"></el-option>
-                    </el-select>
-                  </el-form-item>
-                  <el-form-item label="相关平台" prop="platform">
-                    <el-input v-model="newForm.platform"></el-input>
-                  </el-form-item>
-                  <el-form-item label="相关链接" prop="urls">
-                    <el-input v-model="newForm.urls"></el-input>
-                  </el-form-item>
-                  <el-form-item label="截止时间" required>
-                    <el-col :span="11">
-                      <el-form-item prop="ddlDay">
-                        <el-date-picker  value-format="yyyy-MM-dd" format="yyyy-MM-dd" placeholder="选择日期"  v-model="newForm.ddlDay" style="width: 100%;"></el-date-picker>
-                      </el-form-item>
-                    </el-col>
-                    <el-col class="line" :span="2">-</el-col>
-                    <el-col :span="11">
-                      <el-form-item prop="ddlTime">
-                        <el-time-picker value-format="HH:mm:ss" format="HH:mm:ss" placeholder="选择时间" v-model="newForm.ddlTime" style="width: 100%;"></el-time-picker>
-                      </el-form-item>
-                    </el-col>
-                  </el-form-item>
-                  <el-form-item label="任务描述" prop="content">
-                    <el-input type="textarea" v-model="newForm.content"></el-input>
-                  </el-form-item>
-                  <el-form-item label="开启提醒" prop="notification_alert">
-                    <el-switch v-model="newForm.notification_alert"></el-switch>
-                  </el-form-item>
-                  <el-form-item label="提醒时间" v-if="newForm.notification_alert==true">
-                    <el-col :span="11">
-                      <el-form-item prop="alertDay">
-                        <el-date-picker  value-format="yyyy-MM-dd" format="yyyy-MM-dd" placeholder="选择日期" v-model="newForm.alertDay" style="width: 100%;"></el-date-picker>
-                      </el-form-item>
-                    </el-col>
-                    <el-col class="line" :span="2">-</el-col>
-                    <el-col :span="11">
-                      <el-form-item prop="alertTime">
-                        <el-time-picker value-format="HH:mm:ss" format="HH:mm:ss" placeholder="选择时间" v-model="newForm.alertTime" style="width: 100%;"></el-time-picker>
-                      </el-form-item>
-                    </el-col>
-                  </el-form-item>
-                  <el-form-item label="重复提醒" v-if="newForm.notification_alert==true" >
-                    <el-select v-model="newForm.repeat" placeholder="请选择是否重复">
-                      <el-option label="否" value=""></el-option>
-                      <el-option label="每日" value="daily"></el-option>
-                      <el-option label="每周" value="weekly"></el-option>
-                      <el-option label="每月" value="monthly"></el-option>
-                    </el-select>
-                  </el-form-item>
-                  <el-form-item  label="其他参与成员" prop="participant">
-                    <el-select
-                        v-model="newForm.participant"
-                        multiple
-                        filterable
-                        allow-create
-                        default-first-option
-                        placeholder="请输入学号">
-                      </el-select>
-                  </el-form-item>
-                </el-form>
-              </v-card-text>
-              <v-card-actions>
-                <v-spacer></v-spacer>
-                <v-btn color="blue darken-1" text @click="createTask('newForm')">立即创建</v-btn>
-                <v-btn color="blue darken-1" text @click="createCancel('newForm')">取消</v-btn>
-              </v-card-actions>
-            </v-card>
-          </v-dialog>
+    <v-row class="fill-height">
+        <v-col>
+          <v-sheet>
 
-          <!-- edit对话框 -->
-          <v-dialog v-model="editOpen" max-width="500px">
-          <v-card>
-            <v-card-title>
-              <span class="headline" v-text="detailForm.title"></span>
-            </v-card-title>
-            <v-card-text>
-              <p></p>
-                <el-form ref="detailForm" :model="detailForm" label-width="100px" size="mini">
-                    <el-form-item label="" style="margin-top:10px">
-                        <span></span>
-                      </el-form-item>
-                  <el-form-item label="发布时间">
-                    <span v-text="detailForm.create_time"></span>
-                  </el-form-item>
-                  
-                  <el-form-item label="截止时间" >
-                    <el-date-picker
-                        v-if='detailForm.isAdmin'
-                        v-model="detailForm.ddl_time"
-                        placeholder="选择日期时间"
-                        value-format="yyyy-MM-dd HH:mm:ss"
-                        format="yyyy-MM-dd HH:mm:ss"
-                        type="datetime"
-                        id="date1"
-                    >
-                    </el-date-picker> 
-                    <span v-else v-text="detailForm.ddl_time"></span>
-                    </el-form-item>
-                    
-                  <el-form-item label="事项分类">
-                    <span v-text="detailForm.category"></span>
-                  </el-form-item>
-                  <el-form-item label="关联课程" v-show="detailForm.course_name!=null" >
-                    <span v-text="detailForm.course_name"></span>
-                  </el-form-item>
-                  <el-form-item  label="相关平台" v-show="detailForm.platform!=null">
-                    <span v-text="detailForm.platform"></span>
-                  </el-form-item>
-                  <el-form-item label="相关链接" v-show="detailForm.urls!=null">
-                      <a :href="detailForm.urls" target="_Blank"> {{ detailForm.urls }} </a>
-                  </el-form-item>
-                  <el-form-item label="任务描述">
-                      <el-input type="textarea" v-model="detailForm.content" :disabled="detailForm.isAdmin==false"></el-input>
-                    </el-form-item>
-                    <el-form-item label="完成状态">
-                        <el-switch v-model="detailForm.is_finished" active-color="#13ce66"></el-switch>
-                    </el-form-item>
-                  <el-form-item label="开启提醒">
-                    <el-switch v-model="detailForm.notification_alert"></el-switch>
-                  </el-form-item>
-                  
-                  <el-tooltip class="item" effect="light" content="Top Center 提示文字" placement="top">
-                    <div slot="content" ><p style="color: #E6A23C">提醒时间只能精确到分钟</p></div>
-                    <el-form-item label="提醒时间" v-show="detailForm.notification_alert==true">
-                      <el-date-picker
-                          v-model="detailForm.notification_time"
-                          placeholder="选择日期时间"
-                          value-format="yyyy-MM-dd HH:mm:ss"
-                          format="yyyy-MM-dd HH:mm:ss"
-                          type="datetime"
-                          id="date2"
-                        >
-                      </el-date-picker>
-                    </el-form-item>
-                  </el-tooltip>
-                  <el-form-item label="重复提醒" v-show="detailForm.notification_alert==true" >
-                    <el-select v-model="detailForm.repeat" placeholder="请选择是否重复">
-                      <el-option label="否" value=""></el-option>
-                      <el-option label="每日" value="daily"></el-option>
-                      <el-option label="每周" value="weekly"></el-option>
-                      <el-option label="每月" value="monthly"></el-option>
-                    </el-select>
-                   </el-form-item>
-                </el-form>
-              </v-card-text>
-              <v-card-actions>
-                <v-spacer></v-spacer>
-                <v-btn color="blue darken-1" text @click="modifyTaskSave(item)">保存修改</v-btn>
-                <v-btn color="blue darken-1" text @click="close">取消</v-btn>
-              </v-card-actions>
-            </v-card>
-          </v-dialog>
-        </v-toolbar>
-      </template>
-      <!--完成状态复选框-->
-      <!-- <template v-slot:item.is_finished="{ item }">
-          <v-simple-checkbox :change="finish(item)" v-model="item.is_finished"></v-simple-checkbox>
-      </template> -->
+            <v-data-table
+              :headers="headers"
+              :items="tasks"
+              :sort-by="['is_finished', 'ddl_time']"
+              :sort-desc="[false, false]"
+              multi-sort
+              class="elevation-1 mx-5"
+              :search="search"
+            >
+              <template v-slot:top>
+                <v-toolbar flat color="white">
+                  <v-toolbar-title>DDL列表</v-toolbar-title>
+                  <v-divider
+                    class="mx-4"
+                    inset
+                    vertical
+                  ></v-divider>
+                  <v-spacer></v-spacer>
+                  <v-text-field
+                    v-model="search"
+                    append-icon="mdi-magnify"
+                    label="Search"
+                    single-line
+                    hide-details
+                    class="mr-12"
+                  ></v-text-field>
+                  <v-dialog v-model="createOpen" max-width="500px">
+                    <template v-slot:activator="{ on }">
+                      <v-btn color="primary" dark class="mb-2" v-on="on">创建新日程</v-btn>
+                    </template>
+                    <v-card>
+                      <v-toolbar color="primary" dark>
+                        <v-toolbar-title>创建新日程</v-toolbar-title>
+                      </v-toolbar>
+                      <v-card-text>
+                        <p></p>
+                        <el-form ref="newForm" :model="newForm" :rules="createRule" label-width="110px">
+                          <el-form-item label="事项名称" prop="title">
+                            <el-input v-model="newForm.title"></el-input>
+                          </el-form-item>
+                          <el-form-item label="事项类型" >
+                            <el-select v-model="newForm.category" placeholder="请选择类型">
+                              <el-option label="个人" value="personal"></el-option>
+                              <el-option label="会议" value="meeting"></el-option>
+                            </el-select>
+                          </el-form-item>
+                          <el-form-item label="相关平台" prop="platform">
+                            <el-input v-model="newForm.platform"></el-input>
+                          </el-form-item>
+                          <el-form-item label="相关链接" prop="urls">
+                            <el-input v-model="newForm.urls"></el-input>
+                          </el-form-item>
+                          <el-form-item label="截止时间" required>
+                            <el-col :span="11">
+                              <el-form-item prop="ddlDay">
+                                <el-date-picker  value-format="yyyy-MM-dd" format="yyyy-MM-dd" placeholder="选择日期"  v-model="newForm.ddlDay" style="width: 100%;"></el-date-picker>
+                              </el-form-item>
+                            </el-col>
+                            <el-col class="line" :span="2">-</el-col>
+                            <el-col :span="11">
+                              <el-form-item prop="ddlTime">
+                                <el-time-picker value-format="HH:mm:ss" format="HH:mm:ss" placeholder="选择时间" v-model="newForm.ddlTime" style="width: 100%;"></el-time-picker>
+                              </el-form-item>
+                            </el-col>
+                          </el-form-item>
+                          <el-form-item label="任务描述" prop="content">
+                            <el-input type="textarea" v-model="newForm.content"></el-input>
+                          </el-form-item>
+                          <el-form-item label="开启提醒" prop="notification_alert">
+                            <el-switch v-model="newForm.notification_alert"></el-switch>
+                          </el-form-item>
+                          <el-form-item label="提醒时间" v-if="newForm.notification_alert==true">
+                            <el-col :span="11">
+                              <el-form-item prop="alertDay">
+                                <el-date-picker  value-format="yyyy-MM-dd" format="yyyy-MM-dd" placeholder="选择日期" v-model="newForm.alertDay" style="width: 100%;"></el-date-picker>
+                              </el-form-item>
+                            </el-col>
+                            <el-col class="line" :span="2">-</el-col>
+                            <el-col :span="11">
+                              <el-form-item prop="alertTime">
+                                <el-time-picker value-format="HH:mm:ss" format="HH:mm:ss" placeholder="选择时间" v-model="newForm.alertTime" style="width: 100%;"></el-time-picker>
+                              </el-form-item>
+                            </el-col>
+                          </el-form-item>
+                          <el-form-item label="重复提醒" v-if="newForm.notification_alert==true" >
+                            <el-select v-model="newForm.repeat" placeholder="请选择是否重复">
+                              <el-option label="否" value=""></el-option>
+                              <el-option label="每日" value="daily"></el-option>
+                              <el-option label="每周" value="weekly"></el-option>
+                              <el-option label="每月" value="monthly"></el-option>
+                            </el-select>
+                          </el-form-item>
+                          <el-form-item  label="其他参与成员" prop="participant">
+                            <el-select
+                                v-model="newForm.participant"
+                                multiple
+                                filterable
+                                allow-create
+                                default-first-option
+                                placeholder="请输入学号">
+                              </el-select>
+                          </el-form-item>
+                        </el-form>
+                      </v-card-text>
+                      <v-card-actions>
+                        <v-spacer></v-spacer>
+                        <v-btn color="blue darken-1" text @click="createTask('newForm')">立即创建</v-btn>
+                        <v-btn color="blue darken-1" text @click="createCancel('newForm')">取消</v-btn>
+                      </v-card-actions>
+                    </v-card>
+                  </v-dialog>
 
-      
-      <template v-slot:item.alter="{ item }">
-        <v-icon class="mr-2" 
-          @click="changeTaskState(item.tid)"
-        >
-          {{ item.is_finished ?  'mdi-checkbox-marked' : ' mdi-checkbox-blank-outline'}}
-        </v-icon>
-      </template>
+                  <!-- edit对话框 -->
+                  <v-dialog v-model="editOpen" max-width="500px">
+                  <v-card>
+                    <v-card-title>
+                      <span class="headline" v-text="detailForm.title"></span>
+                    </v-card-title>
+                    <v-card-text>
+                      <p></p>
+                        <el-form ref="detailForm" :model="detailForm" label-width="100px" size="mini">
+                            <el-form-item label="" style="margin-top:10px">
+                                <span></span>
+                              </el-form-item>
+                          <el-form-item label="发布时间">
+                            <span v-text="detailForm.create_time"></span>
+                          </el-form-item>
+                          
+                          <el-form-item label="截止时间" >
+                            <el-date-picker
+                                v-if='detailForm.isAdmin'
+                                v-model="detailForm.ddl_time"
+                                placeholder="选择日期时间"
+                                value-format="yyyy-MM-dd HH:mm:ss"
+                                format="yyyy-MM-dd HH:mm:ss"
+                                type="datetime"
+                                id="date1"
+                            >
+                            </el-date-picker> 
+                            <span v-else v-text="detailForm.ddl_time"></span>
+                            </el-form-item>
+                            
+                          <el-form-item label="事项分类">
+                            <span v-text="detailForm.category"></span>
+                          </el-form-item>
+                          <el-form-item label="关联课程" v-show="detailForm.course_name!=null" >
+                            <span v-text="detailForm.course_name"></span>
+                          </el-form-item>
+                          <el-form-item  label="相关平台" v-show="detailForm.platform!=null">
+                            <span v-text="detailForm.platform"></span>
+                          </el-form-item>
+                          <el-form-item label="相关链接" v-show="detailForm.urls!=null">
+                              <a :href="detailForm.urls" target="_Blank"> {{ detailForm.urls }} </a>
+                          </el-form-item>
+                          <el-form-item label="任务描述">
+                              <el-input type="textarea" v-model="detailForm.content" :disabled="detailForm.isAdmin==false"></el-input>
+                            </el-form-item>
+                            <el-form-item label="完成状态">
+                                <el-switch v-model="detailForm.is_finished" active-color="#13ce66"></el-switch>
+                            </el-form-item>
+                          <el-form-item label="开启提醒">
+                            <el-switch v-model="detailForm.notification_alert"></el-switch>
+                          </el-form-item>
+                          
+                          <el-tooltip class="item" effect="light" content="Top Center 提示文字" placement="top">
+                            <div slot="content" ><p style="color: #E6A23C">提醒时间只能精确到分钟</p></div>
+                            <el-form-item label="提醒时间" v-show="detailForm.notification_alert==true">
+                              <el-date-picker
+                                  v-model="detailForm.notification_time"
+                                  placeholder="选择日期时间"
+                                  value-format="yyyy-MM-dd HH:mm:ss"
+                                  format="yyyy-MM-dd HH:mm:ss"
+                                  type="datetime"
+                                  id="date2"
+                                >
+                              </el-date-picker>
+                            </el-form-item>
+                          </el-tooltip>
+                          <el-form-item label="重复提醒" v-show="detailForm.notification_alert==true" >
+                            <el-select v-model="detailForm.repeat" placeholder="请选择是否重复">
+                              <el-option label="否" value=""></el-option>
+                              <el-option label="每日" value="daily"></el-option>
+                              <el-option label="每周" value="weekly"></el-option>
+                              <el-option label="每月" value="monthly"></el-option>
+                            </el-select>
+                          </el-form-item>
+                        </el-form>
+                      </v-card-text>
+                      <v-card-actions>
+                        <v-spacer></v-spacer>
+                        <v-btn color="blue darken-1" text @click="modifyTaskSave(item)">保存修改</v-btn>
+                        <v-btn color="blue darken-1" text @click="close">取消</v-btn>
+                      </v-card-actions>
+                    </v-card>
+                  </v-dialog>
+                </v-toolbar>
+              </template>
+              <!--完成状态复选框-->
+              <!-- <template v-slot:item.is_finished="{ item }">
+                  <v-simple-checkbox :change="finish(item)" v-model="item.is_finished"></v-simple-checkbox>
+              </template> -->
 
-      <template v-slot:item.actions="{ item }">
-        <a v-bind:href="item.urls" target='_BLANK'><v-icon small class="mr-2" > mdi-share-variant </v-icon></a>
-        <v-icon small class="mr-2"  @click="editItem(item)"> mdi-pencil </v-icon>        
-        <v-icon small @click="deleteItem(item)"> mdi-delete </v-icon>
-      </template>
+              
+              <template v-slot:item.alter="{ item }">
+                <v-icon class="mr-2" 
+                  @click="changeTaskState(item.tid)"
+                >
+                  {{ item.is_finished ?  'mdi-checkbox-marked' : ' mdi-checkbox-blank-outline'}}
+                </v-icon>
+              </template>
 
-      <template v-slot:no-data>
-        <!-- <v-btn color="primary" @click="initialize">Reset</v-btn> -->
-        <updateBtn color='primary' class=''></updateBtn> 
-        <table>
-      </template>
-    </v-data-table>
+              <template v-slot:item.actions="{ item }">
+                <a v-bind:href="item.urls" target='_BLANK'><v-icon small class="mr-2" > mdi-share-variant </v-icon></a>
+                <v-icon small class="mr-2"  @click="editItem(item)"> mdi-pencil </v-icon>        
+                <v-icon small @click="deleteItem(item)"> mdi-delete </v-icon>
+              </template>
+
+              <template v-slot:no-data>
+                <!-- <v-btn color="primary" @click="initialize">Reset</v-btn> -->
+                <updateBtn color='primary' class=''></updateBtn> 
+                <table>
+              </template>
+            </v-data-table>
+          </v-sheet>
+          <v-sheet>
+            <!-- -----------------快速创建 -->
+            <v-row>
+              <v-col cols="12" sm="1"></v-col>
+              <v-col cols="12" sm="10">
+                <v-text-field
+                  background-color="blue lighten-5"
+                  v-model="task_content"
+                  @keyup.enter="onEnterSubmit"
+                  hint="✅输入日程内容, 回车快速创建！！也可以点击右侧➕号进行详细设置！"
+                  solo
+                >
+                    <template v-slot:append>
+                      <v-dialog v-model="TaskDialog" persistent max-width="600px">
+                        <template v-slot:activator="{ on }">
+                          <v-btn color="primary" dark v-on="on" icon large @click="naive_initDialog"><v-icon>mdi-plus</v-icon></v-btn>
+                          <!-- <v-btn color="primary" dark class="mr-2" v-on="on" icon large><v-icon>mdi-plus-circle</v-icon></v-btn> -->
+                        </template>
+                        <v-card ref="form">
+                          <v-card-title></v-card-title>
+                          <v-card-text>
+                            <v-container>
+                              <v-row>
+                                <v-col cols="12">
+                                  <v-text-field ref="title" label="事项名称" v-model="task_title" :rules="[rules.required]" required outlined clearable></v-text-field>
+                                </v-col>
+
+                                <v-col cols="12">
+                                  <v-textarea label="详细描述" v-model="task_content" auto-growed no-resize outlined clearable></v-textarea>
+                                </v-col>
+
+                                <v-col cols="12" sm="6">
+                                  <v-select :items="task_types" v-model="task_type" label="事项类型" required outlined></v-select>
+                                </v-col>
+
+                                <v-col cols="12" sm="3">
+                                  <v-select
+                                    label="截止日期"
+                                    :items="task_ddls"
+                                    v-model="task_ddl"
+                                    v-show="!isPicker"
+                                    required outlined
+                                  >
+                                    <template v-slot:append-item>
+                                      <v-divider class="mb-2"></v-divider>
+                                      <v-list-item
+                                        ripple
+                                        @click="isPicker=true"
+                                      >选择其他日期</v-list-item>
+                                    </template>
+                                  </v-select>
+
+                                  <v-menu
+                                    v-model="menu2"
+                                    :close-on-content-click="false"
+                                    :nudge-right="40"
+                                    transition="scale-transition" offset-y min-width="290px"
+                                  >
+                                    <template v-slot:activator="{ on }">
+                                      <v-text-field
+                                        ref="date"
+                                        label="点击选择日期"
+                                        v-model="task_date"
+                                        v-show="isPicker"
+                                        v-on="on"
+                                        :rules="[rules.required]"
+                                        readonly outlined
+                                      ></v-text-field>
+                                    </template>
+                                    <v-date-picker v-model="task_date" @input="menu2 = false"></v-date-picker>
+                                  </v-menu>
+                                </v-col>
+
+                                <v-col cols="12" sm="3">
+                                  <v-menu
+                                    ref="menu"
+                                    v-model="menu4"
+                                    :close-on-content-click="false"
+                                    :nudge-right="40"
+                                    :return-value.sync="task_time"
+                                    transition="scale-transition"
+                                    offset-y
+                                    max-width="290px"
+                                    min-width="290px"
+                                  >
+                                    <template v-slot:activator="{ on }">
+                                      <v-text-field
+                                        v-model="task_time"
+                                        label="截止时间"
+                                        outlined
+                                        readonly
+                                        v-on="on"
+                                      ></v-text-field>
+                                    </template>
+                                    <v-time-picker
+                                      v-if="menu4"
+                                      v-model="task_time"
+                                      full-width
+                                      ampm-in-title
+                                      @click:minute="$refs.menu.save(task_time)"
+                                    ></v-time-picker>
+                                  </v-menu>
+                                </v-col>
+
+                                <v-col cols="12" v-show="task_type=='团队任务'">
+                                  <v-combobox
+                                    v-model="task_participant"
+                                    :items="participant_items"
+                                    :search-input.sync="participant_search"
+                                    hide-selected
+                                    hint="请输入需要通知到的相关成员的学号"
+                                    label="相关成员"
+                                    multiple
+                                    persistent-hint
+                                    small-chips
+                                    outlined
+                                  >
+                                    <template v-slot:no-data>
+                                      <v-list-item>
+                                        <v-list-item-content>
+                                          <v-list-item-title>
+                                            No results matching "<strong>{{ participant_search }}</strong>". Press <kbd>enter</kbd> to create a new one
+                                          </v-list-item-title>
+                                        </v-list-item-content>
+                                      </v-list-item>
+                                    </template>
+                                  </v-combobox>
+                                </v-col>
+                              </v-row>
+                              <v-card-actions>
+                                <v-row>
+                                    <v-btn block depressed  small tile color="primary" @click="saveDialog"> Save </v-btn>
+                                    <v-btn block depressed  small tile @click="initDialog();TaskDialog=false;"> Close </v-btn>
+                                </v-row>
+                                </v-card-actions>
+                            </v-container>
+                          </v-card-text>
+                        </v-card>
+                      </v-dialog>
+
+                    </template>
+                  </v-text-field>
+              </v-col>
+              <v-col cols="12" sm="1"></v-col>
+            </v-row>
+          </v-sheet>
+        </v-col>
+    </v-row>
   </v-app>
  </div>
 </template>
@@ -329,7 +482,36 @@ export default {
         paticipant: [
           { type: 'array', trigger: 'change' }
         ],
-      }
+      },
+
+
+
+      //------------------快速创建
+      isPicker: false,
+      task_title: '',
+      task_content: '',
+      task_types: [],
+      task_type: '',
+      task_ddls: [],
+      task_ddl: '',
+      task_date: '',
+      task_time: '',
+      task_participant: [],
+      TaskDialog: false,
+      menu2: false,
+      menu3: false,
+      menu4: false,
+
+      isTitleChange: false,
+
+      rules: {
+        required: value => !!value || '本项内容必须填写哦~',
+        counter: value => value.length <= 20 || 'Max 20 characters',
+      },
+      name: null,
+      date: null,
+      formHasErrors: false,
+
     }),
     /*
     computed: {
@@ -509,6 +691,172 @@ export default {
           //this.$message('加油！')
         })
       },
-    }
+
+
+
+      //------------------快速创建
+      initDialog() {
+        var week = new Array("周日", "周一", "周二", "周三", "周四", "周五", "周六")
+        var today = new Date()
+        var ddl1 = '今天 '+week[today.getDay()]+' '+today.toISOString().substr(0, 10)
+        today.setDate(today.getDate() + 1)
+        var ddl2 = '明天 '+week[today.getDay()]+' '+today.toISOString().substr(0, 10)
+        today.setDate(today.getDate() + 6)
+        var ddl3 = '下周 '+week[today.getDay()]+' '+today.toISOString().substr(0, 10)
+
+        this.isPicker = false
+        this.task_title = '',
+        this.task_content = '',
+        this.task_types =  ['个人日程', '团队任务']
+        this.task_type = '个人日程'
+        this.task_ddls = [ddl1, ddl2, ddl3]
+        this.task_ddl = ddl1
+        this.task_date = ''
+        this.task_time = '24:00'
+        this.task_participant = []
+
+        this.isTitleChange = false
+        this.formHasErrors = false
+
+        Object.keys(this.form).forEach(f => {
+          this.$refs[f].reset()
+        })
+
+      },
+
+      naive_initDialog() {
+        var week = new Array("周日", "周一", "周二", "周三", "周四", "周五", "周六")
+        var today = new Date()
+        var ddl1 = '今天 '+week[today.getDay()]+' '+today.toISOString().substr(0, 10)
+        today.setDate(today.getDate() + 1)
+        var ddl2 = '明天 '+week[today.getDay()]+' '+today.toISOString().substr(0, 10)
+        today.setDate(today.getDate() + 6)
+        var ddl3 = '下周 '+week[today.getDay()]+' '+today.toISOString().substr(0, 10)
+        this.isPicker = false
+        this.task_types =  ['个人日程', '团队任务']
+        this.task_type = '个人日程'
+        this.task_ddls = [ddl1, ddl2, ddl3]
+        this.task_ddl = ddl1
+        this.task_date = ''
+        this.task_time = '24:00'
+        this.task_participant = []
+
+        this.isTitleChange = false
+        this.formHasErrors = false
+      },
+
+      saveDialog() {
+        console.log(this.isPicker)
+        console.log(this.task_title)
+        console.log(this.task_content)
+        console.log(this.task_type)
+        console.log(this.task_ddl)
+        console.log(this.task_date)
+        console.log(this.task_time)
+
+        var t_time = this.isPicker?this.task_date:this.task_ddl.substr(6,12)
+
+        var new_task = {
+          tid:-1,
+          title: this.task_title,
+          category: (this.task_type=="个人日程")?'person':'meeting',
+          content: this.task_content,
+          participant:this.task_participant,
+          platform: '',
+          urls:'',
+          create_time: new Date().toISOString().substr(0, 10) + 
+            ' ' + new Date().getHours() + ':' + + new Date().getMinutes() + ':'+ new Date().getSeconds(),
+          ddl_time: t_time+' '+this.task_time+':00',
+          notification_alert:false,
+          notification_time: '',
+          isAdmin:true,
+          is_finished: false
+        }
+
+        console.log(new_task)
+
+        this.formHasErrors = false
+        Object.keys(this.form).forEach(f => {
+          if (!this.form[f])
+            if (f!='date' || this.isPicker) this.formHasErrors = true
+          this.$refs[f].validate(true)
+        })
+
+        console.log(this.formHasErrors)
+
+        if (!this.formHasErrors){
+          this.TaskDialog = false
+
+          createOneTask(this.$store.getters.uid, new_task).then(res =>{
+            console.log(res.data)
+            //为新建的task赋值后端分配的tid
+            new_task['tid']=res.data.tid                       
+            console.log(new_task.tid)
+            this.$message("创建成功！")
+            this.initDialog()
+            this.events.push(new_task)
+            //
+            //重置表单
+            this.$refs[formName].resetFields()
+          })
+        }
+      },
+
+      onEnterSubmit() {
+        console.log(this.task_content)
+        var new_task = {
+          tid:-1,
+          title: this.task_content.substr(0,20),
+          category: 'person',
+          content: this.task_content,
+          participant:this.task_participant,
+          platform: '',
+          urls:'',
+          create_time: new Date().toISOString().substr(0, 10) + 
+            ' ' + new Date().getHours() + ':' + + new Date().getMinutes() + ':'+ new Date().getSeconds(),
+          ddl_time: new Date().toISOString().substr(0, 10) + ' 24:00:00',
+          notification_alert:false,
+          notification_time: '',
+          isAdmin:true,
+          is_finished: false
+        }
+        console.log(new_task)
+        createOneTask(this.$store.getters.uid, new_task).then(res =>{
+          console.log(res.data)
+          //为新建的task赋值后端分配的tid
+          new_task['tid']=res.data.tid                       
+          console.log(new_task.tid)
+          this.task_content = ''
+          this.$message("创建成功✔")
+          this.initDialog()
+          this.events.push(new_task)
+            //
+            //重置表单
+            this.$refs[formName].resetFields()
+        })
+      },
+
+    },
+
+    computed: {
+      form () {
+        return {
+          title: this.task_title,
+          date: this.task_date,
+        }
+      },
+    },
+
+    watch: {
+      "task_content": {
+        handler(newVal){
+          console.log("change")
+          if (!this.form['title']){
+            this.task_title = newVal.substr(0, 20)
+          }
+        },
+      }
+    },
+    
   }
 </script>

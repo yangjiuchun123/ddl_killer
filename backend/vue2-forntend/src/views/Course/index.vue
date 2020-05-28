@@ -78,7 +78,7 @@
               <v-divider></v-divider>
 
               <!-- -----------------快速创建 -->
-              <v-row>
+              <v-row v-show="false">
                   <v-col cols="12" sm="1"></v-col>
                   <v-col cols="12" sm="10">
                     <v-text-field
