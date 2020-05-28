@@ -189,10 +189,10 @@ def login_user(request):
 
 def logout_user(request):
     response = {}
-    if not request.META.get("HTTP_AUTHORIZATION") or not check_password(uid,request.META.get("HTTP_AUTHORIZATION")):
-        response['code'] = 401
-        response['msg'] = "Authorization failed!"
-        return JsonResponse(response, json_dumps_params={'ensure_ascii':False}, charset='utf_8_sig')
+    # if not request.META.get("HTTP_AUTHORIZATION") or not check_password(uid,request.META.get("HTTP_AUTHORIZATION")):
+    #     response['code'] = 401
+    #     response['msg'] = "Authorization failed!"
+    #     return JsonResponse(response, json_dumps_params={'ensure_ascii':False}, charset='utf_8_sig')
     response['code'] = 200
     response['msg'] = 'Success.'
     # print(request.session.session_key)
