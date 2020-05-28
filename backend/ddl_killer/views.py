@@ -91,8 +91,8 @@ def create_user(request): #用户注册
 
 def edit_user(request):
     response={}
-    if not check_password(uid,request.META.get("HTTP_AUTHORIZATION")):
-        response['code'] = 403
+    if not request.META.get("HTTP_AUTHORIZATION") or not check_password(uid,request.META.get("HTTP_AUTHORIZATION")):
+        response['code'] = 401
         response['msg'] = "Authorization failed!"
         return JsonResponse(response, json_dumps_params={'ensure_ascii':False}, charset='utf_8_sig')
     try:
@@ -189,8 +189,8 @@ def login_user(request):
 
 def logout_user(request):
     response = {}
-    if not check_password(uid,request.META.get("HTTP_AUTHORIZATION")):
-        response['code'] = 403
+    if not request.META.get("HTTP_AUTHORIZATION") or not check_password(uid,request.META.get("HTTP_AUTHORIZATION")):
+        response['code'] = 401
         response['msg'] = "Authorization failed!"
         return JsonResponse(response, json_dumps_params={'ensure_ascii':False}, charset='utf_8_sig')
     response['code'] = 200
@@ -202,10 +202,12 @@ def logout_user(request):
 
 def show_user(request, uid): #展示用户信息
     response = {}
-    if not check_password(uid,request.META.get("HTTP_AUTHORIZATION")):
-        response['code'] = 403
+    
+    if not request.META.get("HTTP_AUTHORIZATION") or not check_password(uid,request.META.get("HTTP_AUTHORIZATION")):
+        response['code'] = 401
         response['msg'] = "Authorization failed!"
         return JsonResponse(response, json_dumps_params={'ensure_ascii':False}, charset='utf_8_sig')
+
     user = User.objects.get(uid=uid)
     # print(uid)
     response['msg'] = 'Success.'
@@ -218,8 +220,8 @@ def show_user(request, uid): #展示用户信息
     
 def update_courses(request, uid): #从课程中心获取用户所选课程并同步作业及资源及通知
     response = {}
-    if not check_password(uid,request.META.get("HTTP_AUTHORIZATION")):
-        response['code'] = 403
+    if not request.META.get("HTTP_AUTHORIZATION") or not check_password(uid,request.META.get("HTTP_AUTHORIZATION")):
+        response['code'] = 401
         response['msg'] = "Authorization failed!"
         return JsonResponse(response, json_dumps_params={'ensure_ascii':False}, charset='utf_8_sig')
     data = json.loads(request.body.decode())
@@ -342,8 +344,8 @@ def update_courses(request, uid): #从课程中心获取用户所选课程并同
 
 def show_user_courses(request, uid): #用户查看自己所选课程
     response = {}
-    if not check_password(uid,request.META.get("HTTP_AUTHORIZATION")):
-        response['code'] = 403
+    if not request.META.get("HTTP_AUTHORIZATION") or not check_password(uid,request.META.get("HTTP_AUTHORIZATION")):
+        response['code'] = 401
         response['msg'] = "Authorization failed!"
         return JsonResponse(response, json_dumps_params={'ensure_ascii':False}, charset='utf_8_sig')
     response['code'] = 200
@@ -362,8 +364,8 @@ def show_user_courses(request, uid): #用户查看自己所选课程
 
 def admin_add_task(request, uid, cid): # 课程管理员为选择了所有课的人添加task
     response={}
-    if not check_password(uid,request.META.get("HTTP_AUTHORIZATION")):
-        response['code'] = 403
+    if not request.META.get("HTTP_AUTHORIZATION") or not check_password(uid,request.META.get("HTTP_AUTHORIZATION")):
+        response['code'] = 401
         response['msg'] = "Authorization failed!"
         return JsonResponse(response, json_dumps_params={'ensure_ascii':False}, charset='utf_8_sig')
     data = json.loads(request.body.decode())
@@ -417,8 +419,8 @@ def admin_add_task(request, uid, cid): # 课程管理员为选择了所有课的
 
 def add_task(request, uid): #用户个人添加task(需要选择或输入participant)，传入的json有participant一项列表存储接收者的学号,uid记录发布者(有修改权)
     response={}                   #没有course_id项也不需要修改course_id项
-    if not check_password(uid,request.META.get("HTTP_AUTHORIZATION")):
-        response['code'] = 403
+    if not request.META.get("HTTP_AUTHORIZATION") or not check_password(uid,request.META.get("HTTP_AUTHORIZATION")):
+        response['code'] = 401
         response['msg'] = "Authorization failed!"
         return JsonResponse(response, json_dumps_params={'ensure_ascii':False}, charset='utf_8_sig')
     data = json.loads(request.body.decode())
@@ -501,8 +503,8 @@ def add_task(request, uid): #用户个人添加task(需要选择或输入partici
 
 def show_user_tasks(request, uid): #用户查看自己的所有任务及ddl
     response = {}
-    if not check_password(uid,request.META.get("HTTP_AUTHORIZATION")):
-        response['code'] = 403
+    if not request.META.get("HTTP_AUTHORIZATION") or not check_password(uid,request.META.get("HTTP_AUTHORIZATION")):
+        response['code'] = 401
         response['msg'] = "Authorization failed!"
         return JsonResponse(response, json_dumps_params={'ensure_ascii':False}, charset='utf_8_sig')
     try: 
@@ -556,8 +558,8 @@ def show_user_tasks(request, uid): #用户查看自己的所有任务及ddl
     
 def show_course_tasks(request, uid, cid): #用户uid,相应课程cid
     response={}
-    if not check_password(uid,request.META.get("HTTP_AUTHORIZATION")):
-        response['code'] = 403
+    if not request.META.get("HTTP_AUTHORIZATION") or not check_password(uid,request.META.get("HTTP_AUTHORIZATION")):
+        response['code'] = 401
         response['msg'] = "Authorization failed!"
         return JsonResponse(response, json_dumps_params={'ensure_ascii':False}, charset='utf_8_sig')
     response['code']=200
@@ -599,8 +601,8 @@ def show_course_tasks(request, uid, cid): #用户uid,相应课程cid
     
 def appoint_course_admin(request, cid, uid): #授予普通用户某门课程的管理权
     response={}
-    if not check_password(uid,request.META.get("HTTP_AUTHORIZATION")):
-        response['code'] = 403
+    if not request.META.get("HTTP_AUTHORIZATION") or not check_password(uid,request.META.get("HTTP_AUTHORIZATION")):
+        response['code'] = 401
         response['msg'] = "Authorization failed!"
         return JsonResponse(response, json_dumps_params={'ensure_ascii':False}, charset='utf_8_sig')
     response['code']=200
@@ -629,8 +631,8 @@ def appoint_course_admin(request, cid, uid): #授予普通用户某门课程的�
   
 def alter_task_state(request, uid, tid):
     response={}
-    if not check_password(uid,request.META.get("HTTP_AUTHORIZATION")):
-        response['code'] = 403
+    if not request.META.get("HTTP_AUTHORIZATION") or not check_password(uid,request.META.get("HTTP_AUTHORIZATION")):
+        response['code'] = 401
         response['msg'] = "Authorization failed!"
         return JsonResponse(response, json_dumps_params={'ensure_ascii':False}, charset='utf_8_sig')
     usertask = UserTask.objects.filter(user__uid=uid,task__tid=tid, is_deleted=False)
@@ -651,8 +653,8 @@ def add_resources(request, uid, cid):
     print(uid)
     print(request)
     print(cid)
-    if not check_password(uid,request.META.get("HTTP_AUTHORIZATION")):
-        response['code'] = 403
+    if not request.META.get("HTTP_AUTHORIZATION") or not check_password(uid,request.META.get("HTTP_AUTHORIZATION")):
+        response['code'] = 401
         response['msg'] = "Authorization failed!"
         return JsonResponse(response, json_dumps_params={'ensure_ascii':False}, charset='utf_8_sig')
     try:
@@ -684,8 +686,8 @@ def add_resources(request, uid, cid):
  
 def show_course_resources(request, uid, cid):
     response={}
-    if not check_password(uid,request.META.get("HTTP_AUTHORIZATION")):
-        response['code'] = 403
+    if not request.META.get("HTTP_AUTHORIZATION") or not check_password(uid,request.META.get("HTTP_AUTHORIZATION")):
+        response['code'] = 401
         response['msg'] = "Authorization failed!"
         return JsonResponse(response, json_dumps_params={'ensure_ascii':False}, charset='utf_8_sig')
     try:
@@ -721,8 +723,8 @@ def show_course_resources(request, uid, cid):
 
 def show_course_notifications(request, uid, cid):
     response={}
-    if not check_password(uid,request.META.get("HTTP_AUTHORIZATION")):
-        response['code'] = 403
+    if not request.META.get("HTTP_AUTHORIZATION") or not check_password(uid,request.META.get("HTTP_AUTHORIZATION")):
+        response['code'] = 401
         response['msg'] = "Authorization failed!"
         return JsonResponse(response, json_dumps_params={'ensure_ascii':False}, charset='utf_8_sig')
     usercourse = UserCourse.objects.filter(course__cid=cid, user__uid=uid)
@@ -765,8 +767,8 @@ def q2ldbchange(request):
 
 def delete_task(request, uid, tid):
     response = {}
-    if not check_password(uid,request.META.get("HTTP_AUTHORIZATION")):
-        response['code'] = 403
+    if not request.META.get("HTTP_AUTHORIZATION") or not check_password(uid,request.META.get("HTTP_AUTHORIZATION")):
+        response['code'] = 401
         response['msg'] = "Authorization failed!"
         return JsonResponse(response, json_dumps_params={'ensure_ascii':False}, charset='utf_8_sig')
     usertask = UserTask.objects.filter(user__uid=uid, task__tid=tid)
@@ -788,8 +790,8 @@ def delete_task(request, uid, tid):
 
 def personal_setting(request, uid): # 个人设置，如果是GET则直接返回个人设置；如果是POST则修改后返回个人设置
     response = {}
-    if not check_password(uid,request.META.get("HTTP_AUTHORIZATION")):
-        response['code'] = 403
+    if not request.META.get("HTTP_AUTHORIZATION") or not check_password(uid,request.META.get("HTTP_AUTHORIZATION")):
+        response['code'] = 401
         response['msg'] = "Authorization failed!"
         return JsonResponse(response, json_dumps_params={'ensure_ascii':False}, charset='utf_8_sig')
     user = User.objects.get(uid=uid)
