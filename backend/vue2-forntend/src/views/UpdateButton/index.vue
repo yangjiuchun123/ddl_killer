@@ -63,7 +63,7 @@ export default {
     password: '',
   }),
   methods: {
-      submit() {
+      async submit() {
           this.loading = true
           
           // let encrypt = new JSEncrypt()
@@ -71,8 +71,8 @@ export default {
           // var encPassword = encrypt.encrypt(this.password)
           // console.log(this.username)
           // console.log(encPassword)
-          var encPassword = encrypt(this.password)
-
+          let encPassword = await encrypt(this.password)
+          console.log(encPassword)
           updateFromCourse(this.$store.getters.uid, { username: this.username, password: encPassword }).then(res => {
             this.$emit('updEvent')
             this.loading = false

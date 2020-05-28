@@ -15,6 +15,7 @@ import json
 import yagmail
 import traceback
 from .utils.jsDecryopt import decode as jsDecode
+from .utils.jsDecryopt import creat_key as create_js_pub_key
 from .utils.sendmail import register_mail, edit_mail, participate_mail, resource_mail
 
 from .utils.webScrap import updateFromCourse
@@ -47,6 +48,20 @@ class Token():
     def confirm_validate_token(self, token, expiration=3600):
         serializer = utsr(self.security_key)
         return serializer.loads(token, salt=self.salt, max_age=expiration)
+
+
+def get_security_public_key(request):
+    """
+    /security/pub-key
+
+    generate temporary security key pair and get public key
+    :param request:
+    :return:
+    """
+    key = create_js_pub_key()
+    response = {'code': 200, 'pub_key': key.pub_key, 'key_id': key.id}
+    return JsonResponse(response, json_dumps_params={'ensure_ascii': False}, charset='utf_8_sig')
+
 
 def create_user(request): #用户注册
     response={}
@@ -189,10 +204,10 @@ def login_user(request):
 
 def logout_user(request):
     response = {}
-    if not request.META.get("HTTP_AUTHORIZATION") or not check_password(uid,request.META.get("HTTP_AUTHORIZATION")):
-        response['code'] = 401
-        response['msg'] = "Authorization failed!"
-        return JsonResponse(response, json_dumps_params={'ensure_ascii':False}, charset='utf_8_sig')
+    # if not request.META.get("HTTP_AUTHORIZATION") or not check_password(uid,request.META.get("HTTP_AUTHORIZATION")):
+    #     response['code'] = 401
+    #     response['msg'] = "Authorization failed!"
+    #     return JsonResponse(response, json_dumps_params={'ensure_ascii':False}, charset='utf_8_sig')
     response['code'] = 200
     response['msg'] = 'Success.'
     # print(request.session.session_key)
@@ -515,14 +530,15 @@ def show_user_tasks(request, uid): #用户查看自己的所有任务及ddl
                 response['code'] = 200
                 for t in usertask:
                     # print(t)
-                    if t.task.urls and "panel=Main" in t.task.urls:
-                        # print(t.task.urls)
-                        if t.is_finished:
+                    if t.task.urls:
+                        if "submissionId=" in t.task.urls:
                             homework_url = t.task.urls+"sakai_action=doView_grade"
-                        else:
+                        elif "assignmentReference=" in t.task.urls:
                             homework_url = t.task.urls+"sakai_action=doView_submission"
+                        else:
+                            homework_url = t.task.urls
                     else:
-                        homework_url = t.task.urls
+                        homework_url = ""
                     response["data"].append({
                         "tid": t.task.tid,
                         "title": t.task.title,
@@ -570,14 +586,15 @@ def show_course_tasks(request, uid, cid): #用户uid,相应课程cid
     usertask = UserTask.objects.filter(user__uid=uid, is_deleted=False) #从该用户的所有task中筛选出和cid建立联系的task
     for ut in usertask:
         ct=CourseTask.objects.filter(course__cid=cid,task__tid=ut.task.tid)
-        if ut.task.urls and "panel=Main" in ut.task.urls:
-            #print(ut.task.urls)
-            if ut.is_finished:
-                homework_url = ut.task.urls+"sakai_action=doView_grade"
-            else:
-                homework_url = ut.task.urls+"sakai_action=doView_submission"
+        if t.task.urls:
+             if "submissionId=" in t.task.urls:
+                 homework_url = t.task.urls+"sakai_action=doView_grade"
+             elif "assignmentReference=" in t.task.urls:
+                 homework_url = t.task.urls+"sakai_action=doView_submission"
+             else:
+                 homework_url = t.task.urls
         else:
-            homework_url = ut.task.urls
+             homework_url = ""
         if ct.exists():
             response["data"].append({
                 "tid": ut.task.tid,

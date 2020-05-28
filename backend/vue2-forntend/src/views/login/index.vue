@@ -115,11 +115,10 @@ export default {
     },
     submit() {
       console.log("submit!")
-      this.$refs.loginForm.validate(valid => { // 箭头函数可以直接访问到最外面的this
+      this.$refs.loginForm.validate(async valid => { // 箭头函数可以直接访问到最外面的this
         if (valid) {
           this.loading = true
-          var encPassword = encrypt(this.loginForm.password)
-          // console.log(encPassword)
+          let encPassword = await encrypt(this.loginForm.password)
           this.$store.dispatch('user/login', {uid: this.loginForm.uid, password: encPassword}).then(res => { // dispatch: 把这个请求分发到user/login处理
             console.log(res)
             this.$router.push({ path: this.redirect || '/' })
@@ -140,14 +139,6 @@ export default {
     //@add Password
     retrievePWD(){
       this.$router.push({ path: '/retrievePassword' })
-    },
-    encrypt(password) {
-      let encrypt = new JSEncrypt()
-      encrypt.setPublicKey(this.pub_key)
-      // var encPassword = encrypt.encrypt(this.password)
-      // console.log(this.username)
-      // console.log(encPassword)
-      return encrypt.encrypt(password)
     }
   }
 }
