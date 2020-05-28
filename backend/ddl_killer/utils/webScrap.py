@@ -451,6 +451,8 @@ def updateFromCourse(uid, account, password):
                             if ass['create_time'] != None and ass['create_time'] != '':
                                 ass['create_time'] = ass['create_time'].split('-')[0]+'-'+'%02d'%(int(ass['create_time'].split('-')[1]))+'-'+'%02d'%(int(ass['create_time'].split('-')[2].split(' ')[0]))+' '+ass['create_time'].split('-')[2].split(' ')[1]
                             ass['urls'] = i.find('a').get('href')
+                            if ass['urls'] and "sakai_action=doView" in ass['urls']:
+                                ass['urls'] = ass['urls'].split('sakai_action=doView')[0]
                             homework_detail = bs(s.get(ass['urls'], cookies=cookie, headers=header).text, 'html.parser')
 
                             try:
