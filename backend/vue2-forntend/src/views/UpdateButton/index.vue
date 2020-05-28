@@ -52,8 +52,7 @@
 <script>
 
 import { updateFromCourse } from '@/api/user_task'
-// import JSEncrypt from '@/utils/jsencrypt/bin/jsencrypt'
-import { JSEncrypt } from 'jsencrypt'
+import { encrypt } from '@/utils/encrypt'
 
 export default {
   name: 'updateBtn',
@@ -62,19 +61,18 @@ export default {
     loading : false,
     username: '',
     password: '',
-    pub_key: '-----BEGIN PUBLIC KEY-----\nMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCt1/hVqW9pxTAp6vbJu5+5myvA\nF8wvsEqM7FdIAKe5hhD1paQhPcG/RkPFzQG1u0jeQcwNJIddhmk/jqAK0v2GbHhV\nUEw/rQ8AATFxLTitXWhjFPC2quAlGRzRby4LALxlWBziGNzKU6BERsI1nawJb1If\ni/+q/qgZMCAGKY1EAwIDAQAB\n-----END PUBLIC KEY-----'
-
   }),
   methods: {
-      submit() {
+      async submit() {
           this.loading = true
           
-          let encrypt = new JSEncrypt()
-          encrypt.setPublicKey(this.pub_key)
-          var encPassword = encrypt.encrypt(this.password)
-          console.log(this.username)
+          // let encrypt = new JSEncrypt()
+          // encrypt.setPublicKey(this.pub_key)
+          // var encPassword = encrypt.encrypt(this.password)
+          // console.log(this.username)
+          // console.log(encPassword)
+          let encPassword = await encrypt(this.password)
           console.log(encPassword)
-
           updateFromCourse(this.$store.getters.uid, { username: this.username, password: encPassword }).then(res => {
             this.$emit('updEvent')
             this.loading = false

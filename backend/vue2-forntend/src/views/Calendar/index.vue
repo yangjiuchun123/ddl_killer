@@ -70,7 +70,7 @@
                       </el-form-item>
                       <el-form-item label="开启提醒" prop="notification_alert">
                         <el-switch v-model="newForm.notification_alert"></el-switch>
-                      </el-form-item>
+                      </el-form-item>                     
                       <el-form-item label="提醒时间" v-if="newForm.notification_alert==true">
                         <el-col :span="11">
                           <el-form-item prop="alertDay">
@@ -83,6 +83,14 @@
                             <el-time-picker value-format="HH:mm:ss" format="HH:mm:ss" placeholder="选择时间" v-model="newForm.alertTime" style="width: 100%;"></el-time-picker>
                           </el-form-item>
                         </el-col>
+                      </el-form-item>
+                      <el-form-item label="重复提醒" v-if="newForm.notification_alert==true" >
+                        <el-select v-model="newForm.repeat" placeholder="请选择是否重复">
+                          <el-option label="否" value=""></el-option>
+                          <el-option label="每日" value="daily"></el-option>
+                          <el-option label="每周" value="weekly"></el-option>
+                          <el-option label="每月" value="monthly"></el-option>
+                        </el-select>
                       </el-form-item>
                       <el-form-item  label="其他参与成员" prop="participant">
                         <el-select
@@ -213,7 +221,14 @@
                         </el-date-picker>
                       </el-form-item>
                     </el-tooltip>
-
+                    <el-form-item label="重复提醒" v-show="detailForm.notification_alert==true" >
+                      <el-select v-model="detailForm.repeat" placeholder="请选择是否重复">
+                        <el-option label="否" value=""></el-option>
+                        <el-option label="每日" value="daily"></el-option>
+                        <el-option label="每周" value="weekly"></el-option>
+                        <el-option label="每月" value="monthly"></el-option>
+                      </el-select>  
+                    </el-form-item>  
                   </el-form>
                 </v-card-text>
                 <v-card-actions>
@@ -247,7 +262,6 @@ export default {
     createOpen: false, //创建日程窗口的开关状态
     events: [],
     colors: ['blue', 'indigo', 'deep-purple', 'cyan', 'green', 'orange', 'grey darken-1'],
-    names: ['Meeting', 'Holiday', 'PTO', 'Travel', 'Event', 'Birthday', 'Conference', 'Party'],
     detailForm:{  //详情页
         tid:-1,
         title:'',
@@ -261,7 +275,8 @@ export default {
         notification_alert:false,
         notification_time: '',
         isAdmin: false,
-        is_finished: false
+        is_finished: false,
+        repeat:'',
     },
     defaultForm:{ //默认创建页
        tid: -1,
@@ -276,7 +291,8 @@ export default {
        alertTime:'',
        isAdmin: false,
        notification_alert:false,
-       participant: []
+       participant: [],
+       repeat:''
     },
     newForm:{//创建日程界面
         tid: -1,
@@ -291,7 +307,8 @@ export default {
         isAdmin: false,
         alertTime:'',
         notification_alert:false,
-        participant: []
+        participant: [],
+        repeat:''
     },
     createRule:{
       title:[
@@ -378,19 +395,7 @@ export default {
         this.selectedEvent = event
         this.selectedElement = nativeEvent.target
         this.detailForm = Object.assign({}, event.detail)
-        // console.log("event.detail:",event.detail)
-        // console.log("event.detail.isAdmin:",event.detail.isAdmin)
-
-        // console.log("this.selectedEvent:", this.selectedEvent)
-        // console.log("this.selectedEvent.detail.isAdmin", this.selectedEvent.detail.isAdmin)
-
-        // console.log(this.detailForm)
-        // console.log('---------------test--------------')
-        // console.log(this.detailForm.isAdmin)
-        // console.log(typeof(this.detailForm.isAdmin))
-        // console.log(this.detailForm.notification_alert)
-        // console.log(typeof(this.detailForm.notification_alert))
-        
+            
         setTimeout(() => this.selectedOpen = true, 10)
 
         //console.log(event.detail)
@@ -583,31 +588,6 @@ export default {
         //    ? `${a.getFullYear()}-${a.getMonth() + 1}-${a.getDate()} ${a.getHours()}:${a.getMinutes()}:${a.getSeconds()}`
         //    : `${a.getFullYear()}-${a.getMonth() + 1}-${a.getDate()}`
         },
-
-     /*
-    //生成detail格式，与从后台获取的json中的data格式相同
-    formatDetail(tid,title,category,urls,platform,cid,cname,ddl_id,ddl_time,alert,alert_time,create_time,done){
-      var detail = { // personal
-          "tid":tid,
-          "title":title,
-          "category": category,
-          "useful_urls": null,
-          "platform": platform,
-          "cid": null,
-          "course_name": cname,
-          "ddl": {
-              "ddl_id":ddl_id,
-              "ddl_time":ddl_time,
-              "notification_alert":alert,
-              "notification_time":alert_time,
-              "notification_repeat": null,
-              "notification_content": ''
-          },
-          "created_at":create_time, //获取时间
-          "is_finished": done
-        }
-        return detail
-    }*/
   }
 }
 </script>

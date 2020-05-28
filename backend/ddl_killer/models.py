@@ -108,3 +108,9 @@ class CourseTask(models.Model):
 class CourseNote(models.Model):
     course = models.ForeignKey('Course', on_delete=models.CASCADE)
     note = models.ForeignKey('Note', on_delete=models.CASCADE)
+
+
+class SecurityKeyPair(models.Model):
+    created_at = models.TimeField(auto_now_add=True)
+    pri_key = models.CharField(max_length=256)
+    pub_key = models.CharField(max_length=256)  # save pub key for debugging

@@ -14,7 +14,7 @@
           </v-chip-group>
         </v-card-title>
         <v-card-text>
-          <v-list rounded>
+          <v-list flat rounded>
             <v-list-item-group v-model="model">
               <!-- <template v-for="(item, i) in items"> -->
                 <v-list-item
