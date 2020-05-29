@@ -40,18 +40,18 @@
                     />
                   </el-form-item>                  
                
-                  <el-form-item prop="code">
+                  <el-form-item prop="verify_code">
                     <span class="svg-container">
                       <i class="el-icon-message"></i>
                     </span>
-                    <el-input placeholder="北航邮箱验证码" v-model="form1.code" type="text" style="width:280px"></el-input>
+                    <el-input placeholder="北航邮箱验证码" v-model="form1.verify_code" type="text" style="width:280px"></el-input>
                     <span>                    
                     <el-button plain :disabled="flag" @click="getAuthCode">{{ msg }}</el-button>
                     </span>
                   </el-form-item>
                 </el-form>
                 </v-card-text>
-                <v-card-acation >
+                <v-card-action >
                   <div  class="text-center">
                     <v-btn color="primary" @click="nextStep1('form1')" >下一步</v-btn>
                     <v-btn text @click="resetForm('form1')">重置</v-btn> 
@@ -134,6 +134,9 @@
 </template>
 
 <script>
+import { sendAuthCode,verifyAuthCode,resetPWD } from '@/api/user'
+import { JSEncrypt } from 'jsencrypt'
+//import { encrypt } from '@/utils/encrypt'
 
   export default {
     data() {      
@@ -172,16 +175,19 @@
      return {       
         e1: 1,
         flag:false,
+        key_id:'',
+        pub_key:'',
+        uid:'',
         msg:'获取邮箱验证码',        
         form1:{
           uid:'',          
-          code:'',//验证码
+          verify_code:'',//验证码
         },
         rules1:{
            uid: [
             {require: true, validator: validateUid, trigger: 'blur'}
           ],          
-          code:[
+          verify_code:[
             {required:true,message: '请输入验证码', trigger:'blur'}
           ]
         },
@@ -220,6 +226,7 @@
       resetForm(formName) {
         this.$refs[formName].resetFields();
       },
+      /*
        encrypt(password) {
         let encrypt = new JSEncrypt()
         encrypt.setPublicKey(this.pub_key)
@@ -228,13 +235,17 @@
         // console.log(encPassword)
         return encrypt.encrypt(password)
       },
+      */
       getAuthCode(){
         this.$refs.form1.validateField('uid', (errMsg) => {
                if (errMsg) {
-                   console.log('学号号校验未通过')
+                   console.log('学号校验未通过')
                }else {
                 //@后端先判断该学号是否存在，再给北航邮箱发送验证码
-                //sendAuthoCode(submitForm).then(res => {
+                var postData={
+                  uid:this.form1.uid
+                }
+                sendAuthCode(postData).then(res => {
                   const _this =this;
                   this.flag = true; 
                   var time = 150;//定义时间变量 150s
@@ -251,9 +262,9 @@
                       time--;
                     }                    
                   },1000)  
-
-                  //})      
-
+                  }).catch(error => {
+                    console.log(error)
+                  })  
                }
            })
       },
@@ -264,25 +275,34 @@
           if (valid) {
             var submitForm = {
               uid: this.form1.uid,
-              code:this.form2.code,
+              verify_code:this.form1.verify_code,
             }
             console.log(submitForm)
             //@与后端交互
-            /*
-            sendAuthCode(submitForm).then(res => {
-              //判断验证码是否正确
-              //如果正确
-              */
+            
+            verifyAuthCode(submitForm).then(res => {              
               this.e1=2;
-              /*
+              this.uid=res.data.uid;
+              //用于之后的密码加密
+              this.key_id=res.data.key_id;
+              this.pub_key=res.data.pub_key;              
             }).catch(error => {
               console.log(error)
-            })*/
-          } else {
-            
+            })
+          } else {            
             return false;
           }                
           })
+      },
+      
+      encryptPWD(password){
+        let enc = new JSEncrypt()
+        // res : {'pub_key': pub_key, 'key_id': key.id}
+        // console.log("res.key_id: ", res.key_id)
+        // console.log("pub_key: ", res.pub_key)
+        enc.setPublicKey(this.pub_key)
+        var encPass = "kid:" + this.key_id + "|" + enc.encrypt(password)
+        return encPass
       },
 
       nextStep2(formName){
@@ -290,24 +310,23 @@
         this.$refs[formName].validate((valid) => {
           if (valid) {
             var submitForm = {
-              password: this.encrypt(this.form2.password),            
+              uid:this.uid,
+              password: this.encryptPWD(this.form2.password),            
             }
             console.log(submitForm)
             //@与后端交互
-            /*
-            resetPWD(this.form1.uid,submitForm).then(res => {            
-              
-              */
+            
+            resetPWD(submitForm).then(res => {        
               this.e1=3;
-              /*
+              
             }).catch(error => {
               console.log(error)
-            })*/
+            })
           } else {
             
             return false;
           }                
-          })     
+          })    
 
       },
      
@@ -403,9 +422,10 @@ $white: #ffffff;
 
   .login-form {
     position: relative;
-    width: 800px;
+    width: 780px;
     height: 430px;
     max-width: 100%;
+    min-width:630px;
     padding: 50px 35px 0;
     margin: 0 auto;
     overflow: hidden;
