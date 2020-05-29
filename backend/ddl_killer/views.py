@@ -16,7 +16,7 @@ import yagmail
 import traceback
 from .utils.jsDecryopt import decode as jsDecode
 from .utils.jsDecryopt import creat_key as create_js_pub_key
-from .utils.sendmail import register_mail, edit_mail, participate_mail, resource_mail
+from .utils.sendmail import register_mail, edit_mail, participate_mail, resource_mail, reset_pwd_mail
 
 from .utils.webScrap import updateFromCourse
 
@@ -32,10 +32,12 @@ from .models import Note
 from .models import CourseNote
 from .models import Message
 from .models import UserMessage
+from .models import PasswordModificationRecord
 
 from itsdangerous import URLSafeTimedSerializer as utsr
 import base64
 import datetime
+import random
 
 
 class Token():
@@ -931,3 +933,74 @@ def get_message_read(request, uid, mid):
             response['msg'] = "Success."
     print('return')
     return JsonResponse(response, json_dumps_params={'ensure_ascii':False}, charset='utf_8_sig')
+
+
+def create_forget_pwd_email_verify(request):
+    data = json.loads(request.body.decode())
+    uid = data.get('uid', None)
+    if uid is None:
+        return JsonResponse({'code': 400, 'msg': 'Bad arguments'},
+                            json_dumps_params={'ensure_ascii': False}, charset='utf_8_sig')
+    try:
+        user = User.objects.get(uid=uid)
+    except:
+        return JsonResponse({'code': 400, 'msg': 'User not found'},
+                            json_dumps_params={'ensure_ascii': False}, charset='utf_8_sig')
+
+    response = {}
+    try:
+        code_range = list('0123456789abcdefghijklmnopqrstuvwxyz')
+        verify_code = ''.join(random.choices(code_range, k=8))
+        key_pair = create_js_pub_key()
+        PasswordModificationRecord.objects.create(verify_code=verify_code,
+                                                  user=user,
+                                                  key_pair=key_pair)
+        reset_pwd_mail(user.email, user.uid, user.name, verify_code)
+
+        response['code'] = 200  # 成功发送邮件
+        response["msg"] = "Success. Please check your email to activate the account."
+    except:
+        response['code'] = 408
+        response['msg'] = "Some error happens. Please retry later"
+    return JsonResponse(response, json_dumps_params={'ensure_ascii': False}, charset='utf_8_sig')
+
+
+def create_forget_pwd_reset_pub_key(request):
+    data = json.loads(request.body.decode())
+    uid = data.get('uid', None)
+    verify_code = data.get('verify_code', None)
+
+    try:
+        user = User.objects.get(uid=uid)
+        verify_record = PasswordModificationRecord.objects.get(user=user)
+    except:
+        return JsonResponse({'code': 400, 'msg': 'User not found'},
+                            json_dumps_params={'ensure_ascii': False}, charset='utf_8_sig')
+
+    if verify_code == verify_record.verify_code:
+        key_pair = verify_record.key_pair
+        return JsonResponse({
+            'code': 200,
+            'msg': 'Success',
+            'data': {'uid': uid,
+                     'key_id': key_pair.id,
+                     'pub_key': key_pair.pub_key}
+        }, json_dumps_params={'ensure_ascii': False}, charset='utf_8_sig')
+    else:
+        return JsonResponse({'code': 400, 'msg': 'Verification failed'},
+                        json_dumps_params={'ensure_ascii': False}, charset='utf_8_sig')
+
+
+def change_user_pwd(request):
+    data = json.loads(request.body.decode())
+    uid = data.get('uid', None)
+    password = data.get('new_password', 'kid:0|')
+    password = jsDecode(password)
+    if isinstance(password, Exception):
+        return JsonResponse({'code': 400, 'msg': 'Verification failed'},
+                            json_dumps_params={'ensure_ascii': False}, charset='utf_8_sig')
+    user = User.objects.get(uid=uid)
+    user.password = password
+    user.save()
+    return JsonResponse({'code': 200, 'msg': 'success'},
+                        json_dumps_params={'ensure_ascii': False}, charset='utf_8_sig')
