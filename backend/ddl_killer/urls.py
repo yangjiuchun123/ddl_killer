@@ -40,4 +40,6 @@ urlpatterns = [
     path(r'user/<int:uid>/tasks/<int:tid>/delete', views.delete_task),
     path(r'user/<int:uid>/settings', views.personal_setting),
     path(r'security/pub-key', views.get_security_public_key),  # allow: GET
+    path(r'user/<int:uid>/message', views.show_user_message),
+    path(r'user/<int:uid>/message/<int:mid>/read', views.get_message_read),
 ]

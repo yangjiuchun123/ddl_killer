@@ -142,3 +142,6 @@ admin.site.register(UserCourse, UserCourseAdmin)
 admin.site.register(CourseResource, CourseResourceAdmin)
 admin.site.register(CourseTask, CourseTaskAdmin)
 admin.site.register(CourseNote, CourseNoteAdmin)
+admin.site.register(Message)
+admin.site.register(UserMessage)
+
