@@ -583,39 +583,37 @@ def show_course_tasks(request, uid, cid): #用户uid,相应课程cid
     response['code']=200
     response['msg']='Success.'
     response['data'] =[]
-    print(uid)
-    print(cid)
-    usertask = UserTask.objects.filter(user__uid=uid, is_deleted=False) #从该用户的所有task中筛选出和cid建立联系的task
-    for ut in usertask:
-        ct=CourseTask.objects.filter(course__cid=cid,task__tid=ut.task.tid)
-        if t.task.urls:
-             if "submissionId=" in t.task.urls:
-                 homework_url = t.task.urls+"sakai_action=doView_grade"
-             elif "assignmentReference=" in t.task.urls:
-                 homework_url = t.task.urls+"sakai_action=doView_submission"
-             else:
-                 homework_url = t.task.urls
-        else:
-             homework_url = ""
-        if ct.exists():
-            response["data"].append({
-                "tid": ut.task.tid,
-                "title": ut.task.title,
-                "course_name": ut.task.course_name,
-                "content": ut.task.content,
-                "platform": ut.task.platform,
-                "category": ut.task.category,
-                "urls": homework_url,
-                "ddl_time": ut.task.ddl_time,
-                "notification_time": ut.notification_time,
-                "notification_alert": ut.notification_alert,
-                "create_time": ut.task.create_time,
-                "isAdmin:": ut.isAdmin,
-                "is_finished": ut.is_finished
-            })
-        # else:
-            
-    # print(response['data']) 
+    try:
+            usertask = UserTask.objects.filter(user__uid=uid, is_deleted=False) #从该用户的所有task中筛选出和cid建立联系的task
+            for ut in usertask:
+                ct=CourseTask.objects.filter(course__cid=cid,task__tid=ut.task.tid)
+                if ut.task.urls:
+                     if "submissionId=" in ut.task.urls:
+                         homework_url = ut.task.urls+"sakai_action=doView_grade"
+                     elif "assignmentReference=" in ut.task.urls:
+                         homework_url = ut.task.urls+"sakai_action=doView_submission"
+                     else:
+                         homework_url = ut.task.urls
+                else:
+                     homework_url = ""
+                if ct.exists():
+                    response["data"].append({
+                        "tid": ut.task.tid,
+                        "title": ut.task.title,
+                        "course_name": ut.task.course_name,
+                        "content": ut.task.content,
+                        "platform": ut.task.platform,
+                        "category": ut.task.category,
+                        "urls": homework_url,
+                        "ddl_time": ut.task.ddl_time,
+                        "notification_time": ut.notification_time,
+                        "notification_alert": ut.notification_alert,
+                        "create_time": ut.task.create_time,
+                        "isAdmin:": ut.isAdmin,
+                        "is_finished": ut.is_finished
+                    })
+    except:
+        traceback.print_exc()
     return JsonResponse(response, json_dumps_params={'ensure_ascii':False}, charset='utf_8_sig')
     
 def appoint_course_admin(request, cid, uid): #授予普通用户某门课程的管理权
@@ -722,7 +720,7 @@ def show_course_resources(request, uid, cid):
             # print(resources)
             for cr in courseresources:
                 if cr.resource.user:
-                    sharer = cr.resource.user.uid
+                    sharer = cr.resource.user.name
                 else:
                     sharer = ''
                 response['data'].append({
@@ -855,10 +853,11 @@ def show_user_message(request, uid):
         return JsonResponse(response, json_dumps_params={'ensure_ascii':False}, charset='utf_8_sig')
     user = User.objects.get(uid=uid)
     
+    print(request.GET.get('type'))
     response['data'] = []
     try:
-        type = request.GET.get('type')
-        if type=="read":
+        category = str(request.GET.get('type'))
+        if category=="read":
             for um in UserMessage.objects.filter(user__uid=user.uid):
                 m = um.message
                 if um.is_read==True:
@@ -868,10 +867,10 @@ def show_user_message(request, uid):
                         'content': m.content,
                         'is_read': um.is_read,
                         'category': m.category,
-                        'publisher': m.publisher,
+                        'publisher': m.publisher.name,
                         'publish_time': m.publish_time 
                     })
-        elif type=="unread":
+        elif category=="unread":
             for um in UserMessage.objects.filter(user__uid=user.uid):
                 m = um.message
                 if um.is_read==False:
@@ -881,22 +880,23 @@ def show_user_message(request, uid):
                         'content': m.content,
                         'is_read': um.is_read,
                         'category': m.category,
-                        'publisher': m.publisher,
+                        'publisher': m.publisher.name,
                         'publish_time': m.publish_time 
                     })
         else:
             for um in UserMessage.objects.filter(user__uid=user.uid):
                 m = um.message
-                if m.category==type:
+                #print(m.category==category)
+                if m.category==category:
                     response['data'].append({
                         'mid': m.mid,
                         'title': m.title,
                         'content': m.content,
                         'is_read': um.is_read,
                         'category': m.category,
-                        'publisher': m.publisher,
+                        'publisher': m.publisher.name,
                         'publish_time': m.publish_time 
-                    })
+	    			})
         response['code'] = 200
         response['msg'] = "Success."
     except:
@@ -914,17 +914,20 @@ def get_message_read(request, uid, mid):
         return JsonResponse(response, json_dumps_params={'ensure_ascii':False}, charset='utf_8_sig')
     user = User.objects.get(uid=uid)
     message = Message.objects.get(mid=mid)
-    if not messgae:
+    if not message:
         response['code'] = 404
         response['msg'] = "Message Not Found!"
     else:
-        um = UserMessage.objects.filter(user__uid=user.uid, message__mid=message.mid)
+        um = UserMessage.objects.filter(user__uid=uid, message__mid=mid)
+        print(um.exists())
         if not um.exists():
             response['code'] = 404
             response['msg'] = "You have no rights to access this messgae!"
         else:
+            um = um[0]
             um.is_read=True
             um.save()
             response['code'] = 200
             response['msg'] = "Success."
+    print('return')
     return JsonResponse(response, json_dumps_params={'ensure_ascii':False}, charset='utf_8_sig')

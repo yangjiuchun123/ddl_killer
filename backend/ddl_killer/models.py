@@ -89,12 +89,12 @@ class Message(models.Model):
     title = models.CharField(max_length=100)
     content = models.TextField(null=True, blank=True)
     category = models.CharField(max_length=100)
-    publisher = models.ForeignKey('User')
+    publisher = models.ForeignKey('User', on_delete=models.CASCADE)
     publish_time = models.CharField(max_length=50,null=True, blank=True)
 
 class UserMessage(models.Model):
     user = models.ForeignKey('User', on_delete=models.CASCADE)
-    message = models.ForeginKey('Message', on_delete=models.CASCADE)
+    message = models.ForeignKey('Message', on_delete=models.CASCADE)
     is_read = models.BooleanField(default=False)
 
 class UserTask(models.Model):
