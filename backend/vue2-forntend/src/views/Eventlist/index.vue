@@ -11,7 +11,7 @@
               :sort-by="['is_finished', 'ddl_time']"
               :sort-desc="[false, false]"
               multi-sort
-              class="elevation-1 mx-5"
+              class="elevation-2 mx-5 my-8"
               :search="search"
             >
               <template v-slot:top>
@@ -230,10 +230,11 @@
             </v-data-table>
           </v-sheet>
           <v-sheet>
-            <!-- -----------------快速创建 -->
-            <v-row>
-              <v-col cols="12" sm="1"></v-col>
-              <v-col cols="12" sm="10">
+          <!-- -----------------快速创建 -->
+          
+          <v-divider class='mx-5'></v-divider>
+          <br/>
+          <v-sheet height="64" class='mx-5'>
                 <v-text-field
                   background-color="blue lighten-5"
                   v-model="task_content"
@@ -371,9 +372,7 @@
 
                     </template>
                   </v-text-field>
-              </v-col>
-              <v-col cols="12" sm="1"></v-col>
-            </v-row>
+              </v-sheet>
           </v-sheet>
         </v-col>
     </v-row>
@@ -792,10 +791,11 @@ export default {
             //为新建的task赋值后端分配的tid
             new_task['tid']=res.data.tid                       
             console.log(new_task.tid)
-            this.$message("创建成功！")
+            this.$message("创建成功 ✔")
+            var newTask = Object.assign({},new_task)
+            this.tasks.push(newTask)
             this.initDialog()
-            this.events.push(new_task)
-            //
+            
             //重置表单
             this.$refs[formName].resetFields()
           })
@@ -804,6 +804,9 @@ export default {
 
       onEnterSubmit() {
         console.log(this.task_content)
+        if (this.task_content == '') {
+          return
+        }
         var new_task = {
           tid:-1,
           title: this.task_content.substr(0,20),
@@ -814,7 +817,7 @@ export default {
           urls:'',
           create_time: new Date().toISOString().substr(0, 10) + 
             ' ' + new Date().getHours() + ':' + + new Date().getMinutes() + ':'+ new Date().getSeconds(),
-          ddl_time: new Date().toISOString().substr(0, 10) + ' 24:00:00',
+          ddl_time: new Date().toISOString().substr(0, 10) + ' 23:30:00',
           notification_alert:false,
           notification_time: '',
           isAdmin:true,
@@ -827,12 +830,13 @@ export default {
           new_task['tid']=res.data.tid                       
           console.log(new_task.tid)
           this.task_content = ''
-          this.$message("创建成功✔")
+          this.$message("创建成功 ✔")
+          var newTask = Object.assign({},new_task)
+          this.tasks.push(newTask)
           this.initDialog()
-          this.events.push(new_task)
-            //
-            //重置表单
-            this.$refs[formName].resetFields()
+          
+          //重置表单
+          this.$refs[formName].resetFields()
         })
       },
 
