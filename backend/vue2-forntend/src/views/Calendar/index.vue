@@ -239,6 +239,149 @@
               </v-card>
             </v-dialog>
           </v-sheet>
+          <!-- -----------------快速创建 -->
+          <br/>
+          <v-divider></v-divider>
+          <v-sheet height="64">
+                <br/>
+                <v-text-field
+                  background-color="blue lighten-5"
+                  v-model="task_content"
+                  @keyup.enter="onEnterSubmit"
+                  hint="✅输入日程内容, 回车快速创建！！也可以点击右侧➕号进行详细设置！"
+                  solo
+                >
+                    <template v-slot:append>
+                      <v-dialog v-model="TaskDialog" persistent max-width="600px">
+                        <template v-slot:activator="{ on }">
+                          <v-btn color="primary" dark v-on="on" icon large @click="naive_initDialog"><v-icon>mdi-plus</v-icon></v-btn>
+                          <!-- <v-btn color="primary" dark class="mr-2" v-on="on" icon large><v-icon>mdi-plus-circle</v-icon></v-btn> -->
+                        </template>
+                        <v-card ref="form">
+                          <v-card-title></v-card-title>
+                          <v-card-text>
+                            <v-container>
+                              <v-row>
+                                <v-col cols="12">
+                                  <v-text-field ref="title" label="事项名称" v-model="task_title" :rules="[rules.required]" required outlined clearable></v-text-field>
+                                </v-col>
+
+                                <v-col cols="12">
+                                  <v-textarea label="详细描述" v-model="task_content" auto-growed no-resize outlined clearable></v-textarea>
+                                </v-col>
+
+                                <v-col cols="12" sm="6">
+                                  <v-select :items="task_types" v-model="task_type" label="事项类型" required outlined></v-select>
+                                </v-col>
+
+                                <v-col cols="12" sm="3">
+                                  <v-select
+                                    label="截止日期"
+                                    :items="task_ddls"
+                                    v-model="task_ddl"
+                                    v-show="!isPicker"
+                                    required outlined
+                                  >
+                                    <template v-slot:append-item>
+                                      <v-divider class="mb-2"></v-divider>
+                                      <v-list-item
+                                        ripple
+                                        @click="isPicker=true"
+                                      >选择其他日期</v-list-item>
+                                    </template>
+                                  </v-select>
+
+                                  <v-menu
+                                    v-model="menu2"
+                                    :close-on-content-click="false"
+                                    :nudge-right="40"
+                                    transition="scale-transition" offset-y min-width="290px"
+                                  >
+                                    <template v-slot:activator="{ on }">
+                                      <v-text-field
+                                        ref="date"
+                                        label="点击选择日期"
+                                        v-model="task_date"
+                                        v-show="isPicker"
+                                        v-on="on"
+                                        :rules="[rules.required]"
+                                        readonly outlined
+                                      ></v-text-field>
+                                    </template>
+                                    <v-date-picker v-model="task_date" @input="menu2 = false"></v-date-picker>
+                                  </v-menu>
+                                </v-col>
+
+                                <v-col cols="12" sm="3">
+                                  <v-menu
+                                    ref="menu"
+                                    v-model="menu4"
+                                    :close-on-content-click="false"
+                                    :nudge-right="40"
+                                    :return-value.sync="task_time"
+                                    transition="scale-transition"
+                                    offset-y
+                                    max-width="290px"
+                                    min-width="290px"
+                                  >
+                                    <template v-slot:activator="{ on }">
+                                      <v-text-field
+                                        v-model="task_time"
+                                        label="截止时间"
+                                        outlined
+                                        readonly
+                                        v-on="on"
+                                      ></v-text-field>
+                                    </template>
+                                    <v-time-picker
+                                      v-if="menu4"
+                                      v-model="task_time"
+                                      full-width
+                                      ampm-in-title
+                                      @click:minute="$refs.menu.save(task_time)"
+                                    ></v-time-picker>
+                                  </v-menu>
+                                </v-col>
+
+                                <v-col cols="12" v-show="task_type=='团队任务'">
+                                  <v-combobox
+                                    v-model="task_participant"
+                                    :items="participant_items"
+                                    :search-input.sync="participant_search"
+                                    hide-selected
+                                    hint="请输入需要通知到的相关成员的学号"
+                                    label="相关成员"
+                                    multiple
+                                    persistent-hint
+                                    small-chips
+                                    outlined
+                                  >
+                                    <template v-slot:no-data>
+                                      <v-list-item>
+                                        <v-list-item-content>
+                                          <v-list-item-title>
+                                            No results matching "<strong>{{ participant_search }}</strong>". Press <kbd>enter</kbd> to create a new one
+                                          </v-list-item-title>
+                                        </v-list-item-content>
+                                      </v-list-item>
+                                    </template>
+                                  </v-combobox>
+                                </v-col>
+                              </v-row>
+                              <v-card-actions>
+                                <v-row>
+                                    <v-btn block depressed  small tile color="primary" @click="saveDialog"> Save </v-btn>
+                                    <v-btn block depressed  small tile @click="initDialog();TaskDialog=false;"> Close </v-btn>
+                                </v-row>
+                                </v-card-actions>
+                            </v-container>
+                          </v-card-text>
+                        </v-card>
+                      </v-dialog>
+
+                    </template>
+                  </v-text-field>
+          </v-sheet>
         </v-col>
       </v-row>
     </v-app>
@@ -249,6 +392,7 @@
 import { getAllTasks, createOneTask, modifyOneTask,deleteOneTask } from "@/api/user_task"
 
 export default {
+  inject: ['reload'],
   name:'Calendar',
   data: () => ({
     focus: '',
@@ -332,7 +476,35 @@ export default {
       paticipant: [
         { type: 'array', trigger: 'change' }
       ],
-    }
+    },
+
+
+    //------------------快速创建
+      isPicker: false,
+      task_title: '',
+      task_content: '',
+      task_types: [],
+      task_type: '',
+      task_ddls: [],
+      task_ddl: '',
+      task_date: '',
+      task_time: '',
+      task_participant: [],
+      TaskDialog: false,
+      menu2: false,
+      menu3: false,
+      menu4: false,
+
+      isTitleChange: false,
+
+      rules: {
+        required: value => !!value || '本项内容必须填写哦~',
+        counter: value => value.length <= 20 || 'Max 20 characters',
+      },
+      name: null,
+      date: null,
+      formHasErrors: false,
+
 
   }),
   computed: {
@@ -364,6 +536,22 @@ export default {
       return this.$refs.calendar.getFormatter({
         timeZone: 'UTC', month: 'long',
       })
+    },
+    form () {
+      return {
+        title: this.task_title,
+        date: this.task_date,
+      }
+    },
+  },
+  watch: {
+    "task_content": {
+      handler(newVal){
+        console.log("change")
+        if (!this.form['title']){
+          this.task_title = newVal.substr(0, 20)
+        }
+      },
     }
   },
   mounted() {
@@ -588,6 +776,164 @@ export default {
         //    ? `${a.getFullYear()}-${a.getMonth() + 1}-${a.getDate()} ${a.getHours()}:${a.getMinutes()}:${a.getSeconds()}`
         //    : `${a.getFullYear()}-${a.getMonth() + 1}-${a.getDate()}`
         },
+  
+     //------------------快速创建
+      initDialog() {
+        var week = new Array("周日", "周一", "周二", "周三", "周四", "周五", "周六")
+        var today = new Date()
+        var ddl1 = '今天 '+week[today.getDay()]+' '+today.toISOString().substr(0, 10)
+        today.setDate(today.getDate() + 1)
+        var ddl2 = '明天 '+week[today.getDay()]+' '+today.toISOString().substr(0, 10)
+        today.setDate(today.getDate() + 6)
+        var ddl3 = '下周 '+week[today.getDay()]+' '+today.toISOString().substr(0, 10)
+
+        this.isPicker = false
+        this.task_title = '',
+        this.task_content = '',
+        this.task_types =  ['个人日程', '团队任务']
+        this.task_type = '个人日程'
+        this.task_ddls = [ddl1, ddl2, ddl3]
+        this.task_ddl = ddl1
+        this.task_date = ''
+        this.task_time = '24:00'
+        this.task_participant = []
+
+        this.isTitleChange = false
+        this.formHasErrors = false
+
+        Object.keys(this.form).forEach(f => {
+          this.$refs[f].reset()
+        })
+
+      },
+
+      naive_initDialog() {
+        var week = new Array("周日", "周一", "周二", "周三", "周四", "周五", "周六")
+        var today = new Date()
+        var ddl1 = '今天 '+week[today.getDay()]+' '+today.toISOString().substr(0, 10)
+        today.setDate(today.getDate() + 1)
+        var ddl2 = '明天 '+week[today.getDay()]+' '+today.toISOString().substr(0, 10)
+        today.setDate(today.getDate() + 6)
+        var ddl3 = '下周 '+week[today.getDay()]+' '+today.toISOString().substr(0, 10)
+        this.isPicker = false
+        this.task_types =  ['个人日程', '团队任务']
+        this.task_type = '个人日程'
+        this.task_ddls = [ddl1, ddl2, ddl3]
+        this.task_ddl = ddl1
+        this.task_date = ''
+        this.task_time = '24:00'
+        this.task_participant = []
+
+        this.isTitleChange = false
+        this.formHasErrors = false
+      },
+
+      saveDialog() {
+        console.log(this.isPicker)
+        console.log(this.task_title)
+        console.log(this.task_content)
+        console.log(this.task_type)
+        console.log(this.task_ddl)
+        console.log(this.task_date)
+        console.log(this.task_time)
+
+        var t_time = this.isPicker?this.task_date:this.task_ddl.substr(6,12)
+
+        var new_task = {
+          tid:-1,
+          title: this.task_title,
+          category: (this.task_type=="个人日程")?'person':'meeting',
+          content: this.task_content,
+          participant:this.task_participant,
+          platform: '',
+          urls:'',
+          create_time: new Date().toISOString().substr(0, 10) + 
+            ' ' + new Date().getHours() + ':' + + new Date().getMinutes() + ':'+ new Date().getSeconds(),
+          ddl_time: t_time+' '+this.task_time+':00',
+          notification_alert:false,
+          notification_time: '',
+          isAdmin:true,
+          is_finished: false
+        }
+
+        console.log(new_task)
+
+        this.formHasErrors = false
+        Object.keys(this.form).forEach(f => {
+          if (!this.form[f])
+            if (f!='date' || this.isPicker) this.formHasErrors = true
+          this.$refs[f].validate(true)
+        })
+
+        console.log(this.formHasErrors)
+
+        if (!this.formHasErrors){
+          this.TaskDialog = false
+
+          createOneTask(this.$store.getters.uid, new_task).then(res =>{
+            console.log(res.data)
+            //为新建的task赋值后端分配的tid
+            new_task['tid']=res.data.tid                       
+            console.log(new_task.tid)
+            this.$message("创建成功 ✔")
+            var newEvent={
+              name:new_task['title'],
+              start: new_task['ddl_time'],
+              color:this.setColor(new_task['category'],false),
+              detail:new_task
+            }
+            this.events.push(newEvent);
+            this.initDialog()
+            
+            //重置表单
+            this.$refs[formName].resetFields()
+          })
+        }
+        this.reload()
+      },
+
+      onEnterSubmit() {
+        console.log(this.task_content)
+        if (this.task_content == '') {
+          return
+        }
+        var new_task = {
+          tid:-1, 
+          title: this.task_content.substr(0,20),
+          category: 'person',
+          content: this.task_content,
+          participant:this.task_participant,
+          platform: '',
+          urls:'',
+          create_time: new Date().toISOString().substr(0, 10) + 
+            ' ' + new Date().getHours() + ':' + + new Date().getMinutes() + ':'+ new Date().getSeconds(),
+          ddl_time: new Date().toISOString().substr(0, 10) + ' 23:30:00',
+          notification_alert:false,
+          notification_time: '',
+          isAdmin:true,
+          is_finished: false
+        }
+        console.log(new_task)
+        createOneTask(this.$store.getters.uid, new_task).then(res =>{
+          console.log(res.data)
+          //为新建的task赋值后端分配的tid
+          new_task['tid']=res.data.tid                       
+          console.log(new_task.tid)
+          this.task_content = ''
+          this.$message("创建成功 ✔")
+          var newEvent={
+            name:new_task['title'],
+            start: new_task['ddl_time'],
+            color:this.setColor(new_task['category'],false),
+            detail:new_task
+          }
+          this.events.push(newEvent);
+          this.initDialog()
+          //重置表单
+          this.$refs[formName].resetFields()
+        })
+      },
+  
   }
 }
 </script>
