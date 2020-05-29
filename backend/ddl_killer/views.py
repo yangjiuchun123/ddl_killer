@@ -855,10 +855,11 @@ def show_user_message(request, uid):
         return JsonResponse(response, json_dumps_params={'ensure_ascii':False}, charset='utf_8_sig')
     user = User.objects.get(uid=uid)
     
+    print(request.GET.get('type'))
     response['data'] = []
     try:
-        type = request.GET.get('type')
-        if type=="read":
+        category = str(request.GET.get('type'))
+        if category=="read":
             for um in UserMessage.objects.filter(user__uid=user.uid):
                 m = um.message
                 if um.is_read==True:
@@ -868,10 +869,10 @@ def show_user_message(request, uid):
                         'content': m.content,
                         'is_read': um.is_read,
                         'category': m.category,
-                        'publisher': m.publisher,
+                        'publisher': m.publisher.name,
                         'publish_time': m.publish_time 
                     })
-        elif type=="unread":
+        elif category=="unread":
             for um in UserMessage.objects.filter(user__uid=user.uid):
                 m = um.message
                 if um.is_read==False:
@@ -881,22 +882,23 @@ def show_user_message(request, uid):
                         'content': m.content,
                         'is_read': um.is_read,
                         'category': m.category,
-                        'publisher': m.publisher,
+                        'publisher': m.publisher.name,
                         'publish_time': m.publish_time 
                     })
         else:
             for um in UserMessage.objects.filter(user__uid=user.uid):
                 m = um.message
-                if m.category==type:
+                #print(m.category==category)
+                if m.category==category:
                     response['data'].append({
                         'mid': m.mid,
                         'title': m.title,
                         'content': m.content,
                         'is_read': um.is_read,
                         'category': m.category,
-                        'publisher': m.publisher,
+                        'publisher': m.publisher.name,
                         'publish_time': m.publish_time 
-                    })
+	    			})
         response['code'] = 200
         response['msg'] = "Success."
     except:
@@ -914,17 +916,20 @@ def get_message_read(request, uid, mid):
         return JsonResponse(response, json_dumps_params={'ensure_ascii':False}, charset='utf_8_sig')
     user = User.objects.get(uid=uid)
     message = Message.objects.get(mid=mid)
-    if not messgae:
+    if not message:
         response['code'] = 404
         response['msg'] = "Message Not Found!"
     else:
-        um = UserMessage.objects.filter(user__uid=user.uid, message__mid=message.mid)
+        um = UserMessage.objects.filter(user__uid=uid, message__mid=mid)
+        print(um.exists())
         if not um.exists():
             response['code'] = 404
             response['msg'] = "You have no rights to access this messgae!"
         else:
+            um = um[0]
             um.is_read=True
             um.save()
             response['code'] = 200
             response['msg'] = "Success."
+    print('return')
     return JsonResponse(response, json_dumps_params={'ensure_ascii':False}, charset='utf_8_sig')

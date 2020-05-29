@@ -18,19 +18,19 @@
             <v-list-item-group v-model="model">
               <!-- <template v-for="(item, i) in items"> -->
                 <v-list-item
+                  v-for="(item, i) in items"
                   :key="i"
                   :value="item"
-                  v-for="(item, i) in items"
                   @click="readMsg(item)"
                 >
                   <!-- <v-list-item-icon>
                     <v-icon v-text="item.icon"></v-icon>
                   </v-list-item-icon> -->
-                  <v-list-item-content :class="[item.has_read?'font-weight-light':'font-weight-bold']">
+                  <v-list-item-content :class="[item.is_read?'font-weight-light':'font-weight-bold']">
                     <v-list-item-title v-text="item.title"></v-list-item-title>
                     <v-list-item-subtitle class="my-2">{{ item.content | ellipsis }}</v-list-item-subtitle>
                     <!-- <v-list-item-subtitle class="d-flex justify-end">发布时间: {{item.publish_time}}</v-list-item-subtitle> -->
-                    <v-list-item-subtitle>{{item.author}}   发布于: {{item.publish_time}}</v-list-item-subtitle>
+                    <v-list-item-subtitle>{{item.publisher}}   发布于: {{item.publish_time}}</v-list-item-subtitle>
                   </v-list-item-content>
                    
                   <!-- <v-list-item-action>
@@ -58,7 +58,7 @@
               </v-card-title>
 
               <v-card-subtitle class="mt-3">
-                {{ msgOpened.author }} 发布于 {{ msgOpened.publish_time }}
+                {{ msgOpened.publisher }} 发布于 {{ msgOpened.publish_time }}
               </v-card-subtitle>
 
               <v-card-text class="font-weight-medium">
@@ -72,7 +72,7 @@
                 <v-btn
                   color="primary"
                   text
-                  @click="dialog = false"
+                  @click="closeDialog()"
                 >
                   I accept
                 </v-btn>
@@ -90,6 +90,7 @@
 import { getMessage, readMessage } from '@/api/message'
 
 export default {
+  inject: ['reload'],
   data: () => ({
     tags: [
       {text: '未读', value: 'unread'},
@@ -105,37 +106,13 @@ export default {
       title: '',
       content: '',
       publish_time: '',
-      author: 'No One'
+      publisher: 'No One'
     },
     dialog: false,
 
-    items: [
-        {
-          mid: 1,
-          title: '这是一则会议消息',
-          content: '会议balabalabalabalabalabalabalabalabalabala',
-          publish_time: '2020-05-01',
-          author: 'No One',
-          has_read: false
-        },
-        {
-          mid: 2,
-          title: '这是一则分享通知',
-          content: '分享balabalabalabalabalabala',
-          publish_time: '2020-05-01',
-          author: 'No One',
-          has_read: false
-        },
-        {
-          mid: 3,
-          title: '这是一则其他通知',
-          content: '其他balabalabalabalabalabala',
-          publish_time: '2020-05-01',
-          author: 'No One',
-          has_read: false
-        },
-      ],
-      model: 1
+    ctag: '', //short for current tag
+    items: [],
+    model: 1
   }),
   filters: {
     ellipsis (value) {
@@ -146,38 +123,41 @@ export default {
       return value
     }
   },
-  // created() {
-  //   initialize()
-  // },
+  created() {
+    this.initialize()
+  },
   methods: {
+    initialize() {
+      this.ctag = 'unread'
+      getMessage(this.$store.getters.uid, this.ctag).then(res => {
+        this.items = res.data
+      })
+    }, 
     choose(tag) {
-      console.log(tag)
+      this.ctag = tag.value
+      console.log(this.ctag)
       getMessage(this.$store.getters.uid, tag.value).then(res => {
-        let resItems = res
-        console.log(resItems)  
-        for (let i = 0; i < resItems.length; i++)
-        {
-          this.items.push({
-            title: resItems[i].title,
-            content: resItems[i].content,
-            has_read: resItems[i].is_read,
-            author: resItems[i].publisher,
-            publish_time: resItems[i].publish_time,
-            mid: resItems[i].mid
-          })
-        }
+        this.items = res.data
       })
     },
     readMsg(item) {
       console.log(item)
-      // todo: post backend to modify "has_read" term
+      // todo: post backend to modify "is_read" term
       readMessage(this.$store.getters.uid, item.mid).then(res => {
         console.log(res)
-        item.has_read = true
+        item.is_read = true
         this.msgOpened = item
         this.dialog = true
       })
-      
+    },
+    closeDialog() {
+      this.dialog = false
+      if (this.ctag=="unread") {
+        getMessage(this.$store.getters.uid, this.ctag).then(res => {
+          this.items = res.data
+        })
+        this.reload()
+      }
     }
   }
 }
