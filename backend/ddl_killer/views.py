@@ -952,9 +952,17 @@ def create_forget_pwd_email_verify(request):
         code_range = list('0123456789abcdefghijklmnopqrstuvwxyz')
         verify_code = ''.join(random.choices(code_range, k=8))
         key_pair = create_js_pub_key()
-        PasswordModificationRecord.objects.create(verify_code=verify_code,
+        try:
+            record = PasswordModificationRecord.objects.get(user=user)
+            record.verify_code = verify_code
+            record.key_pair = key_pair
+            record.save()
+        except:
+            PasswordModificationRecord.objects.create(
                                                   user=user,
-                                                  key_pair=key_pair)
+                                                  verify_code=verify_code,
+                                                  key_pair=key_pair,
+                                                  )
         reset_pwd_mail(user.email, user.uid, user.name, verify_code)
 
         response['code'] = 200  # 成功发送邮件
@@ -972,9 +980,14 @@ def create_forget_pwd_reset_pub_key(request):
 
     try:
         user = User.objects.get(uid=uid)
-        verify_record = PasswordModificationRecord.objects.get(user=user)
     except:
         return JsonResponse({'code': 400, 'msg': 'User not found'},
+                            json_dumps_params={'ensure_ascii': False}, charset='utf_8_sig')
+
+    try:
+        verify_record = PasswordModificationRecord.objects.filter(user=user).first()
+    except:
+        return JsonResponse({'code': 400, 'msg': 'record not found'},
                             json_dumps_params={'ensure_ascii': False}, charset='utf_8_sig')
 
     if verify_code == verify_record.verify_code:
@@ -994,7 +1007,7 @@ def create_forget_pwd_reset_pub_key(request):
 def change_user_pwd(request):
     data = json.loads(request.body.decode())
     uid = data.get('uid', None)
-    password = data.get('new_password', 'kid:0|')
+    password = data.get('password', 'kid:0|')
     password = jsDecode(password)
     if isinstance(password, Exception):
         return JsonResponse({'code': 400, 'msg': 'Verification failed'},
