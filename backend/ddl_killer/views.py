@@ -1000,7 +1000,7 @@ def create_forget_pwd_reset_pub_key(request):
                      'pub_key': key_pair.pub_key}
         }, json_dumps_params={'ensure_ascii': False}, charset='utf_8_sig')
     else:
-        return JsonResponse({'code': 400, 'msg': 'Verification failed'+verify_record.verify_code},
+        return JsonResponse({'code': 400, 'msg': 'Verification failed'},
                         json_dumps_params={'ensure_ascii': False}, charset='utf_8_sig')
 
 
