@@ -936,6 +936,16 @@ def get_message_read(request, uid, mid):
 
 
 def create_forget_pwd_email_verify(request):
+    """
+    send verify email to specified account
+
+    args:
+
+    - uid
+
+    :param request:
+    :return:
+    """
     data = json.loads(request.body.decode())
     uid = data.get('uid', None)
     if uid is None:
@@ -974,6 +984,17 @@ def create_forget_pwd_email_verify(request):
 
 
 def create_forget_pwd_reset_pub_key(request):
+    """
+    verify given code. if success, generate a temporary pub key
+
+    args:
+
+    - uid
+    - verify_code
+
+    :param request:
+    :return: {key_id, pub_key}
+    """
     data = json.loads(request.body.decode())
     uid = data.get('uid', None)
     verify_code = data.get('verify_code', None)
@@ -1005,6 +1026,17 @@ def create_forget_pwd_reset_pub_key(request):
 
 
 def change_user_pwd(request):
+    """
+    change password of specified user
+
+    args:
+
+    - uid
+    - password: str, encrypt with pub key given by create_forget_pwd_reset_pub_key
+
+    :param request:
+    :return:
+    """
     data = json.loads(request.body.decode())
     uid = data.get('uid', None)
     password = data.get('password', 'kid:0|')
