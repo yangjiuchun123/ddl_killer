@@ -922,7 +922,7 @@ def get_message_read(request, uid, mid):
         print(um.exists())
         if not um.exists():
             response['code'] = 404
-            response['msg'] = "You have no rights to access this messgae!"
+            response['msg'] = "You have no rights to access this message!"
         else:
             um = um[0]
             um.is_read=True
@@ -931,3 +931,23 @@ def get_message_read(request, uid, mid):
             response['msg'] = "Success."
     print('return')
     return JsonResponse(response, json_dumps_params={'ensure_ascii':False}, charset='utf_8_sig')
+
+
+def report_bugs(request, uid):
+    response = {}
+    if not request.META.get("HTTP_AUTHORIZATION") or not check_password(uid,request.META.get("HTTP_AUTHORIZATION")):
+        response['code'] = 401
+        response['msg'] = "Authorization failed!"
+        return JsonResponse(response, json_dumps_params={'ensure_ascii':False}, charset='utf_8_sig')
+    user = User.objects.filter(uid=uid)
+    if not user.exists():
+        response['code'] = 404
+        response['msg'] = "User not exists!"
+    else:
+        data = json.loads(request.body.decode())
+        user_obj = User.objects.get(uid=uid)
+        Report.objects.create(user=user_obj, content=data["content"])
+        response['code'] = 200
+        response['msg'] = "Success."
+    return JsonResponse(response, json_dumps_params={'ensure_ascii':False}, charset='utf_8_sig')
+    
