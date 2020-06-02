@@ -132,3 +132,9 @@ class SecurityKeyPair(models.Model):
     created_at = models.TimeField(auto_now_add=True)
     pri_key = models.CharField(max_length=256)
     pub_key = models.CharField(max_length=256)  # save pub key for debugging
+
+
+class PasswordModificationRecord(models.Model):
+    verify_code = models.CharField(max_length=12)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    key_pair = models.ForeignKey(SecurityKeyPair, on_delete=models.CASCADE)

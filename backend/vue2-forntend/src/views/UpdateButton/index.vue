@@ -47,6 +47,7 @@
       </v-card>
     </v-dialog>
   </v-row>
+  </div>
 </template>
 
 <script>
