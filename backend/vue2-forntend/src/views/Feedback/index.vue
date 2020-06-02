@@ -4,7 +4,7 @@
           <v-col>
 
             <v-textarea
-              v-model="feed"
+              v-model="content"
               label="您的意见对我们很重要!💖"
               outlined
               class="pa-12"
@@ -14,7 +14,7 @@
               no-resize
             >
               <template v-slot:append>
-                <v-btn @click="submit" :disabled="feed==''" color="primary">
+                <v-btn @click="submit" :disabled="content==''" color="primary">
                   提交
                   <v-icon>mdi-reply</v-icon>
                 </v-btn>
@@ -32,17 +32,22 @@
   import {feedback} from '@/api/user';
   export default {
     data: () => ({
-      feed:  '',
+      content:  '',
     }),
 
     methods: {
       submit() {
-        if (this.feed=='') {
+        if (this.content=='') {
           this.$message("不能为空哦")
         }
         else {
-          feedback(this.$store.getters.uid, this.feed).then(res => {
+          var data = {
+            content: this.content
+          }
+          console.log(data)
+          feedback(this.$store.getters.uid, data).then(res => {
             this.$message('提交成功！感谢您的反馈！补锅侠已经在路上啦！😃')
+            this.content = ''
             console.log(res)
             }).catch(error => {
             console.log(error)

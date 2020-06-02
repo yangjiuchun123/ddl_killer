@@ -32,6 +32,7 @@ from .models import Note
 from .models import CourseNote
 from .models import Message
 from .models import UserMessage
+from .models import Report
 
 from itsdangerous import URLSafeTimedSerializer as utsr
 import base64
