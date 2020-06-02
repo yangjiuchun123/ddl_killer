@@ -63,6 +63,10 @@ class NoteAdmin(admin.ModelAdmin):
             return cn.course.name
         else:
             return ' '
+        
+class ReportAdmin(admin.ModelAdmin):
+    list_display = ['user', 'content']
+    search_fields = ['user__uid', 'content']
 
 class CourseNoteAdmin(admin.ModelAdmin):
     # list_display = ['task__title', 'course__name', 'task__content']
@@ -136,6 +140,7 @@ admin.site.register(User, UserAdmin)
 admin.site.register(Task, TaskAdmin)
 admin.site.register(Resource, ResourceAdmin)
 admin.site.register(Note, NoteAdmin)
+admin.site.register(Report, ReportAdmin)
 admin.site.register(UserTask, UsertaskAdmin)
 admin.site.register(Course, CourseAdmin)
 admin.site.register(UserCourse, UserCourseAdmin)

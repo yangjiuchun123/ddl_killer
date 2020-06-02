@@ -42,4 +42,6 @@ urlpatterns = [
     path(r'security/pub-key', views.get_security_public_key),  # allow: GET
     path(r'user/<int:uid>/message', views.show_user_message),
     path(r'user/<int:uid>/message/<int:mid>/read', views.get_message_read),
+    path(r'user/<int:uid>/report', views.report_bugs),
+    
 ]

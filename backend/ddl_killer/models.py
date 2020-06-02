@@ -91,6 +91,11 @@ class Message(models.Model):
     category = models.CharField(max_length=100)
     publisher = models.ForeignKey('User', on_delete=models.CASCADE)
     publish_time = models.CharField(max_length=50,null=True, blank=True)
+    
+class Report(models.Model):
+    rid = models.AutoField(primary_key=True)
+    user = models.ForeignKey('User', on_delete=models.CASCADE)
+    content = models.TextField(null=True, blank=True)
 
 class UserMessage(models.Model):
     user = models.ForeignKey('User', on_delete=models.CASCADE)
