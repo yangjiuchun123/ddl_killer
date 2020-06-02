@@ -104,3 +104,13 @@ export function resetPWD(uid,data){
     data,
   })   
 }
+
+// 用户反馈
+export function feedback(uid, data) {
+  return request({
+    baseURL: '',
+    url: `/api/user/${uid}/report`,
+    method: 'post',
+    data,
+  })   
+}
