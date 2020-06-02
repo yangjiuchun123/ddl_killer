@@ -142,7 +142,7 @@ export const constantRoutes = [
           path: 'index',
           name: 'Feedback',
           component: () => import('@/views/Feedback/index'),
-          meta: { title: '用户反馈', icon: 'eye' }
+          meta: { title: '用户反馈', icon: 'link' }
         }
       ]
     },

@@ -14,7 +14,7 @@
               no-resize
             >
               <template v-slot:append>
-                <v-btn @click="submit">
+                <v-btn @click="submit" :disabled="feed==''" color="primary">
                   提交
                   <v-icon>mdi-reply</v-icon>
                 </v-btn>
