@@ -108,7 +108,7 @@ export function resetPWD(uid,data){
 // 用户反馈
 export function feedback(uid, data) {
   return request({
-    url: `/api/user/${uid}/feedback/new`,//没确定
+    url: `/api/user/${uid}/report/new`,//没确定
     method: 'post',
     data,
   })   
