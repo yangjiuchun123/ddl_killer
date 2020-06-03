@@ -333,6 +333,22 @@ def update_courses(request, uid): #从课程中心获取用户所选课程并同
             if not ct.exists():
                 CourseTask.objects.create(course=course, task=ass_task)
         
+            # what's more: the url before submiting homework and after submiting homework changed
+            # therefore the originak usertask does not delete, we need to manually delete it
+            # e.g. before submit: https://course.e2.buaa.edu.cn/portal/tool/a5695950-ebed-4b82-96d8-78e8bee58ab8?assignmentReference=/assignment/a/0d40488a-ec2c-4650-aef5-87b5ebb431b4/01fd8231-3ae6-45ba-bbd3-e4e74a138da8&panel=Main&sakai_action=doView_submission
+            # after submit: https://course.e2.buaa.edu.cn/portal/tool/a5695950-ebed-4b82-96d8-78e8bee58ab8?submissionId=/assignment/s/0d40488a-ec2c-4650-aef5-87b5ebb431b4/01fd8231-3ae6-45ba-bbd3-e4e74a138da8/c5f95b89-c4bc-418e-864b-455103b27328&panel=Main&sakai_action=doView_grade
+            try:
+                if 'submissionId' in ass['urls']:
+                    prefixU = ass['urls'].split('?')[0]+'?assignmentReference='
+                    # print(prefixU)
+                    for t in Task.objects.filter(urls__startswith=prefixU):
+                        ut = UserTask.objects.filter(user=user_obj, task=t)
+                        for utt in ut:
+                            utt.is_finished = True
+                            utt.is_deleted = True
+                            utt.save()
+            except:
+                traceback.print_exc()
         
         ########################### check if new CourseNote ##################################
         try:
