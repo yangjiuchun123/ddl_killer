@@ -11,7 +11,7 @@ import traceback
 import datetime
 import time
  
-
+print(datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
 YAG = yagmail.SMTP( user="ddlkiller@yeah.net", password="PTSQPRKEYDLPPBVV", host='smtp.yeah.net')
 errorTitle = '⚠️ 【DDL_Killer】 错误提醒'
 errorText = "😥 我们非常抱歉地告诉您，您有一个任务提醒在发送过程中出现了错误，请登陆 <a href='http://ddlkiller.top'>ddl_killer 网站查看</a>。\n\n感谢您的理解，祝学业顺利。\n\n"
