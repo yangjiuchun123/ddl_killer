@@ -111,13 +111,14 @@ def create_user(request): #用户注册
 
 def edit_user(request):
     response={}
-    if not request.META.get("HTTP_AUTHORIZATION") or not check_password(uid,request.META.get("HTTP_AUTHORIZATION")):
-        response['code'] = 401
-        response['msg'] = "Authorization failed!"
-        return JsonResponse(response, json_dumps_params={'ensure_ascii':False}, charset='utf_8_sig')
     try:
         data = json.loads(request.body.decode())
         uid=data['uid']
+        if not request.META.get("HTTP_AUTHORIZATION") or \
+                not check_password(uid, request.META.get("HTTP_AUTHORIZATION")):
+            response['code'] = 401
+            response['msg'] = "Authorization failed!"
+            return JsonResponse(response, json_dumps_params={'ensure_ascii': False}, charset='utf_8_sig')
         user=User.objects.get(uid=uid)
         user.name=data["name"]
         isModify=False
