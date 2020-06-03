@@ -20,6 +20,7 @@ export function register(data) {
   })
 }
 
+
 // 首页右上角的info
 export function getInfo(token) {
   return request({
@@ -85,21 +86,41 @@ export function getPubKey() {
     method: 'get'
   })
 }
+
+//忘记密码相关
 //@ data：{uid：'17370000'}
 export function sendAuthCode(data){
   return request({
-    url: '/api/sendAuthCode',//url还没商量好呢
+    url: '/api/user/forget/email',
     method: 'post',
     data
     //后端返回 告诉前端该账号是否存在
   })
 }
+//data:{uid:'17370000',verify_code:'6666'}
+export function verifyAuthCode(data){
+  return request({
+    url: '/api/user/forget/verify',
+    method: 'post',
+    data
+  })
+}
 
-//@ data:{password:'hahahaha'}
-export function resetPWD(uid,data){
+//@ data:{uid:'',password:'hahahaha'}
+export function resetPWD(data){
   return request({
     baseURL: '',
-    url: `/api/resetPWD`,//没确定
+    url: `/api/user/forget/reset`,
+    method: 'post',
+    data
+  })   
+}
+
+// 用户反馈
+export function feedback(uid, data) {
+  return request({
+    baseURL: '',
+    url: `/api/user/${uid}/report`,
     method: 'post',
     data,
   })   

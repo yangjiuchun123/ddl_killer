@@ -1,5 +1,5 @@
 <template>  
-  <div class="login-container">   
+  <div id="rtPWD" class="forget-container">   
     <el-row type="flex" justify="center" style="margin-top: 130px">
       <el-col :span="10">      
       <div class="title-container">
@@ -19,9 +19,8 @@
             <v-stepper-items>
               <v-stepper-content step="1">
                 <v-card
-                  class="mb-12"
-                  
-                  height="230px"
+                  class="mb-12"                  
+                  height="230px"             
                 >
                 <v-card-text>
                 <el-form ref="form1" :model="form1" :rules="rules1"  auto-complete="on" label-position="left">
@@ -40,18 +39,18 @@
                     />
                   </el-form-item>                  
                
-                  <el-form-item prop="code">
+                  <el-form-item prop="verify_code">
                     <span class="svg-container">
                       <i class="el-icon-message"></i>
                     </span>
-                    <el-input placeholder="北航邮箱验证码" v-model="form1.code" type="text" style="width:280px"></el-input>
+                    <el-input placeholder="北航邮箱验证码" v-model="form1.verify_code" type="text" ></el-input>
                     <span>                    
                     <el-button plain :disabled="flag" @click="getAuthCode">{{ msg }}</el-button>
                     </span>
                   </el-form-item>
                 </el-form>
                 </v-card-text>
-                <v-card-acation >
+                <v-card-action >
                   <div  class="text-center">
                     <v-btn color="primary" @click="nextStep1('form1')" >下一步</v-btn>
                     <v-btn text @click="resetForm('form1')">重置</v-btn> 
@@ -62,8 +61,7 @@
 
               <v-stepper-content step="2">
                 <v-card
-                  class="mb-12"
-                
+                  class="mb-12"                
                   height="230px"
                 >
                 <v-card-text>
@@ -134,6 +132,9 @@
 </template>
 
 <script>
+import { sendAuthCode,verifyAuthCode,resetPWD } from '@/api/user'
+import { JSEncrypt } from 'jsencrypt'
+//import { encrypt } from '@/utils/encrypt'
 
   export default {
     data() {      
@@ -172,16 +173,19 @@
      return {       
         e1: 1,
         flag:false,
+        key_id:'',
+        pub_key:'',
+        uid:'',
         msg:'获取邮箱验证码',        
         form1:{
           uid:'',          
-          code:'',//验证码
+          verify_code:'',//验证码
         },
         rules1:{
            uid: [
             {require: true, validator: validateUid, trigger: 'blur'}
           ],          
-          code:[
+          verify_code:[
             {required:true,message: '请输入验证码', trigger:'blur'}
           ]
         },
@@ -220,6 +224,7 @@
       resetForm(formName) {
         this.$refs[formName].resetFields();
       },
+      /*
        encrypt(password) {
         let encrypt = new JSEncrypt()
         encrypt.setPublicKey(this.pub_key)
@@ -228,32 +233,34 @@
         // console.log(encPassword)
         return encrypt.encrypt(password)
       },
+      */
       getAuthCode(){
         this.$refs.form1.validateField('uid', (errMsg) => {
                if (errMsg) {
-                   console.log('学号号校验未通过')
+                   console.log('学号校验未通过')
                }else {
                 //@后端先判断该学号是否存在，再给北航邮箱发送验证码
-                //sendAuthoCode(submitForm).then(res => {
+                var postData={
+                  uid:this.form1.uid
+                }
+                sendAuthCode(postData).then(res => {                         
                   const _this =this;
                   this.flag = true; 
                   var time = 150;//定义时间变量 150s
                   var timer = null;//定义定时器
                   timer = setInterval(function(){
                     if(time==0){
-                      _this.msg="重新获取验证码";
-                      console.log(_this.msg);         
+                      _this.msg="重新获取验证码";                          
                       _this.flag=false;            
                       clearInterval(timer);//清除定时器
                     }else{
-                      _this.msg=time+"秒后重新获取";
-                      console.log(_this.msg);
+                      _this.msg=time+"秒后重新获取";                     
                       time--;
                     }                    
                   },1000)  
-
-                  //})      
-
+                  }).catch(error => {
+                    console.log(error)
+                  })  
                }
            })
       },
@@ -264,25 +271,34 @@
           if (valid) {
             var submitForm = {
               uid: this.form1.uid,
-              code:this.form2.code,
+              verify_code:this.form1.verify_code,
             }
             console.log(submitForm)
             //@与后端交互
-            /*
-            sendAuthCode(submitForm).then(res => {
-              //判断验证码是否正确
-              //如果正确
-              */
+            
+            verifyAuthCode(submitForm).then(res => {              
               this.e1=2;
-              /*
+              this.uid=res.data.uid;
+              //用于之后的密码加密
+              this.key_id=res.data.key_id;
+              this.pub_key=res.data.pub_key;              
             }).catch(error => {
               console.log(error)
-            })*/
-          } else {
-            
+            })
+          } else {            
             return false;
           }                
           })
+      },
+      
+      encryptPWD(password){
+        let enc = new JSEncrypt()
+        // res : {'pub_key': pub_key, 'key_id': key.id}
+        // console.log("res.key_id: ", res.key_id)
+        // console.log("pub_key: ", res.pub_key)
+        enc.setPublicKey(this.pub_key)
+        var encPass = "kid:" + this.key_id + "|" + enc.encrypt(password)
+        return encPass
       },
 
       nextStep2(formName){
@@ -290,24 +306,23 @@
         this.$refs[formName].validate((valid) => {
           if (valid) {
             var submitForm = {
-              password: this.encrypt(this.form2.password),            
+              uid:this.uid,
+              password: this.encryptPWD(this.form2.password),            
             }
             console.log(submitForm)
             //@与后端交互
-            /*
-            resetPWD(this.form1.uid,submitForm).then(res => {            
-              
-              */
+            
+            resetPWD(submitForm).then(res => {        
               this.e1=3;
-              /*
+              
             }).catch(error => {
               console.log(error)
-            })*/
+            })
           } else {
             
             return false;
           }                
-          })     
+          })    
 
       },
      
@@ -315,7 +330,7 @@
   }
 </script>
 
-<style lang="scss">
+<style lang="scss" >
 /* 修复input 背景不协调 和光标变色 */
 /* Detail see https://github.com/PanJiaChen/vue-element-admin/pull/927 */
 
@@ -325,13 +340,13 @@ $cursor: #fff;
 
 
 @supports (-webkit-mask: none) and (not (cater-color: $cursor)) {
-  .login-container .el-input input {
+  .forget-container .el-input input {
     color: $cursor;
   }
 }
 
 /* reset element-ui css */
-.login-container {
+.forget-container {
   .labelterm {
     font-size: 18px;
     color: #fff;
@@ -342,15 +357,16 @@ $cursor: #fff;
   .el-input {
     display: inline-block;
     height: 47px;
-    width: 60%;
+    width: 180px;
 
     input {
       background: transparent;
+      //background-color:#454545;
       border: 0px;
       -webkit-appearance: none;
       border-radius: 0px;
       padding: 12px 5px 12px 15px;
-      color: $light_gray;
+      color:#454545;
       height: 47px;
       caret-color: $cursor;
 
@@ -366,21 +382,24 @@ $cursor: #fff;
     background: rgba(0, 0, 0, 0.1);
     border-radius: 5px;
     color: #454545;
+    width:370px;
+    margin-left: auto;
+    margin-right:auto;
   }
 }
 </style>
 
 <style lang="scss" scoped>
 $bg:#2d3a4b;
-// $dark_gray:#889aa4;
+$dark_gray:#889aa4;
 // $light_gray:#eee;
 $white: #ffffff;
 
 .cardColor {
-  background-color: #9a9c9c2c;;
+  background-color: #9a9c9c2c;
 }
 
-.login-container {
+.forget-container {
   min-height: 100%;
   width: 100%;
 
@@ -392,20 +411,20 @@ $white: #ffffff;
   min-width: 1000px;
   z-index:-10;
   zoom: 1;
-  background-color: #fff;
+  //background-color: #fff;
   background-repeat: no-repeat;
   background-size: cover;
   -webkit-background-size: cover;
   -o-background-size: cover;
   background-position: center 0;
-  // background-color: $bg;
   overflow: hidden;
 
   .login-form {
-    position: relative;
-    width: 800px;
+    position: relative;    
+    width: 700px;
     height: 430px;
     max-width: 100%;
+    min-width:630px;
     padding: 50px 35px 0;
     margin: 0 auto;
     overflow: hidden;
@@ -425,8 +444,8 @@ $white: #ffffff;
 
   .svg-container {
     padding: 6px 5px 6px 15px;
-    // color: $dark_gray;
-    color: $white;
+    color: $dark_gray;
+    //color: $white;
     vertical-align: middle;
     width: 30px;
     display: inline-block;
@@ -437,7 +456,6 @@ $white: #ffffff;
 
     .title {
       font-size: 26px;
-      // color: $light_gray;
       color: $white;
       margin: 0px auto 10px auto;
       text-align: center;
@@ -450,8 +468,7 @@ $white: #ffffff;
     right: 10px;
     top: 7px;
     font-size: 16px;
-    // color: $dark_gray;
-    color: $white;
+    color: $dark_gray;   
     cursor: pointer;
     user-select: none;
   }

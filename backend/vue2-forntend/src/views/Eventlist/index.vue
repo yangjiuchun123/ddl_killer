@@ -225,7 +225,7 @@
               <template v-slot:no-data>
                 <!-- <v-btn color="primary" @click="initialize">Reset</v-btn> -->
                 <updateBtn color='primary' class=''></updateBtn> 
-                <table>
+                <!--<table>这在这干嘛的啊，报错给注释了-->
               </template>
             </v-data-table>
           </v-sheet>
