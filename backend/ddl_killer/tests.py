@@ -22,6 +22,60 @@ class ViewTestCase(TestCase):
     TEST_USER_PWD = 'test_PaSSword123456_'
     TEST_USER_EMAIL = 'test@email.com'
 
+    TEST_COURSE = {
+        'code': 200,
+        'courses': [
+            {
+                'course_name': 'a course',
+                'course_teacher': 'a teacher',
+                'resources': [
+                    {
+                        'code': '01001',
+                        'url': 'www.url.com',
+                        'title': 'test resource',
+                    }
+                ],
+                'assignments': [
+                    {
+                        'title': 'title',
+                        'course_name': 'name',
+                        'content': 'ctt',
+                        'platform': 'platform',
+                        'category': 'cat',
+                        'urls': 'urls',
+                        'ddl_time': 'today',
+                        'create_time': 'today',
+                        'notification_time': 'today',
+                        'notification_alert': True,
+                        'is_finished': False,
+                    },
+                    {
+                        'title': 'assignment starts with submissionId',
+                        'course_name': 'name',
+                        'content': 'ctt',
+                        'platform': 'platform',
+                        'category': 'cat',
+                        'urls': '?assignmentReference=123&submissionId=112358',  # test for special case
+                        'ddl_time': 'today',
+                        'create_time': 'today',
+                        'notification_time': 'today',
+                        'notification_alert': True,
+                        'is_finished': False,
+                    }
+                ],
+                'notifications': [
+                    {
+                        'url': 'note.url.com',
+                        'title': 'note title',
+                        'time': 'tomorrow',
+                        'content': 'exam',
+                        'attachments': ['1.pdf', '2.word']
+                    }
+                ]
+            }
+        ]
+    }
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self._key_pair = None
@@ -48,18 +102,28 @@ class ViewTestCase(TestCase):
     @staticmethod
     def mock_mail_send(*args, **kwargs):
         print('sending mock mail.. args:', args, kwargs)
+        return mock.DEFAULT
+
+    @staticmethod
+    def mock_update_from_course(*args, **kwargs):
+        print('mock updating course... args:', args, kwargs)
+        return mock.DEFAULT
 
     def _test_req_context(self, func, exp_code, auth_required):
         def test_req_wrapper(*args, **kwargs):
             token = None if not self._user_data else self._user_data['token']
             with mock.patch('ddl_killer.utils.sendmail.YAG.send') as mail_obj:
                 mail_obj.side_effect = self.mock_mail_send
-                if auth_required:
-                    r_data = func(*args, HTTP_AUTHORIZATION=None, **kwargs).json()
-                    self.assertEqual(r_data['code'], 401, r_data)
-                r_data = func(*args, HTTP_AUTHORIZATION=token, **kwargs).json()
-                self.assertEqual(r_data['code'], exp_code)
-                return r_data
+                with mock.patch('ddl_killer.views.updateFromCourse') as mock_course:
+                    mock_course.side_effect = self.mock_update_from_course
+                    mock_course.return_value = self.TEST_COURSE
+
+                    if auth_required:
+                        r_data = func(*args, HTTP_AUTHORIZATION=None, **kwargs).json()
+                        self.assertEqual(r_data['code'], 401, r_data)
+                    r_data = func(*args, HTTP_AUTHORIZATION=token, **kwargs).json()
+                    self.assertEqual(r_data['code'], exp_code)
+                    return r_data
 
         return test_req_wrapper
 
@@ -176,11 +240,85 @@ class ViewTestCase(TestCase):
             self.assertIn(data['cid'], {c.cid for c in test_courses})
             self.assertIn(course.cid, {d['cid'] for d in course_data})
 
-    def test_show_user_tasks(self):
+    def test_task_curd(self):
         self._login()
-        r = self.post('/api/user/{}/tasks'.format(self.TEST_USER_ID))
-        data = r
-        self.assertEqual(data['code'], 200)
+        task = {
+            'tid': -1,
+            'title': 'test',
+            'content': 'a task',
+            'category': 'cat',
+            'urls': 'www.usl.com',
+            'platform': 'PC',
+            'ddl_time': 'today',
+            'create_time': 'today',
+            'notification_alert': True,
+            'notification_time': 'today',
+            'is_finished': False
+        }
+
+        # case 1: tid =- -1
+        r = self.post('/api/user/{}/tasks/new'.format(self.TEST_USER_ID),
+                      data=task)
+
+        # case 2: tid != -1, isAdmin
+        user_task_orm = UserTask.objects.filter(user=self._user_orm).first()
+        tid = task['tid'] = user_task_orm.task.tid
+        r = self.post('/api/user/{}/tasks/new'.format(self.TEST_USER_ID),
+                      data=task)
+
+        # case 3: tid != -1, not isAdmin
+        user_task_orm.isAdmin = False
+        user_task_orm.save()
+        r = self.post('/api/user/{}/tasks/new'.format(self.TEST_USER_ID),
+                      data=task)
+
+        user_task_orm.isAdmin = True
+        user_task_orm.save()
+
+        r = self.post('/api/user/{}/task/{}/alterTaskState'
+                      .format(self.TEST_USER_ID, tid))
+
+        r = self.post('/api/user/{}/tasks/{}/delete'
+                      .format(self.TEST_USER_ID, tid))
+
+        r = self.post('/api/user/{}/task/{}/alterTaskState'
+                      .format(self.TEST_USER_ID, tid),
+                      exp_code=404)
+
+    def test_admin_add_task(self):
+        self._login()
+
+        course = Course.objects.create(name='test_course', teacher='someone')
+        user_course = UserCourse.objects.create(user=self._user_orm,
+                                                course=course,
+                                                isAdmin=True)
+
+        Task.objects.all().delete()
+        UserTask.objects.all().delete()
+
+        task_data = {
+            'tid': -1,
+            'title': 'test',
+            'content': 'a task',
+            'category': 'cat',
+            'urls': 'www.usl.com',
+            'platform': 'PC',
+            'ddl_time': 'today',
+            'create_time': 'today',
+            'notification_alert': True,
+            'notification_time': 'today'
+        }
+
+        # case 1: tid == -1
+        r = self.post('/api/user/{}/course/{}/tasks/new'.format(self.TEST_USER_ID, course.cid),
+                      data=task_data)
+
+        tid = UserTask.objects.filter(user=self._user_orm).first().task.tid
+        task_data['tid'] = tid
+
+        # case 2: tid != -1
+        r = self.post('/api/user/{}/course/{}/tasks/new'.format(self.TEST_USER_ID, course.cid),
+                      data=task_data)
 
     def test_show_user_messages(self):
         self._login()
@@ -266,3 +404,35 @@ class ViewTestCase(TestCase):
         self.assertTrue(r['data'][0]['ddl_alert'])
         self.assertFalse(r['data'][0]['participate_alert'])
         self.assertTrue(r['data'][0]['resource_alert'])
+
+    def test_update_courses(self):
+        self._login()
+
+        for _ in range(2):  # repeat test for existing note updating
+            self.post('/api/user/{}/update_course'.format(self.TEST_USER_ID),
+                      data={
+                          'username': 'test name',
+                          'password': self.password_encrypt,
+                      })
+
+            user_courses = UserCourse.objects.filter()
+            for user_course in user_courses:
+                r = self.post('/api/user/{}/course/{}/resources'
+                              .format(self.TEST_USER_ID, user_course.course.cid))
+                r = self.post('/api/user/{}/course/{}/notifications'
+                              .format(self.TEST_USER_ID, user_course.course.cid))
+                r = self.post('/api/user/{}/course/{}/tasks'
+                              .format(self.TEST_USER_ID, user_course.course.cid))
+                r = self.post('/api/course/{}/user/{}/appoint'
+                              .format(user_course.course.cid, self.TEST_USER_ID))
+
+                # test show user tasks
+                r = self.post('/api/user/{}/tasks'.format(self.TEST_USER_ID))
+
+        r = self.post('/api/user/{}/course/{}/resources/new'
+                      .format(self.TEST_USER_ID, user_course.course.cid),
+                      data={
+                          'code': 'new resource',
+                          'url': 'www.url.com',
+                          'title': 'test resource',
+                      })

@@ -407,7 +407,7 @@ def admin_add_task(request, uid, cid): # 课程管理员为选择了所有课的
         return JsonResponse(response, json_dumps_params={'ensure_ascii':False}, charset='utf_8_sig')
     data = json.loads(request.body.decode())
     usercourse = UserCourse.objects.get(user__uid=uid, course__cid=cid)
-    this_course = Course.objects.get(course_id=cid)
+    this_course = Course.objects.get(cid=cid)
     if usercourse.isAdmin:
         if data['tid'] != -1:  # 若此项task已存在则视为修改此task的属性信息
             print('task already exists, only modify.\n')
