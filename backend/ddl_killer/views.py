@@ -344,7 +344,7 @@ def update_courses(request, uid): #从课程中心获取用户所选课程并同
                 if 'submissionId' in ass['urls']:
                     prefixU = ass['urls'].split('?')[0]+'?assignmentReference='
                     # print(prefixU)
-                    for t in Task.objects.filter(urls__startswith=prefixU):
+                    for t in Task.objects.filter(urls__startswith=prefixU, title=ass['title']): # title must match here, prefixU only locate course but not specify homework task
                         ut = UserTask.objects.filter(user=user_obj, task=t)
                         for utt in ut:
                             utt.is_finished = True
@@ -786,20 +786,22 @@ def show_course_notifications(request, uid, cid):
 
 
 def q2ldbchange(request):
+    response={}
     try:
-        #"""
-        for t in Task.objects.all():
-            url=t.urls
-            if url and 'sakai_action=doView' in url:
-                preUrl = url.split('sakai_action=doView')[0]
-                t.urls = preUrl
-                t.save()
-                print(t.urls)
-        #"""
+        """
+        for ut in UserTask.objects.filter(user__uid='17373492'):
+            ut.is_deleted=False
+            ut.save()
+        """
+        response['code'] = 200
+        response['msg'] = 'Success'
         pass
     except:
         traceback.print_exc()
+        response['code'] = 677
+        response['msg'] = 'Python Error'
     pass
+    return JsonResponse(response, json_dumps_params={'ensure_ascii':False}, charset='utf_8_sig')
 
 def delete_task(request, uid, tid):
     response = {}
