@@ -503,11 +503,10 @@ def add_task(request, uid): #用户个人添加task(需要选择或输入partici
         return JsonResponse(response, json_dumps_params={'ensure_ascii':False}, charset='utf_8_sig')
     data = json.loads(request.body.decode())
     # print(data)
-    if (len(data['title'].strip())==0) {
+    if (len(data['title'].strip())==0):
         response['code'] = 404
         response['msg'] = "Title can not be empty."
         return JsonResponse(response, json_dumps_params={'ensure_ascii':False}, charset='utf_8_sig')
-    }
     if data['tid']!=-1: #若此项task已存在则视为修改此task的属性信息
         print('task already exists, only modify.\n')
         try:
