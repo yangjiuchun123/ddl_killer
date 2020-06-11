@@ -67,6 +67,30 @@ recrusiveHeader = {
     'Referer': '',
 }
 
+jiaowu_url = "https://jwxt-7001.e2.buaa.edu.cn/ieas2.1/welcome"
+exam_url = "https://jwxt-7001.e2.buaa.edu.cn/ieas2.1/kscx/queryKcForXs"
+queryData = {
+    "xnxq": "2019-20202",
+    "kssjd": "A"
+}
+queryHead = {
+    "Host": "jwxt-7001.e2.buaa.edu.cn",
+    "Connection": "keep-alive",
+    # Content-Length: 23
+    "Pragma": "no-cache",
+    "Cache-Control": "no-cache",
+    "Upgrade-Insecure-Requests": "1",
+    "Origin": "https://jwxt-7001.e2.buaa.edu.cn",
+    "Content-Type": "application/x-www-form-urlencoded",
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.97 Safari/537.36",
+    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9",
+    "Sec-Fetch-Site": "same-origin",
+    "Sec-Fetch-Mode": "navigate",
+    "Sec-Fetch-User": "?1",
+    "Sec-Fetch-Dest": "iframe",
+    "Referer": "https://jwxt-7001.e2.buaa.edu.cn/ieas2.1/kscx/queryKcForXs"
+}
+            
 isDebug = True
 
 class PasswordException(Exception):
@@ -174,27 +198,75 @@ def updateFromCourse(uid, account, password):
     # print(os.getcwd())
     # print(os.path.join(os.getcwd(), 'ddl_killer/log/webScrap.log'))
 
+
+    total_list = {}
+    
+    loginPostData = {
+        "utf8": "%E2%9C%93",
+        "user[login]": account,
+        "user[password]": password,
+        "user[dymatice_code]": "unknown",
+        "commit": "登录 Login",
+    }
+
+
+    ############################### get exam #######################################
+    
+    ns = requests.session()
+    ns.get('https://baidu.com')
+    res = ns.get(login_url, headers=login_header, verify=False)
+    cookie = res.cookies
+    loginPostData['authenticity_token']= str(etree.HTML(res.content).xpath('/html/head/meta[10]/@content')[0])
+    res = ns.post(login_url, data = loginPostData, headers = login_header, cookies=cookie, allow_redirects=True, verify=False)
+    cookie = res.cookies
+    try:
+        exam_list = []
+        exam = ns.get(jiaowu_url, cookies=cookie, headers=header,verify=False) # login first
+        exam = ns.post(exam_url, cookies=cookie, headers=queryHead, data=queryData) # get exam next
+        print(exam.status_code)
+        print(exam.text)
+        exam_soup = bs(exam.text, 'html.parser')
+        for ex in exam_soup.find('div', {'class': "list"}).findAll('tr'):
+            tds = ex.findAll('td')
+            if tds==[]:
+                continue
+            start_time = tds[5].text.split("，")[0]+" "+tds[5].text.split("，")[-1].split('-')[0]+":00"
+            end_time = tds[5].text.split("，")[0]+" "+tds[5].text.split("，")[-1].split('-')[-1]+":00"
+            exam_list.append({
+                        "title": tds[1].text,
+                        "course_name": tds[2].text,
+                        "platform": tds[3].text+" "+tds[4].text,
+                        "category": "exam",
+                        # "seat_number": tds[4].text,
+                        # ddl_time: e.g. 2020-04-05 11:20:00~2020-04-05 13:20:00
+                        "ddl_time": start_time+"~"+end_time,
+                        # "start_time": tds[5].text.split("，")[-1].split('-')[0]+":00",
+                        # "end_time": tds[5].text.split("，")[-1].split('-')[-1]+":00",
+                        "notification_time": (datetime.datetime.strptime(start_time, "%Y-%m-%d %H:%M:%S")-datetime.timedelta(days=1)).strftime("%Y-%m-%d %H:%M:%S"),
+                        "urls":  tds[2].text,
+                        "content": tds[1].text+" 期末集中考试，时间："+start_time+"~"+end_time,
+                        "is_finished": False
+                    })
+        total_list['exam'] = exam_list
+    except:
+        traceback.print_exc()
+
+    print(total_list['exam'])
+
     try:
         s = requests.session()
         if isDebug:
             print("开始模拟登录")
-        postData = {
-            "utf8": "%E2%9C%93",
-            "user[login]": account,
-            "user[password]": password,
-            "commit": "登录 Login",
-        }
-
         res = s.get(login_url, headers=login_header, verify=False)
         cookie = res.cookies
         # if isDebug:
         #     print("get response from ows {0}\n http status {1}\n resquest.url {2}\n".format(login_url, res.status_code, res.url))
 
-        postData['authenticity_token']= str(etree.HTML(res.content).xpath('/html/head/meta[10]/@content')[0])
+        loginPostData['authenticity_token']= str(etree.HTML(res.content).xpath('/html/head/meta[10]/@content')[0])
         # if isDebug:
         #     print("post login params to {0}\n http status {1}\n cookie : {2}\n".format(login_url, res.status_code, cookie))
 
-        res = s.post(login_url, data = postData, headers = login_header, cookies=cookie, allow_redirects=True, verify=False)
+        res = s.post(login_url, data = loginPostData, headers = login_header, cookies=cookie, allow_redirects=True, verify=False)
         cookie = res.cookies
         # if isDebug:
         #     print("post login params to {0}\n http status {1}\n cookie : {2}\n".format(login_url, res.status_code, cookie))
@@ -248,7 +320,6 @@ def updateFromCourse(uid, account, password):
         print("Course info generated...")
 
         
-        total_list = {}
         total_list['courses'] = []
         for course_name, url in course_list.items():
             single_list = {}
@@ -538,6 +609,7 @@ def updateFromCourse(uid, account, password):
             ############################### aggregate all stuffs #######################################
             total_list['courses'].append(single_list)
 
+ 
 
 
         # if isDebug:  
@@ -564,7 +636,6 @@ def updateFromCourse(uid, account, password):
         total_list = {}
         total_list['code'] = 405
         total_list['courses'] = []
-        # print('return password wrong totallist') 
         return total_list
     except Exception as e:
         print('{0} {1} Internal Error. '.format(str(uid), account))

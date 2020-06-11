@@ -55,8 +55,6 @@ class Task(models.Model):
     category = models.CharField(max_length=20)
     urls = models.CharField(max_length=200,null=True, blank=True)
     ddl_time = models.CharField(max_length=50,null=True, blank=True)
-    #notification_time = models.CharField(max_length=50,null=True, blank=True)
-    #notification_alert = models.BooleanField(default = True)
     create_time = models.CharField(max_length=50,null=True, blank=True)
     
 
@@ -110,6 +108,7 @@ class UserTask(models.Model):
     notification_time = models.CharField(max_length=50, null=True, blank=True)
     notification_alert = models.BooleanField(default = True)
     is_deleted = models.BooleanField(default=False)
+    repeat = models.CharField(max_length=50, null=True, blank=True, default="")
 
     # def __str__(self):
     #     return ' '.join([self.user.uid, self.task.title, str(self.is_finished), self.notification_time, str(self.notification_alert)])
