@@ -9,8 +9,8 @@ class UserAdmin(admin.ModelAdmin):
 
 
 class TaskAdmin(admin.ModelAdmin):
-    list_display = ['tid', 'title', 'course_name']
-    search_fields = ['tid', 'title', 'course_name']
+    list_display = ['tid', 'title', 'course_name', 'platform', 'category', 'ddl_time']
+    search_fields = ['tid', 'title', 'course_name', 'platform']
 
     # def get_course_name(self, obj):
     #     return obj.course_name
@@ -35,7 +35,7 @@ class CourseAdmin(admin.ModelAdmin):
 
 
 class UsertaskAdmin(admin.ModelAdmin):
-    list_display = ['user', 'task', 'get_course_name', 'notification_time', 'notification_alert', 'is_finished', 'isAdmin']
+    list_display = ['user', 'task', 'get_course_name', 'notification_time', 'notification_alert', 'is_finished', 'isAdmin', 'is_deleted', 'repeat']
     search_fields = ['user__uid', 'task__title', 'task__course_name']
 
     def get_course_name(self, obj):
