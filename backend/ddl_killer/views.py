@@ -1182,6 +1182,10 @@ def update_repeat_task(request):
     """
     try: 
         response={}
+        if request.META.get("REMOTE_ADDR") != "127.0.0.1":
+            response['code']=404
+            response['msg'] = "You have no right to Access."      
+            return JsonResponse(response, json_dumps_params={'ensure_ascii':False}, charset='utf_8_sig')
         response['data'] = []
         current = datetime.date.today() # today
         current = current.strftime("%Y-%m-%d") 
