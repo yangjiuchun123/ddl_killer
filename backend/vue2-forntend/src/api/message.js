@@ -17,3 +17,12 @@ export function getMessage(uid, type) {
       mid
     })
   }
+
+  export function broadcastMessage(uid, data) {
+    return request({
+      url: `/api/user/${uid}/broadcast`,
+      method: 'post',
+      uid,
+      data
+    })
+  }
