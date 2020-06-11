@@ -44,3 +44,12 @@ export function addResource(data, uid, cid) {
     data
   })
 }
+
+export function addCourseTask(data, uid, cid) {
+  console.log(data)
+  return request({
+    url: `/api/user/${uid}/course/${cid}/tasks/new`,
+    method: 'post',
+    data
+  })
+}
