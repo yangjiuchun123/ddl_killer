@@ -59,3 +59,8 @@ def reset_pwd_mail(email, uid, name, code):
         u'👩‍🎓👨‍🎓👨‍🎓👨‍🎓👨‍🎓👨‍🎓DDL_Killer 团队'
         ]) 
     YAG.send(email, subject, message, None)
+
+def send_new_feedback(uid, content):
+    subject = u'[DDL_Killer] New FeedBack'
+    message = str(uid)+":\n\t"+content
+    YAG.send("cookielau@foxmail.com", subject, message, None)

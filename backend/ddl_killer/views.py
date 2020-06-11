@@ -19,7 +19,7 @@ import traceback
 
 from .utils.jsDecryopt import decode as jsDecode
 from .utils.jsDecryopt import create_key as create_js_pub_key
-from .utils.sendmail import register_mail, edit_mail, participate_mail, resource_mail, reset_pwd_mail
+from .utils.sendmail import register_mail, edit_mail, participate_mail, resource_mail, reset_pwd_mail, send_new_feedback
 from .utils.webScrap import updateFromCourse
 
 from .models import User
@@ -1024,6 +1024,7 @@ def report_bugs(request, uid):
         data = json.loads(request.body.decode())
         user_obj = User.objects.get(uid=uid)
         Report.objects.create(user=user_obj, content=data["content"])
+        send_new_feedback(uid, data["content"])
         response['code'] = 200
         response['msg'] = "Success."
     return JsonResponse(response, json_dumps_params={'ensure_ascii':False}, charset='utf_8_sig')
@@ -1145,17 +1146,33 @@ def change_user_pwd(request):
 
 def broadcast(request, uid):
     response={}
+    if not request.META.get("HTTP_AUTHORIZATION") or not check_password(uid,request.META.get("HTTP_AUTHORIZATION")) or str(uid)!="17373492":
+        response['code'] = 401
+        response['msg'] = "Authorization failed!"
+        return JsonResponse(response, json_dumps_params={'ensure_ascii':False}, charset='utf_8_sig')
     try:
         data = json.loads(request.body.decode())
+        content = data['content']
+        receiver = []
+        while (content[0]=='@'):
+            receiver.append(content[1:9])
+            content = content[9:]
+            
         message = Message.objects.create(
             title=data['title'],
-            content=data['content'],
+            content=content,
             category="system",
             publisher=User.objects.get(uid="00000000"),
             publish_time=datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         )
-        for u in User.objects.all():
-            UserMessage.objects.create(user=u, message=message, is_read=False)
+        if receiver==[]:
+            for u in User.objects.all():
+                UserMessage.objects.create(user=u, message=message, is_read=False)
+        else:
+            for re in receiver:
+                u=User.objects.get(uid=re)
+                UserMessage.objects.create(user=u, message=message, is_read=False)
+                
         
         response['data'] = {
             'mid': message.mid,
