@@ -83,11 +83,57 @@
       </v-card>
     </v-col>
   </v-row>
+
+  <!-- broadcast -->
+  <v-row justify="center" v-if="$store.getters.uid === '17373493'">
+    <v-dialog v-model="broadcastDialog" persistent max-width="600px">
+      <template v-slot:activator="{ on, attrs }">
+        <v-btn
+          color="primary"
+          dark
+          v-bind="attrs"
+          v-on="on"
+        >
+          Broadcast
+        </v-btn>
+      </template>
+      <v-card>
+        <v-card-title>
+          <span class="headline">Broadcast</span>
+        </v-card-title>
+        <v-card-text>
+          <v-container>
+            <v-row>
+              <v-col cols="12">
+                <v-text-field
+                  v-model="broadMsg.title"
+                  label="title"
+                  outlined
+                ></v-text-field>
+              </v-col>
+              <v-col cols="12">
+                <v-textarea
+                  v-model="broadMsg.content"
+                  outlined
+                  label="Outlined textarea"
+                ></v-textarea>
+              </v-col>
+            </v-row>
+          </v-container>
+        </v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn color="blue darken-1" text @click="broadcastDialog = false">Close</v-btn>
+          <v-btn color="blue darken-1" text @click="broadCast">Save</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+  </v-row>
 </v-app>
 </template>
 
 <script>
-import { getMessage, readMessage } from '@/api/message'
+import { getMessage, readMessage, broadcastMessage } from '@/api/message'
 
 export default {
   inject: ['reload'],
@@ -109,6 +155,11 @@ export default {
       publisher: 'No One'
     },
     dialog: false,
+    broadcastDialog: false,
+    broadMsg: {
+      title: '',
+      content: ''
+    },
 
     ctag: '', //short for current tag
     items: [],
@@ -158,7 +209,14 @@ export default {
         })
         this.reload()
       }
+    },
+    broadCast() {
+      console.log(this.broadMsg)
+      // backed api
+      broadcastMessage(this.$store.getters.uid, this.broadMsg)
+      this.broadcastDialog = false
     }
+
   }
 }
 </script>
