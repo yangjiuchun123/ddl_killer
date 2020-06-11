@@ -10,10 +10,10 @@
               img="../../assets/bgd2.jpg"
             >
               <v-card-title>
-		<p>
+		        <p>
                 我们是北航2020软件工程团队—— 软软软 团队。DDLKiller项目是我们团队首次开发的项目，我们希望在我们的不断改进下，它能成为一个方便的、好用的项目。
                 反馈Bug和问题请点击<a color='#ffffff' href="https://www.cnblogs.com/UltraSoft/p/12813150.html"><font color='#ffffff'>「Bug反馈」</font></a>。
-		</p>
+		        </p>
               </v-card-title>
             </v-card>
           </v-col>
@@ -246,6 +246,107 @@
               </v-card-actions>
             </v-card>
           </v-col>
+
+          <v-spacer></v-spacer>
+          <v-col cols="4">
+            <v-card class="mx-auto" color="#a1c3dd" dark max-width="400">
+              <v-card-title> 
+                <span class="title font-weight-bold">「HDL」</span>
+              </v-card-title>
+              <v-card-text class="headline font-weight-bold">
+                带蓝子的简介
+              </v-card-text>
+              <v-card-actions>
+                <v-list-item class="grow">
+                  <v-list-item-avatar color="grey darken-3">
+                    <v-img
+                      class="elevation-6"
+                      src="https://gitee.com/FujiW/FigureBed/raw/master/img/20200608170955.png"
+                    ></v-img>
+                  </v-list-item-avatar>
+                  <v-list-item-content>
+                    <v-list-item-title class="font-weight-bold">带蓝子</v-list-item-title>
+                  </v-list-item-content>
+                  <v-row align="center" justify="end" >
+                    <v-btn icon @click="show7 = !show7">
+                       <v-icon class="mr-1">{{ show7 ? 'mdi-heart' : 'mdi-heart-outline' }}</v-icon>
+                    </v-btn>
+                    <v-btn icon target="_blank" href="https://www.cnblogs.com/MisTariano/">
+                       <v-icon class="mr-1" > mdi-comment-account</v-icon>
+                    </v-btn>
+                  </v-row>
+                </v-list-item>
+              </v-card-actions>
+            </v-card>
+          </v-col>
+
+
+          <v-spacer></v-spacer>
+          <v-col cols="4" v-show="false">
+            <v-card class="mx-auto" color="#040a1a" dark max-width="400">
+              <v-card-title> 
+                <span class="title font-weight-bold">「新成员1」</span>
+              </v-card-title>
+              <v-card-text class="headline font-weight-bold">
+                新成员1的简介
+              </v-card-text>
+              <v-card-actions>
+                <v-list-item class="grow">
+                  <v-list-item-avatar color="grey darken-3">
+                    <v-img
+                      class="elevation-6"
+                      src="https://i.niupic.com/images/2020/03/21/74sk.jpg"
+                    ></v-img>
+                  </v-list-item-avatar>
+                  <v-list-item-content>
+                    <v-list-item-title class="font-weight-bold">新成员1</v-list-item-title>
+                  </v-list-item-content>
+                  <v-row align="center" justify="end" >
+                    <v-btn icon @click="show8 = !show8">
+                       <v-icon class="mr-1">{{ show8 ? 'mdi-heart' : 'mdi-heart-outline' }}</v-icon>
+                    </v-btn>
+                    <v-btn icon target="_blank" href="https://www.cnblogs.com/yangjiuchun/">
+                       <v-icon class="mr-1" > mdi-comment-account</v-icon>
+                    </v-btn>
+                  </v-row>
+                </v-list-item>
+              </v-card-actions>
+            </v-card>
+          </v-col>
+          <v-spacer></v-spacer>
+          <v-col cols="4" v-show="false">
+            <v-card class="mx-auto" color="#040a1a" dark max-width="400">
+              <v-card-title> 
+                <span class="title font-weight-bold">「新成员2」</span>
+              </v-card-title>
+              <v-card-text class="headline font-weight-bold">
+                新成员2的简介
+              </v-card-text>
+              <v-card-actions>
+                <v-list-item class="grow">
+                  <v-list-item-avatar color="grey darken-3">
+                    <v-img
+                      class="elevation-6"
+                      src="https://i.niupic.com/images/2020/03/21/74sk.jpg"
+                    ></v-img>
+                  </v-list-item-avatar>
+                  <v-list-item-content>
+                    <v-list-item-title class="font-weight-bold">新成员2</v-list-item-title>
+                  </v-list-item-content>
+                  <v-row align="center" justify="end" >
+                    <v-btn icon @click="show9 = !show9">
+                       <v-icon class="mr-1">{{ show9 ? 'mdi-heart' : 'mdi-heart-outline' }}</v-icon>
+                    </v-btn>
+                    <v-btn icon target="_blank" href="https://www.cnblogs.com/yangjiuchun/">
+                       <v-icon class="mr-1" > mdi-comment-account</v-icon>
+                    </v-btn>
+                  </v-row>
+                </v-list-item>
+              </v-card-actions>
+            </v-card>
+          </v-col>
+
+
         </v-row>
       </v-container>
     </v-app>
@@ -262,6 +363,9 @@
       show4: true,
       show5: true,
       show6: true,
+      show7: true,
+      show8: true,
+      show9: true,
     }),
 
     methods:{

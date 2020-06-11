@@ -78,7 +78,7 @@
               <v-divider></v-divider>
 
               <!-- -----------------快速创建 -->
-              <v-row v-show="false">
+              <v-row v-show="isAdmin_now">
                   <v-col cols="12" sm="1"></v-col>
                   <v-col cols="12" sm="10">
                     <v-text-field
@@ -100,7 +100,7 @@
                                 <v-container>
                                   <v-row>
                                     <v-col cols="12">
-                                      <v-text-field ref="title" label="事项名称" v-model="task_title" :rules="[rules.required]" required outlined clearable></v-text-field>
+                                      <v-text-field ref="title" label="事项名称" v-model="task_title" :rules="[dialog_rules.required]" required outlined clearable></v-text-field>
                                     </v-col>
 
                                     <v-col cols="12">
@@ -141,7 +141,7 @@
                                             v-model="task_date"
                                             v-show="isPicker"
                                             v-on="on"
-                                            :rules="[rules.required]"
+                                            :rules="[dialog_rules.required]"
                                             readonly outlined
                                           ></v-text-field>
                                         </template>
@@ -316,7 +316,7 @@
 </template>
 
 <script>
-  import { getUserCourses, getCourseTaskByCid,  getResourceByCid, getNoticesByCid, addResource} from '@/api/course';
+  import { getUserCourses, getCourseTaskByCid,  getResourceByCid, getNoticesByCid, addResource, addCourseTask} from '@/api/course';
   import { getAllTasks, createOneTask, modifyOneTask,deleteOneTask } from "@/api/user_task"
   import { alterTaskState } from '@/api/tasks';
 
@@ -382,6 +382,7 @@
         sharer: '',
       },
       cid_now: '',
+      isAdmin_now :'',
 
       rules: {
         required: value => !!value || 'Required.',
@@ -432,7 +433,7 @@
 
       isTitleChange: false,
 
-      rules: {
+      dialog_rules: {
         required: value => !!value || '本项内容必须填写哦~',
         counter: value => value.length <= 20 || 'Max 20 characters',
       },
@@ -458,7 +459,10 @@
       },
       chooseOne(item) {
         // alert("choose" + item.course_name);
-        this.updatePage(item.cid);
+        this.updatePage(item.cid)
+        this.isAdmin_now = item.isAdmin
+        console.log("===========")
+        console.log(this.isAdmin_now)
       },
       updatePage (cid) {
         this.cid_now = cid
@@ -624,7 +628,16 @@
         if (!this.formHasErrors){
           this.TaskDialog = false
 
-          createOneTask(this.$store.getters.uid, new_task).then(res =>{
+          // createOneTask(this.$store.getters.uid, new_task).then(res =>{
+          //   console.log(res.data)
+          //   //为新建的task赋值后端分配的tid
+          //   new_task['tid']=res.data.tid                       
+          //   console.log(new_task.tid)
+          //   this.$message("创建成功！")
+          //   this.initDialog()
+          // })
+
+          addCourseTask(new_task, this.$store.getters.uid, this.cid_now).then(res =>{
             console.log(res.data)
             //为新建的task赋值后端分配的tid
             new_task['tid']=res.data.tid                       
@@ -654,15 +667,24 @@
           is_finished: false
         }
         console.log(new_task)
-        createOneTask(this.$store.getters.uid, new_task).then(res =>{
-          console.log(res.data)
-          //为新建的task赋值后端分配的tid
-          new_task['tid']=res.data.tid                       
-          console.log(new_task.tid)
-          this.task_content = ''
-          this.$message("创建成功✔")
-          this.initDialog()
-        })
+        // createOneTask(this.$store.getters.uid, new_task).then(res =>{
+        //   console.log(res.data)
+        //   //为新建的task赋值后端分配的tid
+        //   new_task['tid']=res.data.tid                       
+        //   console.log(new_task.tid)
+        //   this.task_content = ''
+        //   this.$message("创建成功✔")
+        //   this.initDialog()
+        // })
+
+        addCourseTask(new_task, this.$store.getters.uid, this.cid_now).then(res =>{
+            console.log(res.data)
+            //为新建的task赋值后端分配的tid
+            new_task['tid']=res.data.tid                       
+            console.log(new_task.tid)
+            this.$message("创建成功！")
+            this.initDialog()
+          })
       },
 
     },
