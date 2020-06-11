@@ -61,9 +61,9 @@ def main():
             
         print(fullText['title'])
         content = '<strong>{0}</strong>\n📓 details: {1}\n\n⏰ ddl_time: {2}\n📂 category: {3}\n '.format(task[0][0], task[0][2], task[0][3], task[0][1])
-        if task[0][5] != '':
+        if task[0][5]!=None and task[0][5] != '':
             content += '🏠 相关平台: {0}\n\n'.format(task[0][5])
-        if task[0][4]!='':
+        if task[0][4]!=None and task[0][4]!='':
             content += '<a href="{0}">🔗相关链接</a>\n\n'.format(task[0][4])
         fullText['content'] = content + '⌚ DDL_Killer  团队 ⌚\n\n'
         try:
