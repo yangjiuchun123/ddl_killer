@@ -384,11 +384,19 @@ def update_courses(request, uid): #从课程中心获取用户所选课程并同
     
     try:
         for exam in data['exam']:
+            message = Message.objects.create(
+                title=exam['title']+"的考试信息",
+                content=exam['title'] +" 有了新的考试信息，考试时间为 \"" + exam['ddl_time'] + "\", 请留意。",
+                category="homework",
+                publisher=User.objects.get(uid="00000000"),
+                publish_time=datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            )
             this_exams = Task.objects.filter(urls=exam['urls'])
             if this_exams.exists():
                 this_exam = this_exams[0]
                 uts = UserTask.objects.filter(user__uid=str(uid), task__tid=this_exam.tid)
                 if not uts.exists():
+                    UserMessage.objects.create(user=user_obj, message=message, is_read=False)
                     UserTask.objects.create(user=user_obj, task=this_exam, notification_time=exam['notification_time'], notification_alert=True, is_finished=exam['is_finished'])
             else:
                 this_exam = Task.objects.create(
@@ -401,6 +409,7 @@ def update_courses(request, uid): #从课程中心获取用户所选课程并同
                     ddl_time=exam["ddl_time"],
                     create_time=datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
                 )
+                UserMessage.objects.create(user=user_obj, message=message, is_read=False)
                 UserTask.objects.create(user=user_obj, task=this_exam, notification_time=exam['notification_time'], notification_alert=True, is_finished=exam['is_finished'])
     except:
         traceback.print_exc()
@@ -432,66 +441,69 @@ def show_user_courses(request, uid): #用户查看自己所选课程
 
 def admin_add_task(request, uid, cid): # 课程管理员为选择了所有课的人添加task
     response={}
-    if not request.META.get("HTTP_AUTHORIZATION") or not check_password(uid,request.META.get("HTTP_AUTHORIZATION")):
-        response['code'] = 401
-        response['msg'] = "Authorization failed!"
-        return JsonResponse(response, json_dumps_params={'ensure_ascii':False}, charset='utf_8_sig')
-    data = json.loads(request.body.decode())
-    usercourse = UserCourse.objects.get(user__uid=uid, course__cid=cid)
-    this_course = Course.objects.get(cid=cid)
-    if usercourse.isAdmin:
-        if data['tid'] != -1:  # 若此项task已存在则视为修改此task的属性信息
-            print('task already exists, only modify.\n')
-            try:
-                this_task = Task.objects.get(tid=data["tid"])
-                this_task.title = data["title"]
-                this_task.content = data["content"]
-                this_task.platform = data["platform"]
-                this_task.category = data["category"]
-                this_task.urls = data["urls"]
-                this_task.ddl_time = data["ddl_time"]
-                this_task.save()
+    try:
+        if not request.META.get("HTTP_AUTHORIZATION") or not check_password(uid,request.META.get("HTTP_AUTHORIZATION")):
+            response['code'] = 401
+            response['msg'] = "Authorization failed!"
+            return JsonResponse(response, json_dumps_params={'ensure_ascii':False}, charset='utf_8_sig')
+        data = json.loads(request.body.decode())
+        usercourse = UserCourse.objects.get(user__uid=uid, course__cid=cid)
+        this_course = Course.objects.get(cid=cid)
+        if usercourse.isAdmin:
+            if data['tid'] != -1:  # 若此项task已存在则视为修改此task的属性信息
+                print('task already exists, only modify.\n')
+                try:
+                    this_task = Task.objects.get(tid=data["tid"])
+                    this_task.title = data["title"]
+                    this_task.content = data["content"]
+                    this_task.platform = data["platform"]
+                    this_task.category = data["category"]
+                    this_task.urls = data["urls"]
+                    this_task.ddl_time = data["ddl_time"]
+                    this_task.save()
+                    response['code'] = 200
+                    response["msg"] = "Update success."
+                except:
+                    traceback.print_exc()
+
+            else:  # 不存在就创建新的task(传入的tid为-1),对应的course_name由后端自行获取
+                task_obj = Task.objects.create(
+                    title=data["title"],
+                    content=data["content"],
+                    category=data["category"],
+                    course_name=this_course.name,
+                    urls=data["urls"],
+                    platform=data["platform"],
+                    ddl_time=data["ddl_time"],
+                    create_time=data["create_time"]
+                )
+                response['data'] = {}
+                response['data']['tid'] = task_obj.tid
+
+                CourseTask.objects.create(course=this_course, task=task_obj)    # 创建CourseTask对应关系
+
+
+                message = Message.objects.create(
+                    title=this_course.name+"的新作业",
+                    content=this_course.name +" 有了新作业 \"" + data['title'] + "\", 快去看看吧。",
+                    category="homework",
+                    publisher=User.objects.get(uid="00000000"),
+                    publish_time=datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                )
+
+                all_usercourse = UserCourse.objects.filter(course__cid=cid)
+                for uc in all_usercourse:   # 为所有选课的学生关联该task
+                    UserMessage.objects.create(user=uc.user, message=message, is_read=False)
+                    UserTask.objects.create(user=uc.user, task=task_obj, notification_alert=data['notification_alert'],
+                                            notification_time=data['notification_time'], isAdmin=True)
+
                 response['code'] = 200
-                response["msg"] = "Update success."
-            except:
-                traceback.print_exc()
-
-        else:  # 不存在就创建新的task(传入的tid为-1),对应的course_name由后端自行获取
-            task_obj = Task.objects.create(
-                title=data["title"],
-                content=data["content"],
-                category=data["category"],
-                course_name=this_course.name,
-                urls=data["urls"],
-                platform=data["platform"],
-                ddl_time=data["ddl_time"],
-                create_time=data["create_time"]
-            )
-            response['data'] = {}
-            response['data']['tid'] = task_obj.tid
-
-            CourseTask.objects.create(course=this_course, task=task_obj)    # 创建CourseTask对应关系
-
-
-            message = Message.objects.create(
-                title=this_course.name+"的新作业",
-                content=this_course.name +" 有了新作业 \"" + ass['title'] + "\", 快去看看吧。",
-                category="homework",
-                publisher=User.objects.get(uid="00000000"),
-                publish_time=datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-            )
-
-            all_usercourse = UserCourse.objects.filter(course__cid=cid)
-            for uc in all_usercourse:   # 为所有选课的学生关联该task
-                UserMessage.objects.create(user=uc.user, message=message, is_read=False)
-                UserTask.objects.create(user=uc.user, task=task_obj, notification_alert=data['notification_alert'],
-                                        notification_time=data['notification_time'], isAdmin=True)
-
-            response['code'] = 200
-            response["msg"] = "Create success."
-    else:
-        response['code'] = 501
-        response["msg"]="Permission denied. The user is not admin."
+                response["msg"] = "Create success."
+        else:
+            response['code'] = 501
+            response["msg"]="Permission denied. The user is not admin."
+    except:
+        traceback.print_exc()
     return JsonResponse(response, json_dumps_params={'ensure_ascii':False}, charset='utf_8_sig')
 
 
@@ -1131,18 +1143,35 @@ def change_user_pwd(request):
     return JsonResponse({'code': 200, 'msg': 'success'},
                         json_dumps_params={'ensure_ascii': False}, charset='utf_8_sig')
 
-def broadcast(request):
+def broadcast(request, uid):
     response={}
-    data = json.loads(request.body.decode())
-    message = Message.objects.create(
-        title="",
-        content="",
-        category="system",
-        publisher=User.objects.get(uid="00000000"),
-        publish_time=datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    )
-    for u in User.objects.all():
-        UserMessage.objects.create(user=u, message=message, is_read=False)
+    try:
+        data = json.loads(request.body.decode())
+        message = Message.objects.create(
+            title=data['title'],
+            content=data['content'],
+            category="system",
+            publisher=User.objects.get(uid="00000000"),
+            publish_time=datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        )
+        for u in User.objects.all():
+            UserMessage.objects.create(user=u, message=message, is_read=False)
+        
+        response['data'] = {
+            'mid': message.mid,
+            'title': message.title,
+            'content': message.content,
+            'is_read': False,
+            'category': message.category,
+            'publisher': message.publisher.name,
+            'publish_time': message.publish_time 
+        }
+        response['code'] = 200
+        response['msg'] = "Success"
+    except:
+        traceback.print_exc()
+        response['code'] = 500
+        response['msg'] = "Internal Error"
     return JsonResponse(response, json_dumps_params={'ensure_ascii':False}, charset='utf_8_sig')
 
 
@@ -1219,10 +1248,6 @@ def update_repeat_task(request):
 def q2ldbchange(request):
     response={}
     try:
-        for ut in UserTask.objects.all():
-            if ut.repeat==None:
-                ut.repeat=""
-                ut.save()
         response['code'] = 200
         response['msg'] = 'Success'
         pass

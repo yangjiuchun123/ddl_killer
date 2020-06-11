@@ -643,6 +643,7 @@
             new_task['tid']=res.data.tid                       
             console.log(new_task.tid)
             this.$message("创建成功！")
+            this.updatePage(this.cid_now)
             this.initDialog()
           })
         }
@@ -687,8 +688,7 @@
             console.log(new_task.tid)
             this.task_content = ''
             this.$message("创建成功！")
-            var newTask = Object.assign({},new_task)
-            this.tasks.push(newTask)
+            this.updatePage(this.cid_now)
             this.initDialog()
           })
       },

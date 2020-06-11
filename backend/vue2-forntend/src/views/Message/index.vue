@@ -213,7 +213,9 @@ export default {
     broadCast() {
       console.log(this.broadMsg)
       // backed api
-      broadcastMessage(this.$store.getters.uid, this.broadMsg)
+      broadcastMessage(this.$store.getters.uid, this.broadMsg).then(res => {
+        location.reload();
+      })
       this.broadcastDialog = false
     }
 
