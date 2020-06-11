@@ -142,7 +142,7 @@ export const constantRoutes = [
           path: 'index',
           name: 'Feedback',
           component: () => import('@/views/Feedback/index'),
-          meta: { title: '用户反馈', icon: 'link' }
+          meta: { title: '用户反馈', icon: 'form' }
         }
       ]
     },
@@ -155,7 +155,7 @@ export const constantRoutes = [
           path: 'index',
           name: 'About',
           component: () => import('@/views/About/index'),
-          meta: { title: '关于我们', icon: 'eye' }
+          meta: { title: '关于我们', icon: 'user' }
         }
       ]
     },
@@ -168,7 +168,7 @@ export const constantRoutes = [
           path: 'index',
           name: 'Links',
           component: () => import('@/views/Links/index'),
-          meta: { title: '友情链接', icon: 'eye' }
+          meta: { title: '友情链接', icon: 'link' }
         }
       ]
     },

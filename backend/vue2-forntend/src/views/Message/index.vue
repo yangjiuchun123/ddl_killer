@@ -115,7 +115,7 @@
                 <v-textarea
                   v-model="broadMsg.content"
                   outlined
-                  label="Outlined textarea"
+                  placeholder="可以通过@学号的方式定向发送信息，格式中不会新产生空格，如：@17373492@17373493跟你们说一件事"
                 ></v-textarea>
               </v-col>
             </v-row>

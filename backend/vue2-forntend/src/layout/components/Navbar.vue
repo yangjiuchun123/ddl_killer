@@ -7,10 +7,16 @@
     <div class="right-menu">
       
       <el-dropdown class="avatar-container" trigger="click">
+        
         <div class="avatar-wrapper">
           <img :src="avatar+'?imageView2/1/w/80/h/80'" class="user-avatar">
           <i class="el-icon-caret-bottom" />
         </div>
+        <!--
+        <div class="gravatar">
+          <img src="{{ cookie_email|gravatar_url:60}}" />
+        </div>
+        -->
         <el-dropdown-menu slot="dropdown" class="user-dropdown">
           <router-link to="/">
             <el-dropdown-item>
@@ -53,6 +59,9 @@ export default {
       'avatar'
     ])
   },
+  data: () => ({
+    cookie_email: "17373492@buaa.edu.cn",
+  }),
   methods: {
     toggleSideBar() {
       this.$store.dispatch('app/toggleSideBar')
