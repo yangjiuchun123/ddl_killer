@@ -322,8 +322,18 @@ def update_courses(request, uid): #从课程中心获取用户所选课程并同
                     ass_task.create_time = ass['create_time']
                 ass_task.save() 
         
+
+            message = Message.objects.create(
+                title=course.name+"的新作业",
+                content=course.name +" 有了新作业 \"" + ass['title'] + "\", 快去看看吧。",
+                category="homework",
+                publisher=User.objects.get(uid="00000000"),
+                publish_time=datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            )
+            
             ut = UserTask.objects.filter(user__uid=str(uid) ,task__tid=ass_task.tid)
             if not ut.exists():
+                UserMessage.objects.create(user=user_obj, message=message, is_read=False)
                 UserTask.objects.create(user=user_obj, task=ass_task, notification_time = ass['notification_time'], notification_alert = ass['notification_alert'], is_finished=ass['is_finished'])
             else:
                 ut = ut[0]
@@ -462,8 +472,18 @@ def admin_add_task(request, uid, cid): # 课程管理员为选择了所有课的
 
             CourseTask.objects.create(course=this_course, task=task_obj)    # 创建CourseTask对应关系
 
+
+            message = Message.objects.create(
+                title=this_course.name+"的新作业",
+                content=this_course.name +" 有了新作业 \"" + ass['title'] + "\", 快去看看吧。",
+                category="homework",
+                publisher=User.objects.get(uid="00000000"),
+                publish_time=datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            )
+
             all_usercourse = UserCourse.objects.filter(course__cid=cid)
             for uc in all_usercourse:   # 为所有选课的学生关联该task
+                UserMessage.objects.create(user=uc.user, message=message, is_read=False)
                 UserTask.objects.create(user=uc.user, task=task_obj, notification_alert=data['notification_alert'],
                                         notification_time=data['notification_time'], isAdmin=True)
 
@@ -483,7 +503,11 @@ def add_task(request, uid): #用户个人添加task(需要选择或输入partici
         response['msg'] = "Authorization failed!"
         return JsonResponse(response, json_dumps_params={'ensure_ascii':False}, charset='utf_8_sig')
     data = json.loads(request.body.decode())
-    print(data)
+    # print(data)
+    if (len(data['title'].strip())==0):
+        response['code'] = 404
+        response['msg'] = "Title can not be empty."
+        return JsonResponse(response, json_dumps_params={'ensure_ascii':False}, charset='utf_8_sig')
     if data['tid']!=-1: #若此项task已存在则视为修改此task的属性信息
         print('task already exists, only modify.\n')
         try:
@@ -535,10 +559,17 @@ def add_task(request, uid): #用户个人添加task(需要选择或输入partici
         user_obj=User.objects.get(uid=uid)
         UserTask.objects.create(user=user_obj,task=task_obj,notification_alert=data['notification_alert'], notification_time=data['notification_time'],isAdmin=True, repeat=data['repeat']) #发布者有修改权
         try:
+            message = Message.objects.create(
+                title=user_obj.name+"邀请你参加团队日程",
+                content=user_obj.name+" 邀请你参加 \"" + data['title'] + "\", 快去看看吧。",
+                category="group",
+                publisher=user_obj.name,
+                publish_time=datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            )
             for id in data["participant"]:
                 try:
                     user_obj=User.objects.get(uid=id)
-
+                    UserMessage.objects.create(user=user_obj, message=message, is_read=False)
                     # 如果开启团队事项提醒，发送提醒邮件
                     if user_obj.participate_alert:
                         participate_mail(user_obj.email, id, user_obj.name)
@@ -726,14 +757,25 @@ def add_resources(request, uid, cid):
             course_obj=Course.objects.get(cid=cid)
             CourseResource.objects.create(course=course_obj,resource=resource_obj)
             course_name = course_obj.name
+            user_obj = User.objects.get(uid=uid)
+            
+            message = Message.objects.create(
+                title=course_obj.name+"的新资源",
+                content=user_obj.name+" 在 \"" + course_obj.name + "\" 课程中分享了 \"" + data["title"] + "\", 快去看看吧。",
+                category="resource",
+                publisher=user_obj,
+                publish_time=datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            )
             
             # 如果开启了共享资源更新提醒，发送提醒邮件
             usercourses = UserCourse.objects.filter(course__cid=cid)
             for uc in usercourses:
+                UserMessage.objects.create(user=uc.user, message=message, is_read=False)
                 if uc.user.resource_alert:
                     resource_mail(uc.user.email, uc.user.uid, uc.user.name, course_name)
 
 
+            
             response['code']=200
             response["msg"]="Success."
     except:
@@ -1088,6 +1130,22 @@ def change_user_pwd(request):
     user.save()
     return JsonResponse({'code': 200, 'msg': 'success'},
                         json_dumps_params={'ensure_ascii': False}, charset='utf_8_sig')
+
+def broadcast(request):
+    response={}
+    data = json.loads(request.body.decode())
+    message = Message.objects.create(
+        title="",
+        content="",
+        category="system",
+        publisher=User.objects.get(uid="00000000"),
+        publish_time=datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    )
+    for u in User.objects.all():
+        UserMessage.objects.create(user=u, message=message, is_read=False)
+    return JsonResponse(response, json_dumps_params={'ensure_ascii':False}, charset='utf_8_sig')
+
+
 
 def update_repeat_task(request):
     """
