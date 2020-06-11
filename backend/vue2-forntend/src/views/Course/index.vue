@@ -548,8 +548,8 @@
         this.isPicker = false
         this.task_title = '',
         this.task_content = '',
-        this.task_types =  ['个人日程', '团队任务']
-        this.task_type = '个人日程'
+        this.task_types =  ['课程作业', '课程测验']
+        this.task_type = '课程作业'
         this.task_ddls = [ddl1, ddl2, ddl3]
         this.task_ddl = ddl1
         this.task_date = ''
@@ -574,8 +574,8 @@
         today.setDate(today.getDate() + 6)
         var ddl3 = '下周 '+week[today.getDay()]+' '+today.toISOString().substr(0, 10)
         this.isPicker = false
-        this.task_types =  ['个人日程', '团队任务']
-        this.task_type = '个人日程'
+        this.task_types =  ['课程作业', '课程测验']
+        this.task_type = '课程作业'
         this.task_ddls = [ddl1, ddl2, ddl3]
         this.task_ddl = ddl1
         this.task_date = ''
@@ -600,7 +600,7 @@
         var new_task = {
           tid:-1,
           title: this.task_title,
-          category: (this.task_type=="个人日程")?'person':'meeting',
+          category: (this.task_type=="课程作业")?'homework':'exam',
           content: this.task_content,
           participant:this.task_participant,
           platform: '',
@@ -650,10 +650,13 @@
 
       onEnterSubmit() {
         console.log(this.task_content)
+        if (this.task_content.trim().length ==0) {
+          return 
+        }
         var new_task = {
           tid:-1,
           title: this.task_content.substr(0,20),
-          category: 'person',
+          category: 'homework',
           content: this.task_content,
           participant:this.task_participant,
           platform: '',
@@ -682,7 +685,10 @@
             //为新建的task赋值后端分配的tid
             new_task['tid']=res.data.tid                       
             console.log(new_task.tid)
+            this.task_content = ''
             this.$message("创建成功！")
+            var newTask = Object.assign({},new_task)
+            this.tasks.push(newTask)
             this.initDialog()
           })
       },

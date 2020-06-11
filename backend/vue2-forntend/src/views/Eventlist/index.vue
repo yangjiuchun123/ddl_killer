@@ -801,7 +801,7 @@ export default {
 
       onEnterSubmit() {
         console.log(this.task_content)
-        if (this.task_content == '') {
+        if (this.task_content.trim().length ==0) {
           return
         }
         var new_task = {
