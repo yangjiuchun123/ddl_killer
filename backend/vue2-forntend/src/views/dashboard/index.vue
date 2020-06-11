@@ -163,6 +163,7 @@ import { Message } from 'element-ui'
       show: false,
     }),
     created() {
+      /*
       const h = this.$createElement;
       this.$notify({
         title: '提醒',
@@ -173,6 +174,7 @@ import { Message } from 'element-ui'
         ]),
         duration: 5 * 1000 // 默认3000ms
       })
+      */
     },
     computed: {
       timeInfo: function() {

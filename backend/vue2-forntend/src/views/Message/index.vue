@@ -85,7 +85,7 @@
   </v-row>
 
   <!-- broadcast -->
-  <v-row justify="center" v-if="$store.getters.uid === '17373493'">
+  <v-row justify="center" v-if="$store.getters.uid === '17373492'">
     <v-dialog v-model="broadcastDialog" persistent max-width="600px">
       <template v-slot:activator="{ on, attrs }">
         <v-btn
