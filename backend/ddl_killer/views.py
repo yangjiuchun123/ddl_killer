@@ -11,13 +11,15 @@ from django.contrib.auth import authenticate
 from django.contrib.auth import logout, login
 from django.contrib.auth.hashers import make_password, check_password
 from django.shortcuts import render, redirect
+from django.db.models import Q
+
 import json
 import yagmail
 import traceback
-from .utils.jsDecryopt import decode as jsDecode
-from .utils.jsDecryopt import creat_key as create_js_pub_key
-from .utils.sendmail import register_mail, edit_mail, participate_mail, resource_mail, reset_pwd_mail
 
+from .utils.jsDecryopt import decode as jsDecode
+from .utils.jsDecryopt import create_key as create_js_pub_key
+from .utils.sendmail import register_mail, edit_mail, participate_mail, resource_mail, reset_pwd_mail
 from .utils.webScrap import updateFromCourse
 
 from .models import User
@@ -39,7 +41,7 @@ from itsdangerous import URLSafeTimedSerializer as utsr
 import base64
 import datetime
 import random
-
+from dateutil.relativedelta import relativedelta
 
 class Token():
     def __init__(self, security_key):
@@ -306,8 +308,6 @@ def update_courses(request, uid): #从课程中心获取用户所选课程并同
                     category = ass['category'],
                     urls = ass['urls'],
                     ddl_time = ass['ddl_time'],
-                    # notification_time = ass['notification_time'],
-                    # notification_alert = ass['notification_alert'],
                     create_time = ass['create_time']
                 )
             else:
@@ -318,14 +318,22 @@ def update_courses(request, uid): #从课程中心获取用户所选课程并同
                     ass_task.content = ass['content']
                 if ass_task.ddl_time != ass['ddl_time']:
                     ass_task.ddl_time = ass['ddl_time']
-                # if ass_task.notification_time != ass['notification_time']:
-                #    ass_task.notification_time = ass['notification_time']
                 if ass_task.create_time != ass['create_time']:
                     ass_task.create_time = ass['create_time']
                 ass_task.save() 
         
+
+            message = Message.objects.create(
+                title=course.name+"的新作业",
+                content=course.name +" 有了新作业 \"" + ass['title'] + "\", 快去看看吧。",
+                category="homework",
+                publisher=User.objects.get(uid="00000000"),
+                publish_time=datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            )
+            
             ut = UserTask.objects.filter(user__uid=str(uid) ,task__tid=ass_task.tid)
             if not ut.exists():
+                UserMessage.objects.create(user=user_obj, message=message, is_read=False)
                 UserTask.objects.create(user=user_obj, task=ass_task, notification_time = ass['notification_time'], notification_alert = ass['notification_alert'], is_finished=ass['is_finished'])
             else:
                 ut = ut[0]
@@ -373,6 +381,29 @@ def update_courses(request, uid): #从课程中心获取用户所选课程并同
                     CourseNote.objects.create(course=course, note=this_note)
         except:
             traceback.print_exc()
+    
+    try:
+        for exam in data['exam']:
+            this_exams = Task.objects.filter(urls=exam['urls'])
+            if this_exams.exists():
+                this_exam = this_exams[0]
+                uts = UserTask.objects.filter(user__uid=str(uid), task__tid=this_exam.tid)
+                if not uts.exists():
+                    UserTask.objects.create(user=user_obj, task=this_exam, notification_time=exam['notification_time'], notification_alert=True, is_finished=exam['is_finished'])
+            else:
+                this_exam = Task.objects.create(
+                    title=exam["title"],
+                    content=exam["content"],
+                    category=exam["category"],
+                    course_name=exam['course_name'],
+                    urls=exam["urls"],
+                    platform=exam["platform"],
+                    ddl_time=exam["ddl_time"],
+                    create_time=datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                )
+                UserTask.objects.create(user=user_obj, task=this_exam, notification_time=exam['notification_time'], notification_alert=True, is_finished=exam['is_finished'])
+    except:
+        traceback.print_exc()
                 
     response['code'] = 200
     response['msg'] = 'Successfully Update your course info.'
@@ -441,8 +472,18 @@ def admin_add_task(request, uid, cid): # 课程管理员为选择了所有课的
 
             CourseTask.objects.create(course=this_course, task=task_obj)    # 创建CourseTask对应关系
 
+
+            message = Message.objects.create(
+                title=this_course.name+"的新作业",
+                content=this_course.name +" 有了新作业 \"" + ass['title'] + "\", 快去看看吧。",
+                category="homework",
+                publisher=User.objects.get(uid="00000000"),
+                publish_time=datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            )
+
             all_usercourse = UserCourse.objects.filter(course__cid=cid)
             for uc in all_usercourse:   # 为所有选课的学生关联该task
+                UserMessage.objects.create(user=uc.user, message=message, is_read=False)
                 UserTask.objects.create(user=uc.user, task=task_obj, notification_alert=data['notification_alert'],
                                         notification_time=data['notification_time'], isAdmin=True)
 
@@ -456,12 +497,17 @@ def admin_add_task(request, uid, cid): # 课程管理员为选择了所有课的
 
 def add_task(request, uid): #用户个人添加task(需要选择或输入participant)，传入的json有participant一项列表存储接收者的学号,uid记录发布者(有修改权)
     response={}                   #没有course_id项也不需要修改course_id项
+
     if not request.META.get("HTTP_AUTHORIZATION") or not check_password(uid,request.META.get("HTTP_AUTHORIZATION")):
         response['code'] = 401
         response['msg'] = "Authorization failed!"
         return JsonResponse(response, json_dumps_params={'ensure_ascii':False}, charset='utf_8_sig')
     data = json.loads(request.body.decode())
-    print(data['tid'])
+    # print(data)
+    if (len(data['title'].strip())==0):
+        response['code'] = 404
+        response['msg'] = "Title can not be empty."
+        return JsonResponse(response, json_dumps_params={'ensure_ascii':False}, charset='utf_8_sig')
     if data['tid']!=-1: #若此项task已存在则视为修改此task的属性信息
         print('task already exists, only modify.\n')
         try:
@@ -478,6 +524,7 @@ def add_task(request, uid): #用户个人添加task(需要选择或输入partici
                 usertask.notification_alert=data["notification_alert"]
                 this_task.save()
                 usertask.is_finished = data['is_finished']
+                usertask.repeat=data['repeat']
                 usertask.save()
                 response['code'] = 200
                 response["msg"]="Update success."
@@ -504,20 +551,25 @@ def add_task(request, uid): #用户个人添加task(需要选择或输入partici
             urls=data["urls"],
             platform=data["platform"],
             ddl_time=data["ddl_time"],
-            # notification_time=data["notification_time"],
-            # notification_alert=data["notification_alert"],
             create_time=data["create_time"]
         )
         response['data']={}
         response['data']['tid'] = task_obj.tid
         response['not_exist_uid'] = []
         user_obj=User.objects.get(uid=uid)
-        UserTask.objects.create(user=user_obj,task=task_obj,notification_alert=data['notification_alert'], notification_time=data['notification_time'],isAdmin=True) #发布者有修改权
+        UserTask.objects.create(user=user_obj,task=task_obj,notification_alert=data['notification_alert'], notification_time=data['notification_time'],isAdmin=True, repeat=data['repeat']) #发布者有修改权
         try:
+            message = Message.objects.create(
+                title=user_obj.name+"邀请你参加团队日程",
+                content=user_obj.name+" 邀请你参加 \"" + data['title'] + "\", 快去看看吧。",
+                category="group",
+                publisher=user_obj.name,
+                publish_time=datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            )
             for id in data["participant"]:
                 try:
                     user_obj=User.objects.get(uid=id)
-
+                    UserMessage.objects.create(user=user_obj, message=message, is_read=False)
                     # 如果开启团队事项提醒，发送提醒邮件
                     if user_obj.participate_alert:
                         participate_mail(user_obj.email, id, user_obj.name)
@@ -550,36 +602,33 @@ def show_user_tasks(request, uid): #用户查看自己的所有任务及ddl
         if User.objects.filter(uid=uid).exists():
             try:
                 response['code'] = 200
-                for t in usertask:
+                for ut in usertask:
                     # print(t)
-                    if t.task.urls:
-                        if "submissionId=" in t.task.urls:
-                            homework_url = t.task.urls+"sakai_action=doView_grade"
-                        elif "assignmentReference=" in t.task.urls:
-                            homework_url = t.task.urls+"sakai_action=doView_submission"
+                    if ut.task.urls:
+                        if "submissionId=" in ut.task.urls:
+                            homework_url = ut.task.urls+"sakai_action=doView_grade"
+                        elif "assignmentReference=" in ut.task.urls:
+                            homework_url = ut.task.urls+"sakai_action=doView_submission"
                         else:
-                            homework_url = t.task.urls
+                            homework_url = ut.task.urls
                     else:
                         homework_url = ""
                     response["data"].append({
-                        "tid": t.task.tid,
-                        "title": t.task.title,
-                        "course_name": t.task.course_name,
-                        "content": t.task.content,
-                        "platform": t.task.platform,
-                        "category": t.task.category,
+                        "tid": ut.task.tid,
+                        "title": ut.task.title,
+                        "course_name": ut.task.course_name,
+                        "content": ut.task.content,
+                        "platform": ut.task.platform,
+                        "category": ut.task.category,
+                        "repeat": ut.repeat,
                         "urls": homework_url,
-                        "ddl_time": t.task.ddl_time,
-                        "notification_time": t.notification_time,
-                        "notification_alert": t.notification_alert,
-                        "create_time": t.task.create_time,
-                        'isAdmin': t.isAdmin,
-                        "is_finished": t.is_finished
+                        "ddl_time": ut.task.ddl_time,
+                        "notification_time": ut.notification_time,
+                        "notification_alert": ut.notification_alert,
+                        "create_time": ut.task.create_time,
+                        'isAdmin': ut.isAdmin,
+                        "is_finished": ut.is_finished
                     })   
-                    #print(t.isAdmin)
-                    #print(type(t.isAdmin))
-                    #print(t.task.notification_alert)
-                    #"print(type(t.task.notification_alert))
 
                 response["msg"]="Success."
             except:
@@ -626,6 +675,7 @@ def show_course_tasks(request, uid, cid): #用户uid,相应课程cid
                         "category": ut.task.category,
                         "urls": homework_url,
                         "ddl_time": ut.task.ddl_time,
+                        "repeat": ut.repeat,
                         "notification_time": ut.notification_time,
                         "notification_alert": ut.notification_alert,
                         "create_time": ut.task.create_time,
@@ -672,16 +722,19 @@ def alter_task_state(request, uid, tid):
         response['code'] = 401
         response['msg'] = "Authorization failed!"
         return JsonResponse(response, json_dumps_params={'ensure_ascii':False}, charset='utf_8_sig')
-    usertask = UserTask.objects.filter(user__uid=uid,task__tid=tid, is_deleted=False)
-    if usertask.exists():
-        ut=UserTask.objects.get(user__uid=uid,task__tid=tid)
-        ut.is_finished=not ut.is_finished
-        ut.save()
-        response['code']=200
-        response["msg"]="Success."
-    else:
-        response['code']=404
-        response["msg"]="The task of the user is not found."
+    try:
+        usertask = UserTask.objects.filter(user__uid=uid,task__tid=tid, is_deleted=False)
+        if usertask.exists():
+            ut=UserTask.objects.get(user__uid=uid,task__tid=tid)
+            ut.is_finished=not ut.is_finished
+            ut.save()
+            response['code']=200
+            response["msg"]="Success."
+        else:
+            response['code']=404
+            response["msg"]="The task of the user is not found."
+    except:
+        traceback.print_exc()
     return JsonResponse(response, json_dumps_params={'ensure_ascii':False}, charset='utf_8_sig')
 
 
@@ -704,14 +757,25 @@ def add_resources(request, uid, cid):
             course_obj=Course.objects.get(cid=cid)
             CourseResource.objects.create(course=course_obj,resource=resource_obj)
             course_name = course_obj.name
+            user_obj = User.objects.get(uid=uid)
+            
+            message = Message.objects.create(
+                title=course_obj.name+"的新资源",
+                content=user_obj.name+" 在 \"" + course_obj.name + "\" 课程中分享了 \"" + data["title"] + "\", 快去看看吧。",
+                category="resource",
+                publisher=user_obj,
+                publish_time=datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            )
             
             # 如果开启了共享资源更新提醒，发送提醒邮件
             usercourses = UserCourse.objects.filter(course__cid=cid)
             for uc in usercourses:
+                UserMessage.objects.create(user=uc.user, message=message, is_read=False)
                 if uc.user.resource_alert:
                     resource_mail(uc.user.email, uc.user.uid, uc.user.name, course_name)
 
 
+            
             response['code']=200
             response["msg"]="Success."
     except:
@@ -749,8 +813,6 @@ def show_course_resources(request, uid, cid):
                     "url":cr.resource.url,
                     "code":cr.resource.code,
                     'sharer':sharer
-                    #"course_id":r.course.cid,
-                    #"course_name":r.course.name
                 })
     except:
         traceback.print_exc()
@@ -785,24 +847,6 @@ def show_course_notifications(request, uid, cid):
     # print(json.dumps(response, ensure_ascii=False))
     return JsonResponse(response, json_dumps_params={'ensure_ascii':False}, charset='utf_8_sig')
 
-
-def q2ldbchange(request):
-    response={}
-    try:
-        """
-        for ut in UserTask.objects.filter(user__uid='17373492'):
-            ut.is_deleted=False
-            ut.save()
-        """
-        response['code'] = 200
-        response['msg'] = 'Success'
-        pass
-    except:
-        traceback.print_exc()
-        response['code'] = 677
-        response['msg'] = 'Python Error'
-    pass
-    return JsonResponse(response, json_dumps_params={'ensure_ascii':False}, charset='utf_8_sig')
 
 def delete_task(request, uid, tid):
     response = {}
@@ -1086,3 +1130,105 @@ def change_user_pwd(request):
     user.save()
     return JsonResponse({'code': 200, 'msg': 'success'},
                         json_dumps_params={'ensure_ascii': False}, charset='utf_8_sig')
+
+def broadcast(request):
+    response={}
+    data = json.loads(request.body.decode())
+    message = Message.objects.create(
+        title="",
+        content="",
+        category="system",
+        publisher=User.objects.get(uid="00000000"),
+        publish_time=datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    )
+    for u in User.objects.all():
+        UserMessage.objects.create(user=u, message=message, is_read=False)
+    return JsonResponse(response, json_dumps_params={'ensure_ascii':False}, charset='utf_8_sig')
+
+
+
+def update_repeat_task(request):
+    """
+    execute everyday midnight 11:30pm , check whether repeat task today
+    """
+    try: 
+        response={}
+        response['data'] = []
+        current = datetime.date.today() # today
+        current = current.strftime("%Y-%m-%d") 
+        for ut in UserTask.objects.filter(notification_time__startswith=current):
+            if ut.repeat==None or ut.repeat=="" or ut.is_deleted:
+                continue
+            
+            if ut.task.ddl_time!=None:
+                new_ddl_time = datetime.datetime.strptime(ut.task.ddl_time, "%Y-%m-%d %H:%M:%S") 
+            else:
+                new_ddl_time = ut.task.ddl_time
+            new_notification_time = datetime.datetime.strptime(ut.notification_time, "%Y-%m-%d %H:%M:%S") 
+            if ut.repeat=='daily':
+                new_notification_time = new_notification_time + datetime.timedelta(days=1)
+                if ut.task.ddl_time!=None:
+                    new_ddl_time = new_ddl_time + datetime.timedelta(days=1)
+            elif ut.repeat=='weekly':
+                new_notification_time = new_notification_time + datetime.timedelta(days=7)
+                if ut.task.ddl_time!=None:
+                    new_ddl_time = new_ddl_time + datetime.timedelta(days=7)
+            elif ut.repeat=='monthly':
+                new_notification_time = new_notification_time + relativedelta(months=+1)
+                if ut.task.ddl_time!=None:
+                    new_ddl_time = new_ddl_time + relativedelta(months=+1)
+                
+            new_notification_time = new_notification_time.strftime("%Y-%m-%d %H:%M:%S")
+            new_ddl_time = new_ddl_time.strftime("%Y-%m-%d %H:%M:%S")
+                
+            new_task = Task.objects.create(
+                title=ut.task.title,
+                course_name=ut.task.course_name,
+                content=ut.task.content,
+                platform=ut.task.platform,
+                category=ut.task.category,
+                urls=ut.task.urls,
+                ddl_time=new_ddl_time,
+                create_time=ut.task.create_time
+            )
+                
+            new_ut = UserTask.objects.create(
+                user=ut.user, 
+                task=new_task, 
+                isAdmin=ut.isAdmin,
+                is_finished=False,
+                notification_time=new_notification_time,
+                notification_alert=ut.notification_alert,
+                is_deleted=False,
+                repeat=ut.repeat
+            )   
+            
+            response['data'].append({
+                "uid": ut.user.uid,
+                "user": ut.user.name,
+                "tid": ut.task.tid,
+                "task_name": ut.task.title,
+                "repeat": ut.repeat
+            })
+            
+    except:
+        traceback.print_exc()
+    return JsonResponse(response, json_dumps_params={'ensure_ascii':False}, charset='utf_8_sig')
+    
+    
+def q2ldbchange(request):
+    response={}
+    try:
+        for ut in UserTask.objects.all():
+            if ut.repeat==None:
+                ut.repeat=""
+                ut.save()
+        response['code'] = 200
+        response['msg'] = 'Success'
+        pass
+    except:
+        traceback.print_exc()
+        response['code'] = 677
+        response['msg'] = 'Python Error'
+    pass
+    return JsonResponse(response, json_dumps_params={'ensure_ascii':False}, charset='utf_8_sig')

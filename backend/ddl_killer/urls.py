@@ -46,4 +46,7 @@ urlpatterns = [
     path(r'user/forget/email', views.create_forget_pwd_email_verify),
     path(r'user/forget/verify', views.create_forget_pwd_reset_pub_key),
     path(r'user/forget/reset', views.change_user_pwd),
+    path(r'update_repeat_task', views.update_repeat_task),
+    path(r'user/<int:uid>/broadcast', views.broadcast),
+    
 ]

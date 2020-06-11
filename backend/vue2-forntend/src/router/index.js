@@ -160,6 +160,19 @@ export const constantRoutes = [
       ]
     },
 
+    {
+      path: '/Links',
+      component: Layout,
+      children: [
+        {
+          path: 'index',
+          name: 'Links',
+          component: () => import('@/views/Links/index'),
+          meta: { title: '友情链接', icon: 'eye' }
+        }
+      ]
+    },
+
 
   // 404 page must be placed at the end !!!
   { path: '*', redirect: '/404', hidden: true }

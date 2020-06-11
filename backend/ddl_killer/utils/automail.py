@@ -10,6 +10,7 @@ import os
 import traceback
 import datetime
 import time
+
  
 print(datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
 YAG = yagmail.SMTP( user="ddlkiller@yeah.net", password="PTSQPRKEYDLPPBVV", host='smtp.yeah.net')

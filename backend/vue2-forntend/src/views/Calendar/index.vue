@@ -638,14 +638,25 @@ export default {
               if(ie.ddl_time===''){//若无ddl，则日历不渲染该事项
                 continue
                 }
-              events.push({
-                name: ie.title,
-                start: ie.ddl_time,
-                // start: ie.create_time,
-                // end: ie.ddl_time,
-                color: this.setColor(ie.category,ie.is_finished),
-                detail: ie     //保存此task的全部信息
-              })
+              if (ie.category=="exam") {
+                events.push({
+                  name: ie.title,
+                  start: ie.ddl_time.split("~")[0],
+                  // start: ie.create_time,
+                  end: ie.ddl_time.split("~")[1],
+                  color: this.setColor(ie.category,ie.is_finished),
+                  detail: ie     //保存此task的全部信息
+                })
+              } else {
+                events.push({
+                  name: ie.title,
+                  start: ie.ddl_time,
+                  // start: ie.create_time,
+                  // end: ie.ddl_time,
+                  color: this.setColor(ie.category,ie.is_finished),
+                  detail: ie     //保存此task的全部信息
+                })
+              }
             }
           this.events = events
           // console.log(this.events)
