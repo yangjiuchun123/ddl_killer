@@ -19,7 +19,7 @@ import traceback
 
 from .utils.jsDecryopt import decode as jsDecode
 from .utils.jsDecryopt import create_key as create_js_pub_key
-from .utils.sendmail import register_mail, edit_mail, participate_mail, resource_mail, reset_pwd_mail
+from .utils.sendmail import register_mail, edit_mail, participate_mail, resource_mail, reset_pwd_mail, send_new_feedback
 from .utils.webScrap import updateFromCourse
 
 from .models import User
@@ -1024,6 +1024,7 @@ def report_bugs(request, uid):
         data = json.loads(request.body.decode())
         user_obj = User.objects.get(uid=uid)
         Report.objects.create(user=user_obj, content=data["content"])
+        send_new_feedback(uid, data["content"])
         response['code'] = 200
         response['msg'] = "Success."
     return JsonResponse(response, json_dumps_params={'ensure_ascii':False}, charset='utf_8_sig')
