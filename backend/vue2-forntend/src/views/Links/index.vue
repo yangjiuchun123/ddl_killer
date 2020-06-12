@@ -195,7 +195,7 @@
                   -->
 
                     <v-card-text class="headline font-weight-bold">
-                      "航胥"，一款更想要了解你的北航教务助手
+                      "航胥": 一款更想要了解你的北航教务助手
                     </v-card-text>
 
                     <v-card-actions>

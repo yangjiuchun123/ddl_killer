@@ -514,91 +514,93 @@ def add_task(request, uid): #用户个人添加task(需要选择或输入partici
         response['code'] = 401
         response['msg'] = "Authorization failed!"
         return JsonResponse(response, json_dumps_params={'ensure_ascii':False}, charset='utf_8_sig')
-    data = json.loads(request.body.decode())
-    # print(data)
-    if (len(data['title'].strip())==0):
-        response['code'] = 404
-        response['msg'] = "Title can not be empty."
-        return JsonResponse(response, json_dumps_params={'ensure_ascii':False}, charset='utf_8_sig')
-    if data['tid']!=-1: #若此项task已存在则视为修改此task的属性信息
-        print('task already exists, only modify.\n')
-        try:
-            this_task=Task.objects.get(tid=data["tid"])
-            usertask=UserTask.objects.get(user__uid=uid,task__tid=data["tid"],is_deleted=False)
-            if usertask.isAdmin:  #验证修改权限
-                this_task.title=data["title"]
-                this_task.content=data["content"]
-                this_task.platform=data["platform"]
-                this_task.category=data["category"]
-                this_task.urls=data["urls"]
-                this_task.ddl_time=data["ddl_time"]
-                usertask.notification_time=data["notification_time"]
-                usertask.notification_alert=data["notification_alert"]
-                this_task.save()
-                usertask.is_finished = data['is_finished']
-                usertask.repeat=data['repeat']
-                usertask.save()
-                response['code'] = 200
-                response["msg"]="Update success."
-            else: #没有权限只能修改提醒时间和是否开启提醒以及是否完成
-                if this_task.title != data["title"] or this_task.content != data["content"] or this_task.platform != data["platform"] or this_task.category!=data["category"] or this_task.urls!=data["urls"] or this_task.ddl_time!=data["ddl_time"]:
-                    response['code'] = 404
-                    response["msg"]="Cannot modify these information."
-                else: 
+    try:
+        data = json.loads(request.body.decode())
+        # print(data)
+        if (len(data['title'].strip())==0):
+            response['code'] = 404
+            response['msg'] = "Title can not be empty."
+            return JsonResponse(response, json_dumps_params={'ensure_ascii':False}, charset='utf_8_sig')
+        if data['tid']!=-1: #若此项task已存在则视为修改此task的属性信息
+            print('task already exists, only modify.\n')
+            try:
+                this_task=Task.objects.get(tid=data["tid"])
+                usertask=UserTask.objects.get(user__uid=uid,task__tid=data["tid"],is_deleted=False)
+                if usertask.isAdmin:  #验证修改权限
+                    this_task.title=data["title"]
+                    this_task.content=data["content"]
+                    this_task.platform=data["platform"]
+                    this_task.category=data["category"]
+                    this_task.urls=data["urls"]
+                    this_task.ddl_time=data["ddl_time"]
                     usertask.notification_time=data["notification_time"]
                     usertask.notification_alert=data["notification_alert"]
                     this_task.save()
                     usertask.is_finished = data['is_finished']
+                    usertask.repeat=data['repeat']
                     usertask.save()
                     response['code'] = 200
                     response["msg"]="Update success."
-        except:
-            traceback.print_exc()
+                else: #没有权限只能修改提醒时间和是否开启提醒以及是否完成
+                    if this_task.title != data["title"] or this_task.content != data["content"] or this_task.platform != data["platform"] or this_task.category!=data["category"] or this_task.urls!=data["urls"] or this_task.ddl_time!=data["ddl_time"]:
+                        response['code'] = 404
+                        response["msg"]="Cannot modify these information."
+                    else: 
+                        usertask.notification_time=data["notification_time"]
+                        usertask.notification_alert=data["notification_alert"]
+                        this_task.save()
+                        usertask.is_finished = data['is_finished']
+                        usertask.save()
+                        response['code'] = 200
+                        response["msg"]="Update success."
+            except:
+                traceback.print_exc()
 
-    else: #不存在就创建新的task(传入的tid为-1),这时为个人添加task没有要对应的course
-        task_obj = Task.objects.create(
-            title=data["title"],
-            content=data["content"],
-            category=data["category"],
-            urls=data["urls"],
-            platform=data["platform"],
-            ddl_time=data["ddl_time"],
-            create_time=data["create_time"]
-        )
-        response['data']={}
-        response['data']['tid'] = task_obj.tid
-        response['not_exist_uid'] = []
-        user_obj=User.objects.get(uid=uid)
-        UserTask.objects.create(user=user_obj,task=task_obj,notification_alert=data['notification_alert'], notification_time=data['notification_time'],isAdmin=True, repeat=data['repeat']) #发布者有修改权
-        try:
-            message = Message.objects.create(
-                title=user_obj.name+"邀请你参加团队日程",
-                content=user_obj.name+" 邀请你参加 \"" + data['title'] + "\", 快去看看吧。",
-                category="group",
-                publisher=user_obj.name,
-                publish_time=datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        else: #不存在就创建新的task(传入的tid为-1),这时为个人添加task没有要对应的course
+            task_obj = Task.objects.create(
+                title=data["title"],
+                content=data["content"],
+                category=data["category"],
+                urls=data["urls"],
+                platform=data["platform"],
+                ddl_time=data["ddl_time"],
+                create_time=data["create_time"]
             )
-            for id in data["participant"]:
-                try:
-                    user_obj=User.objects.get(uid=id)
-                    UserMessage.objects.create(user=user_obj, message=message, is_read=False)
-                    # 如果开启团队事项提醒，发送提醒邮件
-                    if user_obj.participate_alert:
-                        participate_mail(user_obj.email, id, user_obj.name)
-                    
-                except:
-                    response['code'] = 503
-                    response['msg'] = 'Some participants not exist.' 
-                    response['not_exist_uid'].append(id)
-                else: 
-                    UserTask.objects.create(user=user_obj, task=task_obj, notification_alert=data['notification_alert'], notification_time=data['notification_time'])
-        except:
-            traceback.print_exc()
-        if len(response['not_exist_uid'])==0:
-            del response['not_exist_uid']
-            response['code'] = 200
-            response["msg"]="Create success."
-        
+            response['data']={}
+            response['data']['tid'] = task_obj.tid
+            response['not_exist_uid'] = []
+            user_obj=User.objects.get(uid=uid)
+            UserTask.objects.create(user=user_obj,task=task_obj,notification_alert=data['notification_alert'], notification_time=data['notification_time'],isAdmin=True, repeat=data['repeat']) #发布者有修改权
+            try:
+                message = Message.objects.create(
+                    title=user_obj.name+"邀请你参加团队日程",
+                    content=user_obj.name+" 邀请你参加 \"" + data['title'] + "\", 快去看看吧。",
+                    category="group",
+                    publisher=user_obj.name,
+                    publish_time=datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                )
+                for id in data["participant"]:
+                    try:
+                        user_obj=User.objects.get(uid=id)
+                        UserMessage.objects.create(user=user_obj, message=message, is_read=False)
+                        # 如果开启团队事项提醒，发送提醒邮件
+                        if user_obj.participate_alert:
+                            participate_mail(user_obj.email, id, user_obj.name)
+                        
+                    except:
+                        response['code'] = 503
+                        response['msg'] = 'Some participants not exist.' 
+                        response['not_exist_uid'].append(id)
+                    else: 
+                        UserTask.objects.create(user=user_obj, task=task_obj, notification_alert=data['notification_alert'], notification_time=data['notification_time'])
+            except:
+                traceback.print_exc()
+            if len(response['not_exist_uid'])==0:
+                del response['not_exist_uid']
+                response['code'] = 200
+                response["msg"]="Create success."
+    except:
+        traceback.print_exc()
     return JsonResponse(response, json_dumps_params={'ensure_ascii':False}, charset='utf_8_sig')
 
 
