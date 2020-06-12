@@ -510,7 +510,6 @@ def admin_add_task(request, uid, cid): # 课程管理员为选择了所有课的
 
 def add_task(request, uid): #用户个人添加task(需要选择或输入participant)，传入的json有participant一项列表存储接收者的学号,uid记录发布者(有修改权)
     response={}                   #没有course_id项也不需要修改course_id项
-
     if not request.META.get("HTTP_AUTHORIZATION") or not check_password(uid,request.META.get("HTTP_AUTHORIZATION")):
         response['code'] = 401
         response['msg'] = "Authorization failed!"
@@ -572,24 +571,12 @@ def add_task(request, uid): #用户个人添加task(需要选择或输入partici
             response['not_exist_uid'] = []
             user_obj=User.objects.get(uid=uid)
             UserTask.objects.create(user=user_obj,task=task_obj,notification_alert=data['notification_alert'], notification_time=data['notification_time'],isAdmin=True, repeat=data['repeat']) #发布者有修改权
-            message = Message.objects.create(
-                title=user_obj.name+"邀请你参加团队日程",
-                content=user_obj.name+" 邀请你参加 \"" + data['title'] + "\", 快去看看吧。",
-                category="group",
-                publisher=user_obj,
-                publish_time=datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-            )
-            response['data']={}
-            response['data']['tid'] = task_obj.tid
-            response['not_exist_uid'] = []
-            user_obj=User.objects.get(uid=uid)
-            UserTask.objects.create(user=user_obj,task=task_obj,notification_alert=data['notification_alert'], notification_time=data['notification_time'],isAdmin=True, repeat=data['repeat']) #发布者有修改权
             try:
                 message = Message.objects.create(
                     title=user_obj.name+"邀请你参加团队日程",
                     content=user_obj.name+" 邀请你参加 \"" + data['title'] + "\", 快去看看吧。",
                     category="group",
-                    publisher=user_obj.name,
+                    publisher=user_obj,
                     publish_time=datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
                 )
                 for id in data["participant"]:

@@ -1,4 +1,4 @@
-# /usr/bin/python
+# !/usr/bin/python3
 # -*- coding: utf_8_sig -*-
 import sqlite3 as db
 import json
@@ -27,11 +27,8 @@ def main():
 
     # time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
     current = datetime.datetime.now()
-    nexttime = current + datetime.timedelta(minutes=1)
-    current = current.strftime("%Y-%m-%d %H:%M:%S") 
-    nexttime = nexttime.strftime("%Y-%m-%d %H:%M:%S") 
-    task = u'select user_id,task_id from ddl_killer_usertask join ddl_killer_user on ddl_killer_user.uid=ddl_killer_usertask.user_id where notification_time > \'{0}\' and notification_time < \'{1}\' and notification_alert == 1 and ddl_alert == 1 order by notification_time ASC;'.format(str(current), str(nexttime))
-    # task = u'select user_id,task_id from ddl_killer_usertask where notification_time > \'{0}\' and notification_time < \'{1}\' and notification_alert == 1 order by notification_time ASC;'.format(str(current), str(nexttime))
+    current = current.strftime("%Y-%m-%d %H:%M:") 
+    task = u'select user_id,task_id from ddl_killer_usertask join ddl_killer_user on ddl_killer_user.uid=ddl_killer_usertask.user_id where notification_time LIKE "{0}__" and notification_alert == 1 and ddl_alert == 1 order by notification_time ASC;'.format(str(current))
     
     result = cu.execute(task).fetchall()
     print(result)
@@ -64,7 +61,7 @@ def main():
         content = '<strong>{0}</strong>\n📓 details: {1}\n\n⏰ ddl_time: {2}\n📂 category: {3}\n '.format(task[0][0], task[0][2], task[0][3], task[0][1])
         if task[0][5]!=None and task[0][5] != '':
             content += '🏠 相关平台: {0}\n\n'.format(task[0][5])
-        if task[0][4]!=None and task[0][4]!='':
+        if task[0][1]!="exam" and task[0][4]!=None and task[0][4]!='':
             content += '<a href="{0}">🔗相关链接</a>\n\n'.format(task[0][4])
         fullText['content'] = content + '⌚ DDL_Killer  团队 ⌚\n\n'
         try:
