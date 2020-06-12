@@ -611,7 +611,8 @@
           notification_alert:false,
           notification_time: '',
           isAdmin:true,
-          is_finished: false
+          is_finished: false,
+          repeat: ""
         }
 
         console.log(new_task)

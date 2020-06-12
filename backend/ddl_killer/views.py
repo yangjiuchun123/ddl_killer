@@ -475,7 +475,8 @@ def admin_add_task(request, uid, cid): # 课程管理员为选择了所有课的
                     urls=data["urls"],
                     platform=data["platform"],
                     ddl_time=data["ddl_time"],
-                    create_time=data["create_time"]
+                    create_time=data["create_time"],
+                    repeat=""
                 )
                 response['data'] = {}
                 response['data']['tid'] = task_obj.tid
@@ -575,7 +576,7 @@ def add_task(request, uid): #用户个人添加task(需要选择或输入partici
                 title=user_obj.name+"邀请你参加团队日程",
                 content=user_obj.name+" 邀请你参加 \"" + data['title'] + "\", 快去看看吧。",
                 category="group",
-                publisher=user_obj.name,
+                publisher=user_obj,
                 publish_time=datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
             )
             for id in data["participant"]:
