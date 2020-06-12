@@ -18,6 +18,16 @@ export function getMessage(uid, type) {
     })
   }
 
+  export function readAllMessage(uid, data) {
+    console.log(uid)
+    return request({
+      url: `/api/user/${uid}/readAllMessage`,
+      method: 'post',
+      uid,
+      data
+    })
+  }
+
   export function broadcastMessage(uid, data) {
     return request({
       url: `/api/user/${uid}/broadcast`,

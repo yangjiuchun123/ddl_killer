@@ -1007,8 +1007,34 @@ def get_message_read(request, uid, mid):
             um.save()
             response['code'] = 200
             response['msg'] = "Success."
-    print('return')
     return JsonResponse(response, json_dumps_params={'ensure_ascii':False}, charset='utf_8_sig')
+
+def get_all_message_read(request, uid):
+    response = {}
+    if not request.META.get("HTTP_AUTHORIZATION") or not check_password(uid,request.META.get("HTTP_AUTHORIZATION")):
+        response['code'] = 401
+        response['msg'] = "Authorization failed!"
+        return JsonResponse(response, json_dumps_params={'ensure_ascii':False}, charset='utf_8_sig')
+
+    print(request.method)
+    print(request.body)
+    try:    
+        data = json.loads(request.body.decode())
+        user = User.objects.get(uid=uid)
+        category = data['type']
+        for um in UserMessage.objects.filter(user__uid=uid):
+            if not um.is_read and (category=="unread" or category==um.message.category):
+                um.is_read=True
+                um.save()
+        response['code'] = 200
+        response['msg'] = 'Success.'
+    except:
+        traceback.print_exc()
+        response['code'] = 500
+        response['msg'] = 'Internal Error.'
+    return JsonResponse(response, json_dumps_params={'ensure_ascii':False}, charset='utf_8_sig')
+
+
 
 def report_bugs(request, uid):
     response = {}

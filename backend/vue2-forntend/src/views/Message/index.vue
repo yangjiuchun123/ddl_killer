@@ -14,7 +14,7 @@
           </v-chip-group>
           <v-spacer></v-spacer>
 
-          <v-btn outlined color="indigo" @click="allRead">
+          <v-btn outlined color="indigo" @click="allRead()">
             <v-icon class="mdi mdi-check-all" dark></v-icon>
             </v-btn>
 
@@ -139,7 +139,7 @@
 </template>
 
 <script>
-import { getMessage, readMessage, broadcastMessage } from '@/api/message'
+import { getMessage, readMessage, broadcastMessage, readAllMessage } from '@/api/message'
 
 export default {
   inject: ['reload'],
@@ -165,6 +165,9 @@ export default {
     broadMsg: {
       title: '',
       content: ''
+    },
+    chooseTytpe: {
+      type: ''
     },
 
     ctag: '', //short for current tag
@@ -226,12 +229,12 @@ export default {
     },
     allRead() {
       if (this.ctag != "read") {
-          for (let i = 0; i < this.items.length; i++) 
-          {
-            readMessage(this.$store.getters.uid, this.items[i].mid).then(res => {
+          this.chooseTytpe.type = this.ctag
+          readAllMessage(this.$store.getters.uid, this.chooseTytpe).then(res => {
+            for (let i = 0; i < this.items.length; i++) {
               this.items[i].is_read = true
-            })
-          }
+            }
+          })
           if (this.ctag == "unread") 
           {
             getMessage(this.$store.getters.uid, this.ctag).then(res => {
