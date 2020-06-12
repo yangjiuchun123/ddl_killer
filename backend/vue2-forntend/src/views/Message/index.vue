@@ -1,7 +1,7 @@
 <template>
 <v-app>
   <v-row justify="center">
-    <v-col cols="10">
+    <v-col cols="8">
       <v-card>
         <v-card-title>
           <v-chip-group
@@ -12,6 +12,12 @@
               {{ tag.text }}
             </v-chip>
           </v-chip-group>
+          <v-spacer></v-spacer>
+
+          <v-btn outlined color="indigo" @click="allRead">
+            <v-icon class="mdi mdi-check-all" dark></v-icon>
+            </v-btn>
+
         </v-card-title>
         <v-card-text>
           <v-list flat rounded>
@@ -217,6 +223,33 @@ export default {
         location.reload();
       })
       this.broadcastDialog = false
+    },
+    allRead() {
+      if (this.ctag != "read") {
+          for (let i = 0; i < this.items.length; i++) 
+          {
+            readMessage(this.$store.getters.uid, this.items[i].mid).then(res => {
+              this.items[i].is_read = true
+            })
+          }
+          if (this.ctag == "unread") 
+          {
+            getMessage(this.$store.getters.uid, this.ctag).then(res => {
+              this.items = res.data
+            })
+            this.reload()
+          }
+          // this.$message({
+          //   message: '当前tag通知已全部标记为已读',
+          //   type: 'success',
+          // })
+          this.$notify({
+            title: '当前tag通知已全部标记为已读',
+            type: "success",
+            offset: 130,
+            duration: 1500
+          });
+      }
     }
 
   }
