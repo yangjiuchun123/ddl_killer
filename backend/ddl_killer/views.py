@@ -20,7 +20,8 @@ import traceback
 from .utils.jsDecryopt import decode as jsDecode
 from .utils.jsDecryopt import create_key as create_js_pub_key
 from .utils.sendmail import register_mail, edit_mail, participate_mail, resource_mail, reset_pwd_mail, send_new_feedback
-from .utils.webScrap import updateFromCourse
+from .utils.courseScrap import updateFromCourse
+from .utils.jiaowuScrap import updateFromJiaowu
 
 from .models import User
 from .models import Course
@@ -189,6 +190,8 @@ def login_user(request):
         response['code'] = 404
         response['msg'] = 'User Not Exists!'
     else:
+        with open('./ddl_killer/log/account.log', 'a+') as f:
+            f.write('{0} : account {1} requests for login.\n'.format(str(datetime.datetime.now()), uid))
         user = check_user[0]
         password = jsDecode(data['password'])
         if not check_password(password, user.password):
@@ -253,7 +256,10 @@ def update_courses(request, uid): #从课程中心获取用户所选课程并同
     password = jsDecode(data['password'])
     # print(data['username'])
     # print(data['password'])
+    examData = updateFromJiaowu(uid, username, password)
+    print("Finish examData")
     data = updateFromCourse(uid, username, password)
+    print("Finish coursdeData")
     if data['code'] == 405:
         response['code'] = 405
         response['msg'] = "Password not match."
@@ -382,37 +388,38 @@ def update_courses(request, uid): #从课程中心获取用户所选课程并同
         except:
             traceback.print_exc()
     
-    try:
-        for exam in data['exam']:
-            message = Message.objects.create(
-                title=exam['title']+"的考试信息",
-                content=exam['title'] +" 有了新的考试信息，考试时间为 \"" + exam['ddl_time'] + "\", 请留意。",
-                category="homework",
-                publisher=User.objects.get(uid="00000000"),
-                publish_time=datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-            )
-            this_exams = Task.objects.filter(urls=exam['urls'])
-            if this_exams.exists():
-                this_exam = this_exams[0]
-                uts = UserTask.objects.filter(user__uid=str(uid), task__tid=this_exam.tid)
-                if not uts.exists():
+    if examData['code'] == 200:
+        try:
+            for exam in examData['exam']:
+                message = Message.objects.create(
+                    title=exam['title']+"的考试信息",
+                    content=exam['title'] +" 有了新的考试信息，考试时间为 \"" + exam['ddl_time'] + "\", 请留意。",
+                    category="homework",
+                    publisher=User.objects.get(uid="00000000"),
+                    publish_time=datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                )
+                this_exams = Task.objects.filter(urls=exam['urls'])
+                if this_exams.exists():
+                    this_exam = this_exams[0]
+                    uts = UserTask.objects.filter(user__uid=str(uid), task__tid=this_exam.tid)
+                    if not uts.exists():
+                        UserMessage.objects.create(user=user_obj, message=message, is_read=False)
+                        UserTask.objects.create(user=user_obj, task=this_exam, notification_time=exam['notification_time'], notification_alert=True, is_finished=exam['is_finished'])
+                else:
+                    this_exam = Task.objects.create(
+                        title=exam["title"],
+                        content=exam["content"],
+                        category=exam["category"],
+                        course_name=exam['course_name'],
+                        urls=exam["urls"],
+                        platform=exam["platform"],
+                        ddl_time=exam["ddl_time"],
+                        create_time=datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                    )
                     UserMessage.objects.create(user=user_obj, message=message, is_read=False)
                     UserTask.objects.create(user=user_obj, task=this_exam, notification_time=exam['notification_time'], notification_alert=True, is_finished=exam['is_finished'])
-            else:
-                this_exam = Task.objects.create(
-                    title=exam["title"],
-                    content=exam["content"],
-                    category=exam["category"],
-                    course_name=exam['course_name'],
-                    urls=exam["urls"],
-                    platform=exam["platform"],
-                    ddl_time=exam["ddl_time"],
-                    create_time=datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-                )
-                UserMessage.objects.create(user=user_obj, message=message, is_read=False)
-                UserTask.objects.create(user=user_obj, task=this_exam, notification_time=exam['notification_time'], notification_alert=True, is_finished=exam['is_finished'])
-    except:
-        traceback.print_exc()
+        except:
+            traceback.print_exc()
                 
     response['code'] = 200
     response['msg'] = 'Successfully Update your course info.'

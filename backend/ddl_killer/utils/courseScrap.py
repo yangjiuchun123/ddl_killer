@@ -4,7 +4,7 @@
 # Server Version
 
 from bs4 import BeautifulSoup as bs
-import requests
+from requests import session
 import urllib3
 from lxml import etree
 import json
@@ -23,7 +23,7 @@ import numpy as np
 # parser.add_argument('--password', type=str)
 # args = parser.parse_args()
 
-urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+# urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 # python2 和 python3的兼容代码
 try:
     # python2 中
@@ -36,15 +36,15 @@ except:
 
 userAgent = "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
 login_header = {
-    "Host" : "e2.buaa.edu.cn",
-    "Origin": "https://e2.buaa.edu.cn",
-    "Referer": "https://e2.buaa.edu.cn/users/sign_in",
+    "Host" : "e1.buaa.edu.cn",
+    "Origin": "https://e1.buaa.edu.cn",
+    "Referer": "https://e1.buaa.edu.cn/users/sign_in",
     'User-Agent': userAgent,
     'Connection': 'keep-alive',
     'Accept-Encoding': 'gzip, deflate, br',
     'Accept-Language': 'zh-CN,zh;q=0.9,en;q=0.8'
 }
-login_url = "https://e2.buaa.edu.cn/users/sign_in"
+login_url = "https://e1.buaa.edu.cn/users/sign_in"
 
 header = {
     'User-Agent': userAgent,
@@ -57,7 +57,7 @@ recrusiveHeader = {
     'Connection': 'keep-alive',
     'Pragma': 'no-cache',
     'Cache-Control': 'no-cache',
-    'Origin': 'https://course.e2.buaa.edu.cn',
+    'Origin': 'https://course.e1.buaa.edu.cn',
     'Content-Type': 'application/x-www-form-urlencoded',
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.24 Safari/537.36 Edg/83.0.478.18',
     'Sec-Fetch-Site': 'same-origin',
@@ -67,20 +67,20 @@ recrusiveHeader = {
     'Referer': '',
 }
 
-jiaowu_url = "https://jwxt-7001.e2.buaa.edu.cn/ieas2.1/welcome"
-exam_url = "https://jwxt-7001.e2.buaa.edu.cn/ieas2.1/kscx/queryKcForXs"
+jiaowu_url = "https://jwxt-7001.e1.buaa.edu.cn/ieas2.1/welcome"
+exam_url = "https://jwxt-7001.e1.buaa.edu.cn/ieas2.1/kscx/queryKcForXs"
 queryData = {
     "xnxq": "2019-20202",
     "kssjd": "A"
 }
 queryHead = {
-    "Host": "jwxt-7001.e2.buaa.edu.cn",
+    "Host": "jwxt-7001.e1.buaa.edu.cn",
     "Connection": "keep-alive",
     # Content-Length: 23
     "Pragma": "no-cache",
     "Cache-Control": "no-cache",
     "Upgrade-Insecure-Requests": "1",
-    "Origin": "https://jwxt-7001.e2.buaa.edu.cn",
+    "Origin": "https://jwxt-7001.e1.buaa.edu.cn",
     "Content-Type": "application/x-www-form-urlencoded",
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.97 Safari/537.36",
     "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9",
@@ -88,7 +88,7 @@ queryHead = {
     "Sec-Fetch-Mode": "navigate",
     "Sec-Fetch-User": "?1",
     "Sec-Fetch-Dest": "iframe",
-    "Referer": "https://jwxt-7001.e2.buaa.edu.cn/ieas2.1/kscx/queryKcForXs"
+    "Referer": "https://jwxt-7001.e1.buaa.edu.cn/ieas2.1/kscx/queryKcForXs"
 }
             
 isDebug = True
@@ -191,6 +191,37 @@ def collectAllFolderRes(rr, prefix, ass_iframe_url, s, cookie, token):
     
     return res
 
+def sso_login(account, password):
+    s = session()
+    userAgent = "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
+    sso_login_header = {
+        "Host" : "sso-443.e1.buaa.edu.cn",
+        "Origin": "https://sso-443.e1.buaa.edu.cn",
+        "Referer": "https://sso-443.e1.buaa.edu.cn/users/login",
+        'User-Agent': userAgent,
+        'Connection': 'keep-alive',
+        'Accept-Encoding': 'gzip, deflate, br',
+        'Accept-Language': 'zh-CN,zh;q=0.9,en;q=0.8'
+    }
+    sso_login_url = "https://sso-443.e1.buaa.edu.cn/login"
+    sso = s.get(sso_login_url, cookies=s.cookies, headers=sso_login_header)
+    sso_login_soup = bs(sso.text, 'html.parser')
+    sso_login_data = {
+        'username': account,
+        'password': password,
+        'code': '',
+        'lt': sso_login_soup.find('input', {'name':'lt'}).get('value'),
+        'execution': sso_login_soup.find('input', {'name':'execution'}).get('value'),
+        '_eventId': sso_login_soup.find('input', {'name':'_eventId'}).get('value'),
+        'submit': sso_login_soup.find('input', {'class':'loginbtn'}).get('value'),
+    }
+    sso = s.post(sso_login_url, cookies=s.cookies, headers=sso_login_header, data=sso_login_data)
+    if '登陆成功' in sso.text:
+        print("Log in sso success...")
+    else:
+        print("Log in sso failed...")
+    return s
+
 def updateFromCourse(uid, account, password):
     startTime = datetime.datetime.now()
     # path=os.path.realpath(__file__)
@@ -198,79 +229,50 @@ def updateFromCourse(uid, account, password):
     # print(os.getcwd())
     # print(os.path.join(os.getcwd(), 'ddl_killer/log/webScrap.log'))
 
+    total_list={}
 
-    total_list = {}
+    # ns = sso_login(account, password)
+    # cookie = ns.cookies
+    # try:
+    #     exam_list = []
+    #     exam = ns.get(jiaowu_url, cookies=cookie, headers=header, verify=False) # login first
+    #     exam = ns.post(exam_url, cookies=cookie, headers=queryHead, data=queryData) # get exam next
+    #     print(exam.status_code)
+    #     print(exam.text)
+    #     exam_soup = bs(exam.text, 'html.parser')
+    #     for ex in exam_soup.find('div', {'class': "list"}).findAll('tr'):
+    #         tds = ex.findAll('td')
+    #         if tds==[]:
+    #             continue
+    #         start_time = tds[5].text.split("，")[0]+" "+tds[5].text.split("，")[-1].split('-')[0]+":00"
+    #         end_time = tds[5].text.split("，")[0]+" "+tds[5].text.split("，")[-1].split('-')[-1]+":00"
+    #         exam_list.append({
+    #                     "title": tds[1].text,
+    #                     "course_name": tds[2].text,
+    #                     "platform": tds[3].text+" "+tds[4].text,
+    #                     "category": "exam",
+    #                     # "seat_number": tds[4].text,
+    #                     # ddl_time: e.g. 2020-04-05 11:20:00~2020-04-05 13:20:00
+    #                     "ddl_time": start_time+"~"+end_time,
+    #                     # "start_time": tds[5].text.split("，")[-1].split('-')[0]+":00",
+    #                     # "end_time": tds[5].text.split("，")[-1].split('-')[-1]+":00",
+    #                     "notification_time": (datetime.datetime.strptime(start_time, "%Y-%m-%d %H:%M:%S")-datetime.timedelta(days=1)).strftime("%Y-%m-%d %H:%M:%S"),
+    #                     "urls":  tds[2].text,
+    #                     "content": tds[1].text+" 期末集中考试，时间："+start_time+"~"+end_time,
+    #                     "is_finished": False
+    #                 })
+    #     total_list['exam'] = exam_list
+    #     print(total_list['exam'])
+    # except:
+    #     traceback.print_exc()
+    #     total_list['exam'] = exam_list
+
     
-    loginPostData = {
-        "utf8": "%E2%9C%93",
-        "user[login]": account,
-        "user[password]": password,
-        "user[dymatice_code]": "unknown",
-        "commit": "登录 Login",
-    }
 
-
-    ############################### get exam #######################################
-    
-    ns = requests.session()
-    ns.get('https://baidu.com')
-    res = ns.get(login_url, headers=login_header, verify=False)
-    cookie = res.cookies
-    loginPostData['authenticity_token']= str(etree.HTML(res.content).xpath('/html/head/meta[10]/@content')[0])
-    res = ns.post(login_url, data = loginPostData, headers = login_header, cookies=cookie, allow_redirects=True, verify=False)
-    cookie = res.cookies
-    try:
-        exam_list = []
-        exam = ns.get(jiaowu_url, cookies=cookie, headers=header,verify=False) # login first
-        exam = ns.post(exam_url, cookies=cookie, headers=queryHead, data=queryData) # get exam next
-        print(exam.status_code)
-        print(exam.text)
-        exam_soup = bs(exam.text, 'html.parser')
-        for ex in exam_soup.find('div', {'class': "list"}).findAll('tr'):
-            tds = ex.findAll('td')
-            if tds==[]:
-                continue
-            start_time = tds[5].text.split("，")[0]+" "+tds[5].text.split("，")[-1].split('-')[0]+":00"
-            end_time = tds[5].text.split("，")[0]+" "+tds[5].text.split("，")[-1].split('-')[-1]+":00"
-            exam_list.append({
-                        "title": tds[1].text,
-                        "course_name": tds[2].text,
-                        "platform": tds[3].text+" "+tds[4].text,
-                        "category": "exam",
-                        # "seat_number": tds[4].text,
-                        # ddl_time: e.g. 2020-04-05 11:20:00~2020-04-05 13:20:00
-                        "ddl_time": start_time+"~"+end_time,
-                        # "start_time": tds[5].text.split("，")[-1].split('-')[0]+":00",
-                        # "end_time": tds[5].text.split("，")[-1].split('-')[-1]+":00",
-                        "notification_time": (datetime.datetime.strptime(start_time, "%Y-%m-%d %H:%M:%S")-datetime.timedelta(days=1)).strftime("%Y-%m-%d %H:%M:%S"),
-                        "urls":  tds[2].text,
-                        "content": tds[1].text+" 期末集中考试，时间："+start_time+"~"+end_time,
-                        "is_finished": False
-                    })
-        total_list['exam'] = exam_list
-    except:
-        traceback.print_exc()
-
-    print(total_list['exam'])
 
     try:
-        s = requests.session()
-        if isDebug:
-            print("开始模拟登录")
-        res = s.get(login_url, headers=login_header, verify=False)
-        cookie = res.cookies
-        # if isDebug:
-        #     print("get response from ows {0}\n http status {1}\n resquest.url {2}\n".format(login_url, res.status_code, res.url))
-
-        loginPostData['authenticity_token']= str(etree.HTML(res.content).xpath('/html/head/meta[10]/@content')[0])
-        # if isDebug:
-        #     print("post login params to {0}\n http status {1}\n cookie : {2}\n".format(login_url, res.status_code, cookie))
-
-        res = s.post(login_url, data = loginPostData, headers = login_header, cookies=cookie, allow_redirects=True, verify=False)
-        cookie = res.cookies
-        # if isDebug:
-        #     print("post login params to {0}\n http status {1}\n cookie : {2}\n".format(login_url, res.status_code, cookie))
-
+        s = sso_login(account, password)
+        cookie = s.cookies
         # 获得当前学期时间
         current_time = ttime.strftime("%Y-%m-%d %H:%M:%S", ttime.localtime())
         year = int(current_time.split('-')[0])
@@ -286,7 +288,7 @@ def updateFromCourse(uid, account, password):
 
 
         
-        course_url = "https://course.e2.buaa.edu.cn/portal/login"
+        course_url = "https://course.e1.buaa.edu.cn/portal/login"
 
         course = s.get(course_url, cookies=cookie, headers=header, allow_redirects=True)
         if isDebug:
