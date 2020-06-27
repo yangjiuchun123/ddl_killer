@@ -1,5 +1,5 @@
 import { login, logout, getInfo } from '@/api/user'
-import { getToken, setToken, removeToken, setUid, getUid, getName, setName } from '@/utils/auth'
+import { getToken, setToken, removeToken, setUid, getUid, getName, setName, getEmail, setEmail } from '@/utils/auth'
 import { resetRouter } from '@/router'
 
 const getDefaultState = () => {
@@ -7,7 +7,8 @@ const getDefaultState = () => {
     token: getToken(),
     name: getName(),
     avatar: '',
-    uid: getUid()
+    uid: getUid(),
+    email: getEmail()
   }
 }
 
@@ -28,6 +29,9 @@ const mutations = {
   },
   SET_ID: (state, uid) => {
     state.uid = uid
+  },
+  SET_EMAIL: (state, email) => {
+    state.email = email
   }
 }
 
@@ -42,9 +46,11 @@ const actions = {
         commit('SET_NAME', response.name)
         commit('SET_TOKEN', response.token)
         commit('SET_ID', uid)
+        commit('SET_EMAIL', response.email)
         setToken(response.token)
         setUid(uid)
         setName(response.name)
+        setEmail(response.email)
         resolve(response)
       }).catch(error => {
         reject(error)

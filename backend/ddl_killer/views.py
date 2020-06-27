@@ -203,6 +203,7 @@ def login_user(request):
             if user.is_active:
                 response['uid'] = uid
                 response['name'] = user.name
+                response['email'] = user.email
                 response['code'] = 200
                 response['msg'] = 'Success.'
             else:

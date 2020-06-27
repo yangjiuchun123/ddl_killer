@@ -9,7 +9,7 @@
       <el-dropdown class="avatar-container" trigger="click">
         
         <div class="avatar-wrapper">
-          <img :src="avatar+'?imageView2/1/w/80/h/80'" class="user-avatar">
+          <img :src="'https://www.gravatar.com/avatar/'+emailHash+'?d=identicon'" class="user-avatar">
           <i class="el-icon-caret-bottom" />
         </div>
         <!--
@@ -23,8 +23,8 @@
               Home
             </el-dropdown-item>
           </router-link>
-          <a target="_blank" href="https://www.cnblogs.com/UltraSoft/p/12813150.html">
-            <el-dropdown-item>BUG反馈</el-dropdown-item>
+          <a target="_blank" href="https://cn.gravatar.com/">
+            <el-dropdown-item>更换头像</el-dropdown-item>
           </a>
           <!-- <a target="_blank" href="https://github.com/PanJiaChen/vue-admin-template/">
             <el-dropdown-item>Github</el-dropdown-item>
@@ -46,6 +46,7 @@ import { mapGetters } from 'vuex'
 import Breadcrumb from '@/components/Breadcrumb'
 import Hamburger from '@/components/Hamburger'
 import updateBtn from '@/views/UpdateButton'
+import md5Hex from 'md5-hex'
 
 export default {
   components: {
@@ -60,8 +61,11 @@ export default {
     ])
   },
   data: () => ({
-    cookie_email: "17373492@buaa.edu.cn",
+    emailHash: ''
   }),
+  created () {
+    this.emailHash = md5Hex(this.$store.getters.email)
+  },
   methods: {
     toggleSideBar() {
       this.$store.dispatch('app/toggleSideBar')
@@ -72,6 +76,10 @@ export default {
     },
     update() {
       alert('update!')
+    },
+    getImgUrl() {
+      
+      return "https://www.gravatar.com/avatar/"+this.emailHash
     }
   }
 }

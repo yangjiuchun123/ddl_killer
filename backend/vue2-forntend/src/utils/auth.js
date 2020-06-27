@@ -3,6 +3,7 @@ import Cookies from 'js-cookie'
 const TokenKey = 'vue_admin_template_token'
 const UidKey = 'uid_key'
 const NameKey = 'name_key'
+const EmailKey = 'email_key'
 
 export function getToken() {
   return Cookies.get(TokenKey)
@@ -31,3 +32,12 @@ export function setName(name) {
 export function getName() {
   return Cookies.get(NameKey)
 }
+
+export function setEmail(email) {
+  return Cookies.set(EmailKey, email)
+}
+
+export function getEmail() {
+  return Cookies.get(EmailKey)
+}
+
