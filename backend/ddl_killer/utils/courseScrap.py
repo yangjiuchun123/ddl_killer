@@ -286,7 +286,7 @@ def updateFromCourse(uid, account, password):
             print('Checking '+this_term)
             print("初始化完成...")
 
-
+    
         
         course_url = "https://course.e1.buaa.edu.cn/portal/login"
 

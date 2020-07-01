@@ -662,6 +662,7 @@ def show_user_tasks(request, uid): #用户查看自己的所有任务及ddl
         traceback.print_exc()
         response['code'] = 500
         response['msg'] = "Internel Error"
+    print(response)
     return JsonResponse(response, json_dumps_params={'ensure_ascii':False}, charset='utf_8_sig')
     
     

@@ -97,11 +97,15 @@ except:
     import http.cookiejar as cookieliba
     print(f"user cookielib in python3.")
    
-def updateFromJiaowu(uid, account, password):
+class LoginFailedException(Exception):
+    def __init__(self,message):
+        Exception.__init__(self)
+        self.message=message
+
+def loginJiaowu(uid, account, password, s):
     resultData = {}
     postData["user[login]"]=account
     postData["user[password]"]=password
-    s = session()
     userAgent = "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"
     sso_login_header = {
         "Host" : "sso-443.e2.buaa.edu.cn",
@@ -197,11 +201,13 @@ def updateFromJiaowu(uid, account, password):
     }
     redirect_url = 'https://sso-443.e2.buaa.edu.cn/login;jsessionid='+sdict['JSESSIONID']+'?service=https%3A%2F%2Fjwxt-7001.e2.buaa.edu.cn%3A443%2Fieas2.1%2Fwelcome'
     redirect_page = s.post(redirect_url, headers=header, data=sso_login_data, verify=False)
-    if '切换角色' in redirect_page.text:
-        print("Log in Jiaowu Success...")
-    else:
-        print("Log in failed...")
-        
+    if not '切换角色' in redirect_page.text:
+        raise loginFailedException('Log in failed...')
+    return
+
+
+
+def getExamList(s):
     sdict = s.cookies.get_dict()
     queryHead['Referer']= "https://jwxt-7001.e2.buaa.edu.cn/ieas2.1/welcome"
     del queryHead['Origin']
@@ -234,8 +240,56 @@ def updateFromJiaowu(uid, account, password):
                     "content": tds[1].text+" 期末集中考试，时间："+start_time+"~"+end_time,
                     "is_finished": False
                 })
+    return exam_list
+
+def getScoreList(s):
+    queryXq = '2020春'
+    queryYear = queryXq[0:4]
+    queryFest = queryXq[4:]
+    festDict = {
+        '秋': queryYear+'-'+str(int(queryYear)+1)+'1',
+        '春': str(int(queryYear)-1)+'-'+queryYear+'2',
+        '夏': str(int(queryYear)-1)+'-'+queryYear+'3'
+    }
+    pageXnxq = festDict[queryFest]
+    scoreData = {
+        'pageXnxq': pageXnxq,
+        'pageBkcxbj': '',
+        'pageSfjg': '',
+        'pageKcmc': ''
+    }
+    queryHead['Referer'] = "https://jwxt-7001.e2.buaa.edu.cn/ieas2.1/cjcx/queryTyQmcj"
+    cj_plain = s.post("https://jwxt-7001.e2.buaa.edu.cn/ieas2.1/cjcx/queryTyQmcj", headers=queryHead, cookies=s.cookies, data=scoreData)
+    cj_total = []
+    cj_soup=bs(cj_plain.text, 'html.parser')
+    course_cj = cj_soup.findAll('table')[1].find('tr')
+    while True:
+        course_cj = course_cj.findNext('tr')
+        td_lists = course_cj.findAll('td')
+        if len(td_lists)!=14:
+            break
+        cj_result = {
+            'course': td_lists[4].text,
+            'credit': td_lists[7].text,
+            'score': td_lists[10].text.strip()
+        }
+        cj_total.append(cj_result)
+
+def updateFromJiaowu(uid, account, password):
+    try:
+        s = session()
+        loginJiaowu(uid, account, password, s)
+    except:
+        resultData['exam'] = []
+        resultData['code'] = 500
+        resultData['msg'] = 'Log in failed...'
+        return resultData
+
+    exam_list = getExamList(s)
+    score_list = getScoreList(s)
+    resultData = {}
     resultData['exam'] = exam_list
+    resultData['score'] = score_list
     resultData['code'] = 200
     resultData['msg'] = 'Success'
-    print(resultData['exam'])
     return resultData
